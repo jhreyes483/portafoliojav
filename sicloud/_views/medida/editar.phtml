@@ -1,0 +1,32 @@
+<?php
+//-----------------------------------------------------------------------------------
+cardtitulo("Editar medida");
+
+//Accion editar 
+if ((isset($_POST['id']))) {
+   if($this->datos['response_status'] == 'ok' ){
+        foreach($this->datos['response_msg'] as $i => $d){
+?>
+        <div class="container-fluid col-md col-xl-6">
+            <div class="row">
+                <div class="p-2 col-8 col-sm-6 col-md-4 col-lg-3 col-xl-4  mx-auto">
+                    <div class="card">
+                        <div class="card-header shadow">Registro</div>
+                        <div class="card-body">
+                            <form action="<?= BASE_URL.'medida' ?>"  method="POST">
+                                <div class="form-group"><input class="form-control" type="text" name="nom" placeholder="Medida" value="<?= $d[1]  ?>" required autofocus maxlength="35"></div>
+                                <div class="form-group"><input class="form-control" type="text" name="acron" placeholder="Acronimo" value="<?= $d[2]  ?>" required autofocus maxlength="5"></div>
+                                <input type="hidden" name="accion" value="UdateMedia">
+                                <input type="hidden" name="id" value="<?= $_POST['id'] ?>">
+                                <div class="form-group"><input class="form-control btn btn-primary" type="submit" value="Actualizar medida"></div>
+                            </form>
+                        </div><!-- fin card body -->
+                    </div><!-- fin de card -->
+                </div><!-- fin de col 2 -->
+            </div><!-- fin de columnas -->
+        </div><!-- Fin de container -->
+<?php
+       } //fin de while
+   } //fin de get
+}
+?>

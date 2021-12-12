@@ -1,0 +1,153 @@
+
+<?php
+cardtitulo("Conteo de productos");
+foreach($this->datos[0] as $d) $cat[$d['nom_categoria']][] = $d['stok_prod'];
+foreach($cat as $i  =>$v) $tot[] =   array_sum($v).' '.$i; 
+$tot = implode( '<b>, </b>', $tot);
+?>
+
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-md-6">
+            <form action="" method="post">
+                <input type="submit" class="btn btn-primary" value="todos">
+                <input type="hidden" name="accion" value="todos">
+            </form>
+        </div>
+        <div class="col-md-6  "> 
+            <form action="" method="post">
+            <label for="c"></label>
+                <select name="p" id="c"   style="margin-left: 77%" class="col-md-3 form-control" onchange="submit(this)">
+<?php
+ echo  '<option  selected value="">Categoría</option>';
+foreach ($this->categoria as $i => $c) {
+    echo  '<option  '.(  (isset($_POST['p'])) && ($i == $_POST['p'] )? ' selected ': '').' value="' . $i . '">' . $c . '</option>';
+}
+?>
+                </select>
+                <input type="hidden" name="accion" value="filtroCategoria">
+            </form>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+
+
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+ <?php
+ foreach($this->datos[0] as $d   ){
+ ?>
+
+          ['<?= $d['nom_prod'] ?>',    <?= $d['stok_prod'] ?>],
+<?php
+ }
+?>
+        //  ['Eat',      2],
+        //  ['Commute',  2],
+        //  ['Watch TV', 2],
+        //  ['Sleep',    7]
+        ]);
+
+        var options = {
+          is3D: true,
+          backgroundColor: 'none',
+          chartArea:{left:10,top:20,width:"100%",height:"100%"}
+            ,height: 500
+        ,width: 500,
+        
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+    </div>
+
+
+<div class=" col-md-6 mx-auto">
+<div class="col-md-4 mx-auto  ">
+<a class="btn btn-primary text-center text-white mx-auto" id="toggle" >Mostrar estadísticas</a>
+</div>
+
+<div class="mx-auto col-md-8 mx-auto " id="div" style="display: none;">
+  <div id="piechart_3d"   ></div>
+  </div>
+</div>
+    <div class="col-md-10 mx-auto ">
+        <table id="example" class=" border-arriba tablesorter table table-bordered  table-striped bg-white table-sm mx-auto text-center">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Stok</th>
+                    <th>Estado</th>
+                    <th>Categoría</th>
+                </tr>
+            </thead>
+            <tbody>
+<?php
+foreach ($this->datos[0] as $i => $row) {
+    $p  =  $row['stok_prod'];
+    $c = "text";
+    if ($p < 2) {
+        $c = "danger"; $m = "Producto agotado";
+    } elseif ($p <= 6) {
+        $c = "warning"; $m = "Existencia baja";
+    } elseif ($p >= 7) {
+        $c = "success"; $m = "Suficiente";
+    }
+    $c = "bg-" . $c;
+?>
+                    <tr>
+                        <td> <?= $row['nom_prod']  ?></td>
+                        <td title="<?= $m ?>" class="<?='text-white '.$c ?>"><strong> <?= $row['stok_prod']  ?> </strong> </td>
+                        <td><?= $m ?></td>
+<?php
+if( isset($_POST['accion']) && $_POST['accion'] == 'filtroCategoria'  ){
+  echo '<td>'.$this->categoria[  $row['ID_categoria']  ].'</td>';
+}else{
+  echo '<td>'.$row['nom_categoria'].'</td>';
+}
+?>            
+                    </tr>
+                 
+                   
+               
+
+                <?php    }  ?>
+            </tbody>
+            <tr>
+               <td><strong>Total de productos</strong> </td>
+               <td><?= $tot    ?></td>
+            </tr>
+        </table>
+    </div><!-- fin de div tabla responce -->
+
+
+
+
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 100%; height: 500px;"></div>
+  </body>
+</html>
+
+    <script>
+    
+$(document).ready(function() {
+    var elemento = $("#div");
+    var mostrar  = $("#toggle");
+    
+  mostrar.click(function() {
+    elemento.toggle(1000);
+  });
+});
+
+    </script>
+
+
+  

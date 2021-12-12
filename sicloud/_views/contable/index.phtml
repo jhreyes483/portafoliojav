@@ -1,0 +1,202 @@
+<?php
+cardtitulo('Informe de Facturación');
+foreach($this->datos['response_msg'] as $d) {  
+    //$acoSalida =$acoEntrada= $salida = $entrada =0; 
+    switch ($d[15]) {
+        case 'D':
+            $salida = $d[8]; 
+            break;
+        case 'C':
+            $entrada = $d[8]; 
+            break;
+    }
+   $fecha = date('Y-m-d', strtotime($d[0]));
+    $fa[  $fecha  ]['per']['C'][]= ($entrada??0);
+    $fa[  $fecha  ]['per']['D'][]= ($salida??0);
+    $salida = $entrada =0;         
+}    
+
+
+
+foreach($fa as $i => $f){
+    foreach($f as $k => $row){
+        if(!isset($fa['tot-C'])) $fa['tot-C'] =0;
+        if(!isset($fa['tot-D']))  $fa['tot-D']  =0;
+        $C  = array_sum($f['per']['C']); 
+        $D  = array_sum($f['per']['D']);
+        $grafica[$i]       = ['D'=>$D, 'C' => $C ];
+        $fa['tot-C'] += $C ;
+        $fa['tot-D'] += $D ; 
+        
+    }
+    $o = new c_numerosLetras;
+}
+// $fa['ganancia']= $fa['tot-ingresos']-$fa['tot-egresos'];
+$tot['D']['numeros']    = ('$' . number_format(($fa['tot-D']), 0, ',', '.')) ;
+$tot['D']['letras']     = (( $o->convertirCifrasEnLetras( $fa['tot-D'] ))); 
+$tot['C']['numeros']   = ('$' . number_format(($fa['tot-C']), 0, ',', '.')) ;
+$tot['C']['letras']    = (( $o->convertirCifrasEnLetras( $fa['tot-C'] ))); 
+$tot['ganancia']['numeros']   = ('$' . number_format(($fa['tot-C'] -$fa['tot-D'] ), 0, ',', '.')) ;
+$tot['ganancia']['letras']    = (( $o->convertirCifrasEnLetras( $fa['tot-C'] -$fa['tot-D']  ))); 
+$tot['saldo']['numeros']      = ('$' . number_format(($this->saldo), 0, ',', '.')) ;
+$tot['saldo']['letras']       = (($o->convertirCifrasEnLetras( $this->saldo ))); 
+//$fa['tot-ingresos']['letras'] = (strtolower( $o->convertirCifrasEnLetras( $fa['tot-ingresos'] ))); 
+//Controller::ver($tot);
+
+?>
+<div class="card card-body box-card text-center col-md-10 col-lg-6 col-12 mx-auto">
+    <!--<div class="container">-->
+    <div class=" container-fluid ">
+        <div class="card card-body  shadow-lg">
+            <form method="POST">
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- derecha -->
+                        <label for="start">Fecha inicial:</label>
+                        <div class="form-group"><input class="form-control" type="date" id="start" name="f1" value="<?=( $_POST['f1']??'2015-01-01')?>" min="0000-00-00" max="9999-99-99"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="start">Fecha fin:</label>
+                        <div class="form-group"><input class="form-control" type="date" id="start" name="f2" value="<?= (  $_POST['f2']??date('Y-m-d')) ?>"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="start">Tipo:</label>
+                        <div class="form-group">
+                        <select name="tipo_pago" class="form-control" id="">
+                        
+<?php
+echo '<option  value="">Sin tipo</option>';
+foreach(['C'=>'Credito','D'=>'Debito']  as $i => $d  ){
+echo '<option '.(( (isset($_POST['tipo_pago'])) &&  $i == $_POST['tipo_pago'])? ' selected ': '' ).'  value="'.$i.'">'.$d.'</option>';
+}
+?>
+
+                        </select>
+                        </div>
+                    </div>
+                </div><!-- fin primera columna de 6 -->
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <!-- derecha -->
+                        <div class="form-group"> <input class="btn btn-primary form-control" type="submit" value="Ver informe" name="consulta"></div>
+                    </div><!-- fin primera columna de 6 -->
+                </div>
+                
+            </form>
+        </div><!-- fin de segunda columna de 6 -->
+    </div>
+</div><!-- fin de row -->
+<?php
+if (isset($this->datos) && ($this->datos['response_status'] == 'ok')) {
+?>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-11 mx-auto">
+                <div class="table-responsive">
+                <table id="example" class="bg-white mx-auto text-center box-card">
+            <thead>
+               <tr>
+                  <th><i> Fecha</th>
+                  <th><i> Hora</th>
+                  <th><i>Nombre user sistema</th>
+                  <th> Actor del pago</th>
+                  <th><i>Valor</th>
+                  <th>Estado</th>
+                  <th>Motivo</th>
+                  <th>Tipo</th>
+                  <th>Pago programado</th>
+
+               </tr>
+            </thead>
+            <tbody>
+               <?php
+               foreach ($this->datos['response_msg'] as $i => $d) {
+                   $fecha = explode(' ', $d[0] );
+               ?>
+                  <tr>
+                     <td><?= $fecha[0] ?></td>
+                     <td><?= $fecha[1] ?></td>
+                     <td><?= $d[2] . ' ' . $d[3] . ' ' . $d[4] . ' ' . $d[5] ?></td>
+                     <td><?= $d[6] ?></td>
+                     <td><?= ('$' . number_format(($d[8]), 0, ',', '.'))  ?></td>
+                     <td><?= ($this->estado_pago[$d[7]]??'1') ?></td>
+                     <td><?= $d[13] ?></td>
+                     <td><?= $d[15] ?></td>
+                     <td><?= ( !isset($d[10])? 'No programado':$d[10]  ) ?></td>
+                  </tr>
+               <?php
+               }
+               ?>
+            </tbody>
+                <tr>
+                    <td>Total Debito</td>
+                    <td ><?=$tot['D']['numeros'] ?></td>
+                    <td colspan="7"  ><?=$tot['D']['letras'] ?></td> 
+                    </tr><tr>                          
+                    <td >Total Credto</td>
+                    <td ><?=$tot['C']['numeros'] ?></td>
+                    <td colspan="7"  ><?=$tot['C']['letras'] ?></td>
+                    </tr><tr>
+                    <td>Ganancia</td>
+                    <td ><?=$tot['ganancia']['numeros'] ?></td>
+                    <td colspan="7"  ><?=$tot['ganancia']['letras'] ?></td>
+                    </tr><tr>
+                    <td>Saldo actual</td>
+                    <td ><?=$tot['saldo']['numeros']  ?></td>
+                    <td colspan="7"  ><?=$tot['saldo']['letras'] ?></td>
+                </tr>
+            </table>
+        </div>
+    </div>        
+    </div>
+    <div class="container-fluid">
+    <div class="my-2">
+        <div id="chart_div" style="width: 100%; height: 500px;"></div>
+        </div>
+    </div>
+
+<?php
+} else {
+
+    if (isset($this->facturas)) {
+        echo '<div class="alert text-center col-md-4 mx-auto alert-info alert-dismissible fade show" role="alert">
+' . $this->facturas['response_msg'] . '      
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true"></span>
+</button>
+</div>';
+    }
+}
+
+?>
+
+
+<script>
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Valor Total', 'Credito', 'Debito'],
+<?php
+foreach( $grafica as $i => $d ){
+?>
+    ['<?= $i ?>', <?= $d['C']  ?>, <?= $d['D']  ?>],
+<?php
+}
+?>
+         // ['2014',  1170  ],
+         // ['2015',  660   ],
+         // ['2016',  1030  ]
+        ]);
+
+        var options = {
+          title: 'Pagos realizados',
+          hAxis: {title: 'Valor total por fecha',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+</script>

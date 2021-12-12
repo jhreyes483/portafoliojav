@@ -1,0 +1,285 @@
+<?php
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+
+
+$o = new Session;
+$s =  $o->desencriptaSesion();
+$_POST['estado']  = (!isset($_POST['estado'])) ? [1] : $_POST['estado'];
+$title = ($s['usuario']['ID_rol_n'] == 1) ? 'Administrador de solicitiudes' : 'Consulta de usuarios';
+?>
+<div class="col-md-8 mx-auto card card-body text-center bk-rgb my-2">
+    <h5><?= $title ?></h5>
+</div><br>
+<script>
+    function enviar(valor) {
+        var r = document.getElementById('parametro').value = valor;
+        if (valor == "Buscar") {
+            var buscarT = document.getElementById('buscarT');
+            if (buscarT.value == "") {
+                alert("Debe ingresar un parametro de consulta para buscar por nombre");
+                return false;
+            }
+        } else {
+            document.getElementById('buscarT').value = '';
+        }
+        document.getElementById('form_buscar').submit();
+    }
+</script>
+<script>
+    function x(id_to_delete) {
+        var confirmation = confirm('Esta seguro que desea desactivar: ' + id_to_delete + ' ?');
+        if (confirmation) {
+            window.location = "<?= BASE_URL ?>admin/d?x=" + id_to_delete;
+        }
+    }
+</script>
+<script>
+    function a(id_to_delete) {
+        var confirmation = confirm('Esta seguro que desea activar: ' + id_to_delete + ' ?');
+        if (confirmation) {
+            window.location = "<?= BASE_URL ?>admin/a?x=" + id_to_delete;
+        }
+    }
+</script>
+<div class="card card-body col-sm-4 col-md-2 col-lg-3 mx-auto border-abajo">
+    <button class="btn btn-primary toggle" id="">Filtros</button>
+</div>
+
+
+<form action="" method="post" id="form_buscar">
+    <div class=" text-center col-md-10 mx-auto card box-card card-body form-inline my-2 form ">
+        <div class="col-lg-12  ">
+            <?php
+
+
+            foreach (['Inactivo', 'Activo', 'Retirado'] as $i => $d) {
+                $enviar =  (isset($_POST['parametro']) && isset($_POST['estado'])) ? $_POST['parametro'] : '*';
+            ?>
+                <div id="estado" class="my-2 custom-checkbox custom-control-inline ">
+                    <input name="estado[]" type="checkbox" class="custom-control-input" id="customCheckd<?= $i ?>" onchange="submit(this)" value="<?= $i ?>" <?= (isset($_POST['estado']) &&  in_array($i, $_POST['estado'])) ? 'checked' : '' ?>>
+                    <label class="custom-control-label mr-2" for="customCheckd<?= $i ?>"><?= $d ?></label>
+                </div>
+            <?php
+            }
+            echo ((isset($this->rol)) ? '<strong>  Rol: </strong>' . $this->rol : '');
+            ?>
+        </div>
+
+        <div id="letras" class="form-inline  justify-content-between align-items-center mb-2 mx-auto">
+            <?php
+            for ($i = 65; $i < 91; $i++) {
+                $t = null;
+                if (isset($_POST['parametro'])) {
+                    if ($_POST['parametro'] != '*') $letraSel = ord($_POST['parametro']);
+                    else $t = true;
+                }
+            ?>
+                <a href="javascript:;" class="  <?php if (isset($letraSel) && (isset($_POST['buscarT'])) &&  !$_POST['buscarT'] &&  $letraSel == $i) echo "btn-primary" ?> btn btn-circle btn-dark text-white" onClick="enviar('<?= chr($i) ?>')"><strong><?= chr($i) ?></strong> </a>
+            <?php
+            }
+            ?>
+            <a id="todos" onClick="enviar('*')" ; class="btn btn-dark text-white  <?= (isset($t)) ? 'btn-primary' : '' ?> ml-2 text-white">TODOS</a>
+            <input name="parametro" type="hidden" id="parametro" value="<?= ($_POST['parametro'] ?? '')   ?>">
+        </div>
+    </div>
+</form>
+
+<div class="form" style="display: none">
+    <div class="card card-body col-md-8 mx-auto my-2 text-center border-arriba">
+
+        <div class="row">
+            <!-- Primera fila  4 de 12 col-->
+            <div class="card card-body col-md-4 shadow ">
+                <h6>Usuario</h6>
+                <div class="card card-body mx-auto col-10 my-2 shadow border">
+                    <!-- form por id -->
+                    <form action="" method="POST">
+                        <div class="form-group"><input type="text" id="buscarT" class="form-control " placeholder="Identidad" name="documento" onChange="submit(this)" value="<?= ((isset($_POST['documento']) &&  $_POST['documento']) ?  $_POST['documento'] : '') ?>"></div>
+                        <input type="hidden" value="bId" name="accion">
+                    </form>
+                    <!-- fin de form por id -->
+                </div><!-- fin de card -->
+            </div><!-- fin de primera divicion -->
+            <!-- -------------------------------------------------------------- -->
+
+            <!-- Segunda fila 8 de  12 col-->
+            <div class="card card-body col-md-4 shadow">
+                <h6>Estado de cuenta</h6>
+                <form action="" method="post">
+
+                    <?php
+                    foreach (['Inactivo', 'Activo', 'Retirado'] as $i => $d) {
+                        $enviar =  (isset($_POST['parametro']) && isset($_POST['estado'])) ? $_POST['parametro'] : '*';
+                    ?>
+                        <div id="estado" class="col-md-12 custom-checkbox custom-control-inline">
+                            <input name="estado[]" type="checkbox" class="custom-control-input" id="customCheck<?= $i ?>" onchange="submit(this)" value="<?= $i ?>" <?= (isset($_POST['estado']) &&  in_array($i, $_POST['estado'])) ? 'checked' : '' ?>>
+                            <label class="custom-control-label mr-2" for="customCheck<?= $i ?>"><?= $d ?></label>
+                        </div>
+                    <?php
+                    }
+
+                    ?>
+
+
+            </div><!-- fin de segundsa divicion -->
+            <!-- -------------------------------------------------------------- -->
+            <!-- Tercera fila 12 de 12 col bootstrap-->
+            <div class="card card-body col-md-4 shadow">
+                <h6>Rol</h6>
+                <div class="card card-body mx-auto col-10 my-2 shadow border">
+                    <!-- formulario de filtro por rol -->
+                    <form action="" method="POST">
+                        <div class="form-group">
+
+                            <select name="rol" class="form-control " onChange="submit(this)">
+                                <?php
+                                echo '<option ' . ((!isset($_POST['rol'])) ? ' selected' : '') . ' value=""> -- Seleccione -- </option>';
+                                foreach ($this->datosFijos[0]  as $i => $d) {
+                                    echo '<option ' . (( isset($_POST['rol']) && $_POST['rol']  == $i) ? ' selected' : '') . ' value="' . $i . '">' . $d . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <input type="hidden" name="accion" value="consRol">
+                        <!-- 
+                        <input type="hidden" name="parametro" value="<?= ($_POST['parametro'] ?? '')  ?>"  >
+                         -->
+                    </form><!-- fin form ver por rol -->
+                </div><!-- fin de card -->
+            </div><!-- fin de tercera divicion -->
+            </form>
+            <!-- -------------------------------------------------------------- -->
+        </div><!-- fin de row -->
+    </div>
+</div>
+
+<?php
+if (isset($_SESSION['message'])) {  ?>
+    <!-- alerta boostrap -->
+    <div class="alert text-center col-md-4 mx-auto alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+        <?= $_SESSION['message']  ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
+    setMessage();
+}
+
+if (isset($this->tabla) &&  $this->tabla['response_status'] == 'ok') {
+?>
+    <div class="col-lg-12">
+        <div class="table-responsive  ">
+            <table id="example" style="width:100%" class="bg-white">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Tipo doc</th>
+                        <th> <i></i> Documento</th>
+                        <th><i></i>Nombres</th>
+                        <th><i></i>Apellidos</th>
+                        <th><i></i>Rol</th>
+                        <th><i></i>Correo</th>
+                        <th><i></i>Estado</th>
+                        <?php if ($s['usuario']['ID_rol_n'] == 1) echo '<th>Acción</th>'; ?>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($this->tabla['response_msg'] as $i  => $d) {
+
+                        $btnAccion =  (($d[11] == 0) ? '<a onclick="a( ' . $d['ID_us'] . ' )" href="#" class="btn btn-circle btn-success" data-bs-toggle="tooltip" data-bs-placement="right" title="Activar cuenta">
+                                    <i class="fas fa-check-square"></i>
+                                    </a>' : ' <a onclick="x( ' . $d['ID_us'] . ')" href="#" class="btn btn-circle btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Desactivar cuenta">
+                                    <i class="far fa-trash-alt"></i></a>');
+                        $status = ($d['estado'] == 1) ? '<div class="text-success" title="Acrtivo"><i class="fas fa-user"> Activo</i><div>' : '<div class="text-danger" title="Inactivo"><i class="fas fa-user"> Inactivo</i><div>';
+                    ?>
+                        <tr>
+                            <!-- Los nombres que estan en [''] son los mismos de los atributos de la base de datos de lo contrario dara un error -->
+                            <td><img class="img-profile ml-3 rounded-circle mx-auto" src=" <?= RUTAS_APP['ruta_img'] . 'us/' . (($d['foto'] != '') ? $d['foto'] : imgUsuario)  ?>" alt="Card image cap" height="65" width="70"></td>
+                            <td><?= $d['FK_tipo_doc'] ?></td>
+                            <td><?= $d['ID_us'] ?></td>
+                            <td><?= $d['nom1'] . ' ' . $d['nom2']  ?></td>
+                            <td><?= $d['ape1'] . ' ' . $d['ape2']  ?></td>
+                            <td><?= $d['nom_rol'] ?></td>
+                            <td><?= $d['correo'] ?></td>
+                            <td><?= $status ?></td>
+                            <?php
+                            if ($s['usuario']['ID_rol_n'] == 1) {
+                            ?>
+                                <td>
+                                    <form action="<?= BASE_URL . 'admin/edit' ?>" method="post">
+                                        <input type="hidden" name="id" value="<?= $d['ID_us'] ?>">
+                                        <button class="btn btn-circle btn-dark" type="submit" data-bs-toggle="tooltip" data-bs-placement="right" title="Editar usuario">
+                                            <i class="fas fa-marker"></i>
+                                        </button>
+                                        <?= $btnAccion  ?>
+
+
+                                    </form>
+                                </td>
+                            <?php
+                            }
+                            ?>
+
+                        </tr>
+                    <?php
+                    }
+                } else {
+                    if (isset($this->tabla)) {
+                    ?>
+                        <!-- alerta boostrap -->
+                        <div class="alert text-center col-md-4 mx-auto alert-info alert-dismissible fade show" role="alert">
+                            <?= $this->tabla['response_msg']  ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                <?php
+                    }
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
+    </div><!-- div de tablas -->
+    </div>
+    </div><!-- fin de primera divicion -->
+    <div class="card box-card card-body col-lg-11 mx-auto my-4 text-center ">
+        <h5 class="my-2">Usuarios</h5>
+        <div class="row col-lg-10 mx-auto">
+
+            <div class=" col-md-4  mx-auto card card-body shadow ">
+                <div class="form-group  col-lg-10 row">
+                    <label class="col-sm-9" for="">Activos</label>
+                    <input class="form-control col-sm-3" type="text" value="<?= $this->datosFijos[1]  ?>" disabled>
+                </div>
+            </div>
+            <div class=" col-md-4  mx-auto card card-body shadow">
+                <div class="form-group  col-lg-10 row">
+                    <label class="col-sm-9" for="">Inactivos</label>
+                    <input class="form-control col-sm-3" type="text" value="<?= $this->datosFijos[2]  ?>" disabled>
+                </div>
+            </div>
+            <div class=" col-md-4  mx-auto card card-body shadow">
+                <div class="form-group  col-lg-10 row">
+                    <label class="col-sm-9" for="">Registrados</label>
+                    <input class="form-control col-sm-3" type="text" value="<?= $this->datosFijos[3]  ?>" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="card card-body col-md-10 mx-auto my-4 text-center shadow">
+            <div class="row">
+                <div class=" col-md-3 my-2 mx-auto">
+                    <a href="<?= BASE_URL.'admin/directorioTelefonico' ?>" class="btn-block btn btn-dark">Directorio telefónico</a>
+                </div>
+                <div class=" col-md-3 my-2 mx-auto">
+                    <a href="<?= BASE_URL.'index/registro' ?>" title="registrar usuario"><i class="fas fa-user-plus mr-2" aria-hidden="true"></i></a>
+                </div>
+                <div class=" col-md-3 my-2 mx-auto">
+                    <a href="<?= BASE_URL.'admin/directorioDirecciones' ?>" class="btn-block btn btn-dark" >Directorio direcciones</a>
+                </div>
+            </div>
+        </div>
+    </div>

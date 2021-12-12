@@ -1,0 +1,89 @@
+<?php
+cardtitulo("Categoría");
+?>
+<script>
+    function eliminarCategria(id_to_delete) {
+        var confirmacion =
+            confirm('Esta seguro que desea elminar categoría con id: ' + id_to_delete + ' ?');
+        if (confirmacion) {
+            window.location = "<?= BASE_URL.'categoria/index/' ?>?d=1&id=" + id_to_delete;
+        }
+
+    }
+</script>
+
+<div class="container-fluid col-md col-xl-7">
+    <div class="row">
+        <div class="p-2 col-8 col-sm-6 col-md-4 col-lg-3 col-xl-4  mx-auto">
+<?php
+if (isset($_SESSION['message'])) {
+?>
+                <!-- alerta boostrap -->
+                <div class="alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+                    <?php echo  $_SESSION['message']  ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+<?php 
+setMessage();
+} 
+?>
+<br><br><br><br>
+            <div class="card">
+                <div class="box-card card-header shadow">Registro Categoría</div>
+                <div class="card-body">
+                    <form action="" method="POST">
+                        <div class="form-group"><input class="form-control" type="text" name="nom_categoria" placeholder="Categoría" required autofocus maxlength="30"></div>
+                        <input type="hidden" name="accion" value="insertcategoria">
+                        <div class="form-group"><input class="form-control btn btn-primary" type="submit" name="submit" value="Registrar categoría"></div>
+                    </form>
+                </div><!-- fin card body -->
+            </div><!-- fin de card -->
+        </div><!-- fin de formulario respocibe -->
+
+<?php
+if($this->datos['response_status']  == 'ok' ){
+?>
+        <div class="col-md-auto p-2 ">
+            <table id="example" class="box-card mx-auto bg-white text-center">
+                <thead>
+                    <tr>
+                         <th>ID categoría</th>
+                         <th>Categoría</th>
+                         <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+<?php
+    foreach ($this->datos['response_msg'] as  $row) {
+?>
+                <tr>
+                    <td><?= $row['ID_categoria'] ?></td>
+                    <td><?= $row['nom_categoria'] ?></td>
+                    <td>
+                        <form action="<?= BASE_URL.'categoria/editar'?>" method="POST">
+                            <button class="btn btn-circle btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="Editar categoría">
+                                <i class="fas fa-marker"></i>
+                            </button>
+                            <input type="hidden" name="id" value="<?= $row['ID_categoria'] ?>">
+                        </form>
+
+                        <a onclick="eliminarCategria(<?= $row['ID_categoria'] ?>)" href="#" class="btn btn-circle btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Eliminar categoría">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>  
+        <?php
+                            } 
+        ?>
+                </tbody>
+            </table>
+        </div><!-- fin de div col tabla -->
+    </div><!-- fin de row -->
+</div><!-- Fin container -->
+
+<?php
+                        } 
+
+?>

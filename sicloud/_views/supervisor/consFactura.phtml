@@ -1,0 +1,21 @@
+<h3 class="e text-center my-4">Factura</h3>
+<!-- col 2 -->
+<div class="row">
+    <div class="col-lg-2 mx-auto">
+        <div class="card box-card card-body">
+            <?php if (isset($_REQUEST['f'])) {
+                $id = $_REQUEST['f'];
+            } else {
+                $id = "";
+            }   ?>
+            <form action="<?= BASE_URL ?>supervisor/consulta" method="post">
+                <div class="form-group"><label for="">Digite número de factura</label> 
+                <input type="text" id="txt1" value="<?= ( $_POST['f'] )?? ''; ?>" class="form-control"  name="f"/>
+                    <input class="btn btn-success btn-block" value="Buscar factura" type="submit">
+                    <input type="hidden" name="accion" value="consFactura">
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<div id="txtHint"></div>

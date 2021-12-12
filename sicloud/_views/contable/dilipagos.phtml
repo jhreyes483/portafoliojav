@@ -1,0 +1,103 @@
+
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-md-4 col-sm-10 my-4 mx-auto card ">
+         <div class="card-header b-4 shadow tex-center">Diligenciar datos</div>
+         <div class="card-body">
+            <form action="" method="post">
+               <div class="row">
+                  <div class="col-md-6 col-sm-6">
+                     <div class="form-group">
+                        <label for="fk_egreso">Motivo</label>
+                        <select name="fk_egreso" id="fk_egreso">
+<?php
+foreach( $this->egreso as $i => $d ){
+echo '<option '.(( $i == $_POST['fk_egreso']) ? ' selected ' : '').' value="'.$i.'">'.$d.'</option>';
+}
+?>
+                        </select>
+                     </div>
+                     <div class="form-group">
+                        <label for="motivo">Estado</label>
+                        <select name="estado" id="motivo">
+<?php
+foreach( $this->status as $i => $d ){
+echo '<option '.(( $i == $_POST['estado']) ? ' selected ' : '').' value="'.$i.'">'.$d.'</option>';
+}
+?>                      
+                        </select>
+                     </div>
+                     <div class="form-group">
+                        <label for="fk_motivo">Tipo de pago</label>
+                        <select name="fk_motivo" id="motivo">
+<?php
+foreach( $this->motivo as $i => $d ){
+echo '<option '.(( $i == $_POST['fk_motivo']) ? ' selected ' : '').' value="'.$i.'">'.$d.'</option>';
+}
+?>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                     <div class=" form-group">
+                        <label for="">Valor</label>
+                        <input type="number" name="valor" placeholder="$" id="" class=" my-1 ">
+                     </div>
+                     <div name="actor" class=" form-group">
+                        <textarea name="actor" placeholder="Actor de pago" id="" cols="30" rows="5"></textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="row my-4">
+               <input type="submit" class="btn btn-primary" value="Registrar pago">
+               Esta navegando con     : <span id="navegador"> </span><br>
+               Su sitema operativo es : <span id="so"> </span>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+<?php
+if (isset($_SESSION['message'])) {
+?>
+<!-- alerta boostrap -->
+<div class="text-center mx-auto  col-md-4 col-sm-10 my-4 mx-auto alert alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+    <?= $_SESSION['message']  ?>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<?php
+setMessage();
+}
+?>
+
+<script>
+function getNavegador(){
+   var so = navigator.userAgent.split(" ") ;
+   console.log(navigator);
+  
+   for(var i=0 ; i < so.length ; i++  ){
+       if((so[i].indexOf('Gecko'))  != -1 )  {
+         $('#navegador').html(so[i+1].substring(0,11) );
+       } 
+      }
+
+
+
+
+
+  
+}
+getNavegador()
+</script>
+
+
+
+
+<script>
+   $('select').addClass('form-control');
+   $('input').addClass('form-control');
+   $('textarea').addClass('form-control');
+</script>

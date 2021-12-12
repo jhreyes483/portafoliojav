@@ -1,0 +1,213 @@
+<?php
+
+$objSession = new Session;
+$us = $objSession->desencriptaSesion();
+//
+if ($this->datos['response_status'] == 'ok') {
+    foreach ($this->datos['response_msg'] as $row) {
+        $foto          = ($row['foto'] ?? imgUsuario);
+        $ID_us         = $row['ID_us'];
+        $nom1          = $row['nom1'];
+        $nom2          = $row['nom2'];
+        $ape1          = $row['ape1'];
+        $ape2          = $row['ape2'];
+        $fecha         = $row['fecha'];
+        $pass          = $row['pass'];
+        $correo        = $row['correo'];
+        $FK_tipo_doc   = $row['FK_tipo_doc'];
+        $ID_rol_n      = $row['ID_rol_n'];
+    }
+}
+
+cardtitulo2("Actualizar datos de Usuarios");
+?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 card card-body mx-auto ">
+            <div class="card-body shadow card col-lg-8 mx-auto border-abajo">
+                <div class="box-header width-border d-flex justify-content-between ">
+                    <h4 class="box-title  ">Activar edición</h4>
+                    <div class="btn-group btn-toggle  ">
+                        <div class="btn btn-sm btn-default" data-toggle="submit" aria-pressed="true" id="turnOn" onclick="encender('form1', 'form2')">ON</div>
+                        <div class="btn btn-sm btn-danger" data-toggle="submit" id="turnOff" onclick="encender('form1', 'form2')" aria-pressed="false">OFF</div>
+                    </div>
+                </div>
+            </div> <br>
+<?php
+if (isset($_SESSION['message'])) {      
+?>
+    <div class="my-4 alert text-center col-md-8 mx-auto alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+        <?= $_SESSION['message']  ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
+    setMessage();
+}
+?>
+            <form class="shadow card card-body box-card" action="<?= BASE_URL . 'admin/consulta' ?>" method="POST" id="form1" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<?= $ID_us ?>">
+                <input type="hidden" name="accion" value="updateUsuario">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card-title">
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <!-- contenedor -->
+                                <!-- inicion fila selector de documento y rol -->
+                                <div class="col-md-6">
+                                    <h5>Seleccione el tipo de documento: </h5>
+                                    <select class="form-control" name="FK_tipo_doc">
+                                        <?php
+                                        /// select de documento usaurio
+                                        $doc = $FK_tipo_doc;
+                                        foreach ($this->datosF[1] as $d):
+                                        ?>
+                                            <option <?=((isset($doc) && $doc == $d['ID_acronimo'])?' selected ': '') ?>value="<?= $d[0] ?>"><?= $d[1] ?></option>
+                                        <?php
+                                        endforeach;
+                                        ?>
+                                    </select>
+
+                                </div><!-- fin de columna de 6 -->
+                                <div class="col-md-6">
+
+                                    <?php
+                                    if ($us['usuario']['ID_rol_n'] == 1) :
+                                    ?>
+                                        <h5>Seleccione rol "Asignar rol"</h5>
+                                        <div class="form-group">
+                                            <select name="FK_rol" class="form-control">
+                                                <?php /// select de rol usuario
+
+
+                                                foreach ($this->datosF[0] as $row) :
+                                                ?>
+                                                    <option <?php
+                                                            if (isset($ID_rol_n) && $ID_rol_n == $row['ID_rol_n'])
+                                                                echo 'selected';
+                                                            ?> value="    <?= $row['ID_rol_n']  ?>">
+                                                        <?= $row['nom_rol']   ?>
+                                                    </option>
+                                            <?php
+                                                endforeach;
+                                            endif;
+                                            ?>
+                                            </select>
+                                        </div><!-- fin de form-group select de  -->
+                                </div><!-- fin de columna de 6 -->
+                            </div><!-- row fin de fila -->
+                        </div><!-- fin contenedor  de selectores -->
+                        <div class="mx-auto text-center my-4">
+                            <h5>Foto de perfil</h5>
+                            <img class="img-profile ml-3 rounded-circle " src=" <?= RUTAS_APP['ruta_img'] . 'us/' . $foto ?>" width="120" height="140">
+                        </div>
+
+                        <h5>Número de identificación: </h5>
+                        <!-- 
+                                <? // "Id anterior".$id;  
+                                ?>
+
+                                 -->
+
+                        <input class="form-control my-2" type=»number» readonly=»readonly» name="ID_us" value="<?= $ID_us  ?>" required autofocus maxlength="11">
+
+                    </div><br>
+                </div>
+                <div class="row ">
+                    <div class="col-md-6">
+                        <h5>Primer nombre: </h5>
+                        <input class="form-control" type="text" name="nom1" value="<?= $nom1 ?>" required autofocus maxlength="20">
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5>Segundo nombre: </h5>
+                        <input class="form-control" type="text" name="nom2" value="<?= $nom2   ?>" required autofocus maxlength="20">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Primer apellido: </h5>
+                        <input class="form-control" type="text" name="ape1" value="<?= $ape1  ?>" required autofocus maxlength="20">
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5>Segundo apellido: </h5>
+                        <input class="form-control" type="text" name="ape2" value="<?= $ape2 ?>" required autofocus maxlength="20">
+                    </div>
+                </div><br>
+                <h5>Fecha de nacimiento: </h5>
+                <input class="form-control" type="date" name="fecha" value="<?= $fecha ?>"><br>
+                <h5> Correo </h5>
+                <input class="form-control" type="email" name="correo" value="<?= $correo  ?>" required autofocus maxlength="25"><br>
+                <input class="btn btn-primary form-control" type="submit" value="Actualizar datos"><br><br><br>
+            </form>
+            <div class="card card-body">
+
+                <div class="col-md-12 mx-auto">
+                
+                    <div class="col-lg-8 mx-auto text-center">
+                    <h5>Contraseña</h5>
+                        <!-- linea 2 -->
+                        <form class="form-inline" id="form2" method="post">
+                            <div class="form-group">
+                            <input type="password" class="form-control" name="token" placeholder="Token sicloud" >
+                                <input type="password" name="pass" class="form-control" placeholder="Nueva contraseña">
+                                <input type="hidden" value="<?=$ID_us?>" name="id">
+                                
+                            </div>
+                            <input type="submit" value="Cambiar" class="btn  btn-danger">
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<?php
+
+?>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+    function encender(idFrm, idFrm2) {
+        enciende = false
+        if ($("#turnOn").hasClass("btn-default")) {
+            $("#turnOn").removeClass("btn-default").addClass("btn-success");
+            $("#turnOff").removeClass("btn-danger").addClass("btn-default");
+        } else if ($("#turnOff").hasClass("btn-default")) {
+            $("#turnOn").removeClass("btn-success").addClass("btn-default");
+            $("#turnOff").removeClass("btn-default").addClass("btn-danger");
+        }
+        idElemen = document.getElementById(idFrm).elements;
+        idElemen2 = document.getElementById(idFrm2).elements;
+
+        $.each(idElemen, function(i, n) {
+            if (n.type == 'text' || n.type == 'number' || n.type == 'email' || n.type == 'tel' || n.type == 'textarea' || n.type == 'submit' || n.type == 'button' || n.type == 'select-one' || n.type == 'select-multiple' || n.type == 'radio' || n.type == 'date' || n.type == 'select' || n.type == 'hidden' || n.type == 'password')
+                n.disabled = (!n.disabled);
+        });
+
+        $.each(idElemen2, function(i, n) {
+            if (n.type == 'text' || n.type == 'number' || n.type == 'email' || n.type == 'tel' || n.type == 'textarea' || n.type == 'submit' || n.type == 'button' || n.type == 'select-one' || n.type == 'select-multiple' || n.type == 'radio' || n.type == 'date' || n.type == 'select' || n.type == 'hidden' || n.type == 'password')
+                n.disabled = (!n.disabled);
+        });
+
+        enciende = !enciende;
+
+
+
+
+    }
+    $("input").attr("disabled", "true");
+    $("select").addClass("form-control").attr("disabled", "true");
+    $("textarea").attr("disabled", "true");
+</script>

@@ -1,0 +1,63 @@
+<?php
+if (isset($this->datos) && $this->datos['response_status'] == 'ok') {
+   $u = explode('@@@',  $this->datos['response_msg'][0][2]);
+  
+?>
+
+                <div class=" card mx-auto container-fluid my-4 col-lg-11">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <img src="<?= RUTAS_APP['ruta_img']?>capsulelogo.PNG" alt="" style="width: 430px; height: 165px;">
+                        </div>
+                        <div class="col-lg-6 mt-4">
+                            <div class="card p-2">Solicitud No. <br><?= $this->datos['response_msg'][0][0] ?></div>
+                            <div class="card p-2">Hora:  <br><?= ($u[5]??'No registrada')  ?></div>
+                            <div class="card p-3">Fecha: <br><?= ($u[4]??'No registrada') ?></div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-10 card card-body">
+                            <div class=" row form-group mx-2 my-4 ">
+                                CLIENTE: <?= ' '.$u[0]  ?><br>
+                                E-MAIL: <?=  ' '.$u[1]  ?><br>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 text-center">
+                            <div class="row">
+                                
+                                <div class="col-lg-12 card card-body">TIPO<?= '<br>'. $this->datos['response_msg'][0][5] ?> </div>
+                                <div class="col-lg-12 card card-body">ASIGNADO A <br> <?= 'Comercial' ?> </div>
+                            <?php ?>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 card card-body">
+                            <table class=" table table-bordered table-striped bg-white table-sm shadow">
+                                <thead>
+                                    <tr>
+                                        <td class="col-3">DESCRIPCION</td>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <td class="col-3"><?php echo $u[3]    ?></td>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <table class="table table-bordered table-striped ">
+                        </table>
+                    </div>
+
+                </div>
+
+            <?php   }
+                                    ?>
+
+
+<?php
+
+die();

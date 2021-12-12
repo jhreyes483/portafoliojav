@@ -1,0 +1,162 @@
+<?php
+if(isset($this->datos['response_msg'] ) ) foreach(  $this->datos['response_msg']  as $d ) $pr[$d[1]]= ($d[4]??'');
+if(isset($pr) && count($pr) > 0){
+foreach($pr as $i => $d){
+   if($d == min($pr)) {  $pMin = [ 'Min. '.$i, $d];  }
+   if($d == max($pr)) {  $pMax = [ 'Max, '.$i, $d];  }
+}
+}
+?>
+<script>
+   google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+
+         <?php
+         if(isset($pMin[0]) && isset($pMin[1])){
+         ?>
+          ['Label', 'Value'],
+          ['<?= $pMin[0] ?>', <?= $pMin[1] ?>],
+          ['<?= $pMax[0] ?>', <?= $pMax[1] ?>],
+        <?php
+         }
+         ?>
+
+        ]);
+        var options = {
+          width: 400, height: 120,
+          redFrom: 90, redTo: 100,
+          yellowFrom:75, yellowTo: 90,
+          minorTicks: 5
+        };
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+</script>
+<div class="my-4">
+   <?php
+   cardtitulo("Vista por categoria");
+   ?>
+</div>
+<?php
+if (isset($_SESSION['message'])) {
+?>
+   <!-- alerta boostrap -->
+   <div class="col-md-4 mx-auto alert alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+      <?= $_SESSION['message']  ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+<?php
+   setMessage();
+}
+?>
+<div class="row col-lg-10 mx-auto">
+
+   <div class="card box-card col-md-4 mx-auto">
+      <div class="card-body">
+         <h5 class="card-title text-center ">Seleccione Categoría</h5>
+         <!-- INI--FORM PRODUCTO--------------------------------------------------------------------------------- -->
+         <form action="<?= BASE_URL . 'logistica/categoria' ?>" method="POST">
+            <select name="p" class="form-control" onchange="submit(this)">
+            <option value="">Seleccione uno</option>
+<?php
+foreach ($this->datosF  as $i => $d) {
+?>
+<option  <?= ((isset($_POST['p'])) && ($_POST['p'] == $i) ? ' selected ': '') ?>  value="<?= $i ?>"><?= $d ?></option>
+<?php 
+} 
+?>
+            </select>
+            <br>
+            <input type="hidden" name="accion" value="filtroCategoria">
+         </form>
+<?php
+if (isset( $this->datos['response_alert'])) {
+?>
+   <!-- alerta boostrap -->
+   <div class=" mx-auto alert alert-info  alert-dismissible fade show" role="alert">
+      <?= $this->datos['response_alert']  ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+<?php
+   setMessage();
+}
+if(isset($_POST) && !empty($_POST)) echo '<div  id="chart_div" style="width: 400px; height: 120px;"></div>';
+?>
+      </div> <!-- fin de div card -->
+   </div>
+   <!-- fin producto-------------------------------------------------------------------------------- -->
+   <?php
+   if (isset($_POST['accion'])) {
+      if ($this->datos['response_status'] != 'ok') {
+   ?>
+         <!-- alerta boostrap -->
+         <div class="col-md-4 mx-auto alert alert-<?= $_SESSION['color'] ?> alert-dismissible fade show" role="alert">
+            <?= $this->datos['response_msg'] ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+      <?php
+      } else {
+      ?>
+         <div class="col-md-6 mx-auto my-4  ">
+            <table id="example" class="col-md-12 mx-auto text-center bg-white">
+               <thead>
+                  <tr>
+                     <th><i></i> Producto</th>
+                     <th><i></i> Stok</th>
+                     <th><i></i> Categoría</th>
+                  </tr>
+               </thead>
+               <tbody>
+<?php
+foreach ($this->datos['response_msg'] as $i => $row) {
+?>
+                     <tr>
+                        <td> <?= $row['nom_prod']  ?></td>
+                        <td> <?= $row['stok_prod']  ?></td>
+                        <td> <?= $row['nom_categoria']  ?></td>
+                     </tr>
+<?php  
+}
+?>
+               </tbody>
+            </table>
+         </div><!-- fin de div tabla responce -->
+</div>
+
+<div class="card box-card card-body col-lg-10 mx-auto my-4">
+   <div class="card card-body col-lg-10 shadow mx-auto">
+<?php
+   foreach ($this->datos['response_msg'] as $i => $row) {
+      $p  =  $row['stok_prod'];
+      $po  = 10 * $row['stok_prod'];
+      $po = $po . "%";
+      $c = "text";
+      if ($p < 2) {
+         $c = "danger";
+      } elseif ($p <= 6) {
+         $c = "warning";
+      } elseif ($p >= 7) {
+         $c = "success";
+      }
+      $c = "bg-" . $c;
+?>
+         <h4 class="small font-weight-bold"><?= $row['nom_prod']  ?> <span class="float-right"><?= " Cantidad de productos; " . $p ?></span> </h4>
+         <div class="progress mb-4">
+            <div class="progress-bar <?= $c ?>" role="progressbar" style="width:<?= $po; ?>" aria-valuenow=<?= $c ?> aria-valuemin="0" aria-valuemax="100"></div>
+         </div>
+<?php
+         }
+      }
+   } // fin de while producto
+?>
+   </div>
+</div>
+</div>

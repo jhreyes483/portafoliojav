@@ -1,0 +1,29 @@
+<?=
+
+//-----------------------------------------------------------------------------------
+
+cardtitulo('Edición categoría');
+//Accion editar 
+if ((isset($_POST['id']))) {
+    $id = $_POST['id'];
+?>
+    <div class="col-md-2 col col-mx-10 mx-auto">
+        <div class="card">
+            <div class="card-header shadow">Registro</div>
+            <div class="card-body">
+                <form action="<?= BASE_URL.'categoria' ?>" method="POST">
+                    <?php 
+                    foreach($this->datos as $row){
+                     ?>  
+                        <div class="form-group"><input class="form-control" type="text" name="categoria" placeholder="Categoria" value="<?php echo $row['nom_categoria']  ?>" required autofocus maxlength="30"></div>
+                    <?php } ?>
+                    <input type="hidden" name="id" value="<?= $_POST['id'] ?>">
+                    <input type="hidden" name="accion" value="updatecategoria">
+                    <div class="form-group"><input class="form-control btn btn-primary" type="submit" name="submit" value="Actualizar"></div>
+                </form>
+            </div><!-- fin card body -->
+        </div><!-- fin de card -->
+    </div>
+<?php
+}
+?>

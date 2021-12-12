@@ -1,0 +1,87 @@
+<div class="container-fluid">
+   <div class="my-4">
+      <div class="col-md-8 mx-auto card card-body text-center bk-rgb">
+         <h5>Registro de pedido</h5>
+      </div>
+   </div><br><br>
+   <!-- 
+         <div class="col-md-6">
+            <div class="col-md-12">
+               <div class="row">
+                  <div class="col-md-6 "><br>
+                     <select name="estado" class="form-control mx-auto col-md col-lg-4 ">
+<?php
+foreach (['Pendinete', 'Entrgado']  as $i => $d) {
+   echo '<option ' . ((isset($_POST['estado']) &&  $i  == $_POST['estado']) ? 'selected' : '') . ' value="' . $i . '"> ' . $d . '</option>';
+}
+?>
+                     </select>
+                  </div>
+                  <div class="col-md-6"><br>
+                 
+                       <input type="text" class="form-control col-md col-lg-4 " placeholder="ID pedido " name="documento">
+                 
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+  
+   </div><br><br>
+       -->
+   <div class= "container-fluid">
+      <table id="example" class=" table table-bordered table-striped bg-white table-sm">
+         <thead>
+            <tr>
+               <td>ID pedido</td>
+               <td>Fecha de solicitud</td>
+               <td>Fecha entrega</td>
+               <td>Usuario</td>
+               <td>Cel</td>
+               <td>Estado</td>
+               <td>Prorducto</td>
+               <td>Cantidad</td>
+               <td>Tipo medida</td>
+               <td>Valor unitario</td>
+               <td>Valor total</td>
+               <td>Imagen</td>
+               <td>Acción</td>
+            </tr>
+         </thead>
+         <tbody>
+
+            <?php
+            foreach ($this->datos['response_msg'] as $d) {
+               $tmp = explode('@@@', $d[2]);
+            ?>
+               <tr>
+                  <td><?= $d[0] ?? '' ?></td>
+                  <td><?= 'Fecha: ' . $tmp[13] . '<br> Hora: ' . $tmp[14] ?? '' ?></td>
+                  <td><?= 'Definir' ?></td>
+                  <td><?= $tmp[1] . ' ' . $tmp[2] ?? '' ?></td>
+                  <td><?= $tmp[3] ?? '' ?></td>
+                  <td><?= 'En proceso' ?></td>
+                  <td><?= $tmp[10] ?? '' ?></td>
+                  <td><?= $tmp[5] ?? '' ?></td>
+                  <td><?= $tmp[12] ?? '' ?></td>
+                  <td><?= $tmp[9] ?? '' ?></td>
+                  <td><?= ($tmp[5]  * $tmp[9]) ?></td>
+                  <td> <img class="img-profile ml-3 rounded-circle mx-auto" height="65" width="70" src="<?= RUTAS_APP['ruta_img'] . 'prod/' . $tmp[11] ?> " alt=""> </td>
+                  <td>
+                     <a href="" class="btn btn-secondary">Posponer</a>
+                     <a href="" class="btn btn-success">Entregar</a>
+                     <a class="btn btn-circle btn-success text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Ver solicitud" onclick="PopupCenter('<?= BASE_URL . 'proveedor/detalle?id=' . $d[0] ?>>','Sicloud-detalle','1200','1000');">
+                        <i class="fas fa-eye"></i>
+                     </a>
+                     </button>
+                  </td>
+               </tr>
+            <?php
+            }
+            ?>
+
+
+         </tbody>
+      </table>
+   </div>
+</div>

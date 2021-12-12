@@ -1,0 +1,133 @@
+
+
+<!-- 2 check -->
+<?php
+if(isset($this->datos) && $this->datos['response_status']== 'ok')  $tmp = explode('@@@', $this->datos['response_msg'][2] );
+if( $this->datos['response_msg'] == 'ok') 
+?>
+
+
+<div class="card-body bg-dark card col-lg-8 mx-auto">
+               <div class="box-header width-border d-flex justify-content-between">
+                  <h4 class="box-title text-white">Actualizar pedido</h4>
+                  <div class="btn-group btn-toggle ">
+                     <div class="btn btn-sm btn-default" data-toggle="submit" aria-pressed="true" id="turnOn" onclick="encender('form1')">ON</div>
+                     <div class="btn btn-sm btn-danger" data-toggle="submit" id="turnOff" onclick="encender('form1')" aria-pressed="false">OFF</div>
+                  </div>
+               </div>
+            </div>
+<div class="solicitud1">
+    <div class ="col-md-12">
+        <div class="container">
+            <div class ="row">
+                <!-- Medidas de servicios y productos -->
+                    <div class="col-md-6 card card-body bg-dark text-white ">
+                        <label class="form-check-label" for="exampleRadios2">Solicitud</label>
+                    </div>
+                    <div class="container col-md-6" >
+                        <div class="card card-body bg-dark text-white text-center">
+                            <h3>PEDIDO</h3>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 card card-body bg-dark text-white">
+                <form action="" id="form1" method="post">
+
+                    <h5>Numero de identificación:</h5>
+                    <input class="form-control" type="number" 
+                    placeholder="Digite su numero de documento" 
+                    name="documento" value="<?= $tmp[0] ?>" 
+                    required autofocus maxlength="11"><br>
+
+                    <h5>Nombre:</h5>
+                    <input class="form-control" type="text"
+                     placeholder="Digite su nombre" 
+                     name="nom" value="<?= $tmp[1] ?>" 
+                     required autofocus maxlength="20"><br>
+
+                    <h5>Apellido:</h5>
+                    <input class="form-control" 
+                    type="text" placeholder="Digite su apellido" 
+                    name="ape" value="<?= $tmp[2] ?>" 
+                    required autofocus maxlength="20"><br>
+
+                    <h5>Télefono:</h5>
+                    <input class="form-control" type="text" 
+                    placeholder="Digite su numero" 
+                    name="tel"  value="<?= $tmp[3] ?>"
+                    required autofocus maxlength="11"><br>
+
+                    <h5>Correo:</h5>
+                    <input class="form-control" 
+                    type="email" name="email" 
+                    value="<?= $tmp[4] ?>" 
+                    placeholder="Digite su correo electronico" 
+                    required autofocus maxlength="50"><br>
+
+
+                    <h5>Cantidad:</h5>
+                    <input class="form-control" type="number" 
+                    placeholder="Digite su numero" 
+                    name="cantidad"  value="<?= $tmp[5] ?>"
+                    required autofocus maxlength="11"><br>
+
+                    <h5>Nombre del producto:</h5>
+                    <input class="form-control" type="text" 
+                    placeholder="Digite su numero" 
+                    name="producto"  value="<?= $tmp[10] ?>"
+                    required autofocus maxlength="11"><br>
+
+                    <h5>Medida:</h5>
+                    <input class="form-control" type="text" 
+                    placeholder="Digite su numero" 
+                    name="medida"  value="<?= $tmp[12] ?>"
+                    required autofocus maxlength="11">
+
+            </div>
+            <div class="container col-md-6" >
+                <div class="card card-body bg-dark text-white">
+                    <form action="" method="post">
+                        <h3>Detalles: </h3><br>
+                        <textarea class="form-control" name="descript"  cols="30" rows="10"><?= $tmp[8] ?></textarea><br><br>
+                        <input type="hidden" name="accion" >
+                        <input class="form-control btn btn-primary" type="submit" value="Facturar"><br><br><br>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+  function encender(idFrm){
+      if($("#turnOn").hasClass("btn-default")){
+         $("#turnOn").removeClass("btn-default").addClass("btn-success");
+         $("#turnOff").removeClass("btn-danger").addClass("btn-default");
+      } else if($("#turnOff").hasClass("btn-default")){
+         $("#turnOn").removeClass("btn-success").addClass("btn-default");
+         $("#turnOff").removeClass("btn-default").addClass("btn-danger");
+      }
+
+      idElemen = document.getElementById(idFrm).elements;
+      $.each(idElemen,function(i,n){
+         if(n.type == 'text' || n.type == 'number' || n.type == 'email' || n.type == 'tel' || n.type == 'textarea' || n.type == 'submit' || n.type == 'button' || n.type == 'select-one' || n.type == 'select-multiple' || n.type == 'radio' || n.type == 'date')
+            n.disabled =(!n.disabled);
+      });
+      enciende = !enciende;
+   }
+
+
+      $("input").attr("disabled","true");
+      $("select").attr("disabled","true");
+      $("textarea").attr("disabled","true");
+</script>
+<?php
+die();// elimina footer
+?>

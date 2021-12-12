@@ -1,0 +1,225 @@
+<script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['bar']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Nombre', 'Cantidad'],
+            <?php
+            foreach ($this->datos['response_msg']  as $d) {
+            ?>['<?= $d['nom_prod'] ?> ', <?= $d[4] ?>],
+            <?php
+            }
+            ?>
+        ]);
+
+        var options = {
+            chart: {
+                title: '',
+                subtitle: ' <?= ((isset($_POST['accion']) && $_POST['accion'] == 'filtroCategoria')? 'Productos de categiria '.$this->categoria[ $_POST['p']] :'Todos los productos') ?> ',
+            }
+        };
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+</script>
+
+
+<?php
+
+foreach ($this->datos['response_msg']  as $d) $p[$d[6]][] = $d[2] . '||' . $d[4];
+if (isset($_GET['edit'])) {
+    $modulo = 'Editar productos';
+} else {
+    $modulo = 'Stock productos';
+}
+
+cardtitulo($modulo);
+
+
+if (isset($_SESSION['message'])) {
+?>
+    <!-- alerta boostrap -->
+    <div class="col-md-4 mx-auto alert alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+        <?= $_SESSION['message']  ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
+    setMessage();
+}
+?>
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-md-6">
+            <form action="" method="post">
+                <input type="submit" class="btn btn-primary" value="todos">
+                <input type="hidden" name="accion" value="todos">
+            </form>
+        </div>
+        <div class="col-md-6  "> 
+            <form action="" method="post">
+            <label for="c"></label>
+                <select name="p" id="c"   style="margin-left: 77%" class="col-md-3 form-control" onchange="submit(this)">
+<?php
+ echo  '<option  selected value="">Categorí­a</option>';
+foreach ($this->categoria as $i => $c) {
+    echo  '<option  '.( isset($_POST['p']) && ($i == $_POST['p'] )? ' selected ': '').' value="' . $i . '">' . $c . '</option>';
+}
+?>
+                </select>
+                <input type="hidden" name="accion" value="filtroCategoria">
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php
+if ($this->datos['response_status']  == 'ok') {
+?>
+
+    <table id="example" class="box-card bg-white col-md-9  text-centar mx-auto">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>Nombre Producto</th>
+                <th>Valor Producto</th>
+                <th>Stock </th>
+                <th>Estado del producto</th>
+                <th>Existencia</th>
+                <th>Categorí­a</th>
+                <th>Imagen</th>
+                <th>Medida</th>
+                <th>Ingresar a inventario</th>
+                <?php
+                if (isset($_GET['edit'])) echo '<th>Edicíon de producto</th>';
+                ?>
+
+                <?php if ($_SESSION['usuario']['ID_rol_n'] == 1 || $_SESSION['usuario']['ID_rol_n'] == 1) {   ?>
+                    <th>Accion</th><?php }  ?>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($this->datos['response_msg'] as $i => $d) {
+                $p  =  $d['stok_prod'];
+                $c = "text";
+                if ($p < 2) {
+                    $c = "danger";
+                    $m = "Producto agotado";
+                } elseif ($p <= 6) {
+                    $c = "warning";
+                    $m = "Existencia baja";
+                } elseif ($p >= 7) {
+                    $c = "success";
+                    $m = "Suficiente";
+                }
+                $c = "bg-" . $c;
+            ?>
+                <tr>
+                    <td><?= $d['nom_prod'] ?></td>
+                    <td><?= "$" . number_format(($d['val_prod']), 0, ',', '.'); ?></td>
+                    <td class=" <?= 'text-white ' .  $c  ?>"><strong><?= $d['stok_prod'] ?></strong></td>
+                    <td><?= $d['estado_prod'] ?></td>
+                    <td><?= $m ?></td>
+                    <td><?= $d['nom_categoria'] ?></td>
+                    <td><img class="card card-body  mx-auto" src="<?= RUTAS_APP['ruta_img'] . 'prod/' . (($d['img'] != '') ?  $d['img'] : imgProducto); ?>" alt="Card image cap" height="130px" width="150px"></td>
+                    <td><?= $d['nom_medida'] ?></td>
+
+                    <td>
+                        <form action="<?= BASE_URL . 'producto/ingreso' ?>" method="post">
+                            <button class="btn btn-success mx-auto text-center" type="submit" data-bs-toggle="tooltip" data-bs-placement="right" title="Ingresar productos a inventario">
+                                <i class="fas fa-tags"></i>
+                                <input type="hidden" name="p" value="<?= $d['ID_prod'] ?>">
+                                <input type="hidden" name="accion" value="busquedaProducto">
+                                ingreso
+                            </button>
+                        </form>
+                    </td>
+
+                    <?php
+                    if (isset($_GET['edit'])) {
+                    ?>
+                        <td>
+                            <form action="<?= BASE_URL . 'producto/edit' ?>" method="POST">
+                                <button class="btn-circle btn btn-dark mx-auto" type="submit" data-bs-toggle="tooltip" data-bs-placement="right" title="Editar producto">
+                                    <i class="fas fa-marker"></i></button>
+                                <input type="hidden" name="id" value="<?= $d['ID_prod'] ?>">
+                            </form>
+                            <form action="<?= BASE_URL . 'producto?edit' ?>" method="POST">
+                                <button type="submit" class="btn-circle btn btn-danger mx-auto" data-bs-toggle="tooltip" data-bs-placement="right" title="Eliminar producto"><i class="far fa-trash-alt"></i></button>
+                                <input type="hidden" name="id" value="<?= $d['ID_prod'] ?>">
+                                <input type="hidden" name="accion" value="EliminarProducto">
+                            </form>
+                        </td>
+                    <?PHP
+                    }
+
+                    ?>
+                </tr>
+            <?php
+            } // fin de tabla StockGenera
+            ?>
+        </tbody>
+    </table>
+
+    <div class="col-lg-10 mb-4 mx-auto my-4">
+        <!-- Project Card -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 shadow p-3 mb-5 bg-white">
+            <div class="container-fluid">
+            <div class="row text-center">
+                <div class="col-md-4">
+                <h6 class=" text-primary"><?= count($this->datos['response_msg']).' tipos de producto' ?></h6>
+
+                </div>
+                <div class="col-md-4">
+                <h6 class="m-0  text-primary"><?= (isset($_GET['edit'])? '<a href="'.BASE_URL.'producto/create'.'" class="btn btn-primary">Crear producto</a>':'' ) ?></h6>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            </div>   
+
+            </div>
+            <div class="card-body">
+                <?php
+                //FIN DE EVENTOS-----------------------------------------------------------------------------------------------------------
+                foreach ($this->datos['response_msg'] as $i => $d) {
+                    //while ($d = $prod->fetch_array()) {
+                    $p  =  $d['stok_prod'];
+                    $po  = 10 * $d['stok_prod'];
+                    $po = $po . "%";
+
+                    $c = "text";
+                    if ($p < 2) {
+                        $c = "danger";
+                    } elseif ($p <= 6) {
+                        $c = "warning";
+                    } elseif ($p >= 7) {
+                        $c = "success";
+                    }
+                    $c = "bg-" . $c;
+
+                ?>
+                    <h4 class="small font-weight-bold"><?= $d['nom_prod']  ?> <span class="float-right"><?= " Cantidad de productos; " . $p ?></span> </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar <?= $c ?>" role="progressbar" style="width:<?= $po; ?>" aria-valuenow=<?= $c ?> aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                <?php
+                } // fin de while producto
+                ?>
+            </div><!-- fin de card body -->
+        </div><!-- fin de col categoria  -->
+    </div>
+
+    <div class="container">
+        <div class="col-md-9 mx-auto">
+            <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+        </div>
+    </div>
+<?php
+
+}
+
+?>

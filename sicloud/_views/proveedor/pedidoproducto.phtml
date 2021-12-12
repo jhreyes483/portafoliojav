@@ -1,0 +1,106 @@
+
+
+<!-- 2 check -->
+<?php
+?>
+<div class="solicitud1">
+    <div class ="col-md-12">
+        <div class="container">
+            <div class ="row">
+                <!-- Medidas de servicios y productos -->
+                    <div class="col-md-6 card card-body bg-dark text-white ">
+                        <label class="form-check-label" for="exampleRadios2">Solicitud</label>
+                    </div>
+                    <div class="container col-md-6" >
+                        <div class="card card-body bg-dark text-white text-center">
+                            <h3>PEDIDO</h3>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 card card-body bg-dark text-white">
+                <form action="" method="post">
+
+                    <h5>Numero de identificación:</h5>
+                    <input class="form-control" type="number" 
+                    placeholder="Digite su numero de documento" 
+                    name="documento" value="<?= $this->us[0] ?>" 
+                    required autofocus maxlength="11"><br>
+
+                    <h5>Nombre:</h5>
+                    <input class="form-control" type="text"
+                     placeholder="Digite su nombre" 
+                     name="nom" value="<?= $this->us[1] ?>" 
+                     required autofocus maxlength="20"><br>
+
+                    <h5>Apellido:</h5>
+                    <input class="form-control" 
+                    type="text" placeholder="Digite su apellido" 
+                    name="ape" value="<?= $this->us[2] ?>" 
+                    required autofocus maxlength="20"><br>
+
+                    <h5>Télefono:</h5>
+                    <input class="form-control" type="number" 
+                    placeholder="Digite su numero" 
+                    name="tel" 
+                    required autofocus maxlength="11"><br>
+
+                    <h5>Correo:</h5>
+                    <input class="form-control" 
+                    type="email" name="email" 
+                    value="<?= $this->us[3] ?>" 
+                    placeholder="Digite su correo electronico" 
+                    required autofocus maxlength="50"><br>
+
+
+                    <h5>Cantidad:</h5>
+                    <input class="form-control" type="number" 
+                    placeholder="Digite su numero" 
+                    name="cantidad" 
+                    required autofocus maxlength="11"><br>
+
+                    <h5>Nombre del producto:</h5>
+                    <select class="custom-select" name="prod" >
+<?php
+foreach($this->prod as $i => $d){
+?>
+<option <?= ( isset($_POST['prod']) &&  $i  == $_POST['prod']) ? 'selected' : '';  ?> value="<?= $i  ?>"> <?= $d[0]  ?> </option>
+<?php   
+
+}
+
+?>
+
+                    </select>
+
+                    <h5>Medida:</h5>
+                    <select class="custom-select" name="med" >
+<?php
+foreach($this->med as $i => $d){
+?>
+
+<option <?= ( isset($_POST['med']) &&  $i  == $_POST['med']) ? 'selected' : '';  ?> value="<?= $i  ?>"> <?= $d  ?> </option>
+<?php   
+}
+?>
+                    </select>
+            </div>
+            <div class="container col-md-6" >
+                <div class="card card-body bg-dark text-white">
+                    <form action="" method="post">
+                        <h3>Detalles: </h3><br>
+                        <textarea class="form-control" name="descript"  cols="30" rows="10"></textarea><br><br>
+                        <input type="hidden" name="accion" value="insertPedido">
+                        <input class="form-control btn btn-primary" type="submit" value="Enviar"><br><br><br>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

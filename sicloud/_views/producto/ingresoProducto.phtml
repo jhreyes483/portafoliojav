@@ -1,0 +1,133 @@
+<?php
+
+
+
+cardtitulo2("Ingreso de producto-Bodega");
+//=======================================================================
+// Resepcion de datos
+$formulario = true;
+//  echo $id;
+//========================================================================
+// Captura de datos
+
+//$id1    = 2041172460;
+if ($this->datos['response_status'] == 'ok') {
+
+    foreach ($this->datos['response_msg'] as $row) {
+        $idProd       =    $row['ID_prod'];
+        $nomProduct   =    $row['nom_prod'];
+        $valProduct   =    $row['val_prod'];
+        $estadoProd   =    $row['estado_prod'];
+        $stokProd     =    $row['stok_prod'];
+        $nomEmpresa   =    $row['nom_empresa'];
+        $nomCategoria =    $row['nom_categoria'];
+        $nomMedida    =    $row['nom_medida'];
+        $nomEmpresa   =    $row['nom_empresa'];
+        $img          =    $row['img'];
+    }
+} else {
+    die($this->datos['response_msg']);
+}
+
+?>
+
+<?php
+if (isset($_SESSION['message'])) {
+?>
+    <!-- alerta boostrap -->
+    <div class="col-md-4 mx-auto alert alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+        <?=  $_SESSION['message']  ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
+    setMessage();
+}
+?>
+<div class=" col-md-3 mx-auto">
+    <div class="card box-card  card-body shadow p-3 mb-5 bg-white">
+        <h5 class="card-title text-center ">Seleccione producto</h5>
+        <!-- INI--FORM PRODUCTO--------------------------------------------------------------------------------- -->
+        <form action="" method="POST">
+            <select name="p" class="form-control " onchange="submit(this)">
+                <?php
+                foreach ($this->datosF[0] as $row) {
+                ?>
+                    <option    <?php if (isset($_POST['p']) && (trim($_POST['p']) === trim($row['ID_prod']))  )   echo 'selected' ?>             
+                    value="<?= $row['ID_prod'] ?> "><?= $row['nom_prod'] ?></option>
+                <?php }
+
+                ?>
+            </select>
+            <input type="hidden" name="accion" value="busquedaProducto">
+        </form>
+        <!-- fin producto-------------------------------------------------------------------------------- -->
+
+    </div><!-- fin de card-body-->
+</div><!-- fin de card -->
+
+
+<!-- FORMULARIO REGISTRO -->
+<?php
+
+
+if ($formulario == true) {  ?>
+
+    <div class="card box-card card-body text-center  col-md-10 mx-auto my-4 ">
+        <div class=" container-fluid ">
+            <div class="card card-body shadow mb-2 ">
+                <div class="mx-auto text-center ">
+                    <img class="border border-secondary shadow img-profile ml-3 rounded-circle border-info " src="<?= RUTAS_APP['ruta_img'].'prod/'.(($img != '') ? $img : imgProducto)  ;  ?>" width="120" height="140">
+                </div>
+                <div class="row my-2">
+                    <div class="col-md-4">
+                        <!-- inicio de divicion 1 -->
+                        <!-----------INI FORM INGREZAR CANTIDAD------------------------------------------------------------------------------------------>
+                        <form action="<?= BASE_URL.'producto/ingreso' ?>" method="POST">
+                            <!-- derecha -->
+                            <div class="form-group"><label for="">ID Producto</label><input class="form-control" value="<?= ($idProd??'') ?>" type=Â»textÂ» disabled=Â»disabledÂ» laceholder="ID producto" value="<?= ($idUs??'')  ?> " name="ID_prod"></div>
+                            <div class="form-group"><label for="">Nombre Producto</label><input class="form-control" value="<?= ($nomProduct??'')  ?>" type=Â»textÂ» disabled=Â»disabledÂ» lass="form-control" placeholder="Nombre producto" name="nom_prod"></div>
+                            <div class="form-group"><label for="">Valor Producto</label><input class="form-control" type=Â»textÂ» disabled=Â»disabledÂ» value="<?= $valProduct  ?>" class="form-control" placeholder="Valor" name="val_prod"></div>
+                            <input type="hidden" name="accion" value="IngresarCantidad">
+                            <input type="hidden" name="id" value="<?= ($idProd??'') ?>">
+                            <div class="form-group"> <input class="btn btn-primary form-control" type="submit" name="submit" value="Registrar entrega"> </div>
+                    </div><!-- fin de primera divicion-->
+
+                    <div class="col-md-4">
+
+                        <!-- inicio de 2 divicion -->
+                        <!-- Izquierda -->
+                        <div class="form-group"><label for="">Estado</label><input type=Â»textÂ» disabled=Â»disabledÂ» class="form-control" value="<?= ($estadoProd??'')  ?>" name="estado_prod" required autofocus></div>
+                        <div class="form-group"><label for="">Stock Inicial</label><input type=Â»numberÂ» readonly=Â»readonlyÂ» class="form-control" value="<?= ($stokProd??'') ?>" name="stok" required autofocus></div>
+                        <div class="form-group"><label for="">ID factura Proveedor</label><input type="text" class="form-control" value="" name="num_fac_ing" autofocus></div>
+                        <div class="form-group"><label for="">Cantidad</label><input type="number" class="form-control" placeholder="Cantidad" name="cantidad" required></div>
+
+                    </div><!-- fin de segunda divicion-->
+
+                    <div class="col-md-4">
+
+                        <div class="form-group"><label for="">CategorÃ­a de producto</label>
+                            <input type=Â»textÂ» disabled=Â»disabledÂ» value="<?= ($nomCategoria??'' )?>" class="form-control">
+                        </div><!--  fin de form-group Producto -->
+                        <div class="form-group"><label for="">Medida</label><input class="form-control" type="Â»textÂ»" disabled=Â»disabledÂ» value="<?= ($nomMedida??'') ?>"></div><!--  fin de form-group Medida -->
+                        <div class=" form-group"><label for="">Empresa proveedor</label><input class="form-control" type=Â»textÂ» disabled=Â»disabledÂ» value="<?= $nomEmpresa ?> ">
+                        </div><!--  fin de form-group Provedor-->
+                        <!-- BOTON A ENLACE TABLA -->
+                        </form>
+                        <!-- fin de form cantidad----------------------------------------------------------------------------------------------------------  -->
+                        <div class="form-group "><a class="btn btn-primary form-control" href="CU004-crearproductos.php?accion=verProducto">Ver productos existentes</a></div>
+
+                    </div><!-- fin de tercera divicion -->
+                </div><!-- row -->
+            </div><!-- fin card body interno -->
+        </div><!-- fin de container fluid -->
+    </div><!-- Card externo -->
+
+
+    </div>
+<?php
+} else {
+    echo "No hay datos";
+} // fin del while
+?>

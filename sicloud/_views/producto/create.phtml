@@ -1,0 +1,102 @@
+<?php
+cardtitulo("Registro producto");
+?>
+<div class="card box-card card-body text-center  col-md-10 mx-auto ">
+    <div class=" container-fluid ">
+        <div class="card card-body shadow p-3 mb-4 bg-white"> <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- inicio de divicion 1 -->
+                    <form action="producto" method="POST" enctype="multipart/form-data">
+                        <!-- derecha -->
+                        <div class="form-group"><label for="">ID Producto</label><input class="form-control" type="text" placeholder="ID producto" name="ID_prod"></div>
+                        <div class="form-group"><label for="">Nombre Producto</label><input class="form-control" type="text" class="form-control" placeholder="Nombre producto" name="nom_prod"></div>
+                        <div class="form-group"><label for="">Valor Producto</label><input class="form-control" type="number" class="form-control" placeholder="Valor" name="val_prod"></div>
+                        <input type="hidden" name="accion" value="inserProducto">
+                        <div class="form-group"> <input class="btn btn-primary form-control" type="submit" name="submit" value="Registrar producto"> </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- inicio de 2 divicion -->
+                    <!-- Izquierda -->
+                    <label for="">Estado de Precio</label>
+                    <div class="form-group">
+                        <select name="estado_prod" class="form-control">
+                            <option value="Promocion">Promoción </option>
+                            <option value="Estandar" vado>Estandar</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label for="">Stock Inicial</label><input type="number" class="form-control" placeholder="Stock inicial" name="stok_prod" required autofocus></div>
+                    <div class="form-group"><label for="">ID factura Proveedor</label><input type="text" class="form-control" placeholder="Factura proveedor" name="num_fac_ing" autofocus></div>
+                    Imagen:
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="foto">
+                        <label class="custom-file-label" for="customFile">Seleccione una imagen</label>
+                    </div><br><br>
+<?php 
+if ($_SESSION['usuario']['ID_rol_n'] ==  1 || $_SESSION['usuario']['ID_rol_n'] ==  2) { ?>
+    <a class="btn btn-block btn-primary by-2" href="CU003-ingresoproducto.php">Ingresar productos</a>
+<?php 
+} 
+?>         
+                    <textarea class="form-control"
+                    placeholder="Descripción"
+                    name="descripcion" id="" cols="40" rows="1"></textarea>
+                </div><!-- fin de segunda divicion-->
+                <div class="col-md-4">
+                    <div class="form-group"><label for="">Categoría de producto</label>
+                        <select class="form-control" name="CF_categoria">
+<?php
+foreach ($this->datos[0] as $i => $row) {
+?>
+    <option value="<?= $row['ID_categoria'] ?>"><?= $row['nom_categoria'] ?></option>
+<?php 
+}
+?>
+                        </select>
+                    </div><!--  fin de form-group Producto -->
+                    <div class="form-group"><label for="">Medida</label>
+                        <select class="form-control" name="CF_tipo_medida">
+<?php
+foreach ($this->datos[1] as $i => $row) {
+?>
+    <option value="<?= $row['ID_medida'] ?>"><?= $row['nom_medida'] ?></option>
+<?php 
+}
+?>
+                        </select>
+                    </div><!--  fin de form-group Medida -->
+                    <div class=" form-group"><label for="">Proveedor</label>
+                        <select class="form-control" name="FK_rut">
+                            <?php
+                            //   $datos   = $objCon->verProveedor();
+                            foreach ($this->datos[2] as $i => $row) {
+                            ?>
+                                <option value="<?= $row['ID_rut']  ?>"> <?= $row['nom_empresa']  ?> </option>
+                            <?php  } ?>
+                        </select>
+                    </div><!--  fin de form-group Provedor-->
+                    <div class="form-group "><a class="btn btn-primary form-control" href="V">Ver productos existentes</a></div>
+                    </form>
+                </div><!-- fin de tercera divicion -->
+            </div><!-- row -->
+        </div><!-- fin card body interno -->
+    </div><!-- fin de container fluid -->
+</div><!-- Card externo --> <br>
+
+<?php
+if (isset($_SESSION['message'])) {
+?>
+    <!-- alerta boostrap -->
+    <div class="col-md-4 mx-auto alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+        <?php
+        echo  $_SESSION['message']  ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+<?php
+    setMessage();
+}
+?>
+

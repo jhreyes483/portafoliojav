@@ -1,0 +1,78 @@
+<!-- formulario de registro -->
+
+<?php
+cardtitulo("Directorio telefonico");
+if (isset($_SESSION['message'])) {
+?>
+   <div class="mx-auto col-lg-4 text-center alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+      <?php
+      echo  $_SESSION['message']  ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+<?php setMessage();
+}
+
+?>
+
+<?php
+if ($this->datos['response_status'] != 'ok') {
+?>
+   <div class="container-fluid ">
+      <div class="mx-auto col-lg-4 text-center alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+         <?= $this->datos['response_msg']  ?>
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+   <?php
+}else{
+   ?>
+   <div class="container-fluid">
+
+      <!-- inicia segunda divicion -->
+      <div class="mx-auto row col-md-4">
+         <table id="example" class="bg-white text-center">
+            <thead>
+               <tr>
+                  <th> <i></i> ID usuario</th>
+                  <th> <i></i> Nombre</th>
+                  <th> <i></i> Cargo</th>
+                  <th> <i></i> Dirección</th>
+<?php
+if( isset($this->elimina)) echo ' <th></th>';
+?>
+               </tr>
+            </thead>
+            <tbody>
+               <?php
+               foreach ($this->datos['response_msg'] as $i => $d) {
+               ?>
+                  <tr>
+                     <!-- Los nombres que estan son los mismos de los atributos de la base de datos de lo contrario dara un error -->
+                     <td><?= $d[0] ?></td>
+                     <td><?= $d[1] . ' ' . $d[2] ?></td>
+                     <td><?= $d[3] ?></td>
+                     <td><?= $d[4] ?></td>
+<?php
+if( isset($this->elimina)) echo '
+<td>
+<form action="" method="POST">
+   <button data-bs-toggle="tooltip" data-bs-placement="right" title="Eliminar actividad" class="btn btn-circle btn-danger">
+      <i class="far fa-trash-alt"></i>
+   </button>
+</form>
+</td>';
+?>           
+                  </tr>
+               <?php
+               } //fin del while
+               ?>
+            </tbody>
+         </table>
+      </div><!-- fin de response table -->
+   </div><!-- Fin container -->
+   <?php
+   }
+   ?>

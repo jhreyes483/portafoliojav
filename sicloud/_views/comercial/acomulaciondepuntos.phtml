@@ -1,0 +1,67 @@
+<?php
+cardtitulo2("Acumulación de puntos de compra");
+//$objCon = new ControllerDoc();
+?>
+<div class="card box-card  card-body text-center col-md-5 mx-auto">
+    <!--<div class="container">-->
+    <div class=" container col-md-12 ">
+        <div class="card  card-body mb-2  shadow ">
+            <form action="" method="POST">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="start">Fecha:</label>
+                        <div class="form-group"><input class="form-control" type="date" id="start" name="trip-start" value="2020-05-22" min="0000-00-00" max="9999-99-99"></div>
+                        Id CLiente
+                        <div class="form-group"><input type="text" class="form-control" placeholder="Id cliente"></div>
+                    </div>
+
+                    <div class="col-md-6">
+                        Pediodo promedio <br>
+                        <select class="form-control">
+                            Pediodo promedio
+                            <option>Día</option>
+                            <option>Mes</option>
+                            <option>Año</option>
+                        </select><br>
+                        <div class="form-group"> <input class="btn btn-primary form-control" type="submit" value="Ver Puntos Acumulados"> </div>
+                    </div><!-- col 6 -->
+                </div><!-- row -->
+        </div><!-- card -->
+    </div><!-- card -->
+</div><!-- container -->
+<?php
+if ($this->datos['response_status'] == 'ok') {
+?>
+    <div class="col-md-8 mx-auto my-4">
+        <table id="example" style="width:100%" class=" col-lg-12 bg-white mx-auto">
+            <thead>
+                <tr>
+                    <th scope="col"><i></i> ID</th>
+                    <th scope="col"><i></i> Puntos</th>
+                    <th scope="col"><i></i> Fecha</th>
+                    <th scope="col"><i></i> P. nombre cliente</th>
+                    <th scope="col"><i></i> S. nombre cliente</th>
+                    <th scope="col"><i></i> P. apellido cliente</th>
+                </tr>
+            </thead>
+            <tbody>
+<?php
+foreach ($this->datos['response_msg'] as $i => $row) {
+?>
+                    <tr>
+                        <td><?= $row['id_puntos']  ?></td>
+                        <td><?= $row['puntos']  ?></td>
+                        <td><?= $row['fecha']  ?></td>
+                        <td><?= $row['nom1']  ?></td>
+                        <td><?= $row['nom2']  ?></td>
+                        <td><?= $row['ape1']  ?></td>
+                    </tr>
+<?php
+} 
+?>
+            </tbody>
+        </table>
+    </div>
+<?php
+}
+?>

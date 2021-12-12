@@ -1,0 +1,151 @@
+<?php
+cardtitulo("Informe de Ventas");
+?>
+
+<div class="container col-md-8 col-xl-7">
+  <div class="row">
+<?php
+if (isset($_SESSION['message'])) {
+?>
+      <div class="alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+        <?=  $_SESSION['message']  ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <?php setMessage();
+} 
+?>
+  </div>
+</div>
+<div class="container-fluid my-4 ">
+  <!-- Content Row -->
+  <div class="row col-lg-10 mx-auto">
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4 mx-auto">
+      <div class="card box-card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Promedio (Diario)</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">$<?= $this->promedio['dia'] ?></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4 mx-auto">
+      <div class="card box-card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Promedio (Mensual)</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">$<?= $this->promedio['mes'] ?></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card box-card col-md-3 mx-auto">
+      <div class="card-body" id="rango">
+        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+        <h5 class="card-title text-center ">Infome por rango</h5>
+        <!-- INI--FORM PRODUCTO--------------------------------------------------------------------------------- -->
+        <form action="<?= BASE_URL ?>supervisor/infvrango" method="POST">
+          <select name="ventas" class="form-control" onchange="submit(this)">
+<?php
+  //echo  '<option value="">--Seleccione--</option>';
+foreach(['Día', 'Semana', 'Mes'] as $b){
+  echo  '<option  '.( ( (isset($_POST['ventas'] )) && $_POST['ventas'] == $b )?'selected ':''  ). 'value="'.$b.'">'.$b.'</option>';
+}
+?>
+
+           </select>
+          <input type="hidden" name="accion" value='verRango' >
+        </form>
+        <a href="javascript:;" onclick="mostrar_div('fecha'); mostrar_div('rango')">Busqueda por fecha</a>
+      </div>
+      <div class="card-body" id = "fecha" style="display:none">
+        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+        <h5 class="card-title text-center ">Informe por fecha</h5>
+        <!-- INI--FORM PRODUCTO--------------------------------------------------------------------------------- -->
+        <form action="<?= BASE_URL ?>supervisor/infvrango" method="POST" method="POST">  
+            <input type="date" name="fecha" class="form-control" onchange="submit(this)">
+            <input type="hidden" name="ventas" value="busDia">
+            <br>
+        </form>
+        <a href="javascript:;" onclick="mostrar_div('fecha'); mostrar_div('rango')">Busqueda por rango</a>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
+if( isset($_POST['ventas'])){
+  if( $this->datos['response_status'] == 'ok' ){
+?>
+<div class="container-fluid">
+    <table id="example" class="text-center col-lg-9 mx-auto">
+      <thead>
+        <tr>
+<?php
+foreach( $this->title as $t ){
+  echo '<th><i></i>'.$t.'</th>';
+}
+?>
+        </tr>
+      </thead>
+      <tbody>
+<?php
+    foreach ($this->datos['response_msg'] as $i => $row) {
+?>
+          <tr>
+            <td>  <?= $row[0] ?></td>
+            <td>  <?= $row[2]  ?></td>
+            <td>$ <?= number_format(   $row[1] , 0, ',', '.');  ?></td>
+          </tr>
+<?php
+    }
+?>
+      </tbody>
+        <tr>
+          <td colspan="1" ><h4>Total:</h4></td>
+          <td> <?= $this->total[1] ?> </td>
+          <td> <?= $this->total[0] ?> </td>
+        </tr>
+      
+    </table>
+</div><!-- fin de response table -->
+<?php
+      }else{
+echo'
+      <div class="mx-auto col-lg-9 alert alert-danger alert-dismissible fade show" role="alert">
+        '.$this->datos['response_msg'].'
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
+    } 
+}
+?>
+
+<script>
+
+
+
+
+
+
+
+
+    function mostrar_div(id, clase){
+	    var main = ("#"+id);
+	    if (clase>0)	main =("."+id)
+	    $(main).toggle('normal');
+    }
+</script>

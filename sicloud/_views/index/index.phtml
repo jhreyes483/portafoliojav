@@ -1,0 +1,509 @@
+
+
+
+    </head>
+
+    <body id="page-top">
+        <header class="masthead bk-rgb-video">
+            <div class="container">
+                <div class="masthead-subheading">IMCOABHER</div>
+                <div class="textSobreVideo">
+                <h1 class="masthead-heading text-uppercase texto-video">Visítanos y vive una experiencia rodeado de herramientas y productos ferreteros</h1>
+                </div>
+                <button type="button" class="btn btn-primary btn-lg lets-go" data-toggle="modal" data-target="#signin">
+                    Iniciar Sesión
+                  </button>
+            </div>
+        </header>
+
+<!-- Button trigger modal -->
+
+  
+  
+
+<?php
+if( isset ($this->login)  && $this->login['response_status'] == 'error' ){
+?>
+        <!-- alerta boostrap -->
+        <div class="my-2 mx-auto col-md-6 alert alert-danger alert-dismissible fade show" role="alert">
+            <?=  $this->login['response_msg'] ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+<?php
+$this->login = null;
+} 
+?>
+
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Servicios</h2>
+                    <h3 class="section-subheading text-muted">Herramientas para todo tu hogar</h3>
+                </div>
+                <div class="row text-center">
+<?php
+foreach(  $this->datos1 as $d ){
+?>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas <?=  $d[3]  ?> fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3"><?=  $d[1]  ?></h4>
+                        <p class="text-muted"><?=  $d[2]  ?></p>
+                    </div>
+<?php
+}
+?>
+            </div>
+        </section>
+        <!-- Portfolio Grid-->
+        <section class="page-section bg-light" id="portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Portafolio</h2>
+                    <h3 class="section-subheading text-muted">Articulos.</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="<?= RUTAS_APP['ruta_img'] ?>1.jpg" alt="" />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Manuales</div>
+                     
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="<?= RUTAS_APP['ruta_img'] ?>2.jpg" alt="" />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Electricas</div>
+                         
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="<?= RUTAS_APP['ruta_img'] ?>3.jpg" alt="" />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Valvulas</div>
+                    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="<?= RUTAS_APP['ruta_img'] ?>4.jpg" alt="" />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Seguridad</div>
+            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="<?= RUTAS_APP['ruta_img'] ?>5.jpg" alt="" />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Tuberias</div>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="<?= RUTAS_APP['ruta_img'] ?>6.jpg" alt="" />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Materiales</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About-->
+        <section class="page-section" id="about">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Nuestras Herramientas</h2>
+                </div>
+                <ul class="timeline">
+                    <li>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="<?= RUTAS_APP['ruta_img'] ?>indexEm.jpg" alt="" /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="subheading">Herramientas manuales</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Alicates Universales, Alicates de Corte, Alicates de Puntas, 
+                                Atornilladores, Picotas Chuzos, Escaleras y Carretillas, Espétulas, Espétulas, Formones, 
+                                Juegos de Llaves, Llaves Ajustables, Llaves Francesas, Llaves Punta Corona, Martillos, 
+                                Mazos, Combos Martillos, Mazos, Organizadores y cajas de Herramientas,
+                                Palas y Hachas, Prensas Prensas.</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="<?= RUTAS_APP['ruta_img'] ?>indexhe1.jpg" alt="" /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="subheading">Herramientas Electricas</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Taladros sin cable, Taladros con cable,  Sierras,  
+                                Herramientas eléctricas, 
+                                Destornilladores eléctricos Martillos perforadores Amoladoras eléctrica, 
+                                Lijadoras eléctricas, Sierras circulares Cepillos eléctricos, 
+                                Fresadoras eléctricas, Pistolas para pintar.</p></div>
+                        </div>
+                    </li>
+                    <li>
+                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="<?= RUTAS_APP['ruta_img'] ?>indexEv.jpg" alt=""></div>
+                    <!-- 
+                               <div class="timeline-image"><img class="rounded-circle img-fluid" src="<?= RUTAS_APP['ruta_img'] ?>nuestras_herramientas/3.jpg" alt="" /></div>
+                     -->
+                 
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="subheading">Valvulas</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Válvulas, válvula de bola: acero carbón, inoxidable, bronce. Paso full y cuatro tornillos,
+                                 válvula globo, bronce, acero carbón, válvula cortina, acero carbón, bronce,
+                                  válvula retencián o cheques, globo, acero carbón, bronce, cortina, bronce acero carbón,
+                                   tuberáas, acero carbón sch 40.80.160 xxs y tubería para caldera, acero inoxidable sch 10.40.
+                                    Tipo 304 y 316, </p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="<?= RUTAS_APP['ruta_img'] ?>indexHi.jpg" alt="" /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="subheading">Indumentaria</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Se encuentra en su equipo humano, 
+                                en continua formación para dar el mejor servicio y 
+                                mantener en una posición puntera en el sector del suministro industrial.</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <h4>
+                                Mas
+                                <br />
+                                Informacion
+                                <br />
+                            </h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+<section class="banner-2 text-center">
+<div class="container-text-img">
+    <!-- img fondo estatico css -->
+</div>
+</section>
+
+
+
+        </section>
+        <!-- Team-->
+        <section class="page-section bg-light" id="team">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Nuestra ubicación</h2>
+                   
+                </div>
+                <div class="row mt-5">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31815.114989669146!2d-74.19318096044923!3d4.613813000000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9b6f723926b1%3A0xbc71a182567b332b!2sFerreteria%20Roma!5e0!3m2!1ses!2sco!4v1610302215457!5m2!1ses!2sco" width="1300" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    
+                </div>
+                
+            </div>
+        </section>
+
+<?php
+if( isset ($this->datos['response_msg']) ){
+?>
+        <!-- alerta boostrap -->
+        <div class="mx-auto col-md-6 alert alert-<?= $this->datos['color']   ?> alert-dismissible fade show" role="alert">
+            <?=  $this->datos['response_msg'] ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+<?php
+} 
+?>
+</div>
+        <section class="page-section" id="contact">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Contactanos </h2>
+                </div>
+                <form id="contactForm" name="sentMessage"  action="<?= BASE_URL ?>index " method="POST"  novalidate="novalidate">
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control" id="name" name="name"  type="text" placeholder="Nombre *"  value="<?= ($_POST['name']??'') ?>"  data-validation-required-message="Por favor digita tu nombre" required />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="email"  name="email" type="email" placeholder="Correo *" value="<?= ($_POST['email']??'') ?>"    data-validation-required-message="Por favor digita tu correo" required />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group mb-md-0">
+                                <input class="form-control" id="phone" name="phone" type="tel"   placeholder="Télefono *" value="<?= ($_POST['tel']??'') ?>"   data-validation-required-message="Por favor digita tu numero" required />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0">
+                                <textarea class="form-control" id="message" name="message"  placeholder="Mensaje *" value="<?= ($_POST['message']??'') ?>"    data-validation-required-message="Escribe un mensaje" required ></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div id="success"></div>
+                        <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Enviar Mensaje</button>
+                    </div>
+                    <input type="hidden" name ="accion" value="mensajeUsuario" >
+                </form>
+            </div>
+        </section>
+        <!-- Footer-->
+
+        <!-- Portfolio Modals-->
+        <!-- Modal 1-->
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here-->
+                                    <h2 class="text-uppercase">Herramientas manules</h2>
+                                    <p class="item-intro text-muted">Servicio.</p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/01-full.jpg" alt="" />
+                                    <p>
+                                    Generalmente metálico de acero, madera, fibra, plástico o goma, que se utiliza para ejecutar de manera más apropiada, sencilla y con el uso de menor energía, tareas constructivas o de reparación,
+                                    </p>
+                                    <ul class="list-inline">
+                                        <li><?= date('Y-m-d') ?></li>
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                        <i class="fas fa-times mr-1"></i>
+                                        Cerrar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal 2-->
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here-->
+                                    <h2 class="text-uppercase">Herramientas Electricas</h2>
+                                    <p class="item-intro text-muted">Descripción</p>
+                                    <p>Herramientas que funcionan graciasa una fuente de energía adicional y un mecanismo eléctrico a diferencia de las herramientas manuales que no necesitan energía adicional ni un mecanismo extra para funcionar.
+
+                                    </p>
+                                    <ul class="list-inline">
+                                        <li><?= date('Y-m-d')?></li>
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                        <i class="fas fa-times mr-1"></i>
+                                        Cerrar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal 3-->
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                   
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here-->
+                                    <h2 class="text-uppercase">Válvulas</h2>
+                                    <p class="item-intro text-muted">Descripción</p>
+                                    <p>
+                                    Elementos que mandan o regulan la puesta en marcha, el paro y la dirección, así como la presión del aire. Según norma DIN 24300 y recomendaciones CETOP.
+                                    </p>
+                                    <ul class="list-inline">
+                                        <li><?= date('Y-m-d') ?></li>
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                        <i class="fas fa-times mr-1"></i>
+                                        Cerrar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal 4-->
+        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here-->
+                                    <h2 class="text-uppercase">Seguridad</h2>
+                                    <p class="item-intro text-muted">Descripcion</p>
+                                
+                                    <p>
+                                    Herramientas de seguridad, elementos de seguridad, señalización de seguridad, zapatos de seguridad, botas de seguridad, botas de agua,
+                                     abrigos de trabajo, pantalón de trabajo, mono de trabajo, chaqueta de trabajo, uniforme de trabajo.
+                                </p>
+                                    <ul class="list-inline">
+                                        <li>Fecha <?= date('Y-m-d')?> </li>
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                        <i class="fas fa-times mr-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal 5-->
+        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here-->
+                                    <h2 class="text-uppercase">Tubéria</h2>
+                                    <p class="item-intro text-muted">Descripción</p>
+                                    <p>
+                                    Es un lingote cilíndrico que se calienta en un horno antes de la extrusión. 
+                                    En la extrusión se hace pasar por un dado cilíndrico y posteriormente se hace el agujero mediante un penetrador.
+</p>
+                                    <ul class="list-inline">
+                                        <li>Fecha: <?= date('Y-m-d') ?> </li>
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                        <i class="fas fa-times mr-1"></i>
+                                        Cerrar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal 6-->
+        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here-->
+                                    <h2 class="text-uppercase">Materiales</h2>
+                                    <p class="item-intro text-muted">Descripción</p>
+                                    <p>
+                                    Los productos de ferretería que ponemos al alcance de su mano son carretillas, barretas, cuñas, 
+                                    cinceles, cortapernos, cucharas para albañilería, desarmadores, espátulas, 
+                                    flexómetros, llanas, marros, martillos, palas y zapapicos. Pregunta por nuestro precio de ferreteria hoy mismo!
+
+                                    </p>
+                                    <ul class="list-inline">
+                                        <li>Fecha: <?= date('Y-m-d') ?> </li>
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                        <i class="fas fa-times mr-1"></i>
+                                        Cerrar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <!-- 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+        -->
+        <!-- Contact form JS-->
+        <!--         
+            No existen los js por eso se comenta
+        <script src="assets/mail/jqBootstrapValidation.js"></script>
+        <script src="assets/mail/contact_me.js"></script>
+
+        <script src="js/scripts.js"></script>
+        -->
+
+
+
+    
+</html>
+
+

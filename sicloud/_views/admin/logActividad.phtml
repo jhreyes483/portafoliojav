@@ -1,0 +1,83 @@
+<div class="container-fluid ">
+   <!-- formulario de registro -->
+
+   <?php
+   cardtitulo("Log Actividades");
+   if (isset($_SESSION['message'])) {
+   ?>
+      <div class="mx-auto col-lg-4 text-center alert alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+         <?php
+         echo  $_SESSION['message']  ?>
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+   <?php setMessage();
+   }
+   ?>
+
+   <?php
+   if ($this->datos['response_status'] != 'ok') {
+   ?>
+      <div class="container-fluid ">
+         <div class="mx-auto col-lg-4 text-center alert alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+            <?= $this->datos['response_msg']  ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+      <?php
+   }
+      ?>
+
+      <!-- inicia segunda divicion -->
+      <div class="col-md-10 p-2 mx-auto ">
+         <table id="example" class=" mx-auto tablesorter bg-white text-center">
+            <thead>
+               <tr>
+                  <th> <i></i> ID modica </th>
+                  <th> <i></i> Descripción</th>
+                  <th> <i></i> Fecha de modificación</th>
+                  <th> <i></i> Hora</th>
+                  <th> <i></i> ID usuario</th>
+                  <th> <i></i> Documento</th>
+                  <th> <i></i> Nombres</th>
+                  <th> <i></i> Apellidos</th>
+                  <th> <i></i> Modificación</th>
+                  <th> <i></i> Rol</th>
+                  <th>Acción</th>
+               </tr>
+            </thead>
+            <tbody>
+               <?php
+               foreach ($this->datos['response_msg'] as $i => $row) {
+               ?>
+                  <tr>
+                     <!-- Los nombres que estan son los mismos de los atributos de la base de datos de lo contrario dara un error -->
+                     <td><?= $row['ID_modifc'] ?></td>
+                     <td><?= $row['descrip'] ?></td>
+                     <td><?= $row['fecha'] ?></td>
+                     <td><?= $row['hora'] ?></td>
+                     <td><?= $row['FK_us'] ?></td>
+                     <td><?= $row['FK_doc'] ?></td>
+                     <td><?= $row['nom1'] . ' ' . $row['nom2'] ?></td>
+                     <td><?= $row['ape1'] . ' ' . $row['ape2'] ?></td>
+                     <td><?= $row['nom_modific'] ?></td>
+                     <td><?= $row['nom_rol'] ?></td>
+                     <td>
+                        <form action="<?= BASE_URL . 'admin/logActividad' ?>" method="POST">
+                           <button data-bs-toggle="tooltip" data-bs-placement="right" title="Eliminar actividad" class="btn btn-circle btn-danger">
+                              <i class="far fa-trash-alt"></i>
+                           </button>
+                           <input type="hidden" name="accion" value="deleteLog">
+                           <input type="hidden" name="id" value="<?= $row[0]  ?>">
+                        </form>
+                     </td>
+                  </tr>
+               <?php
+               } //fin del while
+               ?>
+            </tbody>
+         </table>
+      </div><!-- fin de response table -->
+      </div><!-- Fin container -->

@@ -1,0 +1,58 @@
+<?php
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+cardtitulo("Solicitud comercial");
+?>
+<div class="col-md-8 p-2 mx-auto">
+   <table id="example" class="bg-white mx-auto text-center">
+      <thead>
+         <tr>
+            <th><i></i> Nombre</th>
+            <th><i></i> Correo</th>
+            <th><i></i> Celular</th>
+            <th><i></i> Descripción</th>
+            <th><i></i> Fecha</th>
+            <th><i></i> Hora</th>
+            <th><i></i> Acción</th>
+         </tr>
+      </thead>
+      <tbody>
+         <?php
+         foreach ($this->datos['response_msg'] as $i => $row) {
+            $tmp = explode('@@@', $row[2]);
+         ?>
+            <tr>
+               <td><?= $tmp[0]                       ?></td>
+               <td><?= $tmp[1]                       ?></td>
+               <td><?= $tmp[2]                       ?></td>
+               <td><?= $tmp[3]                       ?></td>
+               <td><?= $tmp[4] ?? 'No registrada'    ?></td>
+               <td><?= $tmp[5] ?? 'No registrada'    ?></td>
+
+               <td>
+                  <!--  
+                  <form action="<?= BASE_URL . 'comercial/detalle' ?>" method="POST">
+                  -->
+                     <button class="btn btn-circle btn-success" data-bs-toggle="tooltip" data-bs-placement="right" title="Ver solicitud" type="button"
+                     href="javascript:void(0)" onclick="PopupCenter('<?= BASE_URL . 'comercial/detalle?id='.$row[0] ?>','Sicloud-detalle','1200','700');">
+                        <i class="fas fa-eye"></i> </button>
+                     <input type="hidden" name="id" value="<?= $row[0] ?>">
+                     <!-- 
+                  </form>
+                   -->
+                  <a onclick="eliminarEm(<?= ($row['ID_rut']??'') ?>)" href="#" class="  btn btn-circle btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Eliminar Empresa">
+                     <i class="far fa-trash-alt"></i></a>
+               </td>
+            </tr>
+
+         <?php
+         }
+         ?>
+      </tbody>
+   </table>
+</div><!-- fin de response table -->
+
+
+
+
+

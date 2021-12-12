@@ -1,0 +1,69 @@
+<div class="container-fluid ">
+<?php
+cardtitulo("Log Notificacion");
+if (isset($_SESSION['message'])) {
+?>
+      <div class="mx-auto col-lg-4 text-center alert alert-<?= $_SESSION['color'] ?> alert-dismissible fade show" role="alert">
+         <?= $_SESSION['message'] ?>
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+<?php setMessage();
+}
+?>
+
+
+   <?php
+   if ($this->datos['response_status'] == 'ok') {
+   ?>
+      <!-- inicia segunda divicion -->
+      <div class="col-md-6 p-2 mx-auto ">
+         <table id="example" class="tablesorter bg-white  mx-auto text-center">
+            <thead>
+               <tr>
+                  <th> <i></i> ID notificación</th>
+                  <th> <i></i> Estado</th>
+                  <th> <i></i> Descripción</th>
+                  <th> <i></i> Rol</th>
+                  <th> <i></i> Tipo de notificación</th>
+                  <th> Actividad</th>
+               </tr>
+            </thead>
+            <tbody>
+               <?php
+               foreach ($this->datos['response_msg'] as $d) {
+               ?>
+                  </tr>
+                  <td><?= $d[0] ?></td>
+                  <td><?= $d[1] ?></td>
+                  <td class="text-left" ><?= $d[2] ?></td>
+                  <td><?= $d[3] ?></td>
+                  <td><?= $d[4] ?></td>
+                  <td>
+                     <form action="<?= BASE_URL . 'admin/logNotificacion' ?>" method="POST">
+                        <input type="hidden" name="accion" value="deleteNotific">
+                        <input type="hidden" name="id" value="<?= $d[0] ?>">
+                        <button type="submit" class="btn btn-circle btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Eliminar notificacion">
+                           <i class="far fa-trash-alt"></i>
+                        </button>
+                     </form>
+                     <form action="<?= BASE_URL . 'admin/logNotificacion' ?>" method="POST">
+                     <input type="hidden" name="accion" value="notificLeida">
+                     <input type="hidden" name="id" value="<?= $d[0] ?>">
+                     <button type="submit" class="btn btn-circle btn-success btn" data-bs-toggle="tooltip" data-bs-placement="right" title="Marcar como leida">
+                        <i class="fas fa-arrow-right"></i>
+                     </button>
+                     </form>
+                  </td>
+                  </tr>
+               <?php
+               } //fin del while
+               ?>
+            </tbody>
+         </table>
+      </div><!-- fin de response table -->
+</div><!-- Fin container -->
+<?php
+   }
+?>

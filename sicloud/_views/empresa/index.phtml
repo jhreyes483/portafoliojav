@@ -1,0 +1,92 @@
+<?php
+cardtitulo("Empresa");
+?>
+
+<script>
+   function eliminarEm(id_em) {
+      var confirmacion = confirm('Esta seguro de eliminar empresa con id: ' + id_em + ' ?');
+      if (confirmacion) {
+         window.location = "<?= BASE_URL.'empresa' ?>/?d=1&id=" + id_em;
+      }
+   }
+</script>
+
+<div class="container-fluid col-md col-xl-7">
+   <div class="row">
+      <!-- formulario de registro -->
+      <div class="p-2 col-8 col-sm-6 col-md-4 col-lg-3 col-xl-4  mx-auto">
+         <?php
+         if (isset($_SESSION['message'])) {
+         ?>
+            <div class="alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+               <?= $_SESSION['message']  ?>
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+         <?php setMessage();
+         }
+         if ($this->datos['response_status'] != 'ok') { ?>
+            <div class="col-lg-8 alert alert-danger alert-dismissible fade show" role="alert">
+               <?= $this->datos['response_status']  ?>
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+         <?php
+         } else {
+         ?>
+<br><br><br><br>
+            <div class="card box-card">
+               <div class="card-header ">Registro Empresa</div>
+               <div class="card-body">
+                  <form action="<?= BASE_URL.'empresa' ?>" method="POST">
+                     <div class="form-group"><input class="form-control" type="text" name="ID_rut" placeholder="Rut" required autofocus maxlength="20"></div>
+                     <div class="form-group"><input class="form-control" type="text" name="nom_empresa" placeholder="Empresa" required autofocus maxlength="50"></div>
+                     <input type="hidden" name="accion" value="insertEmpresa">
+                     <div class="form-group"><input class="form-control btn btn-primary" type="submit" value="Registrar empresa"></div>
+                  </form>
+               </div><!-- fin card body -->
+            </div><!-- fin de card -->
+      </div><!-- fin de div formulario -->
+
+      <!-- inicia segunda divicion -->
+      <div class="col-md-auto p-2  ">
+         <table id="example" class="bg-white mx-auto text-center box-card">
+            <thead>
+               <tr>
+                  <th><i> Rut</th>
+                  <th><i> Nombre</th>
+                  <th><i> Acción</th>
+               </tr>
+            </thead>
+            <tbody>
+               <?php
+               foreach ($this->datos['response_msg'] as $i => $row) {
+               ?>
+                  <tr>
+                     <td><?= $row['ID_rut'] ?></td>
+                     <td><?= $row['nom_empresa'] ?></td>
+                     <td>
+                        <form action="<?= BASE_URL.'empresa/edit' ?>" method="POST">
+                           <button type="submit" class="btn btn-circle btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="Editar Empresa">
+                              <input type="hidden" name="id" value="<?= $row['ID_rut'] ?>">
+                        </form>
+                        <i class="fas fa-marker"></i></button>
+                        <a onclick="eliminarEm(<?= $row['ID_rut'] ?>)" href="#" class="  btn btn-circle btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Eliminar Empresa">
+                           <i class="far fa-trash-alt"></i></a>
+                     </td>
+                  </tr>
+
+               <?php
+               }
+               ?>
+            </tbody>
+         </table>
+      </div><!-- fin de response table -->
+   </div><!-- fin de row -->
+</div><!-- Fin container -->
+
+<?php
+         }
+?>

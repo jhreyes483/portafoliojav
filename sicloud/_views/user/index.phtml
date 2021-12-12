@@ -1,0 +1,80 @@
+<script>
+    function eliminarCategria(id_to_delete) {
+        var confirmacion =
+            confirm('Esta seguro que desea elminar usuario con id: ' + id_to_delete + ' ?');
+        if (confirmacion) {
+            window.location = "../controlador/api.php?accion=eliminarUsuario&&id=" + id_to_delete;
+        }
+
+    }
+</script>
+<div class="container my-2 mx-auto">
+    <div class="card box-card card-body">
+        <h3 class="text-center">Consulta de Usuarios</h3>
+    </div>
+</div>
+<?php
+
+if (isset($_SESSION['message'])) {  ?>
+    <!-- alerta boostrap -->
+    <div class="alert text-center col-md-4 mx-auto alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+        <?php
+        echo  $_SESSION['message']  ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
+    setMessage();
+}
+?>
+
+<div class="col-md-10 my-5 mx-auto">
+    <table id="example" class="bg-white mx-auto text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"> <i></i> Foto</th>
+                <th scope="col"> <i></i> ID</th>
+                <th scope="col"> <i></i> Nombres</th>
+                <th scope="col"> <i></i> Apellidos</th>
+                <th scope="col"> <i></i> Fecha</th>
+                <th scope="col"> <i></i> Correo</th>
+                <th scope="col"> <i></i> Tipo documento</th>
+                <th scope="col"> <i></i> Acción</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <?php
+                foreach ($this->datos as $i => $d) {
+                ?>
+                    <td><img class="img-profile ml-3 rounded-circle mx-auto" src="<?=RUTAS_APP['ruta_img'].'us/' . (($d[7] != '') ? $d[7]  : imgUsuario)  ?>" alt="Card image cap" height="65" width="70"></td>
+                    <td><?= $d[0] ?></td>
+                    <td><?= $d[1] . ' ' . $d[2] ?></td>
+                    <td><?= $d[3] . ' ' . $d[4] ?></td>
+                    <td><?= $d[5] ?></td>
+                    <td><?= $d[8] ?></td>
+                    <td><?= $d[9] ?></td>
+                    <td>
+                       
+                    <form action="<?= BASE_URL.'admin/edit' ?>" method="post">
+                    <input type="hidden" name="id" value="<?= $d[0] ?>">
+                    <button class="btn btn-circle btn-success" type="submit"  
+                     data-bs-toggle="tooltip" data-bs-placement="right" title="Editar usuario">
+                     <i class="fas fa-marker"></i></button>
+                    </form>
+
+                            
+                            <a href="../controlador/api.php?apicall=elimianarUsuario&&id=<?= $d[0] ?> " class="btn btn-circle btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Eliminar usuario">
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                    </td>
+            </tr>
+
+        <?php
+                }
+        ?>
+        </tbody>
+    </table>
+</div>

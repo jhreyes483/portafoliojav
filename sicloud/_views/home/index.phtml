@@ -1,0 +1,488 @@
+<a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up fa-lg"></i></a>
+<div class="social" id="social">
+   <img class="img-fluid d-none d-lg-block d-sm-none" src="<?= $_layoutParams['ruta_css'] ?>logograficasDelLitoral.gif" alt="Logo Ineditto">
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Mensajes</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            ...
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<body class="ss-close">
+
+   <div id="style-selector" style="left: 0px;">
+      <div class="style-toggle ss-close"><i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i></div>
+      <div id="style-selector-container">
+         <div class="sidebar-nav">
+            <div class="sidebar-brand">
+               <img src="http://newdesign.kom/layouts/img/Logo_Dashboar-Ineditto-.png" alt="Logo Ineditto"> </div>
+            <ul class="sidebar-menu">
+               <li class="sidebar-header"></li>
+               <li>
+                  <a href=""><i class="fas fa-tachometer-alt"></i> <span>MÓDULOS</span><i class="fas fa-chevron-left float-right"></i></a>
+                  <ul class="sidebar-submenu bg-dark">
+                     <li><a href="http://newdesign.kom/000-admin/"><i class="fas fa-certificate  text-com"></i> Administración</a></li>
+                     <li><a href="http://newdesign.kom/002-cm/"><i class="fas fa-certificate  text-red"></i> Comercial</a></li>
+                     <li><a href="http://newdesign.kom/003-cot/"><i class="fas fa-certificate  text-cot"></i> Cotizaciones</a></li>
+                     <li><a href="http://newdesign.kom/004-inv/"><i class="fas fa-certificate  text-inv"></i> Inventarios</a></li>
+                     <li><a href="http://newdesign.kom/005-lg/"><i class="fas fa-certificate  text-log"></i> Logistica</a></li>
+                     <li><a href="http://newdesign.kom/006-me/"><i class="fas fa-certificate  text-greenlight"></i> Mantenimiento de Equipos</a></li>
+                     <li><a href="http://newdesign.kom/001-prod/"><i class="fas fa-certificate  text-green"></i> Producción</a></li>
+                     <li><a href="http://newdesign.kom/008-rh/"><i class="fas fa-certificate  text-rh"></i> RRH</a></li>
+                  </ul>
+               </li>
+               <li class="active treeview menu-open"><a href=""><i class="fas fa-th mr-2"></i><span>CONTROL</span><i class="fas fa-chevron-left float-right"></i></a>
+                  <ul class="sidebar-submenu">
+                     <li><a href="http://newdesign.kom/006-me/001CONTROL/Ajustes.php"><i class="fas fa-circle mr-2"></i>Ajustes</a></li>
+                     <li><a href="http://newdesign.kom/006-me/001CONTROL/Programacion-de-Mantenimientos.php"><i class="fas fa-circle mr-2"></i>Programacion de Mantenimientos</a></li>
+                  </ul>
+               </li>
+               <li><a href=""><i class="fas fa-industry mr-2"></i><span>OPERACIONES</span><i class="fas fa-chevron-left float-right"></i></a>
+                  <ul class="sidebar-submenu">
+                     <li><a href="" onclick="PopupCenter('http://newdesign.kom/006-me/002OPERACIONES/Crear-Nuevo-Equipo.php','xtf','1200','1000');"><i class="fas fa-circle fa-xs mr-2"></i>Crear Nuevo Equipo</a></li>
+                     <li><a href="http://newdesign.kom/006-me/002OPERACIONES/Maquinaria-y-Equipos.php"><i class="fas fa-circle fa-xs mr-2"></i>Maquinaria y Equipos</a></li>
+                     <li><a href="http://newdesign.kom/006-me/002OPERACIONES/Solicitudes-de-Soporte.php"><i class="fas fa-file-alt fa-xs mr-2"></i>Solicitudes de Soporte</a></li>
+                     <li><a href="http://newdesign.kom/006-me/002OPERACIONES/Cronograma-de-Mantenimiento.php"><i class="fas fa-circle fa-xs mr-2"></i>Cronograma de Mantenimiento</a></li>
+                     <li><a href="http://newdesign.kom/006-me/002OPERACIONES/Registro-de-Salida.php"><i class="fas fa-circle fa-xs mr-2"></i>Registro de Salida</a></li>
+                  </ul> 
+               </li>
+               <li><a href=""><i class="far fa-object-group mr-2"></i>ACTIVIDADES<i class="fas fa-chevron-left float-right"></i></a>
+                  <ul class="sidebar-submenu">
+                     <li><a href="" onclick="PopupCenter('http://newdesign.kom/006-me/004ACTIVIDADES/Nueva_Diligencia.php','xtf','1200','1000');"><i class="fas fa-magic mr-2"></i>Nueva Diligencia</a></li>
+                     <li><a href="http://newdesign.kom/006-me/004ACTIVIDADES/Mis_Diligencias.php"><i class="fas fa-address-book mr-2"></i>Mis Diligencias</a></li>
+                     <li><a href="" onclick="PopupCenter('http://newdesign.kom/006-me/004ACTIVIDADES/Jornada_Laboral_.php','xtf','1200','1000');"><i class="far fa-clock mr-2"></i>Jornada Laboral</a></li>
+                     <li><a href="" onclick="PopupCenter('http://newdesign.kom/006-me/004ACTIVIDADES/Tareas-por-Realizar.php','xtf','1200','1000');"><i class="fas fa-circle  mr-2"></i>Tareas por Realizar</a></li>
+                     <li><a href="http://newdesign.kom/006-me/004ACTIVIDADES/Comunicacion_Interna.php"><i class="fas fa-rss-square mr-2"></i>Comunicación Interna</a></li>
+                  </ul>
+               </li>
+               <li><a href=""><i class="fas fa-key mr-2"></i>AYUDA<i class="fas fa-chevron-left float-right"></i></a>
+                  <ul class="sidebar-submenu">
+                     <li><a href="" onclick="PopupCenter('http://newdesign.kom/006-me/003AYUDA/Cambio_de_Clave.php','xtf','1200','1000');"><i class="fas fa-lock mr-2"></i>Cambiar Clave</a></li>
+                     <li><a href="" onclick="PopupCenter('http://newdesign.kom/006-me/003AYUDA/Mantenimiento_de_Equipos.php','xtf','1200','1000');"><i class="fas fa-wrench mr-2"></i>Mantenimiento de Equipos</a></li>
+                     <li><a href="" onclick="PopupCenter('http://newdesign.kom/006-me/003AYUDA/Buzón-de-Sugerencias.php','xtf','1200','1000');"><i class="fas fa-paper-plane mr-2"></i> Buzón de Sugerencias</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div id="head" class="container mb-2 animated fadeInDown fast">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="boxUp-MantE">
+               <div class="row">
+                  <div class="col-sm-12 col-md-8">
+                     <div class="d-flex align-items-center">
+                        <a href="http://newdesign.kom/006-me/" class="menu-toggle"><i class="fa-inverse fas fa-home fa-lg"></i></a>
+                        <div class="d-flex flex-column">
+                           <div class="d-flex"><span class="ml-2 text15">MANT. EQUIPOS</span>
+                           </div>
+                           <div class="ml-2 link"><span class="mr-2">BIENVENIDOS</span></div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="d-none d-md-block d-sm-none">
+                        <div class="d-flex justify-content-end align-items-center">
+                           <button type="button" class="btn btn-sm btn-success mr-2" data-toggle="modal" data-target="#exampleModalCenter">
+                              <i class="far fa-comment-alt fa-lg mr-1"></i> <span class="badge badge-light">120</span>
+                           </button>
+                           <div class="fa-2x">
+                              <a href="" id="jfontsize-p">
+                                 <span class="fa-layers fa-fw">
+                                    <i class="fas fa-circle"></i>
+                                    <i class="fa-inverse fas fa-plus" data-fa-transform="shrink-10"></i>
+                                 </span>
+                              </a>
+                           </div>
+                           <div class="fa-2x">
+                              <a href="" id="jfontsize-d">
+                                 <span class="fa-layers fa-fw">
+                                    <i class="fas fa-circle"></i>
+                                    <i class="fa-inverse fas fa-font" data-fa-transform="shrink-10"></i>
+                                 </span>
+                              </a>
+                           </div>
+                           <div class="fa-2x">
+                              <a href="" id="jfontsize-m">
+                                 <span class="fa-layers fa-fw">
+                                    <i class="fas fa-circle"></i>
+                                    <i class="fa-inverse fas fa-minus" data-fa-transform="shrink-10"></i>
+                                 </span>
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLongTitle" data-toggle="modal" data-target="#happy">Mensajes</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               ...
+            </div>
+            <div class="modal-footer">
+               <button type="button" class=" btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="modal fade" id="happy" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLongTitle">Cumpleaños Empleados</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <ul class="list-group list-group-flush font2">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                     Manny Paquiao
+                     <span class="text-primary">2 de Octubre</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                     Maria Teresa Tobar
+                     <span class="text-primary">10 de Octubre</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                     Mario Moreno Aguilar
+                     <span class="text-primary">14 de Octubre</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                     Maria Leoncia Urquijo
+                     <span class="text-primary">31 de Octubre</span>
+                  </li>
+               </ul>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class=" btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-4">
+            <div class="caja-Equip">
+               <div class="box-header with-border">
+               </div>
+               <div class="box-body bg-ligth">
+                  <div class="d-flex flex-column">
+                     <div class="text-center"><img src="<?= $_layoutParams['ruta_img'] ?>Profile_.jpg" alt="" class="rounded-circle  img-fluid w-25 m-2"></div>
+                     <div class="d-flex justify-content-center flex-column text-center">
+                        <div class="mt-2">
+                           <span class="box-title ">Buenos días usuario del sistema</span> <br>
+                           Bienvenido a Empresa de Artes Gráficas
+                        </div>
+                        <div class="alert verde2 text-white p-1 text-center mt-2" role="alert">Hoy es Viernes 02
+                           de Ene/2018 // hora: 12:00:00 pm</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-8">
+            <div class="caja-Equip">
+               <div class="box-header with-border">
+                  <h3 class="box-title">
+                     Últimos ingresos al sistema
+                  </h3>
+               </div>
+               <div class="box-body mt-2">
+                  <table>
+                     <thead>
+                        <tr>
+                           <th>Ingreso</th>
+                           <th>Salida</th>
+                           <th>Duración</th>
+                           <th>Dirección IP</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td scope="row">Hoy a las 05:16:35</td>
+                           <td>Hoy a las 08:16:21</td>
+                           <td>4 seg</td>
+                           <td>192.168.104.20</td>
+                        </tr>
+                        <tr>
+                           <td scope="row">Hoy a las 05:16:35</td>
+                           <td>Hoy a las 08:16:21</td>
+                           <td>8 min 57 seg</td>
+                           <td>192.168.104.20</td>
+                        </tr>
+                        <tr>
+                           <td scope="row">Hoy a las 05:16:35</td>
+                           <td>Hoy a las 09:16:21</td>
+                           <td>8 seg</td>
+                           <td>192.168.104.20</td>
+                        </tr>
+                        <tr>
+                           <td scope="row">2017-08-31 a las 10:52:07</td>
+                           <td colspan="2">Salida No Segura</td>
+                           <td>192.168.104.20</td>
+                        </tr>
+                        <tr>
+                           <td scope="row">2017-08-31 a las 09:12:34</td>
+                           <td>2017-08-31 a las 09:12:44</td>
+                           <td>10 seg</td>
+                           <td>192.168.104.20</td>
+                        </tr>
+                        <tr>
+                           <td scope="row">2017-08-31 a las 09:12:34</td>
+                           <td>2017-08-31 a las 09:12:44</td>
+                           <td>10 seg</td>
+                           <td>192.168.104.20</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="container mb-3">
+      <div class="row">
+         <div class="col-md-6 col-lg-4 mb-2">
+            <div class="alert-box">
+               <div class="row">
+                  <div class="col-sm-2 col-md-2 d-none d-sm-block">
+                     <div class="icon-alert azuldark"><i class="fas fa-tasks fa-2x"></i></div>
+                  </div>
+                  <div class="col-sm-8 col-md-8">
+                     <div class="ml-3">
+                        <div class="title-alert">Tienes <b>2</b> diligencias pendiente</div>
+                        <a class="badge badge-danger badge-table" href="">...Ir a mis Diligencias</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-4 mb-2">
+            <div class="alert-box">
+               <div class="row">
+                  <div class="col-sm-2 col-md-2 d-none d-sm-block">
+                     <div class="icon-alert azuldark"><i class="fas fa-thumbtack fa-2x"></i></div>
+                  </div>
+                  <div class="col-sm-8 col-md-8">
+                     <div class="ml-3">
+                        <div class="title-alert">Tienes <b>1</b> tarea pendiente</div>
+                        <a class="badge badge-danger badge-table" href="">...Ir a mis Tareas</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-4 mb-2">
+            <div class="alert-box1">
+               <div class="row">
+                  <div class="col-sm-2 col-md-2 d-none d-sm-block">
+                     <div class="icon-alert1"><i class="fas fa-birthday-cake fa-2x"></i></div>
+                  </div>
+                  <div class="col-sm-8 col-md-8">
+                     <div class="ml-3 w-100">
+                        <div class="title-alert">Las siguientes personas cumplen años en los próximos días:</div>
+                        <a class="badge badge-danger badge-table" data-toggle="modal" data-target="#happy" href="">...Ver Fechas</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-4 mb-2">
+            <div class="alert-box">
+               <div class="row">
+                  <div class="col-sm-2 col-md-2 d-none d-sm-block">
+                     <div class="icon-alert azuldark"><i class="fas fa-calendar-alt fa-2x"></i></div>
+                  </div>
+                  <div class="col-sm-8 col-md-8">
+                     <div class="ml-3 w-100">
+                        <div class="title-alert">Tienes <b>1</b> evento pendiente</div>
+                        <a class="badge badge-danger badge-table" href="">...Ver Eventos</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-4 mb-2">
+            <div class="alert-box">
+               <div class="row">
+                  <div class="col-sm-2 col-md-2 col-lg-2 d-none d-sm-block">
+                     <div class="icon-alert azuldark"><i class="fas fa-ticket-alt fa-2x"></i></div>
+                  </div>
+                  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                     <div class="ml-3 w-100">
+                        <div class="title-alert">Tienes <b>1</b> solicitudes de soporte sin cerrar</div>
+                        <a class="badge badge-danger badge-table" href="">...Ver Tickets</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <hr class="hr2">
+   <div class="container my-4">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="row">
+               <div class="col-md-6 col-lg-3 mb-2">
+                  <div class="container-box">
+                     <div class="box-modulo">
+                        <div class="icon-modulo-admin"><img width="40" src="<?= $_layoutParams['ruta_img'] ?>icon-admin.svg" alt=""> </div>
+                        <div class="content-modulo">
+                           <h4 class="box-title my-3">Administración</h4>
+                           <div><a class="btn btn-sm btn-danger" href="http://newdesign.kom/000-admin/" role="button">Ir al Módulo</a></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6 col-lg-3 mb-2">
+                  <div class="container-box">
+                     <div class="box-modulo">
+                        <div class="icon-modulo-com"><img width="40" src="<?= $_layoutParams['ruta_img'] ?>icon-com.svg" alt=""></div>
+                        <div class="content-modulo">
+                           <h4 class="box-title my-3">Comercial</h4>
+                           <div><a class="btn btn-sm btn-danger" href="http://newdesign.kom/002-cm" role="button">Ir al Módulo</a></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6 col-lg-3 mb-2">
+                  <div class="container-box">
+                     <div class="box-modulo">
+                        <div class="icon-modulo-cot"><img width="40" src="<?= $_layoutParams['ruta_img'] ?>icon-cot.svg" alt=""></div>
+                        <div class="content-modulo">
+                           <h4 class="box-title my-3">Cotización</h4>
+                           <div><a class="btn btn-sm btn-danger" href="http://newdesign.kom/003-cot/" role="button">Ir al Módulo</a></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6 col-lg-3 mb-2">
+                  <div class="container-box">
+                     <div class="box-modulo">
+                        <div class="icon-modulo-invt"><img width="40" src="<?= $_layoutParams['ruta_img'] ?>icon-invt.svg" alt=""></div>
+                        <div class="content-modulo">
+                           <h4 class="box-title my-3">Inventario</h4>
+                           <div><a class="btn btn-sm btn-danger" href="http://newdesign.kom/004-inv/" role="button">Ir al Módulo</a></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row mt-3">
+               <div class="col-md-6 col-lg-3 mb-2">
+                  <div class="container-box">
+                     <div class="box-modulo">
+                        <div class="icon-modulo-log"><img width="40" src="<?= $_layoutParams['ruta_img'] ?>icon-lg.svg" alt=""></div>
+                        <div class="content-modulo">
+                           <h4 class="box-title my-3">Logística</h4>
+                           <div><a class="btn btn-sm btn-danger" href="http://newdesign.kom/005-lg" role="button">Ir al Módulo</a></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6 col-lg-3 mb-2">
+                  <div class="container-box">
+                     <div class="box-modulo">
+                        <div class="icon-modulo-equip"><img width="40" src="<?= $_layoutParams['ruta_img'] ?>icon-me.svg" alt=""></div>
+                        <div class="content-modulo">
+                           <h4 class="box-title my-3">Mantenimiento Equipos</h4>
+                           <div><a class="btn btn-sm btn-danger" href="http://newdesign.kom/006-me" role="button">Ir al Módulo</a></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6 col-lg-3 mb-2">
+                  <div class="container-box">
+                     <div class="box-modulo">
+                        <div class="icon-modulo-prod"><img width="40" src="<?= $_layoutParams['ruta_img'] ?>icon-prod.svg" alt=""></div>
+                        <div class="content-modulo">
+                           <h4 class="box-title my-3">Producción</h4>
+                           <div><a class="btn btn-sm btn-danger" href="http://newdesign.kom/001-prod/" role="button">Ir al Módulo</a></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6 col-lg-3 mb-2">
+                  <div class="container-box">
+                     <div class="box-modulo">
+                        <div class="icon-modulo-rh"><img width="40" src="<?= $_layoutParams['ruta_img'] ?>icon-rh.svg" alt=""></div>
+                        <div class="content-modulo">
+                           <h4 class="box-title my-3">Recursos Humanos</h4>
+                           <div><a class="btn btn-sm btn-danger" href="http://newdesign.kom/008-rh/" role="button">Ir al Módulo</a></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="noti">
+      <div class="toast" role="alert" aria-live="polite" aria-atomic="true" data-delay="3000">
+         <div class="toast-header bgpurple">
+            <strong class="mr-auto">Sistema Ineditto</strong>
+            <small>4 de Diciembre 2019</small>
+         </div>
+         <div class="toast-body">
+            is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+            dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+            type specimen book. It has survived not only five centuries
+         </div>
+      </div>
+   </div>
+
+   <script>
+      $("table").addClass("table table-sm table-hover")
+      $("table th").addClass("verde2 text-white")
+      $("table td:nth-child(1)").addClass("font-weight-bold")
+      $("table td:nth-last-child(1)").addClass("text-danger")
+      $("input").addClass("form-control")
+      $("select").addClass("form-control")
+      $("label").addClass("col-form-label")
+   </script>
+   <script type="text/javascript" language="javascript">
+      $('.caja-Equip').jfontsize({
+         btnMinusClasseId: '#jfontsize-m',
+         btnDefaultClasseId: '#jfontsize-d',
+         btnPlusClasseId: '#jfontsize-p'
+      });
+   </script>
+   <script src="<?= $_layoutParams['ruta_img'] ?>popper.min.js"></script>
+   <script src="<?= $_layoutParams['ruta_img'] ?>bootstrap.min.js"></script>
+   <script src="<?= $_layoutParams['ruta_img'] ?>sidebar-menu.js"></script>
+   <script src="<?= $_layoutParams['ruta_img'] ?>Toggle_Switch_form.js"></script>
+   <script src="<?= $_layoutParams['ruta_img'] ?>tooltip-color.js"></script>
+   <script src="<?= $_layoutParams['ruta_img'] ?>datepicker.js"></script>
+   <script src="<?= $_layoutParams['ruta_img'] ?>data-travel.js"></script>
+   <script src="<?= $_layoutParams['ruta_img'] ?>ineditto.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<div class="container col-md-8 col-xl-7">
+    <div class="row">
+        <?php
+        if (isset($_SESSION['message'])) {
+        ?>
+            <div class="alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+                <?php
+                echo  $_SESSION['message']  ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php setMessage();
+        } ?>
+    </div>
+</div>
+<?php
+
+cardtitulo("Log error");
+
+if ($this->datos['response_status'] != 'ok') {
+?>
+    <div class="container col-md-8 col-xl-7">
+        <div class="row">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?= $this->dalos['response_status']  ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+<?php
+} else {
+
+?>
+    <div class="container-fluid">
+        <div class=" col-md-8 p-2 mx-auto">
+            <table id="example" class="text-center bg-white box-card mx-auto">
+                <thead>
+                    <tr>
+                        <th><i></i>ID error</th>
+                        <th><i></i>Descripción error</th>
+                        <th><i></i>Fecha</th>
+                        <th><i></i>Hora</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($this->datos['response_msg'] as $i => $row) {
+                    ?>
+                        <tr>
+                            <td><?= $row['ID_error'] ?></td>
+                            <td><?= $row['descrip_error'] ?></td>
+                            <td><?= $row['fecha'] ?></td>
+                            <td><?= $row['hora'] ?></td>
+                            <td>
+                               
+                            <form action="">
+                                <input type="hidden" name="<?= $row['ID_error'] ?>">
+                                <input type="hidden" name="accion" value="eliminarError">
+                                <!-- Implementar esta pendiente -->
+                                <button class="btn btn-circle btn-danger"><i class="far fa-trash-alt"></i></a>
+                            </form>
+
+                            </td>
+                        </tr>
+
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div><!-- fin de response table -->
+<?php
+}
+?>
