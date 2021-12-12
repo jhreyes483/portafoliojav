@@ -1,0 +1,38 @@
+<br><br><br><br><br>
+<div class="container">
+<a href="<?= BASE_URL.'/nutricion/asignaPlan' ?>" class="btn btn-primary btn-sm btn-dark">Ver Planes asignados</a>
+<form action="" method="post">
+   <input type="hidden" name='a' value="insertPlan">
+   <div class="card card-body col.md-8 mx-auto my-6">
+      <div class="row">
+         <div class="col-md-6">
+            Instrucciones de profersional
+            <textarea name="obs" cols="30" rows="2" class="form-control"></textarea>
+            Porciones / Repeticiones
+            <input type="text" name="porciones" class="form-control" placeholder="Solo si aplica">
+            Alimento / Ejercicio
+            <input type="text" name="nombre" class="form-control" placeholder="Solo si aplica">
+            Nombre del plan
+            <input type="text" name="nombre_plan" class="form-control" placeholder="Solo si aplica">
+         </div>
+         <div class="col-md-6 my-2">
+            Tipo
+            <select name="tabla" class="form-control">
+               <option value="E">Ejercicio</option>
+               <option  value="F"  >Comida</option>
+            </select>
+            Usuario
+            <select name="user" class="form-control">
+<?php
+foreach ($this->clientes as $i => $d) {
+echo  '<option '.(isset($_POST['user']) && ($i == $_POST['user'])? ' selected ' : '').'value="'.$i.'">'.$d.'</option>';
+}
+?>
+            </select>
+            <input type="submit" class="my-4 bt btn-primary form-control" value="Actualizar">
+         </div>
+      </div>
+   </div>
+</form>
+
+</div>

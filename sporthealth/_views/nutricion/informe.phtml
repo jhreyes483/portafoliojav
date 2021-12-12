@@ -1,0 +1,182 @@
+
+
+<?php
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+?>
+<!--
+	Fox by FreeHTML5.co
+	Twitter: https://twitter.com/fh5co
+	Facebook: https://fb.com/fh5co
+	URL: https://freehtml5.co
+-->
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sporthealth</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="css/animate.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="main.css">
+
+    <!--datables CSS básico-->
+    <link rel="stylesheet" type="text/css" href="datatables/datatables.min.css" />
+    <!--datables estilo bootstrap 4 CSS-->
+    <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+
+    <!--font awesome con CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", {
+            packages: ["corechart"]
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                ['Work', 11],
+                ['Eat', 2],
+                ['Commute', 2],
+                ['Watch TV', 2],
+                ['Sleep', 7]
+            ]);
+
+            var options = {
+                title: 'PACIENTES REGISTRADOS',
+                is3D: true,
+                backgroundColor: {
+                    fill: 'transparent'
+                }
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+            chart.draw(data, options);
+        }
+    </script>
+
+   
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Mes', 'Peso'],
+<?php
+if(isset($this->peso ) && ($this->peso > 0 )) foreach ($this->peso as $k => $v) {
+?>
+['<?=$k?>', <?=  round($v)   ?>],
+<?php
+}
+?>
+
+              
+            ]);
+
+            var options = {
+                title: 'PESO PACIENTES POR MES',
+                hAxis: {
+                    title: 'Year',
+                    titleTextStyle: {
+                        color: '#333'
+                    }
+                },
+                vAxis: {
+                    minValue: 0
+                }
+            };
+
+            var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+
+
+
+
+
+</head>
+
+<body style="background: rgb(0,0,0);
+background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(61,59,55,1) 35%);">
+
+ 
+
+    <div class="container mb-5" style="margin-top: 10%;">
+        <div class="row">
+            <div class="bg-dark col-md-12 mb-3 p-3">
+                <h5 for="" style="text-align: center;" class="text-white">GRAFICAS</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 mx-auto">
+                                <div class="mx-auto" id="piechart_3d" style="width: 800px; height: 400px;"></div>
+                            </div>
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div id="chart_div" style="width: 100%; height: 500px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Bootstrap JS, ... -->
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/main.js"></script>
+
+    <script type="text/javascript" src="DataTables/JSZip-2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" src="DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="DataTables/DataTables-1.10.24/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="DataTables/DataTables-1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="DataTables/Buttons-1.7.0/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="DataTables/Buttons-1.7.0/js/buttons.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="DataTables/Buttons-1.7.0/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="DataTables/Buttons-1.7.0/js/buttons.print.min.js"></script>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

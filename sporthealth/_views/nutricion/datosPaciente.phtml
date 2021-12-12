@@ -1,0 +1,78 @@
+<?php
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+?>
+
+<body style="background: rgb(0,0,0);
+background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(61,59,55,1) 35%);">
+    <div class="container mb-5" style="margin-top: 10%;">
+        <div class="row">
+            <div class="bg-dark col-md-12 mb-3 p-3">
+                <h5 for="" style="text-align: center;" class="text-white">AGREGAR DATOS PACIENTE</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card p-3">
+                    <div class="col-md-12">
+                        <form action="" method="post">
+                            <div class="row my-3">
+                                <div class="col-md-6 ">
+                                    <label for="" class="lead">Peso:</label>
+                                    <input type="text" name="a[]" id="" placeholder="Peso" class="form-control">
+                                </div>
+                                <div class="col-md-6 ">
+                                    <label for="" class="lead">Edad:</label>
+                                    <input type="text" name="a[]" id="" placeholder="Edad" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-md-6 ">
+                                    <label for="" class="lead">Altura:</label>
+                                    <input type="text" name="a[]" id="" placeholder="Altura" class="form-control">
+                                </div>
+                                <div class="col-md-6 ">
+                                    <label for="" class="lead">Medidas de la cintura:</label>
+                                    <input type="text" name="a[]" id="" placeholder="Medidas de la cintura" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-md-6 ">
+                                    <label for="" class="lead">Medidas de la cadera:</label>
+                                    <input type="text" name="a[]" id="" placeholder="Medidas de la cadera" class="form-control">
+                                </div>
+                                <div class="col-md-6 ">
+                                    <label for="" class="lead">Medidas del muslo:</label>
+                                    <input type="text" name="a[]" id="" placeholder="Medidas del muslo" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-md-4 ">
+                                    <label for="" class="lead">Biceps:</label>
+                                    <input type="text" name="a[]" id="" placeholder="Biceps" class="form-control">
+                                </div>
+                                <div class="col-md-4 ">
+                                    <label for="" class="lead">IMC:</label>
+                                    <input type="text" name="a[]" id="" placeholder="IMC" class="form-control">
+                                </div>
+                                <div class="col-md-4 ">
+                                    <label for="" class="lead">Kilo grasa:</label>
+                                    <input type="text" name="a[]" id="" placeholder="Kilo grasa" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mt-5 mx-auto">
+                                <input type="hidden" name="id_us" value="<?= $_POST['id_us'] ?>">
+                                <button type="submit" class="btn btn-primary mx-auto form-control col-md-5">Agregar Datos</button>
+                                <button type="submit" class="btn btn-secondary mx-auto form-control col-md-5">Volver al panel administrativo</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

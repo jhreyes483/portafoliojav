@@ -1,0 +1,79 @@
+<?php
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+?>
+
+<body style="background: rgb(0,0,0);
+background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(61,59,55,1) 35%);">
+
+
+    <div class="container mb-5" style="margin-top: 10%;">
+        <div class="row">
+            <div class="bg-dark col-md-12 mb-3 p-3">
+                <h5 for="" style="text-align: center;" class="text-white">VER PERFIL</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card p-3">
+                    <div class="col-md-12">
+                        <div class="card col-md-12 shadow-lg ">
+                            <div class="row my-3 ">
+                                <div class="col-md-5 mx-auto bg-secondary">
+                                    <img src="<?= RUTAS_APP['ruta_img'] ?>images/perfil.jpg" class="mx-auto d-block mt-2" alt="" width="65%" style="border-radius: 50%;">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row ">
+                                        <div class="col-md-12">
+                                            <form method="post">
+                                                <div class="row mx-auto">
+                                                    <div class="col-md-6">
+                                                        <label for="">Nombre</label>
+                                                        <input type="text" name="firt_name" value="<?= $this->user[2] ?> " id="" class="form-control" placeholder="Nombre">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="">Apellido</label>
+                                                        <input type="text" name="last_name" value="<?= $this->user[4] ?> " id="" class="form-control" placeholder="Apellido">
+                                                    </div>
+                                                </div>
+                                                <div class="row mx-auto my-3">
+                                                    <div class="col-md-6">
+                                                        <label for="">Correo</label>
+                                                        <input type="text" name="email" value="<?= $this->user[6] ?>" id="" class="form-control" placeholder="Correo" required>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="">Fecha de nacimiento</label>
+                                                        <input type="date" name="rol" id="" value="<?= $this->user[7] ?>" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="row mx-auto">
+                                                    <div class="col-md-12">
+                                                        <label for="">Contraseña</label>
+                                                        <input type="password" name="password" id="" class="form-control" value="<?= $this->user[8] ?>" placeholder="Contraseña">
+                                                    </div>
+                                                </div>
+                                                <div class="row mx-auto my-3">
+                                                    <button type="submit" class="btn btn-success mx-auto form-control col-md-5">Editar perfil</button>
+
+                                                    <a href="<?= BASE_URL . 'nutricion/index' ?>" type="submit" class="btn btn-secondary mx-auto form-control col-md-5">Volver al inicio</a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card col-md-12 shadow-lg my-3">
+                            <div class="row my-5 px-5">
+                                <label for="" class="lead" style="font-weight: bold;">DESCRIPCION</label>
+                                <p>Mas de 10 años de practica profesional me han enseñado que cada individuo es un universo particular, por esto dentro de la asesoría recibirás un plan ajustado no solo a tus necesidades nutricionales y objetivo, sino también a tu realidad personal (economía, tiempo, gustos, situación emocional, etc.). </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</html>
