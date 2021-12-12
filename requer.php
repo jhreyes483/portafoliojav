@@ -258,7 +258,6 @@ $req = $obj->acces();
       enciende = false
       idElemen = document.getElementById(idFrm).elements;
       $.each(idElemen, function(i, n) {
-         console.log(n.type);
          if (n.type == 'text' || n.type == 'number' || n.type == 'email' || n.type == 'tel' || n.type == 'textarea' || n.type == 'submit' || n.type == 'button' || n.type == 'select-one' || n.type == 'select-multiple' || n.type == 'radio' || n.type == 'date' || n.type == 'select' || n.type == 'hidden')
             n.disabled = (!n.disabled);
       });
