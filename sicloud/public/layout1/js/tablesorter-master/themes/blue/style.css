@@ -1,0 +1,30 @@
+/* tables */
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+
+
+
+	border: 1px solid #FFF;
+
+
+}
+table.tablesorter thead tr .header {
+	background-image: url(bg.gif);
+	background-repeat: no-repeat;
+	background-position:  center right;
+	/*background-position: right; */
+	cursor: pointer;
+}
+
+
+
+
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(/public/layout1/css/tablesorter-master/themes/blue/asc.gif) !important;
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(/public/layout1/css/tablesorter-master/themes/blue/desc.gif) !important;
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #0056b2;
+}
+

@@ -1,0 +1,11 @@
+.form-gap {
+    padding-top: 70px;
+}
+
+body {
+    background: rgb(3, 7, 50);
+    background: -moz-linear-gradient(90deg, rgba(3, 7, 50, 1) 0%, rgba(9, 62, 121, 1) 40%, rgba(0, 212, 255, 1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(3, 7, 50, 1) 0%, rgba(9, 62, 121, 1) 40%, rgba(0, 212, 255, 1) 100%);
+    background: linear-gradient(90deg, rgba(3, 7, 50, 1) 0%, rgba(9, 62, 121, 1) 40%, rgba(0, 212, 255, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#030732", endColorstr="#00d4ff", GradientType=1);
+}
