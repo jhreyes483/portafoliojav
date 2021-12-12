@@ -1,0 +1,31 @@
+
+
+.hyper {
+   font-family: 'Roboto Condensed',Helvetica,Arial,sans-serif;
+   font-size: 1.1em;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.hyper:hover {
+   text-decoration: none;
+   color: #0056b3;
+}
+
+.hyper:hover::after {
+   width: 50%;
+   text-decoration: none;
+   background: #007bff;
+}
+
+.hyper::after {
+   content: '';
+   display: block;
+   width: 0;
+   height: 2px;
+   background: #007bff;
+   transition: width .3s;
+}

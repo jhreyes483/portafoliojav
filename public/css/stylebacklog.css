@@ -1,0 +1,31 @@
+#card {
+  padding: 18px 20px;
+    border: PowderBlue 5px solid;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: lightcyan;
+    margin-top: 5%;
+    font-weight: bold;
+  }
+
+  .card2 {
+    padding: 18px 20px;
+    border: yellow 5px solid;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: lightyellow;
+    margin-top: 5%;
+    font-weight: bold;
+  }
+
+  .card3 {
+    padding: 4px 10px;
+    border: greenyellow 5px solid;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-size: 15px;
+    background-color: #4DD615;
+    color: white;
+    font-weight: bold;
+    margin-top: 5%;
+  }
