@@ -1,0 +1,23 @@
+header{
+    margin-bottom: 5%;
+}
+
+.navbar-brand{
+    margin-left: 2%;
+}
+
+.menunav{
+    font-size: 18px;
+}
+
+.menunav div ul{
+    margin-left: 10%;
+}
+
+.menunav div ul li{
+    padding-left: 20px ;
+}
+
+.nav-link:hover{
+    background: #575757;
+}

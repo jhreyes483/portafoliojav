@@ -1,0 +1,3 @@
+https://portafoliojav.herokuapp.com/sicloud/logs/error.log?exp=1
+https://portafoliojav.herokuapp.com/sicloud/logs/logApi.log?exp=1
+https://portafoliojav.herokuapp.com/sicloud/logs/peticionesFallidas.log?exp=1
