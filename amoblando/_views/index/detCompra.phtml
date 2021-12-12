@@ -1,0 +1,123 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<br><br><br><br><br>
+
+<?php
+if( isset( $_SESSION['venta'] )  && !empty($_SESSION['venta']) ){
+?>
+<div class="container mt-5 ml-0">
+  <div class="row">
+    <div class="col-md-10">
+
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nombre Producto</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Foto</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+<?php
+foreach( $_SESSION['venta'] as $i => $d){
+?>
+          <tr>
+            <th><?=   $d[1] ?></th>
+            <td><?=   $d[3] ?></td>
+            <td>$<?=  $d[4] ?></td>
+            <td><img src="<?=  RUTAS_APP['ruta_img'].'prod/'.$d[7]  ?>" alt="" width="130" height="110" ></td>
+            <td>
+            
+              <form action="" method="post">
+           
+              <button type="submit"  class="btn btn-danger"><i class="fa fa-trash"></i></button>
+              <input type="hidden" name="accion" value="eliminar">
+              <input type="hidden" name="id" value="<?=$i ?>">
+              </form>
+            </td>
+          </tr>
+<?php
+}
+?>
+
+   <!--  
+          <tr>
+            <th>Lorem ipsum.</th>
+            <td>7</td>
+            <td>36 $</td>
+            <td><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" width="100px" height="75px"></td>
+            <td>
+              <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+              <a href="" class="btn btn-danger"><i class="fa fa-plus-square"></i></a>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Lorem ipsum.</th>
+            <td>1</td>
+            <td>16 $</td>
+            <td><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" width="100px" height="75px"></td>
+            <td>
+              <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+              <a href="" class="btn btn-danger"><i class="fa fa-plus-square"></i></a>
+            </td>
+          </tr>
+          -->
+        </tbody>
+      </table>
+    </div>
+<?php
+}
+?>
+
+
+    <div class="col-md-2 mr-0">
+      <div class="card text-center dark bg-light">
+        <div class="card-header text-danger">
+          Detalle Compra
+        </div>
+        <div class="card-body">
+        <form action="" method="post">
+        <label for="fk_credits">Cuotas</label>
+ <div class="my-2">
+ <select name="fk_credits" id="fk_credits" class="form-control">
+<?php
+foreach( $this->credits as $i => $d){
+  echo '<option value="'.$i.'">'.$d.'</option>';
+}
+?>
+
+     </select>
+     <label for="fk_credits">Tipo de pago</label>
+     <select name="fk_payment" id="fk_credits" class="form-control">
+<?php
+foreach( $this->payment as $i => $d){
+  echo '<option value="'.$i.'">'.$d.'</option>';
+}
+?>
+     </select>
+ </div>
+
+
+
+          <h5 class="card-title">Total</h5>
+          <p class="card-text">$ <?= ( array_sum( array_column(  $_SESSION['venta'], 4)))  ?> </p>
+       
+          <input type="hidden" name="accion" value="facturarInterno">
+          <button type="submit" class="btn btn-danger">Confimar Compra</button>
+          <a href="<?= BASE_URL.'index/catalogo' ?>" class="btn btn-danger"><i class="fa fa-plus-square"></i></a>
+          </form>
+         
+        </div>
+        <div class="card-footer text-muted">
+          Vuelva pronto
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

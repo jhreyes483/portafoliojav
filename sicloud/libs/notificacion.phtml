@@ -1,0 +1,117 @@
+<?php
+if (isset($_SESSION['usuario'])) {
+  $obj = new c_notificacion;
+  if (isset($_SESSION['usuario'])) $not = $obj->notificacionPorRolLogin();
+?>
+<!-- 
+************************************
+Modal notificacion
+***********************************
+ -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Notificaciones </h5> <i class="fas fa-comment"></i>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-striped bg-bordered bg-white table-sm col-md-10 col-sm-4 col-xs-12 mx-auto">
+              <thead>
+              </thead>
+              <tbody>
+<?php
+if ( ($not) &&  $not['response_status'] == 'ok') {
+foreach ($not['response_msg'] as $d) {
+?>
+                  <tr>
+                    <td>
+                      <form action="<?= BASE_URL . $d[1] ?> " method="post">
+                        <input type="hidden" name="accion" value="<?= $d[2] ?>">
+                        <input type="hidden" name="documento" value="<?= $d[3] ?>">
+                        <button class="btn btn-circle btn-primary col-lg-12" type="submit">
+                          <input type="hidden" name="us" value="<?= $d[4] ?>">
+                          <i class="fas fa-download"></i>
+                        </button> <?= $d[0] ?>
+                      </form>
+                    </td>
+                  </tr>
+<?php
+  }
+}else{
+  if(isset ($this->datos) ) echo '
+  <div class=" mx-auto col-md-7   alert alert-info alert-dismissible fade show" role="alert">
+  '.$this->datos['response_msg'].'
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+  </button>
+  </div>';
+}
+?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 
+************************************
+Modal notificacion
+************************************
+************************************
+Vantana derecha de iconos
+***********************************
+ -->
+  <div class="social" id="social" style="display: block;">
+    <div class="">
+      <!-- icono de notificacion campana -->
+      <a class="" id="messagesDropdown" data-toggle="modal" data-target="#exampleModal" role="button" aria-expanded="true">
+        <i class="fas fa-bell fa-fw" style="color :#ffff;"></i>
+        <!-- Counter - Messages -->
+        <span class="badge badge-danger badge-counter">
+          <?= ((isset($not)) ? count($not['response_msg']) : 0)    ?> </span></span>
+        <a href="<?= BASE_URL . 'cliente/compras' ?>">
+
+          <!-- icono de mensaje-->
+          <a href="<?= BASE_URL . 'libs/chat2/index.php?exp=1' ?>">
+            <i class="far fa-comments" style="color :#ffff;"></i></a>
+
+          <!-- Counter - Messages -->
+          <span class="badge badge-danger badge-counter">
+            <?= ((isset($not)) ? count($not['response_msg']) : 0)    ?> </span></span>
+          <a href="<?= BASE_URL . 'cliente/compras' ?>">
+
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart3 " fill="white" xmlns="http://www.w3.org/2000/svg">
+              <path style="color :#ffff;" fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"></path>
+            </svg></a>
+          <span class="badge badge-danger badge-counter">
+            <?= ((isset($_SESSION['CARRITO'])) ? count($_SESSION['CARRITO']) : 0) ?> </span></span>
+        </a>
+    </div>
+  </div>
+
+  <div class="social-2" id="social-2" style="display: block;" onclick="mostrar()">
+    <div class="">
+    </div>
+  </div>
+
+  <script>
+    $("#social").hide(2000);
+    $(document).ready(function() {
+      var elemento = $("#social");
+      var toggle = $("#social-2")
+      toggle.click(function() {
+      elemento.toggle(1000);
+      })
+    });
+  </script>
+<!-- 
+************************************
+Vantana derecha de iconos
+***********************************
+ -->
+<?php
+}
+?>

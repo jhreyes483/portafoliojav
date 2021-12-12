@@ -1,0 +1,124 @@
+<?php
+if ($this->datos['response_status'] == 'ok') {
+  if ($_SESSION['usuario']['fk_rol'] == 2) {
+?>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 mx-auto">
+        <form action="<?=  BASE_URL.'cliente/reembolso' ?>" method="post">
+          <input class="btn btn-danger" type="submit" value="Anular factura o producto">
+          <input type="hidden" name="id" value="<?=$_GET['f']?>">
+        </form>
+      </div>
+    </div>
+  </div>
+
+<?php
+  }
+?>
+
+
+  <div id="invoiceholder">
+
+    <div id="headerimage"></div>
+    <div id="invoice" class="effect2">
+
+      <div id="invoice-top">
+        <div class="logo"></div>
+        <div class="info">
+          <h2>No. Identificacion: <?= $this->datos['response_msg']['thead'][9] ?></h2>
+          <h2>Nombres: <?= $this->datos['response_msg']['thead'][1] . ' ' . $this->datos['response_msg']['thead'][2] ?></h2>
+          <h2>Apellidos:<?= $this->datos['response_msg']['thead'][3] . ' ' . $this->datos['response_msg']['thead'][4] ?></h2>
+          <h2>Correo: <?= $this->datos['response_msg']['thead'][5] ?></h2>
+        </div>
+        <!--End Info-->
+        <div class="title">
+          <h1>No. Factura: #<?= $this->datos['response_msg']['thead'][0] ?></h1>
+          <p>Fecha factura:<?= $this->datos['response_msg']['thead'][7] ?></br>
+            Tipo pago: <?= $this->datos['response_msg']['thead'][6] ?>
+          </p>
+        </div>
+        <!--End Title-->
+      </div>
+      <!--End InvoiceTop-->
+
+      <div id="invoice-bot">
+
+        <div id="table">
+          <table>
+            <tr class="tabletitle">
+              <td class="item">
+                <h2>Descripcion del producto</h2>
+              </td>
+              <td class="Hours">
+                <h2>Cantidad</h2>
+              </td>
+              <td class="Rate">
+                <h2>Valor unitario</h2>
+              </td>
+              <td class="subtotal">
+                <h2>Iva</h2>
+              </td>
+              <td class="subtotal">
+                <h2>Sub total</h2>
+              </td>
+
+            </tr>
+            <?php
+            foreach ($this->datos['response_msg']['productos'] as  $d) {
+            ?>
+
+              <tr class="service">
+                <td class="tableitem">
+                  <p class="itemtext"><?= $d[2] ?> </p>
+                </td>
+                <td class="tableitem">
+                  <p class="itemtext"><?= $d[0] ?></p>
+                </td>
+                <td class="tableitem">
+                  <p class="itemtext"><?= $d[3] ?></p>
+                </td>
+                <td class="tableitem">
+                  <p class="itemtext">$<?= ($d[3] * 0.19) ?>
+                  <p>
+                </td>
+                <td class="tableitem">
+                  <p class="itemtext">$<?= ( $d[1]) ?></p>
+                </td>
+              </tr>
+            <?php
+            }
+            ?>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Total</td>
+              <td class="tableitem">
+                <p class="itemtext">$<?= $this->datos['response_msg']['thead'][8] ?></p>
+              </td>
+            </tr>
+
+          </table>
+        </div>
+        <!--End Table-->
+
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="QRZ7QTM9XRPJ6">
+        </form>
+        <div id="legalcopy">
+          <p class="legal"><strong>¡Gracias por comprar con AMOBLANDO!</strong> El pago se espera dentro de los 31 días; procese esta factura dentro de ese tiempo. Habrá un cargo de interés del 5% por mes en facturas atrasadas.
+          </p>
+        </div>
+
+      </div>
+      <!--End InvoiceBot-->
+    </div>
+    <!--End Invoice-->
+  </div><!-- End Invoice Holder-->
+
+<?php
+}
+?>

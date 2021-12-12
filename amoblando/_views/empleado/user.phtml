@@ -1,0 +1,82 @@
+
+        <div class="container card shadow p-3 mb-5 bg-white rounded" style="margin-top: 15%">
+
+<div class="card  mb-5 bg-primary" >
+
+    <h3 class="text-center my-2">Tabla Amoblando</h3>
+
+</div>
+<?php
+if (isset($_SESSION['message'])) {  ?>
+    <!-- alerta boostrap -->
+    <div class="alert text-center col-md-4 mx-auto alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+        <?= $_SESSION['message']  ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
+    setMessage();
+}
+?>
+<?php
+if($this->datos['response_status'] == 'ok'  ){
+?>
+<div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">        
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Rol</th>
+                        <th>Nombres </th>
+                        <th>Estado</th>                               
+                        <th>Correo</th>
+                        <th>Fecha de creacion</th>
+                        <th>Genero</th>   
+                        <th>img</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+<?php
+foreach($this->datos['response_msg'] as $d ){
+?>
+
+                    <tr>
+                    <form  method="post">
+                        <td><?= ($d[14]??'' ) ?></td>
+                        <td><?= $d[1].' '.$d[2].' '.$d[3].' '.$d[4]  ?></td>
+                        <td><?= $this->estado[$d[12]] ?></td>    
+                        <td><?= $d[5] ?></td>
+                        <td><?= $this->gender[$d[7]] ?></td> 
+                        <td>  <img class="img-profile ml-3 rounded-circle " src="<?= RUTAS_APP['ruta_img'].'user/'.$d[8] ?>" width="120" height="140"></td>   
+                        <td><?= $d[6] ?></td>                   
+                        <td>
+                                 <button  class="btn btn-danger"> <i class="fas fa-trash"></i></button>
+                                 <input type="hidden" name="id" value="<?= $d[0] ?>">
+                        
+                        </td>
+                     </form>
+                    </tr> 
+<?php
+}
+?>
+
+                </tbody>        
+               </table>                  
+            </div>
+        </div>
+</div>  
+</div>    
+
+<?php
+}
+?>
+
+
+
+
+
+

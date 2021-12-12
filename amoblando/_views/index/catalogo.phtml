@@ -1,0 +1,92 @@
+
+
+<br><br><br><br><br>
+<div class="col-md-10 mx-auto">
+   <div class="card border shadow p-3 mb-5 bg-white rounded">
+      <div class="card-header">
+         <div class="row">
+
+            <div class="col-md-3">
+
+<form action="" method="get">
+<select name="c"  id=""   class="form-control" onchange="submit(this)">
+                  <option disabled selected value="">Filtrar por</option>
+<?php 
+if(isset($this->categorias)) foreach($this->categorias as $i => $d  ){
+   echo '<option '.( isset($_GET['c']) && ($i == $_GET['c'])? ' selected ': '').'  value="'.$i.'">'.$d.'</option>';
+}
+?>
+               </select>
+
+</form>
+            </div>
+            <div class="col-md-4 ml-auto">
+            <form action="" method="post">
+               <div class="input-group">
+                  <input type="search" class="form-control rounded " name="busqueda" placeholder="Busqueda" aria-label="Search" aria-describedby="search-addon" />
+                  <button type="submit" class="btn btn-outline-primary">Buscar</button>
+                  <input type="hidden" name="accion" value="articulo">
+               </div>
+               </form>
+            </div>
+         </div>
+      </div>
+<?php
+if (isset($_SESSION['message'])) {  ?>
+    <!-- alerta boostrap -->
+    <div class="alert text-center col-md-4 mx-auto alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+        <?= $_SESSION['message']  ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
+    setMessage();
+}
+?>
+      <div class="card-body">
+         <div class="row">
+           
+               <?php
+               foreach ($this->datos['response_msg'] as $d) {
+               ?>
+
+                  <div class="product-card border shadow p-3 mb-5 bg-white rounded">
+                     <div class="badge">Hot</div>
+                     <div class="product-tumb">
+                        <img src="<?=  RUTAS_APP['ruta_img'].'prod/'.$d[9]  ?>" alt="">
+                     </div>
+                     <div class="product-details">
+                        <span class="product-catagory">Women,bag</span>
+                        <h4><a href=""><?= $d[1]  ?></a></h4>
+                        <p><?= $d[6] ?></p>
+
+                        
+                        <div class="product-bottom-details">
+                           <div class="product-price"><small>$<?= ($d[2] + ($d[2] * 0.11)) ?></small>$<?= $d[2] ?></div> 
+                           <form action="" method="post">
+                           <button type="submit" class="btn btn-success text-white">Agregar al carro</button>
+                           <input type="hidden" name="ID_prod"  value="<?= $d[0] ?>"  >
+                           <input type="hidden" name="nom_prod"  value="<?= $d[1] ?>"  >
+                           <input type="hidden" name="stok_prod"  value="<?= $d[3] ?>"  >
+                           <input type="number" name="cantidad" placeholder="cantidad" class="form-control" value="<?=1?>"  >
+                           <input type="hidden" name="val_prod"  value="<?= $d[2] ?>"  >
+                           <input type="hidden" name="Cat"  value="<?= $d[11] ?>"  >
+                           <input type="hidden" name="img"  value="<?= $d[9] ?>"  >
+                           <input type="hidden" name="accion" value="agregar">
+                           </form>
+                           <div class="product-links">
+                              <a href=""><i class="fa fa-heart"></i></a>
+                              <a href="<?= BASE_URL.'index/carrito'?>"><i class="fa fa-shopping-cart" ></i></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               <?php
+               }
+               ?>
+         
+         </div>
+      </div>
+   </div>
+</div>

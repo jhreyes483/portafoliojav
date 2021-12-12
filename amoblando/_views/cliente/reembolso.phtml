@@ -1,0 +1,70 @@
+<script>
+function valida(){
+           var obs =   document.getElementById('obs1').value
+                       document.getElementById('hiddenObs').value= obs;
+        }
+</script>
+<?php
+echo '<br><br><br><br><br>';
+cardtitulo('Solicitud de reembolso');
+$_POST['estatus'] = ($_POST['estatus'] ?? 2);
+if (isset($_SESSION['message'])) {  ?>
+   <!-- alerta boostrap -->
+   <div class="alert text-center col-md-4 mx-auto alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+      <?= $_SESSION['message']  ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+<?php
+   setMessage();
+}
+?>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+  <title>Document</title>
+</head>
+
+<body style=" background-color: #eee;">
+  <div class="container">  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 ml-auto">
+      <form  method="post"  onsubmit="return valida();">
+<?php
+if(isset($this->anular ) && $this->anular == true) echo '<button type="submit" class="btn btn-danger px-4">Anular fatura</button>';
+?>
+        <input type="hidden" name="anular" value="<?= $_POST['id'] ?>">
+        <input type="hidden" id="hiddenObs" name="obs" value="">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+    <form id="contact"  name = "form1"action="" method="post">
+    <h3>Reembolsos </h3>
+      <h4>Especifica tu razon para el reembolso</h4>
+      <fieldset>
+
+      </fieldset>
+      <fieldset>
+        <textarea id='obs1' placeholder="...." tabindex="5" required></textarea>
+      </fieldset>
+      <fieldset>
+        <button name="submit" type="submit" id="contact-submit">Enviar</button>
+        <div class="col-md-12">
+
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+
+</body>
+
+</html>

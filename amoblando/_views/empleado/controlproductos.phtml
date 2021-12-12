@@ -1,0 +1,64 @@
+
+        <div class="container card shadow p-3 mb-5 bg-white rounded" style="margin-top: 15%">
+
+        <div class="card  mb-5 bg-primary" >
+
+            <h3 class="text-center my-2 text-white">Tabla Amoblando</h3>
+
+        </div>
+
+
+
+        <?php
+
+
+if($this->datos['response_status'] == 'ok'  ){
+?>
+        <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive">        
+                        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Categoria</th>
+                                <th>Nombre del producto</th>
+                                <th>Cantidad</th>                               
+                            </tr>
+                        </thead>
+                        <tbody>
+        <?php 
+        foreach ($this->datos['response_msg'] as $d){
+
+            if( $d[3] <= 1 ){
+                $colorBg = 'class ="bg-danger"';
+            }elseif( $d[3] <= 5 ){
+                $colorBg = 'class= "bg-warning"';
+            }else{
+                $colorBg = 'class= "bg-success"';
+            }
+        ?>
+                            <tr>
+                            <td><img src="<?=  RUTAS_APP['ruta_img'].'prod/'.$d[9]  ?>" alt="" width="130" height="110" ></td>
+                                <td><?= $d[11] ?></td>
+                                <td><?= $d[1] ?></td>
+                                <td <?= $colorBg ?> ><?= $d[3] ?></td>                                
+                            </tr>
+                            <?php
+        }
+        ?>         
+                        </tbody>        
+                       </table>                  
+                    </div>
+                </div>
+        </div>  
+    </div>    
+
+<?php
+        }
+        ?>
+    
+
+
+
+

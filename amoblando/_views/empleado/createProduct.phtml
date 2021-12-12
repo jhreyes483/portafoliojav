@@ -1,0 +1,105 @@
+<?php
+cardtitulo("Registro producto");
+?>
+<div class="card box-card card-body text-center  col-md-10 mx-auto ">
+    <div class=" container-fluid ">
+        <div class="card card-body shadow p-3 mb-4 bg-white"> <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- inicio de divicion 1 -->
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <!-- derecha -->
+                        <div class="form-group">
+                            <label for="">Nombre Producto</label>
+                            <input class="form-control" type="text" class="form-control" placeholder="Nombre producto" name="name_prod">
+                        </div>
+                        <div class="form-group"><label for="">Valor Producto</label>
+                            <input class="form-control" type="number" class="form-control" placeholder="Valor" name="prices">
+                        </div>
+                        <input type="hidden" name="accion" value="inserProducto">
+                        <div class="form-group"> <input class="btn btn-primary form-control" type="submit" name="submit" value="Registrar producto"> </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- inicio de 2 divicion -->
+                    <!-- Izquierda -->
+                    <label for="">Estado de Precio</label>
+                    <div class="form-group">
+                        <select name="est_com" class="form-control">
+                            <?php
+                            foreach ($this->est_com as $i => $d) {
+                            ?>
+                                <option <?= ( isset($_POST['est_com']) && ($i == $_POST['est_com']) ? ' selected ' : '')  ?> value="<?= $i ?>"><?= $d ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <label for="">Estado de Precio</label>
+                    <div class="form-group">
+                        <select name="est_sis" class="form-control">
+                            <?php
+                            foreach ($this->est_sis as $i => $d) {
+                            ?>
+                                <option <?= ( (isset($_POST['est_com'])) &&  ($i == $_POST['est_com']) ? ' selected ' : '')  ?> value="<?= $i ?>"><?= $d ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group"><label for="">Stock Inicial</label>
+                        <input type="number" class="form-control" placeholder="Stock inicial" name="stok" required autofocus>
+                    </div>
+
+                    <?php
+                    if ($_SESSION['usuario']['id_rol'] ==  1 || $_SESSION['usuario']['id_rol'] ==  2) { ?>
+                        <a class="btn btn-block btn-primary by-2" href="CU003-ingresoproducto.php">Ingresar productos</a>
+                    <?php
+                    }
+                    ?>
+                    <textarea class="form-control" placeholder="Descripcion" name="descript" id="" cols="40" rows="1"></textarea>
+                </div><!-- fin de segunda divicion-->
+                <div class="col-md-4">
+                    <div class="form-group"><label for="">Categoria de producto</label>
+                        <select class="form-control" name="fk_cate">
+                            <?php
+                            foreach ($this->categorias as $i => $d) {
+                            ?>
+                                <option <?= (  isset($_POST['fk_cate']) && ($i == $_POST['fk_cate']) ? ' selected ' : '')  ?> value="<?= $i ?>"><?= $d ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div><!--  fin de form-group Producto -->
+                    Imagen:
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="img">
+                        <label class="custom-file-label" for="customFile">Seleccione una imagen desde su equipo</label>
+
+                    </div><br><br>
+
+
+                    <div class="form-group "><a class="btn btn-primary form-control" href="CU004-crearProductos.php?accion=verProducto">Ver productos existentes</a></div>
+                    </form>
+                </div><!-- fin de tercera divicion -->
+            </div><!-- row -->
+        </div><!-- fin card body interno -->
+    </div><!-- fin de container fluid -->
+</div><!-- Card externo --> <br>
+
+<?php
+if (isset($_SESSION['message'])) {
+?>
+    <!-- alerta boostrap -->
+    <div class="col-md-4 mx-auto alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+        <?php
+        echo  $_SESSION['message']  ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+<?php
+    setMessage();
+}
+?>

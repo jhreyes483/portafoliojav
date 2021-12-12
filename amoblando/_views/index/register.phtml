@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>AMOBLANDO</title>
+    <link rel="icon" type="image/x-icon" href="../_public/img/favicon/favicon-16x16.png" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="../_public/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../_public/css/styles.css" rel="stylesheet" />
+    <link href="../_public/css/sign.css" rel="stylesheet" />
+
+    <meta name="description" content="Ofertas en sofá camas prácticos de múltiples posiciones | Comodidad al mejor precio | Envíos a nivel nacional | Todos los medios de pago">
+</head>
+
+
+<?php
+echo '<br><br><br><br><br>';
+cardtitulo('Solicitud de reembolso');
+$_POST['estatus'] = ($_POST['estatus'] ?? 2);
+if (isset($_SESSION['message'])) {  ?>
+   <!-- alerta boostrap -->
+   <div class="alert text-center col-md-4 mx-auto alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+      <?= $_SESSION['message']  ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+<?php
+   setMessage();
+}
+ 
+$_POST['fk_rol'] = (( isset($_POST['fk_rol'])) ?$_POST['fk_rol'] : '2'  );
+?>
+
+
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="<?= RUTAS_APP['ruta_img'] ?>logo/logo-amoblando.svg" alt="" /></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars ml-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">INICIO</a></li>
+
+                    <div class="dropdown show">
+                        <li class="nav-item" id="dropdownMenuLink" data-toggle="dropdown"><a class="nav-link js-scroll-trigger " href="#" role="button" aria-haspopup="true" aria-expanded="false">SALAS</a></li>
+
+
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">SOFA CAMA</a>
+                            <a class="dropdown-item" href="#">SOFA</a>
+                            <a class="dropdown-item" href="#">SOFA L</a>
+                        </div>
+                    </div>
+
+
+                    <div class="dropdown show">
+                        <li class="nav-item" id="dropdownMenuLink" data-toggle="dropdown"><a class="nav-link js-scroll-trigger " href="#" role="button" aria-haspopup="true" aria-expanded="false">ALCOBAS</a></li>
+
+
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">CAMAS</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown show">
+                        <li class="nav-item" id="dropdownMenuLink" data-toggle="dropdown"><a class="nav-link js-scroll-trigger " href="#" role="button" aria-haspopup="true" aria-expanded="false">COMEDORES</a></li>
+
+
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">JUEGO DE COMEDORES</a>
+                            <a class="dropdown-item" href="#">MESAS SILLAS</a>
+                            <a class="dropdown-item" href="#">BIFFES</a>
+                        </div>
+                    </div>
+
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">CONTACTENOS</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead">
+        <div class="container">
+            <div class="card">
+                <div class="card-header bg-dark">
+                    <label for="" class="lead">DATOS FORMULARIO</label>
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <div class="row my-3">
+                            <div class="col-md-4">
+                                <select name="fk_doc_acron" id="" class="form-control">
+
+                                    <?php
+                                    foreach ($this->doc  as $i => $d) {
+                                        echo '<option ' . (($i == $_POST['fk_doc_acron']) ? ' selected ' : '') . '  value="' . $i . '">' . $d . '</option>';
+                                    }
+                                    ?>
+                            </div>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="fk_rol" id="" class="form-control">
+                                <?php
+                      
+                                foreach ($this->tem  as $i => $d) {
+                                    echo '<option ' . (($i == $_POST['fk_rol']) ? ' selected ' : '') . '  value="' . $i . '">' . $d . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="gender" id="" class="form-control">
+                                <?php
+                        
+                                foreach (['m' => 'Masculino', 'f' => 'Femenino']  as $i => $d) {
+                                    echo '<option ' . (($i == $_POST['fk_doc_acron']) ? ' selected ' : '') . '  value="' . $i . '">' . $d . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input class="form-control" name="id_doc" placeholder="No. Identificacion" type="number" required>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-md-6">
+                        <input class="form-control" name="name1" placeholder="Primer Nombre" type="text" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input class="form-control" name="name2" placeholder="Segundo Nombre" type="text" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="form-control" name="last_name1" placeholder="Primer Apellido" type="text" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input class="form-control" name="last_name2" placeholder="Segundo Apellido" type="text" required>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <input class="form-control" placeholder="Email" type="email" name="email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input class="form-control" placeholder="Img" name="img" type="file">
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <input class="form-control" placeholder="Contraseña" name="password" type="password" required>
+                    </div>
+                </div>
+                <hr />
+                <div class="row my-3">
+                    <div class="col-md-6">
+                        <a type="button" class="btn btn-secondary px-5" href="<?= BASE_URL . '/' ?>" value="Volver al portal">Volver al portal</a>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="submit" class="btn btn-success px-5" name="registrarusuario" value="Registrar usuario">
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Bootstrap core JS-->
+        <script src="../_public/js/jquery.min.js"></script>
+        <script src="../_public/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="../_public/js/jquery.easing.min.js"></script>
+        <!-- Contact form JS-->
+        <script src="../_public/js/jqBootstrapValidation.js"></script>
+        <script src="../_public/js/contact_me.js"></script>
+        <!-- Core theme JS-->
+        <script src="../_public/js/scripts.js"></script>
+</body>
+
+</html>

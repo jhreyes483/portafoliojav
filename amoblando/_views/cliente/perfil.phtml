@@ -1,0 +1,102 @@
+<?php
+
+?>
+<div class="container-fluid">
+<header class="masthead">
+        <div class="container">
+            <div class="card">
+                <div class="card-header bg-dark">
+                    <label for="" class="lead">EDITAR PERFIL</label>
+                </div>
+                <div class="card-body">
+                  <form action="" method="POST" enctype="multipart/form-data">
+                        <div class="row my-3">
+                            <div class="col-md-4">
+                                <select name="fk_doc_acron" id="" class="form-control">
+                                    <?php
+                                    echo '<option selected value="">Seleccione</option>';
+                                    foreach ($this->doc  as $i => $d) {
+                                        echo '<option ' . (($i == $this->datos[11]) ? ' selected ' : '') . '  value="' . $i . '">' . $d . '</option>';
+                                    }
+                                    ?>
+                            </div>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="fk_rol" id="" class="form-control">
+                                <?php
+                                echo '<option selected value="">Seleccione</option>';
+                                foreach ($this->tem  as $i => $d) {
+                                    echo '<option ' . (($i == $this->datos[10] ) ? ' selected ' : '') . '  value="' . $i . '">' . $d . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="gender" id="" class="form-control">
+                                <?php
+                                echo '<option selected value="">Seleccione</option>';
+                                foreach (['m' => 'Masculino', 'f' => 'Femenino']  as $i => $d) {
+                                    echo '<option ' . (( $i == $this->datos[7] ) ? ' selected ' : '') . '  value="' . $i . '">' . $d . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                </div>
+                <img class="img-profile ml-3 rounded-circle " src="<?= RUTAS_APP['ruta_img'].'user/'.$this->datos[8] ?>" width="120" height="140">
+                <div class="row my-3">
+                    <div class="col-md-6">
+                        <input class="form-control" name="name1" placeholder="Primer Nombre" type="text" value="<?= $this->datos[2] ?>">
+                    </div>
+                    <div class="col-md-6">
+                        <input class="form-control" name="name2" placeholder="Segundo Nombre" type="text" value="<?= $this->datos[2] ?>">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="form-control" name="last_name1" placeholder="Primer Apellido" type="text" value="<?= $this->datos[3] ?>">
+                    </div>
+                    <div class="col-md-6">
+                        <input class="form-control" name="last_name2" placeholder="Segundo Apellido" type="text" value="<?= $this->datos[4] ?>">
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <input class="form-control" placeholder="Email" type="email" name="email" value="<?= $this->datos[5] ?>">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <input class="form-control" placeholder="Img" name="img" type="file" value="">
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <label for="password" class="text-dark lead">Contraseña:</label>
+                        <input class="form-control" placeholder="Contraseña" id="pass1" type="password" value="">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="password" class="text-dark lead">Repite Contraseña:  <i class="text-dark" id="check"></i></label>
+                        <input class="form-control" placeholder="Repite la contraseña" name="password" id="pass2" type="password" value="">
+                    </div>
+                </div>
+                
+                <hr />
+                <div class="row my-3">
+                    <div class="col-md-6">
+                        <a type="button" class="btn btn-secondary px-5" href="<?= BASE_URL . '/' ?>" value="Volver">Volver a mis opciones</a>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="submit" class="btn btn-success px-5" name="actualizarusuario" value="Actualizar usuario">
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+        </div>
+</div>
+
