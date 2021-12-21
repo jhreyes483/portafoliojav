@@ -1,19 +1,11 @@
 <?php
 
 function autoload($clase){
-    $classPHP = [
-        'mysqli',
-        'log',
-        'stdClass'
-    ];
-    
-    
     $pet = explode('\\',$clase);
     
     $url = "../".str_replace("\\","/",$clase.".php");
-   if(! in_array($pet[1], $classPHP )  && file_exists($url) ){   
+   if( file_exists($url) ){   
        require_once $url; 
-       
    } 
 }
 try{
