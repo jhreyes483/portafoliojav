@@ -1,8 +1,16 @@
 <?php
+namespace _view;
 @session_start();
-require_once '_controller/indexController.php';
-require_once 'public/body/header.php';
 
+
+
+//require_once '../public/body/header.php';
+require_once '../autoload.php';
+use _controller\indexController;
+use public\c_body;
+$b = new c_body();
+
+$b->header();
 
 
 $urlHV = 'https://jhreyes483.github.io/Hoja_V/';
@@ -17,13 +25,13 @@ if(isset($_SESSION['usuario'])){
 
 <body id="page-top">
     <div id="wrapper">
-        <?php include './public/body/sidebar.php'; ?>
+        <?php include '../public/body/sidebar.php'; ?>
 
         <div id="content-wrapper" class="d-flex flex-column">
 
             <div id="content">
 
-                <?php include './public/body/navbar.php'; ?>
+                <?php $b->navbar(); ?>
                 <div class="container-fluid">
 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -39,7 +47,7 @@ if(isset($_SESSION['usuario'])){
                             <a class="dropdown-item d-flex align-items-center" href="javascript:;" onclick=" PopupCenter('<?= $urlHV ?>', 'Hoja-vida', '1200', '700');">
                                 <div class="mr-3">
                                     <div class="icon-circle bg-success">
-                                        <img class="img-profile rounded-circle w-100" src="public/img/hv.jpg">
+                                        <img class="img-profile rounded-circle w-100" src="../public/img/hv.jpg">
                                     </div>
                                 </div>
                                 <div >
@@ -59,7 +67,7 @@ if(isset($_SESSION['usuario'])){
 
 
 
-                    <?php include './public/body/content.php'; ?>
+                    <?php include '../public/body/content.php'; ?>
 
                 </div>
                 <!-- FIN CONTENIDO PRINCIPAL -->
@@ -68,7 +76,7 @@ if(isset($_SESSION['usuario'])){
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <?php include './public/body/footer.php'; ?>
+            <?php include '../public/body/footer.php'; ?>
             <!-- End of Footer -->
 
         </div>

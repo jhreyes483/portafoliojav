@@ -1,5 +1,10 @@
 <?php
-require_once '_controller/indexController.php';
+namespace _view;
+
+require_once '../autoload.php';
+use _controller\indexController;
+
+//require_once '_controller/indexController.php';
 $obj = new indexController;
 $req = $obj->acces();
 ?>
@@ -15,17 +20,17 @@ $req = $obj->acces();
    <meta name="author" content="">
    <title>SICLOUD</title>
    <!-- Custom fonts for this template-->
-   <link href="public/css/searchstyle.css" rel="stylesheet">
+   <link href="../public/css/searchstyle.css" rel="stylesheet">
    <link href="https://portafoliojav.herokuapp.com/sicloud/public/layout1/css/fontawasome-ico.css" rel="stylesheet" type="text/css" />
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
    <!-- 
    <link href="template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     -->
    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-   <link href="public/css/sb-admin-2.min.css" rel="stylesheet">
+   <link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
    <script src="https:/portafoliojav.herokuapp.com/sicloud/public/layout1/js/fontawasome-ico.js"></script>
-   <script src="public/js/jquery-3.5.1.min.js"></script>
-   <script src="public/js/searchmain.js"></script>
+   <script src="../public/js/jquery-3.5.1.min.js"></script>
+   <script src="../public/js/searchmain.js"></script>
 
    <!-- Custom styles for this template-->
 
@@ -33,10 +38,10 @@ $req = $obj->acces();
 
 <body id="page-top">
    <div id="wrapper">
-      <?php include './public/body/sidebar.php'; ?>
+      <?php include '../public/body/sidebar.php'; ?>
       <div id="content-wrapper" class="d-flex flex-column">
          <div id="content">
-            <?php include './public/body/navbar.php'; ?>
+            <?php include '../public/body/navbar.php'; ?>
             <div class="container">
                <div class="card card-title text-center shadow my-2 col-md-12 ">
 
@@ -240,7 +245,7 @@ $req = $obj->acces();
                </form>
             </div>
          </div>
-         <?php include './public/body/footer.php'; ?>
+         <?php include '../public/body/footer.php'; ?>
       </div>
    </div>
 </body>

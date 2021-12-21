@@ -1,5 +1,7 @@
 <?php
-require_once 'public/body/header.php';
+
+
+require_once '../../public/body/header.php';
 ?>
 <body id="page-top">
 
@@ -7,7 +9,7 @@ require_once 'public/body/header.php';
     <div id="wrapper">
 
         <!-- SIDEBAR -->
-        <?php include_once 'body/sidebar.php'; ?>
+        <?php include_once '../../public/body/sidebar.php'; ?>
         <!-- End of SIDEBAR -->
 
         <!-- Content Wrapper -->
@@ -17,7 +19,7 @@ require_once 'public/body/header.php';
             <div id="content">
 
                 <!-- NAVBAR -->
-                <?php include_once 'body/navbar.php'; ?>
+                <?php include_once '../../public/body/navbar.php'; ?>
                 <!-- End of NAVBAR -->
 
                 <!-- CONTENIDO PRINCIPAL-->
@@ -113,7 +115,7 @@ require_once 'public/body/header.php';
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <?php include_once 'body/footer.php'; ?>
+            <?php include_once '../../public/body/footer.php'; ?>
             <!-- End of Footer -->
 
         </div>
@@ -146,22 +148,7 @@ require_once 'public/body/header.php';
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 
