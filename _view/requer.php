@@ -87,7 +87,7 @@ include_once '../public/body/header.php';
                      
                   </div>
                   <div class="card card-body col-md-4 shadow">
-                     <a href="logAvance.php"  class="col-md-8 form-control mx-auto  btn-primary" >Log de tareas</a>
+                     <button href="logAvance.php"  type="button" class="col-md-8 form-control mx-auto  btn-primary" >Log de tareas</button>
                   </div>
                </div>
             </div>

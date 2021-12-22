@@ -94,17 +94,19 @@ if(isset($_SESSION['usuario'])){
     <script>
 
 $(document).ready(function(){
-    $('.ws_next').children('i').addClass('fas');
-    $('.ws_next').children('i').addClass('fa-angle-right');
 
-    $('.ws_next').children('i').addClass('fas');
-    $('.ws_prev').children('i').addClass('fa-angle-left');
-});
-
-
+      //$('ul').addClass('sub-list-2')
+     // $('.sub-list-3').children('a').addClass('e-sub-3');
+     // $('.sub-list-2').children('a').addClass('e-sub-2');
+   
       
+      });
 
-       
+        //$('.ws_next').children('span').children('i').addClass('fas');
+        //$('.ws_next').children('span').children('i').addClass('fa-angle-right');
+        //$('.ws_prev').children('span').children('i').addClass('fas');
+        //$('.ws_prev').children('span').children('i').addClass('fa-angle-left');
+        //$('.ws_next').children('span').addClass('text-center');
 
 
        
