@@ -1,6 +1,10 @@
 <?php
 
+
+
 namespace _controller;
+
+die('controller');
 
 require_once '../autoload.php';
 use _model\c_SQL;
