@@ -68,7 +68,6 @@ class indexController{
       return $r;
    }
 
-
    public function login(){
       session_destroy();
       $dato[0] = ' WHERE correo = "'.$this->getSql('email').'"';
