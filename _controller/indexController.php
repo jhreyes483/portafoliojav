@@ -70,12 +70,13 @@ class indexController{
 
 
    public function login(){
+      session_destroy();
       $dato[0] = ' WHERE correo = "'.$this->getSql('email').'"';
       $dato[1] = ' AND password = "'.$this->getSql('password').'"';
       $sql     = $this->model->m_consulta(4,$dato)  ;
       $u       = $this->db->m_trae_array($sql);
       if($u->num_rows == 1){
-         // login exitoso
+
          @session_start();
          $_SESSION['usuario']['id']        = $u->row[0];
          $_SESSION['usuario']['documento'] = $u->row[1];

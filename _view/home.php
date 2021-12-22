@@ -10,7 +10,7 @@ use _controller\indexController;
 use public\c_body;
 $b = new c_body();
 
-$b->header();
+ include '../public/body/header.php';
 
 
 $urlHV = 'https://jhreyes483.github.io/Hoja_V/';
