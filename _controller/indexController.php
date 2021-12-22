@@ -4,9 +4,10 @@
 
 namespace _controller;
 
-die('controller');
+
 
 require_once '../autoload.php';
+die('controller dd');
 use _model\c_SQL;
 use _model\Model;
 
