@@ -83,8 +83,6 @@ include_once '../public/body/header.php';
                         <input type="hidden" name="id_proyecto" value="<?= $_REQUEST['id_proyecto'] ?>">
                         <button type="submit" value="consulta" id="togleDoc" class="col-md-8 form-control mx-auto  btn-primary">sprint-backlog</button>
                      </form>
-
-                     
                   </div>
                   <div class="card card-body col-md-4 shadow">
                      <button href="logAvance.php"  type="button" class="col-md-8 form-control mx-auto  btn-primary" >Log de tareas</button>
