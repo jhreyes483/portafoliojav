@@ -21,7 +21,7 @@ class indexController{
       $this->db      = new c_SQL;
       $this->model   = new Model;
 
-      die('controller fff');
+      echo 'contructor de index';
    }
 
    public function acces(){
