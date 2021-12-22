@@ -1,4 +1,5 @@
 <?php
+include_once 'ErrorHandler.php';
 
 function autoload($clase){
     $pet = explode('\\',$clase);
