@@ -1,8 +1,6 @@
 <?php
 namespace _model;
 
-
-
 class Model{
 
 public function m_consulta($tipo, $param = []){
