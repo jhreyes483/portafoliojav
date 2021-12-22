@@ -5,8 +5,8 @@
         </div>
     </div>
 </footer>
-<script src="public/js/jav.js"></script>
-<script src="public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="public/js/sb-admin-2.min.js"></script>
+<script src="../public/js/jav.js"></script>
+<script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../public/js/sb-admin-2.min.js"></script>
 
 
