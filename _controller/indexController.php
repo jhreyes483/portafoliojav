@@ -9,7 +9,7 @@ namespace _controller;
 require_once '../autoload.php';
 
 use _model\c_SQL;
-use _model\Model;
+use _model\c_model;
 
 
 
@@ -19,7 +19,7 @@ class indexController{
    public function __construct(){
       date_default_timezone_set("America/Bogota");
       $this->db      = new c_SQL;
-      $this->model   = new Model;
+      $this->model   = new c_model;
 
       echo 'contructor de index';
    }

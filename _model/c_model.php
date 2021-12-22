@@ -1,7 +1,7 @@
 <?php
 namespace _model ;
 
-class Model{
+class c_model{
 
 public function m_consulta($tipo, $param = []){
  
