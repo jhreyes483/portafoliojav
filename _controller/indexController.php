@@ -4,15 +4,9 @@
 
 namespace _controller;
 
-
-
 require_once '../autoload.php';
-
 use _model\c_SQL;
 use _model\c_model;
-
-
-
 
 class indexController{ 
    private $db;
