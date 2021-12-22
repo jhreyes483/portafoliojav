@@ -10,7 +10,7 @@
     <!-- Topbar Search -->
     <h4 class="ml-3">Portafolio</h4>
     <!-- Topbar Navbar -->
-    <ul class="navbar-nav ml-auto " id="page-top">
+    <ul class="navbar-nav ml-auto " >
         <div class="topbar-divider d-none d-sm-block"></div>
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
@@ -25,7 +25,7 @@
                 <a class="dropdown-item" href="../index.php">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Cerrar Sesion
-                    
+
                 </a>
             </div>
         </li>

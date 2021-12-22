@@ -30,7 +30,7 @@ if(isset($_SESSION)){
    <title>Document</title>
 </head>
 
-<body>
+<body id="page-top">
    <script src="../public/js/jquery-3.5.1.min.js"></script>
    <!-- LIBRERIA DE CALENDARIO -->
    <script src="../public/js/moment.min.js"></script>

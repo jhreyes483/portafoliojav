@@ -23,7 +23,7 @@ if( isset ($_POST['a'])){
 
 
 <div class="col-md-10  mx-auto">
-<body class="bg-gradient-primary">
+<body id="page-top" class="bg-gradient-primary">
 
     <div class="container">
 
