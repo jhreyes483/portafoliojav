@@ -8,7 +8,7 @@ namespace _view;
 require_once '../autoload.php';
 use _controller\indexController;
 use public\c_body;
-$b = new c_body();
+
 
  include '../public/body/header.php';
 
@@ -31,7 +31,7 @@ if(isset($_SESSION['usuario'])){
 
             <div id="content">
 
-                <?php $b->navbar(); ?>
+            <?php include '../public/body/navbar.php'; ?>
                 <div class="container-fluid">
 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
