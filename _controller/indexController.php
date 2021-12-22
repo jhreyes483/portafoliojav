@@ -14,8 +14,6 @@ class indexController{
       date_default_timezone_set("America/Bogota");
       $this->db      = new c_SQL;
       $this->model   = new c_model;
-
-      echo 'contructor de index';
    }
 
    public function acces(){
