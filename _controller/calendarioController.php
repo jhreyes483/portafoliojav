@@ -1,9 +1,12 @@
 <?php
- require_once '_controller/Controller.php';
- require_once '_model/mysqli.php';
- require_once '_model/model.php';
+namespace _controller;
 
-class calendarioController extends Controllers{ 
+require_once '../autoload.php';
+use _controller\Controller;
+use _model\c_SQL;
+use _model\Model;
+
+class calendarioController extends Controller{ 
    private $db;
    public function __construct(){
       date_default_timezone_set("America/Bogota");

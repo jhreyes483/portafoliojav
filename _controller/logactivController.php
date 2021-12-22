@@ -1,10 +1,13 @@
 <?php
 
-require_once '_controller/Controller.php';
- require_once '_model/mysqli.php';
- require_once '_model/model.php';
 
-class logactivController extends Controllers{ 
+namespace _controller;
+
+require_once('../autoload.php');
+use _model\c_SQL;
+use _model\Model;
+
+class logactivController extends Controller{ 
    private $db;
    public function __construct(){
       date_default_timezone_set("America/Bogota");
@@ -117,7 +120,7 @@ class logactivController extends Controllers{
    }
 
 
-   public function human_time($input_seconds, $rs=1, $normal=0, $mostrarD=0) { //$rs = muestra segundos // normal=1 deja h m s  como abreviaturas // mostrarD=1 muestra días
+   public function human_time($input_seconds, $rs=1, $normal=0, $mostrarD=0) { //$rs = muestra segundos // normal=1 deja h m s  como abreviaturas // mostrarD=1 muestra dï¿½as
       $days		   = floor($input_seconds / 86400);
       $remainder	= floor($input_seconds % 86400);
       $hours		= floor($remainder / 3600);
@@ -129,7 +132,7 @@ class logactivController extends Controllers{
          $hours	+= $days*24; 
          $days	= '';
       }else{
-         $days	= ($days > 0)? 			$days .($normal==0?' días':'d') :'';
+         $days	= ($days > 0)? 			$days .($normal==0?' dï¿½as':'d') :'';
       }
       $hours	= ($hours > 0)? 			$hours.($normal==0?' horas':'h'):'';
       $minutes	= ($minutes > 0)?			$minutes.($normal==0?' min':'m'):'';

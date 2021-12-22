@@ -1,7 +1,11 @@
 <?php
- require_once '_controller/Controller.php';
- require_once '_model/mysqli.php';
- require_once '_model/model.php';
+
+namespace _controller;
+
+require_once '../autoload.php';
+use _model\c_SQL;
+use _model\Model;
+
 
 class indexController{ 
    private $db;
@@ -174,8 +178,8 @@ class indexController{
       $sql =  $this->model->m_insert($p);
       $b =  $this->db->m_ejecuta($sql);
       if($b){
-         echo '<script>alert("ISe registro correctamente");</script>';
-         header( 'Location: ./index.php' );
+         echo '<script>alert("Se registro correctamente");</script>';
+         header( 'Location: ./login.php' );
       }else{
          echo '<script>alert("Error a registrar usuario");</script>';
       }
