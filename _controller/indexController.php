@@ -7,9 +7,11 @@ namespace _controller;
 
 
 require_once '../autoload.php';
-die('controller dd');
+
 use _model\c_SQL;
 use _model\Model;
+
+
 
 
 class indexController{ 
@@ -18,6 +20,8 @@ class indexController{
       date_default_timezone_set("America/Bogota");
       $this->db      = new c_SQL;
       $this->model   = new Model;
+
+      die('controller fff');
    }
 
    public function acces(){
