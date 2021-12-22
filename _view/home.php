@@ -21,7 +21,7 @@ if(isset($_SESSION['usuario'])){
 }
 
 ?>
-    <title>SICLOUD</title>
+
 
 <body id="page-top">
     <div id="wrapper">
@@ -92,6 +92,20 @@ if(isset($_SESSION['usuario'])){
 
   
     <script>
+
+$(document).ready(function(){
+    $('.ws_next').children('i').addClass('fas');
+    $('.ws_next').children('i').addClass('fa-angle-right');
+
+    $('.ws_next').children('i').addClass('fas');
+    $('.ws_prev').children('i').addClass('fa-angle-left');
+});
+
+
+      
+
+       
+
 
        
     </script>
