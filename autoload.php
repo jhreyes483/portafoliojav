@@ -13,7 +13,7 @@ function autoload($clase){
 try{
     spl_autoload_register('autoload');
 }catch(Exception $e){
-    echo $e->getMessage();
+    //echo $e->getMessage();
 }
 
 ?>
