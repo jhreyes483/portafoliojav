@@ -5,7 +5,7 @@ namespace _model;
 
  @session_start();
  //private $DB_HOST = 'localhost';
- class c_SQL  extends \mysqli{
+ class c_SQL  extends mysqli{
 	//private $DB_USER = 'root';
 	//private $DB_PASS = '';
 	//private $DB_NAME = 'empresa';
