@@ -1,6 +1,8 @@
 <?php
+namespace _controller;
+require_once('../autoload.php');
 
-class Controllers{
+class Controller{
   protected function getSql($clave){
     if (isset($_POST[$clave]) && !empty($_POST[$clave])) {
       $_POST[$clave] = strip_tags($_POST[$clave]);

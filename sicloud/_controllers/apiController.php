@@ -14,7 +14,7 @@ class apiController extends Controller{
    //
    public function __construct(){
       parent::__construct(1);
-      $this->db       = $this->loadModel('consultas.sql', 'sql');;
+      $this->db       = $this->loadModel('consultas.sql', 'sql');
       $this->getApi();
    }
    //
@@ -45,8 +45,6 @@ class apiController extends Controller{
    }
    //
    public function getApi(){
-
-      require_once APP_CLASS.'logC/PeticionHandler.php';// Registra en caso de que la peticion no retorne datos peticion
       require_once APP_CLASS.'logC/c_log.php';
       require_once APP_CLASS.'logC/ErrorHandler.php';
 
@@ -214,6 +212,7 @@ class apiController extends Controller{
 
 
          if(isset($_GET['apicall']) ){
+    
             // Aqui van todos los llamados de la api
             switch ($_GET['apicall']) {
                // Opcion crear usuarios

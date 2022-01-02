@@ -1,18 +1,18 @@
 <?php
 
-
+namespace _model;
+//require_once '../autoload.php';
 
  @session_start();
-
- class c_SQL  extends \mysqli{
-    private $DB_HOST = 'localhost';
-	private $DB_USER = 'root';
-	private $DB_PASS = '';
-	private $DB_NAME = 'prueba_laika';
-	//private $DB_HOST = 'b4qlhpendfkxoin7dohh-mysql.services.clever-cloud.com';
-	//private $DB_USER = 'uw47ohbu63avvj7m';
-	//private $DB_PASS = 'uyAF7byvud1LeDkySb4S';
-	//private $DB_NAME = 'b4qlhpendfkxoin7dohh';
+ //private $DB_HOST = 'localhost';
+ class c_SQL  extends mysqli{
+	//private $DB_USER = 'root';
+	//private $DB_PASS = '';
+	//private $DB_NAME = 'empresa';
+	private $DB_HOST = 'b4qlhpendfkxoin7dohh-mysql.services.clever-cloud.com';
+	private $DB_USER = 'uw47ohbu63avvj7m';
+	private $DB_PASS = 'uyAF7byvud1LeDkySb4S';
+	private $DB_NAME = 'b4qlhpendfkxoin7dohh';
    public function __construct(){     
        parent:: __construct();
        $this->conexion=mysqli_connect( $this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME) or die('Se genero un error de acceso '. __LINE__);

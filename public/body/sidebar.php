@@ -1,5 +1,6 @@
 <?php
-require_once '_controller/indexController.php';
+require_once '../autoload.php';
+use _controller\indexController;
 $obj = new indexController;
 $r =   $obj->data();
 
@@ -92,7 +93,7 @@ $r =   $obj->data();
                 <h6 class="collapse-header">HEROKU:</h6>
                 <?php
                 foreach ($r['proyectos'] as $d) {
-                    echo '<a class="collapse-item" href="' . $d[4] . '">' . $d[8] . '</a> ';
+                    echo '<a class="collapse-item" href=".' . $d[4] . '">' . $d[8] . '</a> ';
                 }
                 ?>
             </div>

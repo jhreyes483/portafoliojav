@@ -1,14 +1,19 @@
 <?php
- require_once '_controller/Controller.php';
- require_once '_model/mysqli.php';
- require_once '_model/model.php';
+
+
+
+namespace _controller;
+
+require_once '../autoload.php';
+use _model\c_SQL;
+use _model\c_model;
 
 class indexController{ 
    private $db;
    public function __construct(){
       date_default_timezone_set("America/Bogota");
       $this->db      = new c_SQL;
-      $this->model   = new Model;
+      $this->model   = new c_model;
    }
 
    public function acces(){
@@ -64,14 +69,14 @@ class indexController{
       return $r;
    }
 
-
    public function login(){
+      session_destroy();
       $dato[0] = ' WHERE correo = "'.$this->getSql('email').'"';
       $dato[1] = ' AND password = "'.$this->getSql('password').'"';
       $sql     = $this->model->m_consulta(4,$dato)  ;
       $u       = $this->db->m_trae_array($sql);
       if($u->num_rows == 1){
-         // login exitoso
+
          @session_start();
          $_SESSION['usuario']['id']        = $u->row[0];
          $_SESSION['usuario']['documento'] = $u->row[1];
@@ -174,8 +179,8 @@ class indexController{
       $sql =  $this->model->m_insert($p);
       $b =  $this->db->m_ejecuta($sql);
       if($b){
-         echo '<script>alert("ISe registro correctamente");</script>';
-         header( 'Location: ./index.php' );
+         echo '<script>alert("Se registro correctamente");</script>';
+         header( 'Location: ./login.php' );
       }else{
          echo '<script>alert("Error a registrar usuario");</script>';
       }

@@ -1,38 +1,22 @@
 <?php
-require_once '_controller/indexController.php';
-$obj = new indexController; 
+namespace _view;
 
-if($_POST['a']){
+require_once '../public/body/header.php';
+require_once('../autoload.php');
+
+use _controller\indexController;
+
+
+$obj = new indexController; 
+session_destroy();
+if( isset ($_POST['a'])){
     $obj->login();
 }
-
-Controllers::ver($_SESSION);
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SICLOUD</title>
-
-    <!-- Custom fonts for this template-->
-   
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="public/css/sb-admin-2.min.css" rel="stylesheet">
-
-</head>
-
-<body class="bg-gradient-primary">
+<body id="page-top" class="bg-gradient-primary">
 
     <div class="container">
 
@@ -49,7 +33,7 @@ Controllers::ver($_SESSION);
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">BIENVENIDO A SICLOUD</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">BIENVENIDO A SICLOUD <br> PORTAFOLIO <br>JAVIER REYES</h1>
                                     </div>
                                     <form   class="user" method="post">
                                         <div class="form-group">
@@ -66,10 +50,13 @@ Controllers::ver($_SESSION);
                                         </div>
                                         <input type="hidden" name="a" value="login" >
                                         <input type="submit" value="iniciar sesion" class="btn btn-primary btn-user btn-block">
-                        
+                                
                                         <div class="text-center">
                                             <a class="small" href="forgot-password.html">¿Olvidaste la contraseña?</a>
                                         </div>
+                                        <a href="register.php" class="btn btn-primary btn-user btn-block mt-4">
+                                        <i class="far fa-user"></i> ¿No tienes una cuenta? Registrate Ya!
+                                        </a>
                                         <hr>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Iniciar sesion con Google
@@ -77,8 +64,11 @@ Controllers::ver($_SESSION);
                                         <a href="index.html" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Iniciar sesion con Facebook
                                         </a>
+                                       
                                     </form>
                                     <hr>
+                                    Credenciales publicas <br>
+                                    Correo: jav-rn@hotmail.com  <br> Clave: 1
                                 </div>
                             </div>
                         </div>
@@ -88,15 +78,6 @@ Controllers::ver($_SESSION);
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="public/vendor/jquery/jquery.min.js"></script>
-    <script src="public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="public/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="public/js/sb-admin-2.min.js"></script>
 
 </body>
 

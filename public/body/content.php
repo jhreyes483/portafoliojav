@@ -25,21 +25,21 @@
 
 
 
-    <link rel="stylesheet" type="text/css" href="static/css/main.9c7b84ad8da2.css" />
-    <link rel="stylesheet" type="text/css" href="static/css/others.48cc4e0d7c0e.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/main.9c7b84ad8da2.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/others.48cc4e0d7c0e.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-    <link rel="apple-touch-icon" sizes="180x180" href="static/images/favicon_io/apple-touch-icon.b02e5a8744d4.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="static/images/favicon_io/favicon-32x32.7bac68a57e87.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon_io/favicon-16x16.d1dc0f341c66.png" />
-    <link rel="manifest" href="static/images/favicon_io/site.053100cb84a5.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/images/favicon_io/apple-touch-icon.b02e5a8744d4.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon_io/favicon-32x32.7bac68a57e87.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon_io/favicon-16x16.d1dc0f341c66.png" />
+    <link rel="manifest" href="../static/images/favicon_io/site.053100cb84a5.webmanifest" />
     <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet" />
 </head>
 <body>
-<?php include './public/body/slider.php'; ?>
+<?php include '../public/body/slider.php'; ?>
 
     <section class="container-fluid" style="overflow-x: hidden;">
         <div class="text-center mx-auto mt-55 mb-5"><br>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <figure class="col-md-5">
-                    <img src="static/images/home/social.80a964329a92j.svg" alt="Social Images" class="img-fluid div-img-item" />
+                    <img src="../static/images/home/social.80a964329a92j.svg" alt="Social Images" class="img-fluid div-img-item" />
                 </figure>
             </aside>
 
@@ -87,7 +87,7 @@
                     justify-content-center flex-column-reverse flex-sm-row py-3
                     mt-1 mt-sm-5" data-aos="fade-left">
                 <figure class="col-md-5">
-                    <img src="static/images/home/blog.8fa935e9749a.svg" alt="Blog Images" class="img-fluid div-img-item" />
+                    <img src="../static/images/home/blog.8fa935e9749a.svg" alt="Blog Images" class="img-fluid div-img-item" />
                 </figure>
                 <div class="col-md-7">
                     <h3 class="fs-3 fw-bold text-center text-sm-start">
@@ -127,7 +127,7 @@
                     </p>
                 </div>
                 <figure class="col-md-5">
-                    <img src="static/images/home/about.cc12074e2b67.svg" alt="About Images" class="img-fluid div-img-item">
+                    <img src="../static/images/home/about.cc12074e2b67.svg" alt="About Images" class="img-fluid div-img-item">
                 </figure>
             </aside>
 
@@ -136,7 +136,7 @@
                     justify-content-center flex-column-reverse flex-sm-row py-3
                     mt-1 mt-sm-5" data-aos="fade-left">
                 <figure class="col-md-5">
-                    <img src="static/images/home/project.517c6bb9af23.svg" alt="Projects Images" class="img-fluid div-img-item" />
+                    <img src="../static/images/home/project.517c6bb9af23.svg" alt="Projects Images" class="img-fluid div-img-item" />
                 </figure>
                 <div class="col-md-7">
                     <h3 class="fs-3 fw-bold text-center text-sm-start">
@@ -175,7 +175,7 @@
                     </p>
                 </div>
                 <figure class="col-md-5">
-                    <img src="static/images/home/contact.fa807e58fcec.svg" alt="Contact Images" class="img-fluid div-img-item">
+                    <img src="../static/images/home/contact.fa807e58fcec.svg" alt="Contact Images" class="img-fluid div-img-item">
                 </figure>
             </aside>
         </div>
@@ -190,9 +190,9 @@
 
 
    
-    <script src="static/js/toggleMenuClass.cb048aa1f499.js" type="text/javascript"></script>
-    <script src="static/js/aos.js"></script>
-    <script src="static/js/aos.7d473d1eedd9.js" type="text/javascript"></script>
+    <script src="../static/js/toggleMenuClass.cb048aa1f499.js" type="text/javascript"></script>
+    <script src="../static/js/aos.js"></script>
+    <script src="../static/js/aos.7d473d1eedd9.js" type="text/javascript"></script>
 </body>
 
 </html>

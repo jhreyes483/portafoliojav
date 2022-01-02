@@ -1,15 +1,16 @@
 <?php
+namespace _controller;
 
-require_once '_controller/Controller.php';
- require_once '_model/mysqli.php';
- require_once '_model/model.php';
+require_once('../autoload.php');
+use _model\c_SQL;
+use _model\c_model;
 
-class prodbController extends Controllers{ 
+class prodbController extends Controller{ 
    private $db;
    public function __construct(){
       date_default_timezone_set("America/Bogota");
       $this->db      = new c_SQL;
-      $this->model   = new Model;
+      $this->model   = new c_model;
    }
 
    public function tipoReunion(){
@@ -58,7 +59,6 @@ class prodbController extends Controllers{
 
    }
    public function m_update(){
-      Controllers::ver($_POST);
       // `id_tarea`, `nom`, `fecha_asig`, `status`, `fk_us`, `descript`, `tiempo_plan_h`, `esfuerzo_estimado`, `fk_proyecto`, `fecha_update`, `user_update`
       $p[0] = ' tareas ';
       $p[1] = 'nom = "'.$this->getSql('tarea').'", 

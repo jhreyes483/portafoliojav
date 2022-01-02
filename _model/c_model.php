@@ -1,12 +1,7 @@
 <?php
-class Model{
-public function __construct()
-{
+namespace _model ;
 
-
-
-}
-
+class c_model{
 
 public function m_consulta($tipo, $param = []){
  

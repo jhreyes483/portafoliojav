@@ -1,14 +1,21 @@
+<?php
+namespace _view;
+require_once '../autoload.php';
+use _controller\calendarioController;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <?php
-require_once '_controller/calendarioController.php';
+//require_once '_controller/calendarioController.php';
 $obj = new calendarioController;
 @session_start();
 if(isset($_SESSION)){
    $c   = $obj->accesEventos();
 }else{
-   die('<center>Por favor inicie sesión/center>');
+   die('<center>Por favor inicie sesiï¿½n/center>');
 }
 
 
@@ -18,21 +25,21 @@ if(isset($_SESSION)){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="public/css/bootstrap.min.css">
-   <link rel="stylesheet" href="public/css/fullcalendar.min.css">
+   <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+   <link rel="stylesheet" href="../public/css/fullcalendar.min.css">
    <title>Document</title>
 </head>
 
-<body>
-   <script src="public/js/jquery-3.5.1.min.js"></script>
+<body id="page-top">
+   <script src="../public/js/jquery-3.5.1.min.js"></script>
    <!-- LIBRERIA DE CALENDARIO -->
-   <script src="public/js/moment.min.js"></script>
-   <script src="public/js/fullcalendar.js"></script>
-   <script src="public/js/es.js"></script>
+   <script src="../public/js/moment.min.js"></script>
+   <script src="../public/js/fullcalendar.js"></script>
+   <script src="../public/js/es.js"></script>
 
    <!-- BOOTSTRAP 4.0.0-->
-   <script src="public/js/popper.min.js"></script>
-   <script src="public/js/bootstrap.min.js"></script>
+   <script src="../public/js/popper.min.js"></script>
+   <script src="../public/js/bootstrap.min.js"></script>
 
 
    <!-- Modal -->
