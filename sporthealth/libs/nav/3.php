@@ -17,7 +17,7 @@ $rol[3]=  ['Empleado',      ''.BASE_URL.'empleado/'];
       <div class="collapse navbar-collapse" id="navbarResponsive">
          <ul class="navbar-nav text-uppercase ml-auto">
            
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?=(isset($_SESSION['usuario'])? $rol[$_SESSION['usuario']['fk_rol']][1] :'') ?>"><?= ((isset($_SESSION['usuario'])) ? $rol[$_SESSION['usuario']['fk_rol']][0] : '') ?></a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?=(isset($_SESSION['usuario']) && isset($rol[$_SESSION['usuario']['fk_rol']][1]) ? $rol[$_SESSION['usuario']['fk_rol']][1] :'') ?>"><?= ((isset($_SESSION['usuario'])) ? $rol[$_SESSION['usuario']['fk_rol']][0] : '') ?></a></li>
             <div class="dropdown show">
                <li class="nav-item" id="dropdownMenuLink" data-toggle="dropdown"><a class="nav-link js-scroll-trigger <?= ( isset($_GET['c']) && in_array($_GET['c'] ,['8','6','7'] ) ? 'text-warning':'' )?> " href="#" role="button" aria-haspopup="true" aria-expanded="false">SALAS</a></li>
                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
