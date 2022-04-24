@@ -93,7 +93,7 @@ $r =   $obj->data();
                 <h6 class="collapse-header">HEROKU:</h6>
                 <?php
                 foreach ($r['proyectos'] as $d) {
-                    echo '<a class="collapse-item" href=".' . $d[4] . '">' . $d[8] . '</a> ';
+                    echo '<a class="collapse-item" href="' . $d[4] . '">' . $d[8] . '</a> ';
                 }
                 ?>
             </div>
