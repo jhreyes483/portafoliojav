@@ -7,8 +7,9 @@ namespace _controller;
 require_once '../autoload.php';
 use _model\c_SQL;
 use _model\c_model;
+use _controller\Controller;
 
-class indexController{ 
+class indexController extends Controller{ 
    private $db;
    public function __construct(){
       date_default_timezone_set("America/Bogota");
@@ -51,6 +52,7 @@ class indexController{
 
    // Cons
    public function data(){
+      $log = $this->createLog(1, $this->model, $this->db);
       //if( isset($_POST['id_proyecto'])){
       //   $dato[0] = ' WHERE = '.$this->getSql('id_proyecto');
       //}else{

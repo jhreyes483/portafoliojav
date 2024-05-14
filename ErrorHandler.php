@@ -79,7 +79,7 @@ function handler( $errno, $errstr, $errfile, $errline) {
     $report = "\n[".date("Y-m-d h:m:s")."] [$typestr: $errstr] [IN FILE $errfile] [LINE $errline]";
 
     $URL =  'log/error.log';
-    error_log($report, 3, $URL);
+    //error_log($report, 3, $URL);
         
 
        

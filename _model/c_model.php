@@ -119,6 +119,15 @@ public function m_consulta($tipo, $param = []){
             FROM roles
             '.$cond;
 
+         case 20:
+            $cond = implode(' ', $param );
+            return 'SELECT * FROM countries '.$cond;
+            break;
+
+         case 21:
+            $cond = implode(' ', $param );
+            return 'SELECT * FROM cities '.$cond;
+            break;
 
          
 
