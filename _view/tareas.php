@@ -28,12 +28,15 @@ include_once '../public/body/header.php';
             <?php include '../public/body/navbar.php'; ?>
             <!-- CONTENIDO PRINCIPAL-->
             <div class="container-fluid">
+
                <div>
+
                   <div class="card card-body col-md-10 mx-auto mb-4">
                      <b>
                         <h5 class="text-center">Product-backlog</h5>
                      </b>
                   </div>
+
 
                   <table class=" mx-auto my-5 table table-bordered table-striped table-hover bg-white table-sm">
                      <thead>

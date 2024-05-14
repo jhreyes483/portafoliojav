@@ -34,7 +34,7 @@ $r =   $obj->data();
             <i class="fas fa-code"></i>
             <span class="alert-100">PROYECTOS</span>
          </a>
-         <div id="proyectos" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+         <div id="proyectos" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" style="z-index : 100;">
             <div class="bg-white py-2 collapse-inner rounded">
 
                <?php
@@ -55,11 +55,11 @@ $r =   $obj->data();
       <!-- Nav Item - Pages Collapse Menu -->
 
       <li class="nav-item">
-         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#agenda" aria-expanded="true" aria-controls="agenda">
+         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#agenda" aria-expanded="true" aria-controls="agenda" >
             <i class="fas fa-user-friends"></i>
             <span>REUNIONES</span>
          </a>
-         <div id="agenda" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+         <div id="agenda" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="z-index : 100;">
             <div class="bg-white py-2 collapse-inner rounded">
                <a class="collapse-item" href="javascript:void(0)" onclick="PopupCenter('cal.php','Sicloud-detalle','1000','900');">
                   <i class="far fa-calendar-check"></i>
@@ -73,11 +73,11 @@ $r =   $obj->data();
 
 
       <li class="nav-item">
-         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" style="z-index : 100;">
             <i class="fas fa-fw fa-cog"></i>
             <span>ANALISIS</span>
          </a>
-         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="z-index : 100;">
             <div class="bg-white py-2 collapse-inner rounded">
                <h6 class="collapse-header">DOCUMENTACION:</h6>
                <a class="collapse-item">Levantamiento de <br> Informacion</a>
@@ -95,7 +95,7 @@ $r =   $obj->data();
             <i class="fas fa-database"></i>
             <span>BASE DE DATOS</span>
          </a>
-         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" style="z-index : 100;">
             <div class="bg-white py-2 collapse-inner rounded">
                <h6 class="collapse-header">UML:</h6>
                <a class="collapse-item">BPMN</a>
@@ -113,7 +113,7 @@ $r =   $obj->data();
             <i class="far fa-file-alt"></i>
             <span>REQ F.</span>
          </a>
-         <div id="requer" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+         <div id="requer" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" style="z-index : 100;">
             <div class="bg-white py-2 collapse-inner rounded">
                <h6 class="collapse-header">SICLOUD:</h6>
                <?php

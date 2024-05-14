@@ -1,117 +1,152 @@
-  <!-- SIGN IN MODAL -->
-  <?php
+<!-- SIGN IN MODAL -->
+<?php
   // require_once(ROOT . 'libs/email/index.php');
   ?>
 
-  <div class="modal fade agol-signin" id="signin" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade agol-signin" id="signin" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-          <div class="container-fluid">
-            <div class="row">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>
+         </div>
+         <div class="modal-body">
+            <div class="container-fluid">
+               <div class="row">
 
-              <div class="col-md-6">
-                <h2 class="text-center">Bienvenido</h2>
-                <p class="text-center">IMCOABHER S.A.S</p>
-                <img class="w-100" src="<?= RUTAS_APP['ruta_img'] ?>register.jpg" alt="">
-                <hr>
+                  <div class="col-md-6">
+                     <h2 class="text-center">Bienvenido</h2>
+                     <p class="text-center">IMCOABHER S.A.S</p>
+                     <img class="w-100" src="<?= RUTAS_APP['ruta_img'] ?>register.jpg" alt="">
+                     <hr>
 
-                <p class="text-center">¿No tienes una cuenta? ¡Registrate ya!</p>
-                <a href="<?= BASE_URL . 'index/registro' ?>">
-                  <input type="submit" value="Registrarse" class="btn btn-primary btn-lg lets-go form-control">
-                </a>
-              </div><!-- /.col-* -->
+                     <p class="text-center">¿No tienes una cuenta? ¡Registrate ya!</p>
+                     <a href="<?= BASE_URL . 'index/registro' ?>">
+                        <input type="submit" value="Registrarse" class="btn btn-primary btn-lg lets-go form-control">
+                     </a>
+                  </div><!-- /.col-* -->
 
-              <div class="col-md-6">
-                <div class="card card-body trans" aria-live="polite">
+                  <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
+                     <div class="card card-body trans"  style="width: 97%;" aria-live="polite">
 
-                  <!-- PUBLIC SIGN IN -->
+                        <!-- PUBLIC SIGN IN -->
 
-                  <div class="my-4 side-a p-2">
-                    <h3 class="text-center">Login</h3>
-                    <br>
-                    <form action="<?= BASE_URL ?>index/ingreso" method="POST">
-                      <label class="my-2" for="">Documento</label>
-                      <div class="form-group">
-                        <select class="form-control" name="tDoc" id="">
-                          <option class="form-control" value="CC">CC</option>
-                          <option class="form-control" value="CE">CE</option>
-                          <option class="form-control" value="TI">TI</option>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label for="InputEmailPublic">Correo electronico.</label>
-                        <input type="email" name="nDoc" class="form-control" id="InputEmailPublic" placeholder="Correo">
-                      </div>
+                        <div class="my-4 side-a ">
+                           <h3 class="text-center">Login</h3>
+                           <br>
+                           <form action="<?= BASE_URL ?>index/ingreso" method="POST">
+                           
+                              <div class="form-group">
+                                 <label class="my-2" for="tDoc">Documento</label>
+                                 <select class="form-control" name="tDoc" id="tDoc">
+                                    <option class="form-control" value="CC">CC</option>
+                                    <option class="form-control" value="CE">CE</option>
+                                    <option class="form-control" value="TI">TI</option>
+                                 </select>
+                              </div>
+                              <div class="form-group">
+                                 <label for="InputEmailPublic">Correo electronico</label>
+                                 <input type="email" name="nDoc" class="form-control" id="InputEmailPublic"
+                                    placeholder="Correo">
+                              </div>
 
-                      <div class="form-group">
-                        <label for="InputPasswordPublic">Contraseña</label>
-                        <input type="password" name="pass" class="form-control" id="InputPasswordPublic" placeholder="Contraseña">
-                      </div>
+                              <div class="form-group">
+                                 <label for="InputPasswordPublic">Contraseña</label>
+                                 <input type="password" name="pass" class="form-control" id="InputPasswordPublic"
+                                    placeholder="Contraseña">
+                              </div>
 
 
-                      <div class="">
-                        <label>
-                          <!--
+                              <div class="">
+                                 <label>
+                                    <!--
                           <input type="checkbox"> Recordar mi contraseña
                           -->
-                        </label>
-                      </div>
-                      <input type="submit" name="btnLogin" value="Enviar" class="btn btn-primary btn-lg lets-go form-control">
-                    </form>
-                    </p>
-                  </div><!-- /.side-a -->
-                  <div class="text-muted">
-                    <a href="javascrpit:;" class="alert-100" onclick="credenciales()" style="color : #FF7909 !important;" >Click para ver Credenciales de ingreso</a>
+                                 </label>
+                              </div>
+                              <input type="submit" name="btnLogin" value="Enviar"
+                                 class="btn btn-primary btn-lg lets-go form-control">
+                           </form>
+                           </p>
+                        </div><!-- /.side-a -->
+                        <div class="text-muted">
+                           <a href="javascrpit:;" class="alert-100" onclick="credenciales()"
+                              style="color : #FF7909 !important;">Click para ver Credenciales de ingreso</a>
+                        </div>
+
+
+                     </div>
                   </div>
-
-
-
-
-
-                </div>
-              </div>
-            </div>
-          </div><!-- /.container-fluid -->
-        </div><!-- /.modal-body -->
+               </div>
+            </div><!-- /.container-fluid -->
+         </div><!-- /.modal-body -->
       </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-  <script>
-    function credenciales() {
+   </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+   function credenciales() {
       alert("Administrador \n Correo admin@desarrollador.com \n Contraseña:  admin* \n \n Bodega \n Correo: bodega@desarrollador.com \n Contraseña:  bodega*  \n\n supervisor \n Correo: supervisor@desarrollador.com \n Contraseña: supervisor* \n \n  Ventas \n Correo: ventas@desarrollador.com \n Contraseña: ventas* \n \n Proveedor \n Correo: proveedor@desarrollador.com \n Contraseña: proveedor*  \n \n Cliente \n Correo: cliente@desarrollador.com \n Contraseña: cliente* ");
-    }
-  </script>
+   }
+</script>
 
-  <style>
-    .carc, .card-body {
+<style>
+   .modal-dialog {
+      max-width: 65%;
+      border-radius: 12px;
+   }
+
+   .carc,
+   .card-body {
       border-radius: 10px;
-    }
-    
-    .alert-100 {
-  animation-name: parpadeo;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;}
+   }
 
-@-moz-keyframes parpadeo{  
-  0% { opacity: 1.0; }
-  50% { opacity: 0.0; }
-  100% { opacity: 1.0; }
-}
+   .alert-100 {
+      animation-name: parpadeo;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+   }
 
-@-webkit-keyframes parpadeo {  
-  0% { opacity: 1.0; }
-  50% { opacity: 0.0; }
-   100% { opacity: 1.0; }
-}
+   @-moz-keyframes parpadeo {
+      0% {
+         opacity: 1.0;
+      }
 
-@keyframes parpadeo {  
-  0% { opacity: 1.0; }
-   50% { opacity: 0.0; }
-  100% { opacity: 1.0; }
-}
-  </style>
+      50% {
+         opacity: 0.0;
+      }
+
+      100% {
+         opacity: 1.0;
+      }
+   }
+
+   @-webkit-keyframes parpadeo {
+      0% {
+         opacity: 1.0;
+      }
+
+      50% {
+         opacity: 0.0;
+      }
+
+      100% {
+         opacity: 1.0;
+      }
+   }
+
+   @keyframes parpadeo {
+      0% {
+         opacity: 1.0;
+      }
+
+      50% {
+         opacity: 0.0;
+      }
+
+      100% {
+         opacity: 1.0;
+      }
+   }
+</style>

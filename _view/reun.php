@@ -25,14 +25,14 @@ include_once '../public/body/header.php';
 
             </div>
             <!-- End of Main Content -->
-            <div class="container my-4">
+            <div class="container m-4">
                 <div class="col-md-12 b">
                     <div class="row">
-                        <div class="col-md-4">
-                            <h5><b>Reunion</b></h5>
+                        <div class="col-md-2 ">
+                            <h5><b style="color: #0049E5">Reunión</b></h5>
                         </div>
-                        <div class="col-md-8">
-                            <h5><b>Descripcion</b></h5>
+                        <div class="col-md-8 ml-1 ">
+                            <h5><b style="color: #0049E5">Descripción</b></h5>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ include_once '../public/body/header.php';
                 foreach ($c as $d) {
                 ?>
 
-                    <div class="row">
+                    <div class="container  row">
                         <div class="col-md-2 my-4 ">
                             <span class="my-4">
                                 <b><?= $d[1] ?></b>

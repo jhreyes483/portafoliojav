@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-        <i class="fa fa-bars"></i>
+        <i class="fa fa-bars"  id="fa-bars"></i>
     </button>
     <div class="text-center d-none d-md-inline">
         <a class=" hyper text-primary" type="button" style="display: none;" id="sidebarToggle"><i class="fas fa-align-center" id="ico-cent"></i></a> <br>

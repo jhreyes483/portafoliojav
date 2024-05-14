@@ -34,7 +34,7 @@ include_once '../public/body/header.php';
          <div id="content">
             <?php include '../public/body/navbar.php'; ?>
             <div class="container">
-               <div class="card card-title text-center shadow my-2 col-md-12 ">
+               <div class="card card-title text-center shadow-sm my-2 col-md-12 ">
 
                   <div class=" row">
                      <div class="col-md-12">
@@ -43,7 +43,7 @@ include_once '../public/body/header.php';
                   </div>
                </div>
 
-               <div class="col-md-12 my-4 "  style="margin-top: 20%;">
+               <div class="col-md-12 my-4 " style="margin-top: 20%;">
                   <div class="row my-6" style="margin-top: 8%;">
                      <div class="col-md-3">
                         <form action="" method="post">
@@ -88,10 +88,10 @@ include_once '../public/body/header.php';
                   </div>
                   <div class="card card-body col-md-4 shadow-sm">
                      <form action="backlog.php" method="post">
-                        <a href="logAvance.php" type="button" class="col-md-8 form-control mx-auto p-1 btn-primary" style="text-decoration:none" >Log de tareas</a>
+                        <a href="logAvance.php" type="button" class="col-md-8 form-control mx-auto p-1 btn-primary" style="text-decoration:none">Log de tareas</a>
                      </form>
                   </div>
-        
+
                </div>
             </div>
 
@@ -149,7 +149,7 @@ include_once '../public/body/header.php';
                         $text   = 'Actualizar';
                      }
                ?>
-                     <div class="card card-body col.md-8 mx-auto my-6 shadow" style="margin-top: 3%;">
+                     <div class="card card-body col.md-8 mx-auto my-6 shadow-sm" style="margin-top: 3%;">
                         <div class="box-header width-border d-flex justify-content-between">
                            <div class="btn-group btn-toggle ">
                               <div class="btn btn-sm btn-success" data-toggle="submit" aria-pressed="true" onclick="encender('form<?= $i ?>')">
@@ -201,7 +201,7 @@ include_once '../public/body/header.php';
                ?>
 
                <form method="post">
-                  <div class="card shadow card-body col.md-8 mx-auto my-6" style="margin-top: 3%;">
+                  <div class="card shadow-sm card-body col.md-8 mx-auto my-6" style="margin-top: 3%;">
                      <div class="row">
                         <div class="col-md-6">
                            Requerimiento o Historia de usuario

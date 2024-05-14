@@ -43,8 +43,8 @@
 
     <section class="container-fluid" style="overflow-x: hidden;">
         <div class="text-center mx-auto mt-55 mb-5"><br>
-            <h2 class="h1 sm-h3 fw-bold mt-4">Javier Reyes <br />
-                <span class="text-primary">Desarrollo de software</span>
+            <h2 class="h1 sm-h3 fw-bold mt-4"> <br />
+                <span style="color: #0049E5;" >Desarrollo de software</span>
             </h2>
             <p class="text-muted mt-4">Cel: 3058611616</p>
         </div>
@@ -69,10 +69,10 @@
                         <a class="px-3" 
                         href="javascript:;"  href="javascript:;" onclick=" PopupCenter('https://www.linkedin.com/in/javier-reyes-neira/', 'Hoja-vida', '1200', '700');"
                         >
-                            <i class="fab fa-linkedin fs-2" title="Linked Javier Reyes"></i>
+                            <i class="fab fa-linkedin icons-home mr-1 fs-2" title="Linked Javier Reyes"></i>
                         </a>
                         <a class="px-3" href="javascript:;" onclick=" PopupCenter('https://github.com/jhreyes483', 'Hoja-vida', '1200', '700');">
-                            <i class="fab fa-github icons-home fs-2" title="Developer Github"></i>
+                            <i class="fab fa-github icons-home mr-1 fs-2" title="Developer Github"></i>
                         </a>
          
                     </div>
