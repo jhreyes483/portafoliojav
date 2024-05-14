@@ -24,7 +24,7 @@ public function m_consulta($tipo, $param = []){
 
       case 2: //  proyectos
          $cond = implode( ' ', $param );
-         return 'SELECT * FROM proyectos'
+         return 'SELECT * FROM proyectos WHERE status =1'
          .$cond;
 
       case 3: // peso de un usuario
@@ -59,7 +59,7 @@ public function m_consulta($tipo, $param = []){
 
          case 7: // consulta de calendario
             $cond = implode(' ', $param );
-            return 'SELECT * FROM reuniones '.$cond;
+            return 'SELECT * FROM reuniones WHERE fk_us =1';
             break;
          case 8: // select de tipo
             return 'SELECT * FROM tipo_reunion';

@@ -1,9 +1,10 @@
 <!-- nav -->
 <script src="<?= RUTAS_APP['ruta_js'] ?>reloj01.js"></script>
 <?php
+   require_once APP_LIBS. 'modal-login.phtml';
 //@session_start();
 if(!isset($_SESSION['usuario'])){
-    require_once APP_LIBS. 'modal-login.phtml';
+ 
 }   
 function menuIndex($js = 1, $login = 1){
 ?>

@@ -4,3 +4,21 @@
 [2021-11-17 22:59:56] [E_WARNING: Undefined array key "user"] [IN FILE C:\xampp\htdocs\sporthealth\_views\nutricion\creaPlan.phtml] [LINE 28]
 [2021-11-17 22:59:56] [E_WARNING: Undefined array key "user"] [IN FILE C:\xampp\htdocs\sporthealth\_views\nutricion\creaPlan.phtml] [LINE 28]
 [2021-11-17 22:59:56] [E_WARNING: Undefined array key "user"] [IN FILE C:\xampp\htdocs\sporthealth\_views\nutricion\creaPlan.phtml] [LINE 28]
+[2023-12-09 21:22:54] [E_WARNING: Undefined variable $isset] [IN FILE /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/_views/nutricion/asignaPlan.phtml] [LINE 84]
+[2023-12-09 21:22:54] [E_ERROR: Uncaught Error: Value of type null is not callable in /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/_views/nutricion/asignaPlan.phtml:84
+Stack trace:
+#0 /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/application/View.php(83): include_once()
+#1 /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/_controllers/nutricionController.php(61): View->renderizar()
+#2 /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/application/Bootstrap.php(34): nutricionController->asignaPlan()
+#3 /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/index.php(32): c_navegacion::run()
+#4 {main}
+  thrown] [IN FILE /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/_views/nutricion/asignaPlan.phtml] [LINE 84]
+[2023-12-09 21:23:47] [E_WARNING: Undefined variable $isset] [IN FILE /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/_views/nutricion/asignaPlan.phtml] [LINE 84]
+[2023-12-09 21:23:47] [E_ERROR: Uncaught Error: Value of type null is not callable in /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/_views/nutricion/asignaPlan.phtml:84
+Stack trace:
+#0 /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/application/View.php(83): include_once()
+#1 /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/_controllers/nutricionController.php(61): View->renderizar()
+#2 /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/application/Bootstrap.php(34): nutricionController->asignaPlan()
+#3 /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/index.php(32): c_navegacion::run()
+#4 {main}
+  thrown] [IN FILE /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/_views/nutricion/asignaPlan.phtml] [LINE 84]

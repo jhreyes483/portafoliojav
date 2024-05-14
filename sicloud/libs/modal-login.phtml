@@ -1,8 +1,8 @@
   <!-- SIGN IN MODAL -->
   <?php
-// require_once(ROOT . 'libs/email/index.php');
+  // require_once(ROOT . 'libs/email/index.php');
   ?>
-  
+
   <div class="modal fade agol-signin" id="signin" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -26,12 +26,12 @@
               </div><!-- /.col-* -->
 
               <div class="col-md-6">
-                <div class="card trans" aria-live="polite">
+                <div class="card card-body trans" aria-live="polite">
 
                   <!-- PUBLIC SIGN IN -->
-                 
+
                   <div class="my-4 side-a p-2">
-                    <h3>Inicio sesion</h3>
+                    <h3 class="text-center">Login</h3>
                     <br>
                     <form action="<?= BASE_URL ?>index/ingreso" method="POST">
                       <label class="my-2" for="">Documento</label>
@@ -55,7 +55,7 @@
 
                       <div class="">
                         <label>
-                        <!--
+                          <!--
                           <input type="checkbox"> Recordar mi contraseña
                           -->
                         </label>
@@ -65,9 +65,9 @@
                     </p>
                   </div><!-- /.side-a -->
                   <div class="text-muted">
-                  <a href="javascrpit:;" onclick="credenciales()">Ver Credenciales de ingreso</a>
+                    <a href="javascrpit:;" class="alert-100" onclick="credenciales()" style="color : #FF7909 !important;" >Click para ver Credenciales de ingreso</a>
                   </div>
-                
+
 
 
 
@@ -81,8 +81,37 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
   <script>
-
-    function credenciales(){
+    function credenciales() {
       alert("Administrador \n Correo admin@desarrollador.com \n Contraseña:  admin* \n \n Bodega \n Correo: bodega@desarrollador.com \n Contraseña:  bodega*  \n\n supervisor \n Correo: supervisor@desarrollador.com \n Contraseña: supervisor* \n \n  Ventas \n Correo: ventas@desarrollador.com \n Contraseña: ventas* \n \n Proveedor \n Correo: proveedor@desarrollador.com \n Contraseña: proveedor*  \n \n Cliente \n Correo: cliente@desarrollador.com \n Contraseña: cliente* ");
     }
   </script>
+
+  <style>
+    .carc, .card-body {
+      border-radius: 10px;
+    }
+    
+    .alert-100 {
+  animation-name: parpadeo;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;}
+
+@-moz-keyframes parpadeo{  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes parpadeo {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+   100% { opacity: 1.0; }
+}
+
+@keyframes parpadeo {  
+  0% { opacity: 1.0; }
+   50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+  </style>

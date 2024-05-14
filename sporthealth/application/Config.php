@@ -6,7 +6,8 @@ define("imgUsuario", "UserSinImagen.jpg");
 define("imgProducto", "ProductoSinImagen.png");
 
 //controlador por defecto de nuestra aplicacion
-define('BASE_URL', 'https://portafoliojav.herokuapp.com/sporthealth/');  
+
+define('BASE_URL', 'https://solucionesintegralesmallorca.com/portafoliojav/sporthealth/'); 
 //define('BASE_URL', 'http://localhost/portafoliojav/sporthealth/');  
 
 //define('BASE_URL', 'http://localhost/sporthealth/');  

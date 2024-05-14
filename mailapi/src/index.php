@@ -10,17 +10,58 @@ include_once './class/logC/ErrorHandler.php';
 include_once './class/logC/c_log.php';
 $log = new Log( '../logs/apiMail.log');
 
-if(isset($_POST)) $log->m_escribeLineaParams('Petición POST', $_POST);
-if(isset($_GET['default']))  $log->m_escribeLinea('Petición GET', 'Default');
+if(isset($_POST)) $log->m_escribeLineaParams('Peticiï¿½n POST', $_POST);
+if(isset($_GET['default']))  $log->m_escribeLinea('Peticiï¿½n GET', 'Default');
 $log->m_cerrar();
 
 if(isset($_GET['default'])){
+
+   // die('aca 1');
    $_POST['asunto']      = 'Restablecer contrasena dd';
    $_POST['body']			 = 'Cordial saludo <br><br> Solicito cambio - 000001 de contrsena para el Sistema sicloud';
    $_POST['format']      = 'json';
    $_POST['mailEnvio']   = 'jhreyes483@misena.edu.co';
    $_POST['titulo']      = 'Sicloud';
    $_POST['remitente']   = 'Sicloud api';
+   
+   
+    $remitente        = ($mailRemitente ?? 'sicloud.sistem@gmail.com');
+
+   $host             = ($host          ?? 'smtp.gmail.com');
+
+   $puerto           = ($puerto        ??  587 );
+
+   $password         = ($password      ?? 'diwxdiplirhzlnoy');
+   $protocolo        = ( $_POST['protocolo'] ?? 'tls');
+      echo '<pre>';
+echo print_r($mail->SMTPDebug  = 0);
+echo '<pre>';
+
+   $mail->SMTPDebug  = 0;
+    die('aca');
+   $mail->Host       = $host;
+   $mail->Port       = $puerto;
+   $mail->SMTPSecure = $protocolo;
+   $mail->SMTPAuth   = true;
+           
+   $mail->Username   = $remitente;
+           
+   $mail->Password   = $password;
+
+   $mail->setFrom(   $remitente, $titulo);
+   $mail->addAddress($mailEnvio , $asunto);
+   $mail->Subject    = $remitente;
+    
+   $mail->Body       = $body;
+   $mail->CharSet    = 'UTF-8'; // Con esto ya funcionan los acentos
+   $mail->IsHTML(true);
+
+   echo '<pre>';
+echo print_r($_POST);
+echo '<pre>';
+   
+   echo $mail->send();
+   die('aca');
 }
    
 //if(!isset($_POST['envia'])){
@@ -35,10 +76,16 @@ if(isset($_GET['default'])){
 $_POST['mailRemitente'] = correo del que va salir el mensaje "debe estar configurado"
 $_POST['host']          = cada servidor de correo tiene un host diferente 
 $_POST['puerto']        = puerto
-$_POST['password']      = contraseña de  mailRemitemnte
+$_POST['password']      = contraseï¿½a de  mailRemitemnte
+*/
+/*
+echo '<pre>';
+echo print_r($_POST);
+echo '<pre>';
 */
 
-if(isset($_POST['enviar'])){
+if(isset($_POST['enviar']) && !isset($_GET['default'])){
+
    if((!isset($_POST['asunto']))    || $_POST['asunto']    == ''){ $status  ='error'; $msg = 'No envio mensaje: Campo asunto vacio';         }       
    if((!isset($_POST['body']))      || $_POST['body']      == ''){ $status = 'error'; $msg = 'No envio mensaje: Campo del mensaje vacio';    }  
    if((!isset($_POST['mailEnvio'])) || $_POST['mailEnvio'] == ''){ $status = 'error'; $msg = 'No envio mensaje: Campo Correo a enviar vacio';} 

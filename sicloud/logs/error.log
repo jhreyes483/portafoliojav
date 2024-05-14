@@ -1,1 +1,3 @@
 Errores de sistema
+[2023-12-10 06:12:25] [E_WARNING: Undefined array key 0] [IN FILE /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sicloud/_views/factura/index.phtml] [LINE 220]
+[2023-12-10 06:12:25] [E_WARNING: Trying to access array offset on value of type null] [IN FILE /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sicloud/_views/factura/index.phtml] [LINE 220]

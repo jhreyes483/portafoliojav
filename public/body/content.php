@@ -46,7 +46,7 @@
             <h2 class="h1 sm-h3 fw-bold mt-4">Javier Reyes <br />
                 <span class="text-primary">Desarrollo de software</span>
             </h2>
-            <p class="text-muted mt-4">Cel: 3057331744</p>
+            <p class="text-muted mt-4">Cel: 3058611616</p>
         </div>
         <div class="container">
             <!-- Item -->
@@ -91,7 +91,7 @@
                 </figure>
                 <div class="col-md-7">
                     <h3 class="fs-3 fw-bold text-center text-sm-start">
-                        Tecnologias recientes PHP, JS, MYSQL
+                        Tecnologias recientes PHP,LARAVEL, MYSQL, JS, VUE, ANGULAR
                         <br />
                         <span class="text-primary">
                             Combinación completa de tecnologías

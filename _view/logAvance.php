@@ -2,6 +2,7 @@
 //require_once '_controller/logactivController.php';
 
 include_once '../autoload.php';
+
 use _controller\logactivController;
 
 $obj = new logactivController;
@@ -22,8 +23,8 @@ include_once '../public/body/header.php';
             <!-- CONTENIDO PRINCIPAL-->
             <div class="container">
                <form method="post">
-                  <div class="col-md-10 mx-auto text-center " id="form">
-                     <div class=" row col-md-12 for-group shadow" style="margin-top: 5%;">
+                  <div class="col-md-10 mx-auto text-center shadow-sm card card-body" id="form">
+                     <div class=" row col-md-12">
                         <div class="col-md-6 my-2 mx-auto">
                            <div>
                               <label for="fIA">Fecha inicial</label>
@@ -69,56 +70,56 @@ include_once '../public/body/header.php';
 
                <div class="table-responsive">
 
-               <table class=" mx-auto my-4 table table-bordered table-hover bg-white table-striped table-sm">
-                  <thead>
-                     <th>Actividad</th>
-                     <th>Inicio</th>
-                     <th>Fin</th>
-                     <th>Usuario</th>
-                     <th>Tipo</th>
-                     <th>Tiempo de actividad</th>
-                  </thead>
-                  <tbody>
+                  <table class=" mx-auto my-4 table table-bordered table-hover bg-white table-striped table-sm">
+                     <thead>
+                        <th>Actividad</th>
+                        <th>Inicio</th>
+                        <th>Fin</th>
+                        <th>Usuario</th>
+                        <th>Tipo</th>
+                        <th>Tiempo de actividad</th>
+                     </thead>
+                     <tbody>
 
-                     <?php
-                     if ($c['data']['response_status'] == 'ok') {
-                        foreach ($c['data']['response_msg'] as $d) {
-                     ?>
-                           <tr>
-                              <td><?= $d[2] ?></td>
-                              <td><?= $d[0] ?></td>
-                              <td><?= $d[1] ?></td>
-                              <td><?= $c['user'][$d[3]] ?></td>
-                              <td><?= $c['tipo'][$d[30]] ?></td>
-                              <td><?= $d[22] ?></td>
-                           </tr>
                         <?php
-                        }
-                     }
-                     if(isset($c['total'])){
-                     foreach ($c['total']  as $i => $d) {
+                        if ($c['data']['response_status'] == 'ok') {
+                           foreach ($c['data']['response_msg'] as $d) {
                         ?>
-                        <tr>
-                           <td> <b>Total de todas las actividades</b> </td>
-                           <td>Usuario asig.</td>
-                           <td><?= $c['user'][$i] ?></td>
+                              <tr>
+                                 <td><?= $d[2] ?></td>
+                                 <td><?= $d[0] ?></td>
+                                 <td><?= $d[1] ?></td>
+                                 <td><?= $c['user'][$d[3]] ?></td>
+                                 <td><?= $c['tipo'][$d[30]] ?></td>
+                                 <td><?= $d[22] ?></td>
+                              </tr>
+                           <?php
+                           }
+                        }
+                        if (isset($c['total'])) {
+                           foreach ($c['total']  as $i => $d) {
+                           ?>
+                              <tr>
+                                 <td> <b>Total de todas las actividades</b> </td>
+                                 <td>Usuario asig.</td>
+                                 <td><?= $c['user'][$i] ?></td>
 
-                           <td></td>
-                           <td>Proyecto</td>
-                           <td>
-                              <?php
-                              foreach ($c['total'][$i]  as $k  => $v) {
-                                 echo '<b>' . $k . '</b> ' . $c['total'][$i][$k]['p'] . '<br>';
-                              }
-                              ?>
-                           </td>
-                        </tr>
-                     <?php
-                     }
-                  }
-                     ?>
-                  </tbody>
-               </table>
+                                 <td></td>
+                                 <td>Proyecto</td>
+                                 <td>
+                                    <?php
+                                    foreach ($c['total'][$i]  as $k  => $v) {
+                                       echo '<b>' . $k . '</b> ' . $c['total'][$i][$k]['p'] . '<br>';
+                                    }
+                                    ?>
+                                 </td>
+                              </tr>
+                        <?php
+                           }
+                        }
+                        ?>
+                     </tbody>
+                  </table>
 
                </div>
 

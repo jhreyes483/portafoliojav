@@ -1,7 +1,9 @@
 <?php
+
 namespace _view;
 
 require_once '../autoload.php';
+
 use _controller\indexController;
 
 //require_once '_controller/indexController.php';
@@ -11,17 +13,17 @@ include_once '../public/body/header.php';
 ?>
 
 
-   <!-- Custom fonts for this template-->
-   <link href="../public/css/searchstyle.css" rel="stylesheet">
+<!-- Custom fonts for this template-->
+<link href="../public/css/searchstyle.css" rel="stylesheet">
 
- 
-   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-   <link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
-   <script src="../public/js/fontawasome-ico.js"></script>
-   <script src="../public/js/jquery-3.5.1.min.js"></script>
-   <script src="../public/js/searchmain.js"></script>
 
-   <!-- Custom styles for this template-->
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
+<script src="../public/js/fontawasome-ico.js"></script>
+<script src="../public/js/jquery-3.5.1.min.js"></script>
+<script src="../public/js/searchmain.js"></script>
+
+<!-- Custom styles for this template-->
 
 </head>
 
@@ -41,7 +43,7 @@ include_once '../public/body/header.php';
                   </div>
                </div>
 
-               <div class="col-md-12 my-4" style="margin-top: 20%;">
+               <div class="col-md-12 my-4 "  style="margin-top: 20%;">
                   <div class="row my-6" style="margin-top: 8%;">
                      <div class="col-md-3">
                         <form action="" method="post">
@@ -70,33 +72,36 @@ include_once '../public/body/header.php';
             </div>
 
             <!-- menu de documentos -->
-            <div class="  col-md-8 mx-auto text-center " id="menuDoc" style="display: none;">
-               <div class=" row col-md-12 mx-auto shadow" style="margin-top: 5%;">
-                  <div class="card card-body col-md-4 shadow ">
+            <div class="  col-md-8 mx-auto text-center justify-content-center" id="menuDoc" style="display: none;">
+               <div class=" row col-md-12" style="margin-top: 5%;">
+                  <div class="card card-body col-md-4 shadow-sm ">
                      <form action="tareas.php" method="post">
                         <input type="hidden" name="id_proyecto" value="<?= $_REQUEST['id_proyecto'] ?>">
                         <button type="submit" value="consulta" id="togleDoc" class="col-md-8 form-control mx-auto  btn-primary">product-backlog</button>
                      </form>
                   </div>
-                  <div class="card card-body col-md-4 shadow">
+                  <div class="card card-body col-md-4 shadow-sm">
                      <form action="backlog.php" method="post">
                         <input type="hidden" name="id_proyecto" value="<?= $_REQUEST['id_proyecto'] ?>">
                         <button type="submit" value="consulta" id="togleDoc" class="col-md-8 form-control mx-auto  btn-primary">sprint-backlog</button>
                      </form>
                   </div>
-                  <div class="card card-body col-md-4 shadow">
-                     <button href="logAvance.php"  type="button" class="col-md-8 form-control mx-auto  btn-primary" >Log de tareas</button>
+                  <div class="card card-body col-md-4 shadow-sm">
+                     <form action="backlog.php" method="post">
+                        <a href="logAvance.php" type="button" class="col-md-8 form-control mx-auto p-1 btn-primary" style="text-decoration:none" >Log de tareas</a>
+                     </form>
                   </div>
+        
                </div>
             </div>
 
             <!-- Busqueda avanzada -->
             <form method="post">
-               <div class="  col-md-8 mx-auto text-center " id="form" style="display: none;">
-                  <div class=" row col-md-12 mx-auto shadow" style="margin-top: 5%;">
-                     <div class="card card-body col-md-4 shadow ">
+               <div class="  col-md-8 mx-auto text-center justify-content-center" id="form" style="display: none;">
+                  <div class=" row col-md-12 p-2 justify-content-center" style="margin-top: 5%;">
+                     <div class="card card-body col-md-3 m-1 shadow-sm ">
                         <h6>Estado</h6>
-                        <div class="card card-body mx-auto col-10 my-2 shadow border">
+                        <div class="">
                            <select name="status" id="" class="form-control">
                               <?php
                               foreach (['' => 'Sin filtro', 'P' => 'Pendiente', 'A' => 'Aprobado'] as $k => $v) {
@@ -108,18 +113,18 @@ include_once '../public/body/header.php';
 
                         </div>
                      </div>
-                     <div class="card card-body col-md-4 shadow">
+                     <div class="card card-body col-md-3 m-1 shadow-sm">
                         <h6>Periodo Actualizacion</h6>
-                        <div class="card card-body mx-auto col-10 my-2 shadow border">
+                        <div class="">
                            Fecha inicial
                            <input type="date" name="fIA" value="" class="form-control">
                            Fecha final
                            <input type="date" name="fFA" value="" class="form-control">
                         </div>
                      </div>
-                     <div class="card card-body col-md-4 shadow">
+                     <div class="card card-body col-md-3 m-1 shadow-sm">
                         <h6>Periodo Creacion</h6>
-                        <div class="card card-body mx-auto col-10 my-2 shadow border">
+                        <div class="">
                            Fecha inicial
                            <input type="date" name="fIC" class="form-control">
                            Fecha final

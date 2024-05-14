@@ -1,1 +1,2 @@
 LOG ERRORES 
+[2023-12-09 15:26:26] [E_WARNING: Undefined variable $mail] [IN FILE /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/mailapi/src/index.php] [LINE 37]

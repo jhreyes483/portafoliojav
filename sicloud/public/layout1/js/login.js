@@ -8,8 +8,8 @@ $(document).ready(function () {
   var textoVideo = $(".texto-video");
   //--------------------------------------------------------------
   // Añade clase de animacion a texto antes de cargar el DOM
-  textoVideo.addClass("animate__animated");
-  textoVideo.addClass("animate__backInUp", 20000);
+  //textoVideo.addClass("animate__animated");
+  //textoVideo.addClass("animate__backInUp", 20000);
  
 
   //--------------------------------------------------------------------- 
@@ -55,9 +55,9 @@ $(document).ready(function () {
 
     //--------------------------------------------------------------------
     // ejecuta las animaciones con un intervalo de tiempo
-    setTimeout(actualzarTexto1, (10000 / 3));
-    setTimeout(actualzarTexto2, (20000 / 3));
-    setTimeout(actualzarTexto3, (30000 / 3));
+   // setTimeout(actualzarTexto1, (10000 / 3));
+   // setTimeout(actualzarTexto2, (20000 / 3));
+   // setTimeout(actualzarTexto3, (30000 / 3));
     //-----------------------------------------------------------------
   });
 

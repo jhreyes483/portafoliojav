@@ -10,7 +10,7 @@ define("Debug", false);
 
 //controlador por defecto de nuestra aplicacion
 //define('BASE_URL', 'https://localhost/jfa/sicloud/'); 
-define('BASE_URL', 'https://portafoliojav.herokuapp.com/sicloud/');  
+define('BASE_URL', 'https://solucionesintegralesmallorca.com/portafoliojav/sicloud/');    
 ///define('BASE_URL', 'https://localhost/portafoliojav/sicloud/');
 define('DEFAULT_CONTROLLER', 'index');
 define('DEFAULT_LAYOUT', 'layout1');

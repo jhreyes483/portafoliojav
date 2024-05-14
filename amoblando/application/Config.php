@@ -8,7 +8,8 @@ define("imgProducto", "ProductoSinImagen.png");
 
 
 //controlador por defecto de nuestra aplicacion
-define('BASE_URL', 'https://portafoliojav.herokuapp.com/amoblando/');  
+//define('BASE_URL', 'https://portafoliojav.herokuapp.com/amoblando/');  
+define('BASE_URL', 'https://solucionesintegralesmallorca.com/portafoliojav/amoblando/'); 
 // https://localhost/jfa/sicloud/
 //define('BASE_URL', 'https://localhost/portafoliojav/amoblando/');
 define('DEFAULT_CONTROLLER', 'index');

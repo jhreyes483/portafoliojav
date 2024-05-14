@@ -1,4 +1,3 @@
-
 <!doctype html>
 <!--
 	Fox by FreeHTML5.co
@@ -7,102 +6,130 @@
 	URL: https://freehtml5.co
 -->
 <html lang="en">
+
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Sporthealth</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sporthealth</title>
 
-  <!-- Bootstrap CSS -->
- 
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
- 
- <!-- Bootstrap CSS -->
-    <!-- CSS personalizado --> 
+    <!-- Bootstrap CSS -->
 
-      
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <!-- CSS personalizado -->
+
+
     <!--datables CSS b�sico-->
-    <link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
-    <!--datables estilo bootstrap 4 CSS-->  
-    <link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-           
-    <!--font awesome con CDN-->  
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="datatables/datatables.min.css" />
+    <!--datables estilo bootstrap 4 CSS-->
+    <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+
+    <!--font awesome con CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
+
 <body style="background: rgb(0,0,0);
 background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(61,59,55,1) 35%);">
 
 
-  <div class="container mb-5" style="margin-top: 10%;">
+    <div class="container mb-5" style="margin-top: 10%;">
         <div class="row">
-        <div class="background-wrap">
-  <div class="background"></div>
-</div>
+            <div class="background-wrap">
+                <div class="background"></div>
+            </div>
 
-<form id="accesspanel" action="login" method="post">
-  <h1 id="litheader">Sporthealth</h1>
-  <div class="inset">
- 
-    <p>
-      <input type="text" name="id_us" id="email" placeholder="Identificación">
-    </p>
-    <p>
-      <input type="password" name="password" id="password" placeholder="Contraseña">
-    </p>
-    <div style="text-align: center;">
-      <div class="checkboxouter">
-        <input type="checkbox" name="rememberme" id="remember" value="Remember">
-        <label class="checkbox"></label>
-      </div>
-      <label for="remember">Recordar contraseña</label>
+            <form id="accesspanel" action="login" method="post">
+                <h1 id="litheader">Sporthealth</h1>
+                <div class="inset">
+
+                    <p>
+                        <input type="text" name="id_us" id="email" placeholder="Identificación">
+                    </p>
+                    <p>
+                        <input type="password" name="password" id="password" placeholder="Contraseña">
+                    </p>
+                    <div style="text-align: center;">
+                        <div class="checkboxouter">
+                            <input type="checkbox" name="rememberme" id="remember" value="Remember">
+                            <label class="checkbox"></label>
+                        </div>
+                        <label for="remember">Recordar contraseña</label>
+                    </div>
+                    <input class="loginLoginValue" type="hidden" name="service" value="login" />
+                </div>
+                <p class="p-container">
+                    <input type="submit" name="Login" id="go" value="Iniciar Sesion">
+
+                </p>
+                <a href="javascrpit:;" class="alert-100 p-container" onclick="credenciales()"
+                style="color : #FF7909 !important;  margin: 8px !important;">Click para ver Credenciales de ingreso</a>
+            </form>
+        </div>
     </div>
-    <input class="loginLoginValue" type="hidden" name="service" value="login" />
-  </div>
-  <p class="p-container">
-    <input type="submit" name="Login" id="go" value="Iniciar Sesion">
-  <label for=""><a href="javascript:;" style="color:aliceblue" onclick="credenciales()">Ceredenciales</a></label>
-  </p>
-</form>
-        </div>  
-    </div>    
 
 
     <script>
 
-$(document).ready(function() {
+        $(document).ready(function () {
 
-var state = false;
+            var state = false;
 
-//$("input:text:visible:first").focus();
+            //$("input:text:visible:first").focus();
 
-$('#accesspanel').on('submit', function(e) {
+            $('#accesspanel').on('submit', function (e) {
 
-    e.preventDefault();
+                e.preventDefault();
 
-    state = !state;
+                state = !state;
 
-    if (state) {
-        document.getElementById("litheader").className = "poweron";
-        document.getElementById("go").className = "";
-        document.getElementById("go").value = "Initializing...";
-    }else{
-        document.getElementById("litheader").className = "";
-        document.getElementById("go").className = "denied";
-        document.getElementById("go").value = "Access Denied";
-    }
+                if (state) {
+                    document.getElementById("litheader").className = "poweron";
+                    document.getElementById("go").className = "";
+                    document.getElementById("go").value = "Initializing...";
+                } else {
+                    document.getElementById("litheader").className = "";
+                    document.getElementById("go").className = "denied";
+                    document.getElementById("go").value = "Access Denied";
+                }
 
-});
+            });
 
-});
+        });
+
+        function credenciales() {
+            alert("Doctor \n Documento:  1 \n Contraseña: doctor*");
+        }
     </script>
+    <style>
 
-<!-- Optional JavaScript --> 
-<!-- jQuery first, then Bootstrap JS, ... -->
+        body{
+            font-style: 14px !important;
+        }
+
+        @-moz-keyframes parpadeo{
+        0% { opacity: 1.0; }
+        50% { opacity: 0.0; }
+        100% { opacity: 1.0; }
+        }
+
+        @-webkit-keyframes parpadeo {
+        0% { opacity: 1.0; }
+        50% { opacity: 0.0; }
+        100% { opacity: 1.0; }
+        }
+
+        @keyframes parpadeo {
+        0% { opacity: 1.0; }
+        50% { opacity: 0.0; }
+        100% { opacity: 1.0; }
+        }
+    </style>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Bootstrap JS, ... -->
 
 </body>
+
 </html>
-<script>
-   function credenciales(){
-      alert("Doctor \n Documento:  1 \n Contraseña: doctor*");
-    }
-</script>

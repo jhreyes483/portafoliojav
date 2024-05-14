@@ -29,3 +29,8 @@ a:hover {
    background: #007bff;
    transition: width .3s;
 }
+
+.card-body, .card-body, .card-title{
+   border-radius: 12px !important;
+}
+
