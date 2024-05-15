@@ -58,14 +58,14 @@ include_once '../public/body/header.php';
                      </div>
                      <div class="col-md-3">
                         <form action="" method="post">
-                           <button type="submit" name="todos" class="col-md-8 form-control mx-auto btn-primary">Todos</button>
+                           <button type="submit" name="todos" class="my-1 col-md-8 form-control mx-auto btn-primary">Todos</button>
                         </form>
                      </div>
                      <div class="col-md-3">
-                        <button type="button" value="consulta" id="toggle" class="  col-md-8 form-control mx-auto  btn-primary">Busqueda avanzada</button>
+                        <button type="button" value="consulta" id="toggle" class="my-1 col-md-8 form-control mx-auto  btn-primary">Busqueda avanzada</button>
                      </div>
                      <div class="col-md-3">
-                        <button type="button" value="consulta" id="togleDoc" class="  col-md-8 form-control mx-auto  btn-primary">Documentos</button>
+                        <button type="button" value="consulta" id="togleDoc" class="my-1 col-md-8 form-control mx-auto  btn-primary">Documentos</button>
                      </div>
                   </div>
                </div>
