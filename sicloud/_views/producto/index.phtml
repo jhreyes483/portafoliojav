@@ -3,6 +3,7 @@
         'packages': ['bar']
     });
     google.charts.setOnLoadCallback(drawChart);
+
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
             ['Nombre', 'Cantidad'],
@@ -17,7 +18,7 @@
         var options = {
             chart: {
                 title: '',
-                subtitle: ' <?= ((isset($_POST['accion']) && $_POST['accion'] == 'filtroCategoria')? 'Productos de categiria '.$this->categoria[ $_POST['p']] :'Todos los productos') ?> ',
+                subtitle: ' <?= ((isset($_POST['accion']) && $_POST['accion'] == 'filtroCategoria') ? 'Productos de categiria ' . $this->categoria[$_POST['p']] : 'Todos los productos') ?> ',
             }
         };
         var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
@@ -25,7 +26,7 @@
     }
 </script>
 
-
+<div class="container-fluid">
 <?php
 
 foreach ($this->datos['response_msg']  as $d) $p[$d[6]][] = $d[2] . '||' . $d[4];
@@ -53,22 +54,22 @@ if (isset($_SESSION['message'])) {
 ?>
 <div class="container-fluid">
     <div class="row">
-    <div class="col-md-6">
+        <div class="col-md-6">
             <form action="" method="post">
                 <input type="submit" class="btn btn-primary" value="todos">
                 <input type="hidden" name="accion" value="todos">
             </form>
         </div>
-        <div class="col-md-6  "> 
+        <div class="col-md-6  ">
             <form action="" method="post">
-            <label for="c"></label>
-                <select name="p" id="c"   style="margin-left: 77%" class="col-md-3 form-control" onchange="submit(this)">
-<?php
- echo  '<option  selected value="">Categorí­a</option>';
-foreach ($this->categoria as $i => $c) {
-    echo  '<option  '.( isset($_POST['p']) && ($i == $_POST['p'] )? ' selected ': '').' value="' . $i . '">' . $c . '</option>';
-}
-?>
+                <label for="c"></label>
+                <select name="p" id="c" style="margin-left: 77%" class="col-md-3 form-control" onchange="submit(this)">
+                    <?php
+                    echo  '<option  selected value="">Categorí­a</option>';
+                    foreach ($this->categoria as $i => $c) {
+                        echo  '<option  ' . (isset($_POST['p']) && ($i == $_POST['p']) ? ' selected ' : '') . ' value="' . $i . '">' . $c . '</option>';
+                    }
+                    ?>
                 </select>
                 <input type="hidden" name="accion" value="filtroCategoria">
             </form>
@@ -168,18 +169,18 @@ if ($this->datos['response_status']  == 'ok') {
         <!-- Project Card -->
         <div class="card shadow mb-4">
             <div class="card-header py-3 shadow p-3 mb-5 bg-white">
-            <div class="container-fluid">
-            <div class="row text-center">
-                <div class="col-md-4">
-                <h6 class=" text-primary"><?= count($this->datos['response_msg']).' tipos de producto' ?></h6>
+                <div class="container-fluid">
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <h6 class=" text-primary"><?= count($this->datos['response_msg']) . ' tipos de producto' ?></h6>
 
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="m-0  text-primary"><?= (isset($_GET['edit']) ? '<a href="' . BASE_URL . 'producto/create' . '" class="btn btn-primary">Crear producto</a>' : '') ?></h6>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                <h6 class="m-0  text-primary"><?= (isset($_GET['edit'])? '<a href="'.BASE_URL.'producto/create'.'" class="btn btn-primary">Crear producto</a>':'' ) ?></h6>
-                </div>
-                <div class="col-md-4"></div>
-            </div>
-            </div>   
 
             </div>
             <div class="card-body">
@@ -223,3 +224,4 @@ if ($this->datos['response_status']  == 'ok') {
 }
 
 ?>
+</div>

@@ -155,10 +155,11 @@ class Controller
     return $ipaddress;
   }
 
+
   public function createLog($typeId, $model, $db): array
   {
     $ip        = $this->getPublicIp();
-    //$ip = '186.155.33.182';
+    // $ip = '186.155.33.182';
     if (!$ip || $ip == 'UNKNOWN') {
       return ['code' => 404, 'status' => false, 'msg' => 'Ip no encontrada'];
     }
@@ -170,6 +171,7 @@ class Controller
     if (isset($location) && !count($location)) {
       return ['code' => 404, 'status' => false, 'msg' => 'Localizacion no encontrada'];
     }
+    date_default_timezone_set('America/Bogota');
 
 
     $sql      = $model->m_consulta(20, ['WHERE countryCode = "' . $location['countryCode'] . '"']);
@@ -226,4 +228,5 @@ class Controller
     $b   = $db->m_ejecuta($sql);
     return ['code' => 200, 'status' => true, 'msg' => 'se creo el log con id '];
   }
+
 }

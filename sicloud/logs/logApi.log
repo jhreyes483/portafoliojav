@@ -10,3 +10,7 @@ LOG DE PETICIONES API REST
 [P. GET][2023-12-25 10:59:25]: | k:url->api/ | k:apicall->selectUsuarioFactura | k:_->1702310364391 |
 
 [P. GET][2024-01-33 20:14:33]: | k:url->api/ | k:apicall->selectUsuarioFactura | k:_->1705367672459 |
+
+[P. GET][2024-05-18 22:24:18]: | k:url->api/ | k:apicall->selectUsuarioFactura | k:_->1715743457870 |
+
+[P. GET][2024-05-46 22:29:46]: | k:url->api/ | k:apicall->selectUsuarioFactura | k:_->1715743785600 |
