@@ -55,7 +55,7 @@ $r =   $obj->data();
       <!-- Nav Item - Pages Collapse Menu -->
 
       <li class="nav-item">
-         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#agenda" aria-expanded="true" aria-controls="agenda" >
+         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#agenda" aria-expanded="true" aria-controls="agenda">
             <i class="fas fa-user-friends"></i>
             <span>REUNIONES</span>
          </a>
@@ -115,21 +115,23 @@ $r =   $obj->data();
          </a>
          <div id="requer" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" style="z-index : 100;">
             <div class="bg-white py-2 collapse-inner rounded">
-               <h6 class="collapse-header">SICLOUD:</h6>
+               <h6 class="collapse-header"></h6>
                <?php
                foreach ($r['proyectos'] as $d) {
+                  if ($d[9]) {
                ?>
-                  <p>
-                     <span class="collapse-item"><?= $d[8] ?></span>
-                     <a href="./requer.php?id_proyecto=<?= $d[0] ?>&a=requer" class="collapse-item">
-                        ver requerimientos
-                        <i class="far fa-eye"></i>
-                     </a>
-                     <input type="hidden" name="id_proyecto" value="<?= $d[0] ?>">
-                     <input type="hidden" name="a" value="requer">
-                  </p>
+                     <p>
+                        <span class="collapse-item"><?= $d[8] ?></span>
+                        <a href="./requer.php?id_proyecto=<?= $d[0] ?>&a=requer" class="collapse-item">
+                           ver requerimientos
+                           <i class="far fa-eye"></i>
+                        </a>
+                        <input type="hidden" name="id_proyecto" value="<?= $d[0] ?>">
+                        <input type="hidden" name="a" value="requer">
+                     </p>
 
                <?php
+                  }
                }
                ?>
             </div>
@@ -139,28 +141,52 @@ $r =   $obj->data();
 </ul>
 
 <style>
-.alert-100 {
-  animation-name: parpadeo;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;}
+   .alert-100 {
+      animation-name: parpadeo;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+   }
 
-@-moz-keyframes parpadeo{  
-  0% { opacity: 1.0; }
-  50% { opacity: 0.0; }
-  100% { opacity: 1.0; }
-}
+   @-moz-keyframes parpadeo {
+      0% {
+         opacity: 1.0;
+      }
 
-@-webkit-keyframes parpadeo {  
-  0% { opacity: 1.0; }
-  50% { opacity: 0.0; }
-   100% { opacity: 1.0; }
-}
+      50% {
+         opacity: 0.0;
+      }
 
-@keyframes parpadeo {  
-  0% { opacity: 1.0; }
-   50% { opacity: 0.0; }
-  100% { opacity: 1.0; }
-}
+      100% {
+         opacity: 1.0;
+      }
+   }
 
+   @-webkit-keyframes parpadeo {
+      0% {
+         opacity: 1.0;
+      }
+
+      50% {
+         opacity: 0.0;
+      }
+
+      100% {
+         opacity: 1.0;
+      }
+   }
+
+   @keyframes parpadeo {
+      0% {
+         opacity: 1.0;
+      }
+
+      50% {
+         opacity: 0.0;
+      }
+
+      100% {
+         opacity: 1.0;
+      }
+   }
 </style>
