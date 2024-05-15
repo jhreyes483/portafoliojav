@@ -5,8 +5,21 @@ ini_set('display_startup_errors', 0);
 $rol[1]=  ['Administrador', ''.BASE_URL.'admin/'];
 $rol[2]=  ['Cliente',       ''.BASE_URL.'cliente/'];
 $rol[3]=  ['Empleado',      ''.BASE_URL.'empleado/'];  
-?>
 
+$url =  isset(
+   $_SESSION['usuario'],  
+   $_SESSION['usuario']['fk_rol'], 
+   $rol[$_SESSION['usuario']['fk_rol']], 
+   $rol[ $_SESSION['usuario']['fk_rol'] ][1] ) ? $rol[$_SESSION['usuario']['fk_rol']][1] :'';
+
+$userText =  (isset(
+   $_SESSION['usuario'], 
+   $_SESSION['usuario']['fk_rol'], 
+   $rol[ $_SESSION['usuario']['fk_rol'] ], 
+   $rol[ $_SESSION['usuario']['fk_rol'] ][0] ) ?  $rol[ $_SESSION['usuario']['fk_rol'] ][0] : '')
+
+
+?>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
    <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="<?= RUTAS_APP['ruta_img'] ?>logo/logo-amoblando.svg" alt="" /></a>
@@ -17,7 +30,7 @@ $rol[3]=  ['Empleado',      ''.BASE_URL.'empleado/'];
       <div class="collapse navbar-collapse" id="navbarResponsive">
          <ul class="navbar-nav text-uppercase ml-auto">
            
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?=(isset($_SESSION['usuario'])? $rol[$_SESSION['usuario']['fk_rol']][1] :'') ?>"><?= ((isset($_SESSION['usuario'])) ? $rol[$_SESSION['usuario']['fk_rol']][0] : '') ?></a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= $url ?>"><?= $userText ?></a></li>
             <div class="dropdown show">
                <li class="nav-item" id="dropdownMenuLink" data-toggle="dropdown"><a class="nav-link js-scroll-trigger <?= ( isset($_GET['c']) && in_array($_GET['c'] ,['8','6','7'] ) ? 'text-warning':'' )?> " href="#" role="button" aria-haspopup="true" aria-expanded="false">SALAS</a></li>
                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
