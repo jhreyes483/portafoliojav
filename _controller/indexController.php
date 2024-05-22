@@ -20,6 +20,10 @@ class indexController extends Controller
       $this->model   = new c_model;
    }
 
+   public function createLogView(){
+      return $this->createLog(1, $this->model, $this->db);
+   }
+
    public function acces()
    {
       if (isset($_REQUEST) &&  !empty($_REQUEST)) {
@@ -57,7 +61,6 @@ class indexController extends Controller
    // Cons
    public function data()
    {
-      $log = $this->createLog(1, $this->model, $this->db);
       //if( isset($_POST['id_proyecto'])){
       //   $dato[0] = ' WHERE = '.$this->getSql('id_proyecto');
       //}else{

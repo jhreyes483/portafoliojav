@@ -136,6 +136,7 @@ class c_model
             $cond = implode(' ', $param);
             return 'SELECT
             ev.id,
+            ev.ip,
             ev.created_at
             event_created_at,
             ev.ip, 

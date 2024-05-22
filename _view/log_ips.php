@@ -28,6 +28,7 @@ include_once '../public/body/header.php';
                                         <th>Id log</th>
                                         <th>creción enveto</th>
                                         <th>creción ciudad</th>
+                                        <th>ip</th>
                                         <th>País</th>
                                         <th>Ciudad</th>
                                         <th>Longitud</th>
@@ -45,6 +46,7 @@ include_once '../public/body/header.php';
                                                 <td><?= $d['id'] ?></td>
                                                 <td><?= $d['event_created_at'] ?></td>
                                                 <td><?= $d['city_created_at'] ?></td>
+                                                <td><?= $d['ip'] ?></td>
                                                 <td><?= $d['co_name'] ?></td>
                                                 <td><?= $d['c_name'] ?></td>
                                                 <td><?= $d['longitud'] ?></td>
