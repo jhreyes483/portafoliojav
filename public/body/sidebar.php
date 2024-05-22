@@ -64,9 +64,15 @@ $r =   $obj->data();
                <a class="collapse-item" href="javascript:void(0)" onclick="PopupCenter('cal.php','Sicloud-detalle','1000','900');">
                   <i class="far fa-calendar-check"></i>
                   Calendario</a>
-               <a class="collapse-item" href="reun.php" title="Detalle de reunion">
-                  <i class="far fa-handshake"></i>
-                  Dt. Reuniones</a>
+
+               <a class="collapse-item" href="log_ips.php?limit=50">
+                  <i class="far fa-calendar-check"></i>
+                  Ingresos
+                  <a>
+
+                     <a class="collapse-item" href="reun.php" title="Detalle de reunion">
+                        <i class="far fa-handshake"></i>
+                        Dt. Reuniones</a>
             </div>
          </div>
       </li>

@@ -1,13 +1,32 @@
 <?php
-class userController extends Controllers{
+namespace _controller;
 
-public function m_create(){}
+require_once('../autoload.php');
+use _model\c_SQL;
+use _model\c_model;
 
-public function m_update(){}
 
-public function m_activ(){}
+class userController {
 
-public function m_deactivates(){}
+    private $db;
+    public function __construct(){
+       date_default_timezone_set("America/Bogota");
+       $this->db      = new c_SQL;
+       $this->model   = new c_model;
+    }
+
+public function getLogIp(){
+    $limit   = $_GET['limit']??10;
+    $p[0]    = 'WHERE longitud is not null';
+    $p[1]    = 'order by ev.id desc'; 
+    $p[2]    = 'limit '.$limit;
+
+    $sql     =  $this->model->m_consulta(22,$p); // consulta proyectos
+    $logs    =  $this->db->m_trae_array($sql,1)->rows;
+
+    return ['logs'=> $logs];
+
+}
 
 }
 

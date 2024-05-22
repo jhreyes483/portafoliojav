@@ -222,7 +222,9 @@ class Controller
       date('Y-m-d H:i:s'),
       $ip,
       $city['id'],
-      $country['id']
+      $country['id'],
+      $location['lat'],
+      $location['lon']
     ];
     $sql = $model->m_insert($p);
     $b   = $db->m_ejecuta($sql);

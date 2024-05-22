@@ -10,7 +10,7 @@ namespace _view;
 require_once '../autoload.php';
 
 use _controller\indexController;
-use public\c_body;
+//use public\c_body;
 
 
 include '../public/body/header.php';
