@@ -21,8 +21,8 @@ include_once '../public/body/header.php';
                 <!-- CONTENIDO PRINCIPAL-->
                 <div class="container">
                     <div class="card">
-                        <div class="card-body">
-                            <table class=" mx-auto my-5 table table-bordered table-striped table-hover bg-white table-sm">
+                        <div class="card-body table-responsive">
+                            <table class=" mx-auto my-5 table table-bordered table-striped table-hover bg-white table-sm ">
                                 <thead>
                                     <tr>
                                         <th>Id log</th>
@@ -61,7 +61,6 @@ include_once '../public/body/header.php';
                                         </tr>
                                         </form>
                                         </tr>
-
                                     <?php
                                     }
 
