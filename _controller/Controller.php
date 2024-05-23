@@ -158,12 +158,16 @@ class Controller
 
   public function createLog($typeId, $model, $db): array
   {
+    date_default_timezone_set('America/Bogota');
+    $locationNot = [
+      'Longitud:-74.0695 Latitud:4.6012'
+    ];
     $ip        = $this->getPublicIp();
+
     // $ip = '186.155.33.182';
     if (!$ip || $ip == 'UNKNOWN') {
       return ['code' => 404, 'status' => false, 'msg' => 'Ip no encontrada'];
     }
-
 
     $location  = $this->getLocationUser($ip);
     $location  = $location['data'] ?? false;
@@ -171,8 +175,10 @@ class Controller
     if (isset($location) && !count($location)) {
       return ['code' => 404, 'status' => false, 'msg' => 'Localizacion no encontrada'];
     }
-    date_default_timezone_set('America/Bogota');
 
+    if(in_array(('Longitud:'.$location['lon'].' Latitud:'.$location['lat']), $locationNot)){
+      return ['code' => 200, 'status' => true, 'msg' => 'Ubicación excluida de registro'];
+    }
 
     $sql      = $model->m_consulta(20, ['WHERE countryCode = "' . $location['countryCode'] . '"']);
     $country  =  $db->m_trae_array($sql, 1)->row;
