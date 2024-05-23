@@ -160,7 +160,8 @@ class Controller
   {
     date_default_timezone_set('America/Bogota');
     $locationNot = [
-      'Longitud:-74.0695 Latitud:4.6012'
+      'Longitud:-74.0695 Latitud:4.6012',
+      'Longitud:-78.37471 Latitud:36.677696'
     ];
     $ip        = $this->getPublicIp();
 
