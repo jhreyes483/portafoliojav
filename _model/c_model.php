@@ -145,13 +145,15 @@ class c_model
             c.created_at
             city_created_at,
             ev.longitud,
-            ev.latitud
-            from events ev
-            inner join cities c on c.id = ev.city_id
-            inner join countries co on co.id = ev.country_id
+            ev.latitud,
+            p.nom
+            FROM events ev
+            INNER JOIN cities c ON c.id = ev.city_id
+            INNER JOIN countries co ON co.id = ev.country_id
+            INNER JOIN proyectos p ON p.id_proyecto = ev.proyect_id
             ' . $cond;
             break;
-
+            
 
          default:
             false;

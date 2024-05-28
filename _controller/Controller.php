@@ -156,16 +156,36 @@ class Controller
   }
 
 
-  public function createLog($typeId, $model, $db): array
+  public function getRequestApi(){
+    $gC  = file_get_contents("php://input");
+
+    if( isset($gC) &&  is_object(json_decode($gC))  ){
+       $_DATA = get_object_vars(json_decode($gC));
+       $request =  $_DATA; 
+    }
+    
+    if( isset($_POST) && count($_POST) > 0  ){
+       $request =  $_POST;
+    }
+
+    if(isset($_GET) && count($_GET) > 1 ){
+       $request =  $_GET;
+    }
+
+    return $request;
+  }
+
+  public function createLog($typeId, $model, $db, $proyect_id = 7, $ip =false ): array
   {
     date_default_timezone_set('America/Bogota');
     $locationNot = [
       'Longitud:-74.0695 Latitud:4.6012',
       'Longitud:-78.37471 Latitud:36.677696'
     ];
-    $ip        = $this->getPublicIp();
-
-    // $ip = '186.155.33.182';
+    if(!$ip){
+      $ip  = $this->getPublicIp();
+    }
+    //$ip = '186.155.33.182';
     if (!$ip || $ip == 'UNKNOWN') {
       return ['code' => 404, 'status' => false, 'msg' => 'Ip no encontrada'];
     }
@@ -174,7 +194,7 @@ class Controller
     $location  = $location['data'] ?? false;
 
     if (isset($location) && !count($location)) {
-      return ['code' => 404, 'status' => false, 'msg' => 'Localizacion no encontrada'];
+      return ['code' => 404, 'status' => false, 'msg' => 'Localización no encontrada'];
     }
 
     if(in_array(('Longitud:'.$location['lon'].' Latitud:'.$location['lat']), $locationNot)){
@@ -231,7 +251,8 @@ class Controller
       $city['id'],
       $country['id'],
       $location['lat'],
-      $location['lon']
+      $location['lon'],
+      $proyect_id
     ];
     $sql = $model->m_insert($p);
     $b   = $db->m_ejecuta($sql);

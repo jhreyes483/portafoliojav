@@ -33,6 +33,7 @@ include_once '../public/body/header.php';
                                         <th>Ciudad</th>
                                         <th>Longitud</th>
                                         <th>Latitud</th>
+                                        <th>Proyecto</th>
                                         <th>accion</th>
                                     </tr>
                                 </thead>
@@ -51,6 +52,7 @@ include_once '../public/body/header.php';
                                                 <td><?= $d['c_name'] ?></td>
                                                 <td><?= $d['longitud'] ?></td>
                                                 <td><?= $d['latitud'] ?></td>
+                                                <td><?= $d['nom'] ?></td>
                                                 <input type="hidden" name="lat" value="<?= $d['latitud'] ?>">
                                                 <input type="hidden" name="lng" value="<?= $d['longitud'] ?>">
                                                 <input type="hidden" name="location" value="<?= $d['c_name'] . ', ' . $d['co_name'] ?>">
