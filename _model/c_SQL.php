@@ -9,10 +9,18 @@ namespace _model;
 	//private $DB_USER = 'root';
 	//private $DB_PASS = '';
 	//private $DB_NAME = 'empresa';
-	private $DB_HOST = 'b4qlhpendfkxoin7dohh-mysql.services.clever-cloud.com';
-	private $DB_USER = 'uw47ohbu63avvj7m';
-	private $DB_PASS = 'uyAF7byvud1LeDkySb4S';
-	private $DB_NAME = 'b4qlhpendfkxoin7dohh';
+	
+	// clever-cloud
+	//private $DB_HOST = 'b4qlhpendfkxoin7dohh-mysql.services.clever-cloud.com';
+	//private $DB_USER = 'uw47ohbu63avvj7m';
+	//private $DB_PASS = 'uyAF7byvud1LeDkySb4S';
+	//private $DB_NAME = 'b4qlhpendfkxoin7dohh';
+	
+	private $DB_HOST = '149.100.155.52';
+	private $DB_USER = 'u227058085_admon_db';
+	private $DB_PASS = '$0nPort001';
+	private $DB_NAME = 'u227058085_port';
+	
    public function __construct(){     
        parent:: __construct();
        $this->conexion=mysqli_connect( $this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME) or die('Se genero un error de acceso '. __LINE__);

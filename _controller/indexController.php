@@ -167,6 +167,15 @@ class indexController extends Controller
       }
    }
 
+   public function getIp()
+   {
+     $ip = !isset($_REQUEST['ip']) ? $this->getPublicIp() : $_REQUEST['ip'];
+     $location  = $this->getLocationUser($ip);
+     Controller::ver($location);
+   }
+   
+   
+
    // SQL
    public function m_createUser()
    {
