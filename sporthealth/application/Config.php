@@ -1,5 +1,10 @@
 <?php
 
+require_once __DIR__ . '../../../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../../');
+$dotenv->load();
+
+
 define("KEY", "proyectoSicloud");
 define("COD", "AES-128-ECB");
 define("imgUsuario", "UserSinImagen.jpg");
@@ -7,7 +12,7 @@ define("imgProducto", "ProductoSinImagen.png");
 
 //controlador por defecto de nuestra aplicacion
 
-define('BASE_URL', 'https://solucionesintegralesmallorca.com/portafoliojav/sporthealth/'); 
+define('BASE_URL',$_ENV['BASE_URL'].'/sporthealth/');
 //define('BASE_URL', 'http://localhost/portafoliojav/sporthealth/');  
 
 //define('BASE_URL', 'http://localhost/sporthealth/');  

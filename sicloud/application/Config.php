@@ -1,4 +1,11 @@
 <?php
+
+require_once __DIR__ . '../../../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../../');
+$dotenv->load();
+
+
 date_default_timezone_set("America/Bogota");
 define("KEY", "proyectoSicloud");
 define("COD", "AES-128-ECB");
@@ -10,7 +17,7 @@ define("Debug", false);
 
 //controlador por defecto de nuestra aplicacion
 //define('BASE_URL', 'https://localhost/jfa/sicloud/'); 
-define('BASE_URL', 'https://solucionesintegralesmallorca.com/portafoliojav/sicloud/');    
+define('BASE_URL',$_ENV['BASE_URL'].'/sicloud/');    
 ///define('BASE_URL', 'https://localhost/portafoliojav/sicloud/');
 define('DEFAULT_CONTROLLER', 'index');
 define('DEFAULT_LAYOUT', 'layout1');

@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-  fs_app:
+  portafolio_app:
     env_file:
       - .env
-    container_name: fs_app
+    container_name: portafolio_app
     build:
       context: .
       dockerfile: Dockerfile
