@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for portafolio-javier-reyes on 2024-05-31T12:01:03-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'portafolio-javier-reyes'
+primary_region = 'bog'
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+
+[env]
+  BASE_URL = "https://portafolio-javier-reyes.fly.dev/"

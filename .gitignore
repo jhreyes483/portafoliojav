@@ -1,0 +1,35 @@
+# flyctl launch added from amoblando\.gitignore
+
+
+# flyctl launch added from sicloud\libs\mpdf\vendor\mpdf\mpdf\.gitignore
+sicloud\libs\mpdf\vendor\mpdf\mpdf\**\vendor\*
+sicloud\libs\mpdf\vendor\mpdf\mpdf\**\composer.lock
+
+# flyctl launch added from sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\.gitignore
+sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\**\*
+!sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\**\.gitignore
+!sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\**\ttfontdata
+!sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\**\ttfontdata\.gitkeep
+
+# flyctl launch added from sporthealth\.gitignore
+ vendor/
+
+
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+
+.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/.idea
+/.vscode
+
+
+
