@@ -12,7 +12,6 @@ if (!isset($lat, $lng)  || !abs($lat) || !abs($lng)) {
 }
 // geolocalizar
 // https://www.cual-es-mi-ip.net/geolocalizar-ip-mapa/186.155.33.6
-
 ?>
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 

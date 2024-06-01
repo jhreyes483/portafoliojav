@@ -172,9 +172,11 @@ class PHPExcel_CachedObjectStorageFactory
             return false;
         }
 
-        $cacheStorageClass = 'PHPExcel_CachedObjectStorage_'.$method;
-        if (!call_user_func(array( $cacheStorageClass,
-                                   'cacheMethodIsAvailable'))) {
+        $cacheStorageClass = 'PHPExcel_CachedObjectStorage_' . $method;
+        if (
+            !call_user_func(array( $cacheStorageClass,
+                                   'cacheMethodIsAvailable'))
+        ) {
             return false;
         }
 

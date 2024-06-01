@@ -1,6 +1,7 @@
 <?php
 
 /** PHPExcel root directory */
+
 if (!defined('PHPEXCEL_ROOT')) {
     /**
      * @ignore
@@ -120,8 +121,10 @@ class PHPExcel_Settings
      */
     public static function setZipClass($zipClass)
     {
-        if (($zipClass === self::PCLZIP) ||
-            ($zipClass === self::ZIPARCHIVE)) {
+        if (
+            ($zipClass === self::PCLZIP) ||
+            ($zipClass === self::ZIPARCHIVE)
+        ) {
             self::$zipClass = $zipClass;
             return true;
         }

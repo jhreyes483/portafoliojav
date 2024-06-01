@@ -3,17 +3,17 @@
 
 <?php
 
-$sitiesAll[0] = ['git'      =>'https://github.com/develoters/stockago', 'gmail'=>'https://mail.google.com/mail/u/4/','trello'=>'https://trello.com/b/G4nDvYJD/stockago'];
-$sitiesAll[1] = ['whatsapp' => 'https://web.whatsapp.com/', 'mecanografia' =>'https://10fastfingers.com/typing-test/spanish'];
-$sitiesAll[2] =['dbPm local'=>'dblocal', 'IA'=> 'https://chat.openai.com/chat' , 'serverLocalLaravel'  =>'http://127.0.0.1:8000'    ];
-$sitiesAll[3] = ['app_shopify_local'=>'https://admin.shopify.com/store/dropi-v1/apps/dropi-v01/app','docs_2'=>'https://www.apollographql.com/docs/react/get-started','docs_shopify'=>'https://shopify.dev/docs/apps','plataforma_dropi'=>'https://app.dropi.co/dashboard/home','instalar_dropi'=>'https://apps.shopify.com/dropify-5?locale=es&search_id=4d9d7557-f163-46dd-94bb-7ea8c09e1c4c&surface_detail=dropify&surface_inter_position=1&surface_intra_position=5&surface_type=search','docs_webhook'=>'https://shopify.dev/docs/api/admin-rest/2024-01/resources/webhook'];
-$sitiesAll[4] = ['dockerApiNode'=>'http://localhost:3999'];
-	/*
-trello 
+$sitiesAll[0] = ['git'      => 'https://github.com/develoters/stockago', 'gmail' => 'https://mail.google.com/mail/u/4/','trello' => 'https://trello.com/b/G4nDvYJD/stockago'];
+$sitiesAll[1] = ['whatsapp' => 'https://web.whatsapp.com/', 'mecanografia' => 'https://10fastfingers.com/typing-test/spanish'];
+$sitiesAll[2] = ['dbPm local' => 'dblocal', 'IA' => 'https://chat.openai.com/chat' , 'serverLocalLaravel'  => 'http://127.0.0.1:8000'    ];
+$sitiesAll[3] = ['app_shopify_local' => 'https://admin.shopify.com/store/dropi-v1/apps/dropi-v01/app','docs_2' => 'https://www.apollographql.com/docs/react/get-started','docs_shopify' => 'https://shopify.dev/docs/apps','plataforma_dropi' => 'https://app.dropi.co/dashboard/home','instalar_dropi' => 'https://apps.shopify.com/dropify-5?locale=es&search_id=4d9d7557-f163-46dd-94bb-7ea8c09e1c4c&surface_detail=dropify&surface_inter_position=1&surface_intra_position=5&surface_type=search','docs_webhook' => 'https://shopify.dev/docs/api/admin-rest/2024-01/resources/webhook'];
+$sitiesAll[4] = ['dockerApiNode' => 'http://localhost:3999'];
+    /*
+trello
 pass: $0ndest17*
 user: develoterstock5@gmail.com
 
-git 
+git
 pass:$0ndest17*1
 user: jav-rn
 
@@ -44,10 +44,10 @@ $sitiesAll[13] =['devBkOffice'=>'https://lkdev-backoffice.laikauniverso.com/','s
 
 $r = 'f';
 $d = 'd';
-if(isset($r, $d)){
-	echo 'exist';
-}else{
-	echo 'not exist';
+if (isset($r, $d)) {
+    echo 'exist';
+} else {
+    echo 'not exist';
 }
 
 /*
@@ -57,7 +57,7 @@ User: sq-wms
 passw: RYYyOF55376s
 
 
-limpiar cache de composer 
+limpiar cache de composer
 composer clearcache
 
 */
@@ -91,16 +91,16 @@ https://www.facebook.com/marketplace/item/611334034394070?ref=browse_tab&referra
 
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-11 mx-auto my-4">
-			<div class="card card-body h4">
-			Server Laika Dev Javier Reyes
-			<a href="https://portafoliojav.herokuapp.com/_view/home.php">Portafolio</a>
-			
-			</div>
-			<div id="reloj" class=""></div>
-			<i class=" fas fa-laptop-code fs-2 my-2"></i> <br>
-	</div>
+    <div class="row">
+        <div class="col-md-11 mx-auto my-4">
+            <div class="card card-body h4">
+            Server Laika Dev Javier Reyes
+            <a href="https://portafoliojav.herokuapp.com/_view/home.php">Portafolio</a>
+            
+            </div>
+            <div id="reloj" class=""></div>
+            <i class=" fas fa-laptop-code fs-2 my-2"></i> <br>
+    </div>
 </div>
 
 <div class="container ">
@@ -109,16 +109,16 @@ https://www.facebook.com/marketplace/item/611334034394070?ref=browse_tab&referra
 <?php
 //echo abs($ddd??0);
 
-foreach ($sitiesAll as $i => $d){
-?>			
+foreach ($sitiesAll as $i => $d) {
+    ?>          
 <div class="row col-md-11 mx-auto">
-<?php
-	foreach ($d as $k => $g){
-		echo '<a class="btn btn-sm btn-dark my-2 col m-2 p-2" mx-auto href="'.$g.'"><b>'.$k .'</b></a>';
-	}
-?>
+    <?php
+    foreach ($d as $k => $g) {
+        echo '<a class="btn btn-sm btn-dark my-2 col m-2 p-2" mx-auto href="' . $g . '"><b>' . $k . '</b></a>';
+    }
+    ?>
 </div>
-<?php
+    <?php
 }
 ?>
 </div>

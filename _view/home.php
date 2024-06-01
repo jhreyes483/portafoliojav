@@ -17,13 +17,12 @@ include '../public/body/header.php';
 
 
 $urlHV = 'https://jhreyes483.github.io/Hoja_V/';
-$obj = new indexController;
+$obj = new indexController();
 $r =   $obj->data();
 $log = $obj->createLogView();
 if (isset($_SESSION['usuario'])) {
-   $rol = ' (Rol ' . ($r['roles'][$_SESSION['usuario']['rol']] ?? '') . ') ';
+    $rol = ' (Rol ' . ($r['roles'][$_SESSION['usuario']['rol']] ?? '') . ') ';
 }
-
 ?>
 
 

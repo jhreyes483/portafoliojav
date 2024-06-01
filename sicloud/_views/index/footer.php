@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 ">
-                <a class=" <?=((!isset($_SESSION['usuario']))?' text-warning ':' text-link-green ') ?>link-dark text-decoration-none me-3" onclick="PopupCenter('<?= BASE_URL . 'index/terminos' ?>','politicas', '1000','1000');"  href="javascript:;">Politica de privacidad</a>
+                <a class=" <?=((!isset($_SESSION['usuario'])) ? ' text-warning ' : ' text-link-green ') ?>link-dark text-decoration-none me-3" onclick="PopupCenter('<?= BASE_URL . 'index/terminos' ?>','politicas', '1000','1000');"  href="javascript:;">Politica de privacidad</a>
             </div>
             <div class="col-md-4 ">
                 <span class="col-lg-4 h6 text-muted text-white ">Copyright SICLOUD <?= date('Y') ?> &copy</span>

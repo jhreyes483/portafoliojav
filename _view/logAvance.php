@@ -5,7 +5,7 @@ include_once '../autoload.php';
 
 use _controller\logactivController;
 
-$obj = new logactivController;
+$obj = new logactivController();
 $c   = $obj->dataAvance();
 include_once '../public/body/header.php';
 @session_start();
@@ -37,20 +37,20 @@ include_once '../public/body/header.php';
                            <label for="us">Usuario</label>
                            <select name="us" id="us" class="form-control " onchange="submit(this)">
                               <?php
-                              echo '<option value="">Todo los usuarios</option>';
-                              foreach ($c['user'] as $i => $d) {
-                                 echo '<option ' . (($i == $_REQUEST['us']) ? ' selected ' : '') . ' value="' . $i . '">' . $d . '</option>';
-                              }
-                              ?>
+                                echo '<option value="">Todo los usuarios</option>';
+                                foreach ($c['user'] as $i => $d) {
+                                    echo '<option ' . (($i == $_REQUEST['us']) ? ' selected ' : '') . ' value="' . $i . '">' . $d . '</option>';
+                                }
+                                ?>
                            </select>
                            <label for="id_proyecto">Proyectos</label>
                            <select name="id_proyecto" id="id_proyecto" class="form-control" onchange="submit(this)">
                               <?php
-                              echo '<option value="">Todos los proyectos</option>';
-                              foreach ($c['proyectDb'] as $i => $d) {
-                                 echo '<option  ' . (($i == $_REQUEST['id_proyecto']) ? ' selected ' : '') . '  value="' . $i . '">' . $d . '</option>';
-                              }
-                              ?>
+                                echo '<option value="">Todos los proyectos</option>';
+                                foreach ($c['proyectDb'] as $i => $d) {
+                                    echo '<option  ' . (($i == $_REQUEST['id_proyecto']) ? ' selected ' : '') . '  value="' . $i . '">' . $d . '</option>';
+                                }
+                                ?>
                            </select>
                         </div>
 
@@ -83,8 +83,8 @@ include_once '../public/body/header.php';
 
                         <?php
                         if ($c['data']['response_status'] == 'ok') {
-                           foreach ($c['data']['response_msg'] as $d) {
-                        ?>
+                            foreach ($c['data']['response_msg'] as $d) {
+                                ?>
                               <tr>
                                  <td><?= $d[2] ?></td>
                                  <td><?= $d[0] ?></td>
@@ -93,12 +93,12 @@ include_once '../public/body/header.php';
                                  <td><?= $c['tipo'][$d[30]] ?></td>
                                  <td><?= $d[22] ?></td>
                               </tr>
-                           <?php
-                           }
+                                <?php
+                            }
                         }
                         if (isset($c['total'])) {
-                           foreach ($c['total']  as $i => $d) {
-                           ?>
+                            foreach ($c['total'] as $i => $d) {
+                                ?>
                               <tr>
                                  <td> <b>Total de todas las actividades</b> </td>
                                  <td>Usuario asig.</td>
@@ -108,14 +108,14 @@ include_once '../public/body/header.php';
                                  <td>Proyecto</td>
                                  <td>
                                     <?php
-                                    foreach ($c['total'][$i]  as $k  => $v) {
-                                       echo '<b>' . $k . '</b> ' . $c['total'][$i][$k]['p'] . '<br>';
+                                    foreach ($c['total'][$i] as $k => $v) {
+                                        echo '<b>' . $k . '</b> ' . $c['total'][$i][$k]['p'] . '<br>';
                                     }
                                     ?>
                                  </td>
                               </tr>
-                        <?php
-                           }
+                                <?php
+                            }
                         }
                         ?>
                      </tbody>
@@ -168,15 +168,13 @@ include_once '../public/body/header.php';
       });
       dataTable.addRows([
          <?php
-         foreach ($c['data']['response_msg'] as $d) {
-            # code...
-
-         ?>
+            foreach ($c['data']['response_msg'] as $d) {
+                ?>
 
             ['<?= $d[2] . ' (' . $d[40] . ') ' ?>', new Date(<?= date('Y,m,d,H,i,s', strtotime($d[0])) ?>), new Date(<?= date('Y,m,d,H,i,s', strtotime($d[1])) ?>)],
-         <?php
-         }
-         ?>
+                <?php
+            }
+            ?>
 
       ]);
 

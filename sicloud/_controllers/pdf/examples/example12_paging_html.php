@@ -1,6 +1,5 @@
 <?php
 
-
 $html = '
 
 <pageheader name="myHeaderNoNum" content-left="My Book Title" content-center="myHeader1" content-right="" header-style="font-family:sans-serif; font-size:8pt; color:#880000;" header-style-right="font-size:12pt; font-weight:bold; font-style:italic; color:#088000;" line="on" />
@@ -72,11 +71,11 @@ $html = '
 //==============================================================
 //==============================================================
 include("../mpdf.php");
-$mpdf=new mPDF('c'); 
+$mpdf = new mPDF('c');
 
 $mpdf->mirrorMargins = true;
 
-$mpdf->SetDisplayMode('fullpage','two');
+$mpdf->SetDisplayMode('fullpage', 'two');
 
 $mpdf->WriteHTML($html);
 
@@ -87,6 +86,3 @@ exit;
 //==============================================================
 //==============================================================
 //==============================================================
-
-
-?>

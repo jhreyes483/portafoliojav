@@ -1,7 +1,5 @@
 <?php
 
-
-
 $html = '
 <style>
 table { border-collapse: collapse; margin-top: 0; text-align: center; }
@@ -191,7 +189,7 @@ From mPDF v4.2, Image padding is supported as well as border and margin.
 //==============================================================
 include("../mpdf.php");
 
-$mpdf=new mPDF('c'); 
+$mpdf = new mPDF('c');
 
 $mpdf->WriteHTML($html);
 
@@ -202,6 +200,3 @@ exit;
 //==============================================================
 //==============================================================
 //==============================================================
-
-
-?>

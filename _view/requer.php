@@ -7,7 +7,7 @@ require_once '../autoload.php';
 use _controller\indexController;
 
 //require_once '_controller/indexController.php';
-$obj = new indexController;
+$obj = new indexController();
 $req = $obj->acces();
 include_once '../public/body/header.php';
 ?>
@@ -104,10 +104,10 @@ include_once '../public/body/header.php';
                         <div class="">
                            <select name="status" id="" class="form-control">
                               <?php
-                              foreach (['' => 'Sin filtro', 'P' => 'Pendiente', 'A' => 'Aprobado'] as $k => $v) {
-                                 echo '<option  ' . (($_POST['status'] == $k) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
-                              }
-                              ?>
+                                foreach (['' => 'Sin filtro', 'P' => 'Pendiente', 'A' => 'Aprobado'] as $k => $v) {
+                                    echo '<option  ' . (($_POST['status'] == $k) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
+                                }
+                                ?>
                            </select>
 
 
@@ -138,17 +138,17 @@ include_once '../public/body/header.php';
 
             <div class="container" style="margin-top: 2%;">
                <?php
-               if (isset($req['r'])) {
-                  foreach ($req['r'] as $i => $d) {
-                     $hidden = $class  = $text = '';
-                     if ($d[8] == '' &&  $d[8] == '') {
-                        $class  = ' btn-success';
-                        $text   = 'Registrar Requerimiento';
-                     } else {
-                        $class = ' btn-primary';
-                        $text   = 'Actualizar';
-                     }
-               ?>
+                if (isset($req['r'])) {
+                    foreach ($req['r'] as $i => $d) {
+                        $hidden = $class  = $text = '';
+                        if ($d[8] == '' &&  $d[8] == '') {
+                            $class  = ' btn-success';
+                            $text   = 'Registrar Requerimiento';
+                        } else {
+                            $class = ' btn-primary';
+                            $text   = 'Actualizar';
+                        }
+                        ?>
                      <div class="card card-body col.md-8 mx-auto my-6 shadow-sm" style="margin-top: 3%;">
                         <div class="box-header width-border d-flex justify-content-between">
                            <div class="btn-group btn-toggle ">
@@ -175,7 +175,7 @@ include_once '../public/body/header.php';
                                  <select name="status" class="form-control">
                                     <?php
                                     foreach (['P' => 'Pendiente', 'A' => 'Aprobado'] as $k => $v) {
-                                       echo '<option  ' . (($d[12] == $k) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
+                                        echo '<option  ' . (($d[12] == $k) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
                                     }
                                     ?>
                                  </select>
@@ -183,7 +183,7 @@ include_once '../public/body/header.php';
                                  <select name="priori" class="form-control">
                                     <?php
                                     foreach (['A' => 'Alta', 'M' => 'Media', 'B' => 'Baja'] as $k => $v) {
-                                       echo '<option  ' . (($d[7] == $k) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
+                                        echo '<option  ' . (($d[7] == $k) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
                                     }
                                     ?>
                                  </select>
@@ -195,10 +195,10 @@ include_once '../public/body/header.php';
 
                         </form>
                      </div>
-               <?php
-                  }
-               }
-               ?>
+                        <?php
+                    }
+                }
+                ?>
 
                <form method="post">
                   <div class="card shadow-sm card-body col.md-8 mx-auto my-6" style="margin-top: 3%;">
@@ -215,18 +215,18 @@ include_once '../public/body/header.php';
                            Estado
                            <select name="status" id="" class="form-control">
                               <?php
-                              foreach (['P' => 'Pendiente', 'A' => 'Aprobado'] as $k => $d) {
-                                 echo '<option value="' . $k . '">' . $d . '</option>';
-                              }
-                              ?>
+                                foreach (['P' => 'Pendiente', 'A' => 'Aprobado'] as $k => $d) {
+                                    echo '<option value="' . $k . '">' . $d . '</option>';
+                                }
+                                ?>
                            </select>
                            Priodad
                            <select name="priori" id="" class="form-control">
                               <?php
-                              foreach (['A' => 'Alta', 'M' => 'Media', 'B' => 'Baja'] as $k => $v) {
-                                 echo '<option   value="' . $k . '">' . $v . '</option>';
-                              }
-                              ?>
+                                foreach (['A' => 'Alta', 'M' => 'Media', 'B' => 'Baja'] as $k => $v) {
+                                    echo '<option   value="' . $k . '">' . $v . '</option>';
+                                }
+                                ?>
                            </select>
                            <input type="hidden" name="id_proyecto" value="<?= $_REQUEST['id_proyecto'] ?>">
                            <input type="hidden" name="a" value="insertReq">
@@ -244,12 +244,12 @@ include_once '../public/body/header.php';
 
 <script>
    <?php
-   if (isset($req['r'])) {
-      foreach ($req['r'] as $key => $value) {
-         echo 'encender("form' . $key . '");';
-      }
-   }
-   ?>
+    if (isset($req['r'])) {
+        foreach ($req['r'] as $key => $value) {
+            echo 'encender("form' . $key . '");';
+        }
+    }
+    ?>
 
    function encender(idFrm) {
       enciende = false

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHPExcel_Style_Alignment
  *
@@ -34,70 +35,64 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
     const HORIZONTAL_CENTER_CONTINUOUS = 'centerContinuous';
     const HORIZONTAL_JUSTIFY           = 'justify';
     const HORIZONTAL_FILL              = 'fill';
-    const HORIZONTAL_DISTRIBUTED       = 'distributed';        // Excel2007 only
+    const HORIZONTAL_DISTRIBUTED       = 'distributed';
+// Excel2007 only
 
     /* Vertical alignment styles */
     const VERTICAL_BOTTOM      = 'bottom';
     const VERTICAL_TOP         = 'top';
     const VERTICAL_CENTER      = 'center';
     const VERTICAL_JUSTIFY     = 'justify';
-    const VERTICAL_DISTRIBUTED = 'distributed';        // Excel2007 only
+    const VERTICAL_DISTRIBUTED = 'distributed';
+// Excel2007 only
 
     /* Read order */
     const READORDER_CONTEXT = 0;
     const READORDER_LTR     = 1;
     const READORDER_RTL     = 2;
-
-    /**
+/**
      * Horizontal alignment
      *
      * @var string
      */
     protected $horizontal = PHPExcel_Style_Alignment::HORIZONTAL_GENERAL;
-
-    /**
+/**
      * Vertical alignment
      *
      * @var string
      */
     protected $vertical = PHPExcel_Style_Alignment::VERTICAL_BOTTOM;
-
-    /**
+/**
      * Text rotation
      *
      * @var integer
      */
     protected $textRotation = 0;
-
-    /**
+/**
      * Wrap text
      *
      * @var boolean
      */
     protected $wrapText = false;
-
-    /**
+/**
      * Shrink to fit
      *
      * @var boolean
      */
     protected $shrinkToFit = false;
-
-    /**
+/**
      * Indent - only possible with horizontal alignment left and right
      *
      * @var integer
      */
     protected $indent = 0;
-
-    /**
+/**
      * Read order
      *
      * @var integer
      */
     protected $readorder = 0;
-
-    /**
+/**
      * Create a new PHPExcel_Style_Alignment
      *
      * @param    boolean    $isSupervisor    Flag indicating if this is a supervisor or not
@@ -111,7 +106,6 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
     {
         // Supervisor?
         parent::__construct($isSupervisor);
-
         if ($isConditional) {
             $this->horizontal   = null;
             $this->vertical     = null;
@@ -392,10 +386,13 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
     public function setIndent($pValue = 0)
     {
         if ($pValue > 0) {
-            if ($this->getHorizontal() != self::HORIZONTAL_GENERAL &&
+            if (
+                $this->getHorizontal() != self::HORIZONTAL_GENERAL &&
                 $this->getHorizontal() != self::HORIZONTAL_LEFT &&
-                $this->getHorizontal() != self::HORIZONTAL_RIGHT) {
-                $pValue = 0; // indent not supported
+                $this->getHorizontal() != self::HORIZONTAL_RIGHT
+            ) {
+                $pValue = 0;
+            // indent not supported
             }
         }
         if ($this->isSupervisor) {
@@ -450,15 +447,13 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
         if ($this->isSupervisor) {
             return $this->getSharedComponent()->getHashCode();
         }
-        return md5(
-            $this->horizontal .
+        return md5($this->horizontal .
             $this->vertical .
             $this->textRotation .
             ($this->wrapText ? 't' : 'f') .
             ($this->shrinkToFit ? 't' : 'f') .
             $this->indent .
             $this->readorder .
-            __CLASS__
-        );
+            __CLASS__);
     }
 }

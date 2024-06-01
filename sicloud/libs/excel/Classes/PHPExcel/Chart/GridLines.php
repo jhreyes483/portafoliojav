@@ -9,7 +9,6 @@
 
 class PHPExcel_Chart_GridLines extends PHPExcel_Chart_Properties
 {
-
   /**
    * Properties of Class:
    * Object State (State for Minor Tick Mark) @var bool

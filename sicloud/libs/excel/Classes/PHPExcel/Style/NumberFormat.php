@@ -264,7 +264,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
         //      40: "#,##0.00_);[Red](#,##0.00)"
         //      47: "mm:ss.0"
         //      KOR fmt 55: "yyyy/mm/dd"
- 
+
         // Built-in format codes
         if (is_null(self::$builtInFormats)) {
             self::$builtInFormats = array();
@@ -444,11 +444,13 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
             'h'  => 'g'
         );
 
-    private static function setLowercaseCallback($matches) {
+    private static function setLowercaseCallback($matches)
+    {
         return mb_strtolower($matches[0]);
     }
 
-    private static function escapeQuotesCallback($matches) {
+    private static function escapeQuotesCallback($matches)
+    {
         return '\\' . implode('\\', str_split($matches[1]));
     }
 
@@ -465,7 +467,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
 
         // Only process the non-quoted blocks for date format characters
         $blocks = explode('"', $format);
-        foreach($blocks as $key => &$block) {
+        foreach ($blocks as $key => &$block) {
             if ($key % 2 == 0) {
                 $block = strtr($block, self::$dateFormatReplacements);
                 if (!strpos($block, 'A')) {
@@ -515,8 +517,8 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
 
         $GCD = PHPExcel_Calculation_MathTrig::GCD($decimalPart, $decimalDivisor);
 
-        $adjustedDecimalPart = $decimalPart/$GCD;
-        $adjustedDecimalDivisor = $decimalDivisor/$GCD;
+        $adjustedDecimalPart = $decimalPart / $GCD;
+        $adjustedDecimalDivisor = $decimalDivisor / $GCD;
 
         if ((strpos($format, '0') !== false) || (strpos($format, '#') !== false) || (substr($format, 0, 3) == '? ?')) {
             if ($integerPart == 0) {
@@ -682,7 +684,6 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
                     if ($value != (int)$value) {
                         self::formatAsFraction($value, $format);
                     }
-
                 } else {
                     // Handle the number itself
 

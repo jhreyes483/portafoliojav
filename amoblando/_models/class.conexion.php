@@ -1,19 +1,23 @@
 <?php
-    class Conexion{
-    static function conexionPDO(){
-        $DB_HOST = 'b5iuezjksb3w4hp92nei-mysql.services.clever-cloud.com';
-        $DB_USER = 'udupl2y688c1evuv';
-        $DB_PASS = 'WEJgIwWvcoG63wWX7IWs';
-        $DB_NAME = 'b5iuezjksb3w4hp92nei';
+
+require_once __DIR__ . '../../../vendor/autoload.php';
+$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ . '../../../');
+$dotenv->load();
+
+class Conexion
+{
+    static function conexionPDO()
+    {
+        $DB_HOST = $_ENV['AMOBLANDO_DB_HOST'];
+        $DB_USER = $_ENV['AMOBLANDO_DB_USERNAME'];
+        $DB_PASS =  $_ENV['AMOBLANDO_DB_PASSWORD'];
+        $DB_NAME = $_ENV['AMOBLANDO_DB_DATABASE'];
         try {
             $dsn = "mysql:host=$DB_HOST;dbname=$DB_NAME";
-            $db = new PDO($dsn, $DB_USER,  $DB_PASS);
+            $db = new PDO($dsn, $DB_USER, $DB_PASS);
         } catch (PDOException $e) {
             echo 'Error al conectarnos al; ' . $e->getMessage();
         }
         return $db;
     }
-
 }
-
-

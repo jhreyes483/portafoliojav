@@ -289,7 +289,7 @@ class PHPExcel_Cell
 //echo 'Calculation Exception: '.$ex->getMessage().PHP_EOL;
                 $result = '#N/A';
                 throw new PHPExcel_Calculation_Exception(
-                    $this->getWorksheet()->getTitle().'!'.$this->getCoordinate().' -> '.$ex->getMessage()
+                    $this->getWorksheet()->getTitle() . '!' . $this->getCoordinate() . ' -> ' . $ex->getMessage()
                 );
             }
 
@@ -496,7 +496,7 @@ class PHPExcel_Cell
      */
     public function isInMergeRange()
     {
-        return (boolean) $this->getMergeRange();
+        return (bool) $this->getMergeRange();
     }
 
     /**
@@ -591,7 +591,7 @@ class PHPExcel_Cell
             throw new PHPExcel_Exception('Cell coordinate can not be zero-length string');
         }
 
-        throw new PHPExcel_Exception('Invalid cell coordinate '.$pCoordinateString);
+        throw new PHPExcel_Exception('Invalid cell coordinate ' . $pCoordinateString);
     }
 
     /**
@@ -895,7 +895,7 @@ class PHPExcel_Cell
                 // Loop cells
                 while ($currentCol != $endCol) {
                     while ($currentRow <= $endRow) {
-                        $returnValue[] = $currentCol.$currentRow;
+                        $returnValue[] = $currentCol . $currentRow;
                         ++$currentRow;
                     }
                     ++$currentCol;

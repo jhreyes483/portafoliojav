@@ -1,8 +1,8 @@
 <?php
 @session_start();
 include_once '../../application/Config.php';
-if( !isset($_SESSION['usuario']) ){
-header('location:' . BASE_URL . 'index');
+if (!isset($_SESSION['usuario'])) {
+    header('location:' . BASE_URL . 'index');
 }
 
 
@@ -22,7 +22,9 @@ header('location:' . BASE_URL . 'index');
 </thead>
 
 <?php
-if (isset($_SESSION['s_menu'])) echo $_SESSION['s_menu'];
+if (isset($_SESSION['s_menu'])) {
+    echo $_SESSION['s_menu'];
+}
 ?>
     <script type="text/javascript">
         // Creacion de funcion

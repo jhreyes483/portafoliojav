@@ -1,6 +1,7 @@
 <?php
 
 /** PHPExcel root directory */
+
 if (!defined('PHPEXCEL_ROOT')) {
     /**
      * @ignore
@@ -61,7 +62,7 @@ class PHPExcel_Calculation_Database
 
         if (is_numeric($field)) {
             $keys = array_keys($fieldNames);
-            return $keys[$field-1];
+            return $keys[$field - 1];
         }
         $key = array_search($field, $fieldNames);
         return ($key) ? $key : null;
@@ -99,7 +100,7 @@ class PHPExcel_Calculation_Database
             $testConditionCount = 0;
             foreach ($criteria as $row => $criterion) {
                 if ($criterion[$key] > '') {
-                    $testCondition[] = '[:'.$criteriaName.']'.PHPExcel_Calculation_Functions::ifCondition($criterion[$key]);
+                    $testCondition[] = '[:' . $criteriaName . ']' . PHPExcel_Calculation_Functions::ifCondition($criterion[$key]);
                     $testConditionCount++;
                 }
             }
@@ -131,7 +132,7 @@ class PHPExcel_Calculation_Database
                 }
             }
             //    evaluate the criteria against the row data
-            $result = PHPExcel_Calculation::getInstance()->_calculateFormulaValue('='.$testConditionList);
+            $result = PHPExcel_Calculation::getInstance()->_calculateFormulaValue('=' . $testConditionList);
             //    If the row failed to meet the criteria, remove it from the database
             if (!$result) {
                 unset($database[$dataRow]);
@@ -151,7 +152,7 @@ class PHPExcel_Calculation_Database
         foreach ($database as $row) {
             $colData[] = $row[$field];
         }
-        
+
         return $colData;
     }
 

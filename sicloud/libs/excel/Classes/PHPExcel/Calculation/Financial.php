@@ -1,6 +1,7 @@
 <?php
 
 /** PHPExcel root directory */
+
 if (!defined('PHPEXCEL_ROOT')) {
     /**
      * @ignore
@@ -78,10 +79,10 @@ class PHPExcel_Calculation_Financial
         $eom = self::isLastDayOfMonth($result);
 
         while ($settlement < PHPExcel_Shared_Date::PHPToExcel($result)) {
-            $result->modify('-'.$months.' months');
+            $result->modify('-' . $months . ' months');
         }
         if ($next) {
-            $result->modify('+'.$months.' months');
+            $result->modify('+' . $months . ' months');
         }
 
         if ($eom) {
@@ -97,8 +98,10 @@ class PHPExcel_Calculation_Financial
         if (($frequency == 1) || ($frequency == 2) || ($frequency == 4)) {
             return true;
         }
-        if ((PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_GNUMERIC) &&
-            (($frequency == 6) || ($frequency == 12))) {
+        if (
+            (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_GNUMERIC) &&
+            (($frequency == 6) || ($frequency == 12))
+        ) {
             return true;
         }
         return false;
@@ -144,7 +147,7 @@ class PHPExcel_Calculation_Financial
     {
         $pmt = self::PMT($rate, $nper, $pv, $fv, $type);
         $capital = $pv;
-        for ($i = 1; $i<= $per; ++$i) {
+        for ($i = 1; $i <= $per; ++$i) {
             $interest = ($type && $i == 1) ? 0 : -$capital * $rate;
             $principal = $pmt - $interest;
             $capital += $principal;
@@ -455,9 +458,11 @@ class PHPExcel_Calculation_Financial
             return PHPExcel_Calculation_Functions::VALUE();
         }
 
-        if (($settlement > $maturity) ||
+        if (
+            ($settlement > $maturity) ||
             (!self::isValidFrequency($frequency)) ||
-            (($basis < 0) || ($basis > 4))) {
+            (($basis < 0) || ($basis > 4))
+        ) {
             return PHPExcel_Calculation_Functions::NaN();
         }
 
@@ -514,9 +519,11 @@ class PHPExcel_Calculation_Financial
             return PHPExcel_Calculation_Functions::VALUE();
         }
 
-        if (($settlement > $maturity) ||
+        if (
+            ($settlement > $maturity) ||
             (!self::isValidFrequency($frequency)) ||
-            (($basis < 0) || ($basis > 4))) {
+            (($basis < 0) || ($basis > 4))
+        ) {
             return PHPExcel_Calculation_Functions::NaN();
         }
 
@@ -587,9 +594,11 @@ class PHPExcel_Calculation_Financial
             return PHPExcel_Calculation_Functions::VALUE();
         }
 
-        if (($settlement > $maturity) ||
+        if (
+            ($settlement > $maturity) ||
             (!self::isValidFrequency($frequency)) ||
-            (($basis < 0) || ($basis > 4))) {
+            (($basis < 0) || ($basis > 4))
+        ) {
             return PHPExcel_Calculation_Functions::NaN();
         }
 
@@ -647,9 +656,11 @@ class PHPExcel_Calculation_Financial
             return PHPExcel_Calculation_Functions::VALUE();
         }
 
-        if (($settlement > $maturity) ||
+        if (
+            ($settlement > $maturity) ||
             (!self::isValidFrequency($frequency)) ||
-            (($basis < 0) || ($basis > 4))) {
+            (($basis < 0) || ($basis > 4))
+        ) {
             return PHPExcel_Calculation_Functions::NaN();
         }
 
@@ -704,9 +715,11 @@ class PHPExcel_Calculation_Financial
             return PHPExcel_Calculation_Functions::VALUE();
         }
 
-        if (($settlement > $maturity) ||
+        if (
+            ($settlement > $maturity) ||
             (!self::isValidFrequency($frequency)) ||
-            (($basis < 0) || ($basis > 4))) {
+            (($basis < 0) || ($basis > 4))
+        ) {
             return PHPExcel_Calculation_Functions::NaN();
         }
 
@@ -776,9 +789,11 @@ class PHPExcel_Calculation_Financial
             return PHPExcel_Calculation_Functions::VALUE();
         }
 
-        if (($settlement > $maturity) ||
+        if (
+            ($settlement > $maturity) ||
             (!self::isValidFrequency($frequency)) ||
-            (($basis < 0) || ($basis > 4))) {
+            (($basis < 0) || ($basis > 4))
+        ) {
             return PHPExcel_Calculation_Functions::NaN();
         }
 
@@ -1426,7 +1441,7 @@ class PHPExcel_Calculation_Financial
 
         // Calculate
         $principlePayment = ($principleRemaining * 1.0) / ($numberPeriods * 1.0);
-        for ($i=0; $i <= $period; ++$i) {
+        for ($i = 0; $i <= $period; ++$i) {
             $returnValue = $interestRate * $principleRemaining * -1;
             $principleRemaining -= $principlePayment;
             // principle needs to be 0 after the last payment, don't let floating point screw it up
@@ -1546,7 +1561,7 @@ class PHPExcel_Calculation_Financial
         if ($pmt == 0) {
             return PHPExcel_Calculation_Functions::NaN();
         }
-        return (-$pv -$fv) / $pmt;
+        return (-$pv - $fv) / $pmt;
     }
 
     /**
@@ -1663,9 +1678,11 @@ class PHPExcel_Calculation_Financial
             return PHPExcel_Calculation_Functions::VALUE();
         }
 
-        if (($settlement > $maturity) ||
+        if (
+            ($settlement > $maturity) ||
             (!self::isValidFrequency($frequency)) ||
-            (($basis < 0) || ($basis > 4))) {
+            (($basis < 0) || ($basis > 4))
+        ) {
             return PHPExcel_Calculation_Functions::NaN();
         }
 

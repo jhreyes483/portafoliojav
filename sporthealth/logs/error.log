@@ -24,3 +24,5 @@ Stack trace:
   thrown] [IN FILE /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/_views/nutricion/asignaPlan.phtml] [LINE 84]
 [2024-05-14 20:46:31] [E_WARNING: Undefined property: c_MySQLi::$conexion] [IN FILE /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/libs/class.conexion.php] [LINE 18]
 [2024-05-14 20:46:31] [E_WARNING: Undefined property: c_MySQLi::$conexion] [IN FILE /home/u227058085/domains/solucionesintegralesmallorca.com/public_html/portafoliojav/sporthealth/libs/class.conexion.php] [LINE 18]
+[2024-05-31 14:52:49] [E_WARNING: mysqli_connect(): (HY000/1044): Access denied for user 'ufjhou3db5j6bg6l'@'%' to database 'ufjhou3db5j6bg6l'] [IN FILE C:\laragon\www\GIT\portafoliojav\sporthealth\libs\class.conexion.php] [LINE 19]
+[2024-05-31 14:53:10] [E_WARNING: mysqli_connect(): (HY000/1044): Access denied for user 'ufjhou3db5j6bg6l'@'%' to database 'ufjhou3db5j6bg6l'] [IN FILE C:\laragon\www\GIT\portafoliojav\sporthealth\libs\class.conexion.php] [LINE 19]

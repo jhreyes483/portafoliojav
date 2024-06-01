@@ -194,7 +194,7 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase
         foreach ($this->getCellList() as $coord) {
             sscanf($coord, '%[A-Z]%d', $c, $r);
             $row[$r] = $r;
-            $col[$c] = strlen($c).$c;
+            $col[$c] = strlen($c) . $c;
         }
         if (!empty($row)) {
             // Determine highest column and row
@@ -237,7 +237,7 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase
     public function getCurrentRow()
     {
         sscanf($this->currentObjectID, '%[A-Z]%d', $column, $row);
-        return (integer) $row;
+        return (int) $row;
     }
 
     /**

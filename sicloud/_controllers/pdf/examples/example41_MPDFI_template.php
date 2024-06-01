@@ -2,8 +2,8 @@
 
 include("../mpdf.php");
 
-$mpdf=new mPDF('','','','',15,15,57,16,9,9); 
-$mpdf->SetImportUse();	
+$mpdf = new mPDF('', '', '', '', 15, 15, 57, 16, 9, 9);
+$mpdf->SetImportUse();
 
 $mpdf->SetDisplayMode('fullpage');
 
@@ -31,6 +31,3 @@ $mpdf->Rect($x, $y, $w, $h);
 $mpdf->Output('newpdf.pdf', 'I');
 
 exit;
-
-
-?>

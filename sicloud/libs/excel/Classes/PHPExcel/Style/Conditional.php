@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHPExcel
  *
@@ -40,8 +41,7 @@ class PHPExcel_Style_Conditional implements PHPExcel_IComparable
     const CONDITION_CELLIS       = 'cellIs';
     const CONDITION_CONTAINSTEXT = 'containsText';
     const CONDITION_EXPRESSION   = 'expression';
-
-    /* Operator types */
+/* Operator types */
     const OPERATOR_NONE               = '';
     const OPERATOR_BEGINSWITH         = 'beginsWith';
     const OPERATOR_ENDSWITH           = 'endsWith';
@@ -54,43 +54,37 @@ class PHPExcel_Style_Conditional implements PHPExcel_IComparable
     const OPERATOR_CONTAINSTEXT       = 'containsText';
     const OPERATOR_NOTCONTAINS        = 'notContains';
     const OPERATOR_BETWEEN            = 'between';
-
-    /**
+/**
      * Condition type
      *
      * @var int
      */
     private $conditionType;
-
-    /**
+/**
      * Operator type
      *
      * @var int
      */
     private $operatorType;
-
-    /**
+/**
      * Text
      *
      * @var string
      */
     private $text;
-
-    /**
+/**
      * Condition
      *
      * @var string[]
      */
     private $condition = array();
-
-    /**
+/**
      * Style
      *
      * @var PHPExcel_Style
      */
     private $style;
-
-    /**
+/**
      * Create a new PHPExcel_Style_Conditional
      */
     public function __construct()
@@ -257,7 +251,7 @@ class PHPExcel_Style_Conditional implements PHPExcel_IComparable
     public function setStyle(PHPExcel_Style $pValue = null)
     {
            $this->style = $pValue;
-           return $this;
+        return $this;
     }
 
     /**
@@ -267,13 +261,11 @@ class PHPExcel_Style_Conditional implements PHPExcel_IComparable
      */
     public function getHashCode()
     {
-        return md5(
-            $this->conditionType .
+        return md5($this->conditionType .
             $this->operatorType .
             implode(';', $this->condition) .
             $this->style->getHashCode() .
-            __CLASS__
-        );
+            __CLASS__);
     }
 
     /**

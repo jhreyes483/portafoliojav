@@ -56,11 +56,13 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
         if ($this->currentCellIsDirty && !empty($this->currentObjectID)) {
             $this->currentObject->detach();
 
-            if (!apc_store(
-                $this->cachePrefix . $this->currentObjectID . '.cache',
-                serialize($this->currentObject),
-                $this->cacheTime
-            )) {
+            if (
+                !apc_store(
+                    $this->cachePrefix . $this->currentObjectID . '.cache',
+                    serialize($this->currentObject),
+                    $this->cacheTime
+                )
+            ) {
                 $this->__destruct();
                 throw new PHPExcel_Exception('Failed to store cell ' . $this->currentObjectID . ' in APC');
             }
@@ -108,11 +110,11 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
                 return true;
             }
             //    Check if the requested entry still exists in apc
-            $success = apc_fetch($this->cachePrefix.$pCoord.'.cache');
+            $success = apc_fetch($this->cachePrefix . $pCoord . '.cache');
             if ($success === false) {
                 //    Entry no longer exists in APC, so clear it from the cache array
                 parent::deleteCacheData($pCoord);
-                throw new PHPExcel_Exception('Cell entry '.$pCoord.' no longer exists in APC cache');
+                throw new PHPExcel_Exception('Cell entry ' . $pCoord . ' no longer exists in APC cache');
             }
             return true;
         }
@@ -140,7 +142,7 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
             if ($obj === false) {
                 //    Entry no longer exists in APC, so clear it from the cache array
                 parent::deleteCacheData($pCoord);
-                throw new PHPExcel_Exception('Cell entry '.$pCoord.' no longer exists in APC cache');
+                throw new PHPExcel_Exception('Cell entry ' . $pCoord . ' no longer exists in APC cache');
             }
         } else {
             //    Return null if requested entry doesn't exist in cache
@@ -181,7 +183,7 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
     public function deleteCacheData($pCoord)
     {
         //    Delete the entry from APC
-        apc_delete($this->cachePrefix.$pCoord.'.cache');
+        apc_delete($this->cachePrefix . $pCoord . '.cache');
 
         //    Delete the entry from our cell address array
         parent::deleteCacheData($pCoord);

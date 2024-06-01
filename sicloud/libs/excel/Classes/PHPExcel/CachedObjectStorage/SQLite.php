@@ -53,7 +53,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
         if ($this->currentCellIsDirty && !empty($this->currentObjectID)) {
             $this->currentObject->detach();
 
-            if (!$this->DBHandle->queryExec("INSERT OR REPLACE INTO kvp_".$this->TableName." VALUES('".$this->currentObjectID."','".sqlite_escape_string(serialize($this->currentObject))."')")) {
+            if (!$this->DBHandle->queryExec("INSERT OR REPLACE INTO kvp_" . $this->TableName . " VALUES('" . $this->currentObjectID . "','" . sqlite_escape_string(serialize($this->currentObject)) . "')")) {
                 throw new PHPExcel_Exception(sqlite_error_string($this->DBHandle->lastError()));
             }
             $this->currentCellIsDirty = false;
@@ -96,7 +96,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
         }
         $this->storeData();
 
-        $query = "SELECT value FROM kvp_".$this->TableName." WHERE id='".$pCoord."'";
+        $query = "SELECT value FROM kvp_" . $this->TableName . " WHERE id='" . $pCoord . "'";
         $cellResultSet = $this->DBHandle->query($query, SQLITE_ASSOC);
         if ($cellResultSet === false) {
             throw new PHPExcel_Exception(sqlite_error_string($this->DBHandle->lastError()));
@@ -130,7 +130,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
         }
 
         //    Check if the requested entry exists in the cache
-        $query = "SELECT id FROM kvp_".$this->TableName." WHERE id='".$pCoord."'";
+        $query = "SELECT id FROM kvp_" . $this->TableName . " WHERE id='" . $pCoord . "'";
         $cellResultSet = $this->DBHandle->query($query, SQLITE_ASSOC);
         if ($cellResultSet === false) {
             throw new PHPExcel_Exception(sqlite_error_string($this->DBHandle->lastError()));
@@ -155,7 +155,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
         }
 
         //    Check if the requested entry exists in the cache
-        $query = "DELETE FROM kvp_".$this->TableName." WHERE id='".$pCoord."'";
+        $query = "DELETE FROM kvp_" . $this->TableName . " WHERE id='" . $pCoord . "'";
         if (!$this->DBHandle->queryExec($query)) {
             throw new PHPExcel_Exception(sqlite_error_string($this->DBHandle->lastError()));
         }
@@ -176,13 +176,13 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
             $this->currentObjectID = $toAddress;
         }
 
-        $query = "DELETE FROM kvp_".$this->TableName." WHERE id='".$toAddress."'";
+        $query = "DELETE FROM kvp_" . $this->TableName . " WHERE id='" . $toAddress . "'";
         $result = $this->DBHandle->exec($query);
         if ($result === false) {
             throw new PHPExcel_Exception($this->DBHandle->lastErrorMsg());
         }
 
-        $query = "UPDATE kvp_".$this->TableName." SET id='".$toAddress."' WHERE id='".$fromAddress."'";
+        $query = "UPDATE kvp_" . $this->TableName . " SET id='" . $toAddress . "' WHERE id='" . $fromAddress . "'";
         $result = $this->DBHandle->exec($query);
         if ($result === false) {
             throw new PHPExcel_Exception($this->DBHandle->lastErrorMsg());
@@ -202,7 +202,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
             $this->storeData();
         }
 
-        $query = "SELECT id FROM kvp_".$this->TableName;
+        $query = "SELECT id FROM kvp_" . $this->TableName;
         $cellIdsResult = $this->DBHandle->unbufferedQuery($query, SQLITE_ASSOC);
         if ($cellIdsResult === false) {
             throw new PHPExcel_Exception(sqlite_error_string($this->DBHandle->lastError()));
@@ -229,8 +229,9 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
 
         //    Get a new id for the new table name
         $tableName = str_replace('.', '_', $this->getUniqueID());
-        if (!$this->DBHandle->queryExec('CREATE TABLE kvp_'.$tableName.' (id VARCHAR(12) PRIMARY KEY, value BLOB)
-            AS SELECT * FROM kvp_'.$this->TableName)
+        if (
+            !$this->DBHandle->queryExec('CREATE TABLE kvp_' . $tableName . ' (id VARCHAR(12) PRIMARY KEY, value BLOB)
+            AS SELECT * FROM kvp_' . $this->TableName)
         ) {
             throw new PHPExcel_Exception(sqlite_error_string($this->DBHandle->lastError()));
         }
@@ -273,7 +274,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
             if ($this->DBHandle === false) {
                 throw new PHPExcel_Exception(sqlite_error_string($this->DBHandle->lastError()));
             }
-            if (!$this->DBHandle->queryExec('CREATE TABLE kvp_'.$this->TableName.' (id VARCHAR(12) PRIMARY KEY, value BLOB)')) {
+            if (!$this->DBHandle->queryExec('CREATE TABLE kvp_' . $this->TableName . ' (id VARCHAR(12) PRIMARY KEY, value BLOB)')) {
                 throw new PHPExcel_Exception(sqlite_error_string($this->DBHandle->lastError()));
             }
         }
@@ -285,7 +286,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
     public function __destruct()
     {
         if (!is_null($this->DBHandle)) {
-            $this->DBHandle->queryExec('DROP TABLE kvp_'.$this->TableName);
+            $this->DBHandle->queryExec('DROP TABLE kvp_' . $this->TableName);
         }
         $this->DBHandle = null;
     }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHPExcel
  *
@@ -44,96 +45,85 @@ class PHPExcel_Chart_DataSeries
     const TYPE_PIECHART        = 'pieChart';
     const TYPE_PIECHART_3D     = 'pie3DChart';
     const TYPE_DOUGHTNUTCHART  = 'doughnutChart';
-    const TYPE_DONUTCHART      = self::TYPE_DOUGHTNUTCHART;    //    Synonym
+    const TYPE_DONUTCHART      = self::TYPE_DOUGHTNUTCHART;
+//    Synonym
     const TYPE_SCATTERCHART    = 'scatterChart';
     const TYPE_SURFACECHART    = 'surfaceChart';
     const TYPE_SURFACECHART_3D = 'surface3DChart';
     const TYPE_RADARCHART      = 'radarChart';
     const TYPE_BUBBLECHART     = 'bubbleChart';
     const TYPE_STOCKCHART      = 'stockChart';
-    const TYPE_CANDLECHART     = self::TYPE_STOCKCHART;       //    Synonym
+    const TYPE_CANDLECHART     = self::TYPE_STOCKCHART;
+//    Synonym
 
     const GROUPING_CLUSTERED       = 'clustered';
     const GROUPING_STACKED         = 'stacked';
     const GROUPING_PERCENT_STACKED = 'percentStacked';
     const GROUPING_STANDARD        = 'standard';
-
     const DIRECTION_BAR        = 'bar';
     const DIRECTION_HORIZONTAL = self::DIRECTION_BAR;
     const DIRECTION_COL        = 'col';
     const DIRECTION_COLUMN     = self::DIRECTION_COL;
     const DIRECTION_VERTICAL   = self::DIRECTION_COL;
-
     const STYLE_LINEMARKER   = 'lineMarker';
     const STYLE_SMOOTHMARKER = 'smoothMarker';
     const STYLE_MARKER       = 'marker';
     const STYLE_FILLED       = 'filled';
-
-
-    /**
+/**
      * Series Plot Type
      *
      * @var string
      */
     private $plotType;
-
-    /**
+/**
      * Plot Grouping Type
      *
      * @var boolean
      */
     private $plotGrouping;
-
-    /**
+/**
      * Plot Direction
      *
      * @var boolean
      */
     private $plotDirection;
-
-    /**
+/**
      * Plot Style
      *
      * @var string
      */
     private $plotStyle;
-
-    /**
+/**
      * Order of plots in Series
      *
      * @var array of integer
      */
     private $plotOrder = array();
-
-    /**
+/**
      * Plot Label
      *
      * @var array of PHPExcel_Chart_DataSeriesValues
      */
     private $plotLabel = array();
-
-    /**
+/**
      * Plot Category
      *
      * @var array of PHPExcel_Chart_DataSeriesValues
      */
     private $plotCategory = array();
-
-    /**
+/**
      * Smooth Line
      *
      * @var string
      */
     private $smoothLine;
-
-    /**
+/**
      * Plot Values
      *
      * @var array of PHPExcel_Chart_DataSeriesValues
      */
     private $plotValues = array();
-
-    /**
+/**
      * Create a new PHPExcel_Chart_DataSeries
      */
     public function __construct($plotType = null, $plotGrouping = null, $plotOrder = array(), $plotLabel = array(), $plotCategory = array(), $plotValues = array(), $plotDirection = null, $smoothLine = null, $plotStyle = null)
@@ -154,7 +144,6 @@ class PHPExcel_Chart_DataSeries
         $this->plotCategory = $plotCategory;
         $this->smoothLine = $smoothLine;
         $this->plotStyle = $plotStyle;
-        
         if (is_null($plotDirection)) {
             $plotDirection = self::DIRECTION_COL;
         }

@@ -69,7 +69,7 @@ class PHPExcel_Writer_Excel2007_Drawing extends PHPExcel_Writer_Excel2007_Writer
             // Loop through charts and write the chart position
             if ($chartCount > 0) {
                 for ($c = 0; $c < $chartCount; ++$c) {
-                    $this->writeChart($objWriter, $pWorksheet->getChartByIndex($c), $c+$i);
+                    $this->writeChart($objWriter, $pWorksheet->getChartByIndex($c), $c + $i);
                 }
             }
         }
@@ -114,7 +114,7 @@ class PHPExcel_Writer_Excel2007_Drawing extends PHPExcel_Writer_Excel2007_Writer
                 $objWriter->writeAttribute('macro', '');
                 $objWriter->startElement('xdr:nvGraphicFramePr');
                     $objWriter->startElement('xdr:cNvPr');
-                        $objWriter->writeAttribute('name', 'Chart '.$pRelationId);
+                        $objWriter->writeAttribute('name', 'Chart ' . $pRelationId);
                         $objWriter->writeAttribute('id', 1025 * $pRelationId);
                     $objWriter->endElement();
                     $objWriter->startElement('xdr:cNvGraphicFramePr');
@@ -140,7 +140,7 @@ class PHPExcel_Writer_Excel2007_Drawing extends PHPExcel_Writer_Excel2007_Writer
                         $objWriter->startElement('c:chart');
                             $objWriter->writeAttribute('xmlns:c', 'http://schemas.openxmlformats.org/drawingml/2006/chart');
                             $objWriter->writeAttribute('xmlns:r', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships');
-                            $objWriter->writeAttribute('r:id', 'rId'.$pRelationId);
+                            $objWriter->writeAttribute('r:id', 'rId' . $pRelationId);
                         $objWriter->endElement();
                     $objWriter->endElement();
                 $objWriter->endElement();

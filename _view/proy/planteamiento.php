@@ -1,6 +1,4 @@
 <?php
-
-
 require_once '../../public/body/header.php';
 ?>
 <body id="page-top">

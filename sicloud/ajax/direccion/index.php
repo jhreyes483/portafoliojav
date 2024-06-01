@@ -4,8 +4,8 @@
 require "conexion.php";
 include_once '../../application/Config.php';
 $user = new Conexion();
-if( !isset($_SESSION['usuario']) ){
-header('location:' . BASE_URL . 'index');
+if (!isset($_SESSION['usuario'])) {
+    header('location:' . BASE_URL . 'index');
 }
 
 
@@ -25,13 +25,15 @@ header('location:' . BASE_URL . 'index');
 </thead>
 
 <?php
-if (isset($_SESSION['s_menu'])) echo $_SESSION['s_menu'];
+if (isset($_SESSION['s_menu'])) {
+    echo $_SESSION['s_menu'];
+}
 ?>
 
 
 <h3 class="text-center col-md-8 mx-auto lead border border-secondary p-3 text-white bg-dark mt-5 mx-5" style="font-weight: bold">Registro de dirección</h3>
 
-<form action="<?= BASE_URL.'user/misdatos' ?>" method="post">
+<form action="<?= BASE_URL . 'user/misdatos' ?>" method="post">
         <div class="  col-md-8 mx-auto card shadow border border-secondary mx-5">
             <div class="row col-md-12 mt-5">
                 <div class="col-md-6">
@@ -39,11 +41,11 @@ if (isset($_SESSION['s_menu'])) echo $_SESSION['s_menu'];
                     <select name="nom_ciudad" id="ciudad" class="form-control ">
                         <?php
                         $departamentos = $user->buscar("ciudad", "1");
-echo '<option value="">--Seleccione--</option>';
-foreach ($departamentos as $d) :
-  echo '<option '.((isset($_POST['nom_ciudad'] ) && $_POST['nom_ciudad'] == $d['ID_ciudad'] )? ' selected ': '').' value="'.$d['ID_ciudad'].'">'.$d['nom_ciudad'].'</option>';
-endforeach;
-?>
+                        echo '<option value="">--Seleccione--</option>';
+                        foreach ($departamentos as $d) :
+                            echo '<option ' . ((isset($_POST['nom_ciudad']) && $_POST['nom_ciudad'] == $d['ID_ciudad'] ) ? ' selected ' : '') . ' value="' . $d['ID_ciudad'] . '">' . $d['nom_ciudad'] . '</option>';
+                        endforeach;
+                        ?>
                     </select>
                 </div>
                 <div class="col-md-6">
@@ -111,17 +113,17 @@ endforeach;
 
         /*
         $("#localidades").change(function(){
-        	 		var parametros= "id="+$("#localidades").val();
-        	 		$.ajax({
+                    var parametros= "id="+$("#localidades").val();
+                    $.ajax({
                         data:  parametros,
                         url:   'ajax_localidades.php',
                         type:  'post',
                         beforeSend: function () { },
-                        success:  function (response) {                	
+                        success:  function (response) {                 
                             $("#localidades").html(response);
                         },
                         error:function(){
-                        	alert("error")
+                            alert("error")
                         }
                     });
         })

@@ -2,7 +2,6 @@
 
 class SQL
 {
-
     public function __construct()
     {
         $this->db = Conexion::conexionPDO();
@@ -25,18 +24,20 @@ class SQL
 
 */
     //Insertar mensaje--------------------------------------------------------------
-    public function insertMensaje(array $d){
+    public function insertMensaje(array $d)
+    {
         $sql = "INSERT into mensaje( estado, descript, nom_us , FK_ms ) 
         VALUES (?, ?, ?, ?)";
         $insert = $this->db->prepare($sql);
-        $insert->bindValue(1, $d[0] );
-        $insert->bindValue(2, $d[1] );
-        $insert->bindValue(3, $d[2] );
-        $insert->bindValue(4, $d[3] );
+        $insert->bindValue(1, $d[0]);
+        $insert->bindValue(2, $d[1]);
+        $insert->bindValue(3, $d[2]);
+        $insert->bindValue(4, $d[3]);
         return $insert->execute();
     } // fin de insert mensaje----------------------------------------------------
 
-    public function verMensaje1(){
+    public function verMensaje1()
+    {
         $sql = "SELECT * FROM mensaje 
         ORDER BY  ID_not desc
          ";
@@ -45,5 +46,4 @@ class SQL
         $r   = $c->fetchAll();
         return $r;
     }
-
 }// FIN DE CLASE USUARIO

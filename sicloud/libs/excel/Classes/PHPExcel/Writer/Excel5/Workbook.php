@@ -230,7 +230,6 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
                 $this->addColor($phpSheet->getTabColor()->getRGB());
             }
         }
-
     }
 
     /**
@@ -676,7 +675,6 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
                         $scope = 0;
                     }
                     $chunk .= $this->writeData($this->writeDefinedNameBiff8($namedRange->getName(), $formulaData, $scope, false));
-
                 } catch (PHPExcel_Exception $e) {
                     // do nothing
                 }
@@ -1168,7 +1166,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
         $unknown01       = 0x29;
         $unknown02       = 0x002b;
         $unknown03       = 0x3b;
-        $unknown04       = 0xffff-$index;
+        $unknown04       = 0xffff - $index;
         $unknown05       = 0x0000;
         $unknown06       = 0x0000;
         $unknown07       = 0x1087;

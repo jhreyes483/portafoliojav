@@ -6,10 +6,9 @@ use _controller\userController;
 use _controller\Controller;
 //Controller::ver()
 
-$obj = new userController;
+$obj = new userController();
 $c   = $obj->getLogIp();
 include_once '../public/body/header.php';
-
 ?>
 
 <body id="page-top">
@@ -40,7 +39,7 @@ include_once '../public/body/header.php';
                                 <tbody>
                                     <?php
                                     foreach ($c['logs'] as $d) {
-                                    ?>
+                                        ?>
                                         <tr>
                                             <form method="post" action="location.php">
                                                 <input type="hidden" name="a" value="update">
@@ -63,9 +62,8 @@ include_once '../public/body/header.php';
                                         </tr>
                                         </form>
                                         </tr>
-                                    <?php
+                                        <?php
                                     }
-
                                     ?>
                                 </tbody>
                             </table>

@@ -669,7 +669,7 @@ class PHPExcel_Chart
             set_include_path(get_include_path() . PATH_SEPARATOR . $libraryPath);
         }
 
-        $rendererName = 'PHPExcel_Chart_Renderer_'.$libraryName;
+        $rendererName = 'PHPExcel_Chart_Renderer_' . $libraryName;
         $renderer = new $rendererName($this);
 
         if ($outputDestination == 'php://output') {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHPExcel
  *
@@ -173,32 +174,26 @@ class PHPExcel_Worksheet_PageSetup
     const PAPERSIZE_A2_PAPER                        = 64;
     const PAPERSIZE_A3_TRANSVERSE_PAPER             = 65;
     const PAPERSIZE_A3_EXTRA_TRANSVERSE_PAPER       = 66;
-
-    /* Page orientation */
+/* Page orientation */
     const ORIENTATION_DEFAULT                       = 'default';
     const ORIENTATION_LANDSCAPE                     = 'landscape';
     const ORIENTATION_PORTRAIT                      = 'portrait';
-
-    /* Print Range Set Method */
+/* Print Range Set Method */
     const SETPRINTRANGE_OVERWRITE                   = 'O';
     const SETPRINTRANGE_INSERT                      = 'I';
-
-
-    /**
+/**
      * Paper size
      *
      * @var int
      */
     private $paperSize = PHPExcel_Worksheet_PageSetup::PAPERSIZE_LETTER;
-
-    /**
+/**
      * Orientation
      *
      * @var string
      */
     private $orientation = PHPExcel_Worksheet_PageSetup::ORIENTATION_DEFAULT;
-
-    /**
+/**
      * Scale (Print Scale)
      *
      * Print scaling. Valid values range from 10 to 400
@@ -207,74 +202,64 @@ class PHPExcel_Worksheet_PageSetup
      * @var int?
      */
     private $scale = 100;
-
-    /**
+/**
       * Fit To Page
       * Whether scale or fitToWith / fitToHeight applies
       *
       * @var boolean
       */
     private $fitToPage = false;
-
-    /**
+/**
       * Fit To Height
       * Number of vertical pages to fit on
       *
       * @var int?
       */
     private $fitToHeight    = 1;
-
-    /**
+/**
       * Fit To Width
       * Number of horizontal pages to fit on
       *
       * @var int?
       */
     private $fitToWidth    = 1;
-
-    /**
+/**
      * Columns to repeat at left
      *
      * @var array Containing start column and end column, empty array if option unset
      */
     private $columnsToRepeatAtLeft = array('', '');
-
-    /**
+/**
      * Rows to repeat at top
      *
      * @var array Containing start row number and end row number, empty array if option unset
      */
     private $rowsToRepeatAtTop = array(0, 0);
-
-    /**
+/**
      * Center page horizontally
      *
      * @var boolean
      */
     private $horizontalCentered = false;
-
-    /**
+/**
      * Center page vertically
      *
      * @var boolean
      */
     private $verticalCentered = false;
-
-    /**
+/**
      * Print area
      *
      * @var string
      */
     private $printArea = null;
-
-    /**
+/**
      * First page number
      *
      * @var int
      */
     private $firstPageNumber = null;
-
-    /**
+/**
      * Create a new PHPExcel_Worksheet_PageSetup
      */
     public function __construct()
@@ -601,8 +586,8 @@ class PHPExcel_Worksheet_PageSetup
             return $this->printArea;
         }
         $printAreas = explode(',', $this->printArea);
-        if (isset($printAreas[$index-1])) {
-            return $printAreas[$index-1];
+        if (isset($printAreas[$index - 1])) {
+            return $printAreas[$index - 1];
         }
         throw new PHPExcel_Exception("Requested Print Area does not exist");
     }
@@ -622,7 +607,7 @@ class PHPExcel_Worksheet_PageSetup
             return !is_null($this->printArea);
         }
         $printAreas = explode(',', $this->printArea);
-        return isset($printAreas[$index-1]);
+        return isset($printAreas[$index - 1]);
     }
 
     /**
@@ -640,8 +625,8 @@ class PHPExcel_Worksheet_PageSetup
             $this->printArea = null;
         } else {
             $printAreas = explode(',', $this->printArea);
-            if (isset($printAreas[$index-1])) {
-                unset($printAreas[$index-1]);
+            if (isset($printAreas[$index - 1])) {
+                unset($printAreas[$index - 1]);
                 $this->printArea = implode(',', $printAreas);
             }
         }
@@ -679,7 +664,6 @@ class PHPExcel_Worksheet_PageSetup
             throw new PHPExcel_Exception('Cell coordinate must not be absolute.');
         }
         $value = strtoupper($value);
-
         if ($method == self::SETPRINTRANGE_OVERWRITE) {
             if ($index == 0) {
                 $this->printArea = $value;
@@ -691,12 +675,12 @@ class PHPExcel_Worksheet_PageSetup
                 if (($index <= 0) || ($index > count($printAreas))) {
                     throw new PHPExcel_Exception('Invalid index for setting print range.');
                 }
-                $printAreas[$index-1] = $value;
+                $printAreas[$index - 1] = $value;
                 $this->printArea = implode(',', $printAreas);
             }
         } elseif ($method == self::SETPRINTRANGE_INSERT) {
             if ($index == 0) {
-                $this->printArea .= ($this->printArea == '') ? $value : ','.$value;
+                $this->printArea .= ($this->printArea == '') ? $value : ',' . $value;
             } else {
                 $printAreas = explode(',', $this->printArea);
                 if ($index < 0) {
@@ -758,11 +742,7 @@ class PHPExcel_Worksheet_PageSetup
      */
     public function setPrintAreaByColumnAndRow($column1, $row1, $column2, $row2, $index = 0, $method = self::SETPRINTRANGE_OVERWRITE)
     {
-        return $this->setPrintArea(
-            PHPExcel_Cell::stringFromColumnIndex($column1) . $row1 . ':' . PHPExcel_Cell::stringFromColumnIndex($column2) . $row2,
-            $index,
-            $method
-        );
+        return $this->setPrintArea(PHPExcel_Cell::stringFromColumnIndex($column1) . $row1 . ':' . PHPExcel_Cell::stringFromColumnIndex($column2) . $row2, $index, $method);
     }
 
     /**
@@ -783,11 +763,7 @@ class PHPExcel_Worksheet_PageSetup
      */
     public function addPrintAreaByColumnAndRow($column1, $row1, $column2, $row2, $index = -1)
     {
-        return $this->setPrintArea(
-            PHPExcel_Cell::stringFromColumnIndex($column1) . $row1 . ':' . PHPExcel_Cell::stringFromColumnIndex($column2) . $row2,
-            $index,
-            self::SETPRINTRANGE_INSERT
-        );
+        return $this->setPrintArea(PHPExcel_Cell::stringFromColumnIndex($column1) . $row1 . ':' . PHPExcel_Cell::stringFromColumnIndex($column2) . $row2, $index, self::SETPRINTRANGE_INSERT);
     }
 
     /**

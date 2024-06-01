@@ -6,6 +6,11 @@
 app = 'portafolio-javier-reyes'
 primary_region = 'bog'
 
+[build]
+  [build.args]
+    NODE_VERSION = '14'
+    PHP_VERSION = '7.4'
+
 [http_service]
   internal_port = 80
   force_https = true

@@ -1,15 +1,13 @@
 <?php
+
 namespace _view;
 
 require_once '../public/body/header.php';
 require_once('../autoload.php');
-
 use _controller\indexController;
+$obj = new indexController();
 
-
-$obj = new indexController; 
-session_destroy();
-if( isset ($_POST['a'])){
+if (isset($_POST['a'])) {
     $obj->login();
 }
 ?>

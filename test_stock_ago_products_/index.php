@@ -1,7 +1,5 @@
 <?php
 
-
-
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 
@@ -19,8 +17,8 @@ $products = [
         'name' => 'Camisa 01',
         'stock' => 10,
         'price' => 200,
-        "cost_price"=> "20000",
-        'category' => ['id'=>2,'name'=>'Salud'],
+        "cost_price" => "20000",
+        'category' => ['id' => 2,'name' => 'Salud'],
         'price' => 2000,
         'sku' => 'test-sku'
     ],
@@ -29,8 +27,8 @@ $products = [
         'name' => 'Camisa 01',
         'stock' => 10,
         'price' => 200,
-         "cost_price"=> "20000",
-         'category' => ['id'=>2,'name'=>'Salud'],
+         "cost_price" => "20000",
+         'category' => ['id' => 2,'name' => 'Salud'],
         'price' => 2000,
         'sku' => 'test-sku'
     ],
@@ -38,8 +36,8 @@ $products = [
         'id'    => 3,
         'name' => 'Camisa 01',
         'stock' => 10,
-    'category' => ['id'=>2,'name'=>'Salud'],
-        "cost_price"=> "20000",
+    'category' => ['id' => 2,'name' => 'Salud'],
+        "cost_price" => "20000",
         'price' => 2000,
         'sku' => 'test-sku'
     ],
@@ -47,9 +45,9 @@ $products = [
         'id'    => 4,
         'name' => 'Camisa 01',
         'stock' => 10,
-         "cost_price"=> "20000",
+         "cost_price" => "20000",
         'price' => 200,
-    'category' => ['id'=>2,'name'=>'Salud'],
+    'category' => ['id' => 2,'name' => 'Salud'],
         'price' => 2000,
         'sku' => 'test-sku'
     ],

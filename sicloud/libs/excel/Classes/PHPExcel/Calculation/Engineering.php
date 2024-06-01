@@ -1,6 +1,7 @@
 <?php
 
 /** PHPExcel root directory */
+
 if (!defined('PHPEXCEL_ROOT')) {
     /**
      * @ignore
@@ -777,13 +778,13 @@ class PHPExcel_Calculation_Engineering
             ++$leadingSign;
         }
 
-        $realNumber = substr($workString, 0, strlen($realNumber)+strlen($power)+$leadingSign);
+        $realNumber = substr($workString, 0, strlen($realNumber) + strlen($power) + $leadingSign);
 
         if ($suffix != '') {
             $imaginary = substr($workString, strlen($realNumber));
 
             if (($imaginary == '') && (($realNumber == '') || ($realNumber == '+') || ($realNumber == '-'))) {
-                $imaginary = $realNumber.'1';
+                $imaginary = $realNumber . '1';
                 $realNumber = '0';
             } elseif ($imaginary == '') {
                 $imaginary = $realNumber;
@@ -816,7 +817,7 @@ class PHPExcel_Calculation_Engineering
             $complexNumber = substr($complexNumber, 1);
         }
         if ($complexNumber{0} == '.') {
-            $complexNumber = '0'.$complexNumber;
+            $complexNumber = '0' . $complexNumber;
         }
         if ($complexNumber{0} == '+') {
             $complexNumber = substr($complexNumber, 1);
@@ -1165,7 +1166,7 @@ class PHPExcel_Calculation_Engineering
         } elseif (strlen($x) == 10) {
             //    Two's Complement
             $x = substr($x, -9);
-            return '-'.(512-bindec($x));
+            return '-' . (512 - bindec($x));
         }
         return bindec($x);
     }
@@ -1218,7 +1219,7 @@ class PHPExcel_Calculation_Engineering
             return PHPExcel_Calculation_Functions::NaN();
         } elseif (strlen($x) == 10) {
             //    Two's Complement
-            return str_repeat('F', 8).substr(strtoupper(dechex(bindec(substr($x, -9)))), -2);
+            return str_repeat('F', 8) . substr(strtoupper(dechex(bindec(substr($x, -9)))), -2);
         }
         $hexVal = (string) strtoupper(dechex(bindec($x)));
 
@@ -1273,7 +1274,7 @@ class PHPExcel_Calculation_Engineering
             return PHPExcel_Calculation_Functions::NaN();
         } elseif (strlen($x) == 10) {
             //    Two's Complement
-            return str_repeat('7', 7).substr(strtoupper(decoct(bindec(substr($x, -9)))), -3);
+            return str_repeat('7', 7) . substr(strtoupper(decoct(bindec(substr($x, -9)))), -3);
         }
         $octVal = (string) decoct(bindec($x));
 
@@ -1386,7 +1387,7 @@ class PHPExcel_Calculation_Engineering
         $r = strtoupper(dechex($x));
         if (strlen($r) == 8) {
             //    Two's Complement
-            $r = 'FF'.$r;
+            $r = 'FF' . $r;
         }
 
         return self::nbrConversionFormat($r, $places);
@@ -1736,8 +1737,10 @@ class PHPExcel_Calculation_Engineering
         $imaginary  = (is_null($imaginary))  ? 0.0 : PHPExcel_Calculation_Functions::flattenSingleValue($imaginary);
         $suffix     = (is_null($suffix))     ? 'i' : PHPExcel_Calculation_Functions::flattenSingleValue($suffix);
 
-        if (((is_numeric($realNumber)) && (is_numeric($imaginary))) &&
-            (($suffix == 'i') || ($suffix == 'j') || ($suffix == ''))) {
+        if (
+            ((is_numeric($realNumber)) && (is_numeric($imaginary))) &&
+            (($suffix == 'i') || ($suffix == 'j') || ($suffix == ''))
+        ) {
             $realNumber    = (float) $realNumber;
             $imaginary    = (float) $imaginary;
 
@@ -1750,20 +1753,20 @@ class PHPExcel_Calculation_Engineering
                 } elseif ($imaginary == 1.0) {
                     return (string) $suffix;
                 } elseif ($imaginary == -1.0) {
-                    return (string) '-'.$suffix;
+                    return (string) '-' . $suffix;
                 }
-                return (string) $imaginary.$suffix;
+                return (string) $imaginary . $suffix;
             } elseif ($imaginary == 0.0) {
                 return (string) $realNumber;
             } elseif ($imaginary == 1.0) {
-                return (string) $realNumber.'+'.$suffix;
+                return (string) $realNumber . '+' . $suffix;
             } elseif ($imaginary == -1.0) {
-                return (string) $realNumber.'-'.$suffix;
+                return (string) $realNumber . '-' . $suffix;
             }
             if ($imaginary > 0) {
-                $imaginary = (string) '+'.$imaginary;
+                $imaginary = (string) '+' . $imaginary;
             }
-            return (string) $realNumber.$imaginary.$suffix;
+            return (string) $realNumber . $imaginary . $suffix;
         }
 
         return PHPExcel_Calculation_Functions::VALUE();
@@ -2171,8 +2174,10 @@ class PHPExcel_Calculation_Engineering
         $parsedComplexDividend = self::parseComplex($complexDividend);
         $parsedComplexDivisor = self::parseComplex($complexDivisor);
 
-        if (($parsedComplexDividend['suffix'] != '') && ($parsedComplexDivisor['suffix'] != '') &&
-            ($parsedComplexDividend['suffix'] != $parsedComplexDivisor['suffix'])) {
+        if (
+            ($parsedComplexDividend['suffix'] != '') && ($parsedComplexDivisor['suffix'] != '') &&
+            ($parsedComplexDividend['suffix'] != $parsedComplexDivisor['suffix'])
+        ) {
             return PHPExcel_Calculation_Functions::NaN();
         }
         if (($parsedComplexDividend['suffix'] != '') && ($parsedComplexDivisor['suffix'] == '')) {
@@ -2187,9 +2192,9 @@ class PHPExcel_Calculation_Engineering
         $i = $d2 / $d3;
 
         if ($i > 0.0) {
-            return self::cleanComplex($r.'+'.$i.$parsedComplexDivisor['suffix']);
+            return self::cleanComplex($r . '+' . $i . $parsedComplexDivisor['suffix']);
         } elseif ($i < 0.0) {
-            return self::cleanComplex($r.$i.$parsedComplexDivisor['suffix']);
+            return self::cleanComplex($r . $i . $parsedComplexDivisor['suffix']);
         } else {
             return $r;
         }
@@ -2216,8 +2221,10 @@ class PHPExcel_Calculation_Engineering
         $parsedComplex1 = self::parseComplex($complexNumber1);
         $parsedComplex2 = self::parseComplex($complexNumber2);
 
-        if ((($parsedComplex1['suffix'] != '') && ($parsedComplex2['suffix'] != '')) &&
-            ($parsedComplex1['suffix'] != $parsedComplex2['suffix'])) {
+        if (
+            (($parsedComplex1['suffix'] != '') && ($parsedComplex2['suffix'] != '')) &&
+            ($parsedComplex1['suffix'] != $parsedComplex2['suffix'])
+        ) {
             return PHPExcel_Calculation_Functions::NaN();
         } elseif (($parsedComplex1['suffix'] == '') && ($parsedComplex2['suffix'] != '')) {
             $parsedComplex1['suffix'] = $parsedComplex2['suffix'];
@@ -2627,11 +2634,15 @@ class PHPExcel_Calculation_Engineering
                     }
                     return $value;
                 }
-            } elseif ((($fromUOM == 'K') || ($fromUOM == 'kel')) &&
-                      (($toUOM == 'K') || ($toUOM == 'kel'))) {
+            } elseif (
+                (($fromUOM == 'K') || ($fromUOM == 'kel')) &&
+                      (($toUOM == 'K') || ($toUOM == 'kel'))
+            ) {
                         return $value;
-            } elseif ((($fromUOM == 'C') || ($fromUOM == 'cel')) &&
-                      (($toUOM == 'C') || ($toUOM == 'cel'))) {
+            } elseif (
+                (($fromUOM == 'C') || ($fromUOM == 'cel')) &&
+                      (($toUOM == 'C') || ($toUOM == 'cel'))
+            ) {
                     return $value;
             }
             if (($toUOM == 'F') || ($toUOM == 'fah')) {

@@ -12,31 +12,31 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
         $gC  = file_get_contents("php://input");
 
-      if( isset($gC) &&  is_object(json_decode($gC))  ){
-         $_DATA = get_object_vars(json_decode($gC));
-         $request =  $_DATA; 
-      }
-      
-      if( isset($_POST) && count($_POST) > 0  ){
-         $request =  $_POST;
-      }
+if (isset($gC) &&  is_object(json_decode($gC))) {
+    $_DATA = get_object_vars(json_decode($gC));
+    $request =  $_DATA;
+}
 
-      if(isset($_GET) && count($_GET) > 1 ){
-         $request =  $_GET;
-      }
+if (isset($_POST) && count($_POST) > 0) {
+    $request =  $_POST;
+}
+
+if (isset($_GET) && count($_GET) > 1) {
+    $request =  $_GET;
+}
 
 
 $ingredients = [
-'Tomato'=>0,
-'Lemon'=>0,
-'Potato'=>0,
-'Rice'=>100,
-'Ketchup'=>0,
-'Lettuce'=>0,
-'Onion'=>0,
-'Cheese'=>0,
-'Meat'=>0,
-'Chicken'=>0
+'Tomato' => 0,
+'Lemon' => 0,
+'Potato' => 0,
+'Rice' => 100,
+'Ketchup' => 0,
+'Lettuce' => 0,
+'Onion' => 0,
+'Cheese' => 0,
+'Meat' => 0,
+'Chicken' => 0
 ];
 
 /*
@@ -58,9 +58,8 @@ $resposne['status'] = false;
 $resposne['msg'] = 'no hay request';
 
 
-if( $request['ingredient']){
-
-    if(!isset($ingredients[ $request['ingredient']])){
+if ($request['ingredient']) {
+    if (!isset($ingredients[ $request['ingredient']])) {
         $resposne['msg'] = 'no existe el product';
     }
 
@@ -68,17 +67,13 @@ if( $request['ingredient']){
     $resposne['name'] = $request['ingredient'];
     $resposne['status'] = true;
     $resposne['msg'] = 'ok';
-    
-    
-    if($resposne['quanitySold'] == 0){
+
+
+    if ($resposne['quanitySold'] == 0) {
             $resposne['msg'] = 'No hay existencias';
     }
-    
-    
-    
 }
 
 
 
 echo json_encode($resposne);
-?>

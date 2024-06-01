@@ -1,19 +1,19 @@
 <?php
+
 include_once 'ErrorHandler.php';
 
-function autoload($clase){
-    $pet = explode('\\',$clase);
-    $url = "../".str_replace("\\","/",$clase.".php");
+function autoload($clase)
+{
 
-   if( file_exists($url) ){   
-       require_once $url; 
-   } 
+    $pet = explode('\\', $clase);
+    $url = "../" . str_replace("\\", "/", $clase . ".php");
+    if (file_exists($url)) {
+        require_once $url;
+    }
 }
 
-try{
+try {
     spl_autoload_register('autoload');
-}catch(Exception $e){
-    //echo $e->getMessage();
+} catch (Exception $e) {
+//echo $e->getMessage();
 }
-
-?>

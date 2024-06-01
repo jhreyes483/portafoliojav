@@ -1,4 +1,5 @@
 <?php
+
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
@@ -34,80 +35,67 @@ class PHPExcel_Shared_OLE_PPS
     * @var integer
     */
     public $No;
-
-    /**
+/**
     * The PPS name (in Unicode)
     * @var string
     */
     public $Name;
-
-    /**
+/**
     * The PPS type. Dir, Root or File
     * @var integer
     */
     public $Type;
-
-    /**
+/**
     * The index of the previous PPS
     * @var integer
     */
     public $PrevPps;
-
-    /**
+/**
     * The index of the next PPS
     * @var integer
     */
     public $NextPps;
-
-    /**
+/**
     * The index of it's first child if this is a Dir or Root PPS
     * @var integer
     */
     public $DirPps;
-
-    /**
+/**
     * A timestamp
     * @var integer
     */
     public $Time1st;
-
-    /**
+/**
     * A timestamp
     * @var integer
     */
     public $Time2nd;
-
-    /**
+/**
     * Starting block (small or big) for this PPS's data  inside the container
     * @var integer
     */
     public $_StartBlock;
-
-    /**
+/**
     * The size of the PPS's data (in bytes)
     * @var integer
     */
     public $Size;
-
-    /**
+/**
     * The PPS's data (only used if it's not using a temporary file)
     * @var string
     */
     public $_data;
-
-    /**
+/**
     * Array of child PPS's (only used by Root and Dir PPS's)
     * @var array
     */
     public $children = array();
-
-    /**
+/**
     * Pointer to OLE container
     * @var OLE
     */
     public $ole;
-
-    /**
+/**
     * The constructor
     *
     * @access public
@@ -158,7 +146,7 @@ class PHPExcel_Shared_OLE_PPS
         //    return $stats[7];
         //} else {
             return strlen($this->_data);
-        //}
+//}
     }
 
     /**
@@ -170,7 +158,6 @@ class PHPExcel_Shared_OLE_PPS
     public function _getPpsWk()
     {
         $ret = str_pad($this->Name, 64, "\x00");
-
         $ret .= pack("v", strlen($this->Name) + 2)  // 66
               . pack("c", $this->Type)              // 67
               . pack("c", 0x00) //UK                // 68
@@ -184,10 +171,11 @@ class PHPExcel_Shared_OLE_PPS
               . "\x00\x00\x00\x00"                  // 100
               . PHPExcel_Shared_OLE::LocalDate2OLE($this->Time1st)       // 108
               . PHPExcel_Shared_OLE::LocalDate2OLE($this->Time2nd)       // 116
-              . pack("V", isset($this->_StartBlock)?
-                        $this->_StartBlock:0)        // 120
+              . pack("V", isset($this->_StartBlock) ?
+                        $this->_StartBlock : 0)        // 120
               . pack("V", $this->Size)               // 124
-              . pack("V", 0);                        // 128
+              . pack("V", 0);
+// 128
         return $ret;
     }
 
@@ -206,7 +194,7 @@ class PHPExcel_Shared_OLE_PPS
             return 0xFFFFFFFF;
         } elseif (count($to_save) == 1) {
             $cnt = count($raList);
-            // If the first entry, it's the root... Don't clone it!
+        // If the first entry, it's the root... Don't clone it!
             $raList[$cnt] = ( $depth == 0 ) ? $to_save[0] : clone $to_save[0];
             $raList[$cnt]->No = $cnt;
             $raList[$cnt]->PrevPps = 0xFFFFFFFF;
@@ -217,13 +205,12 @@ class PHPExcel_Shared_OLE_PPS
             $aPrev = array_slice($to_save, 0, $iPos);
             $aNext = array_slice($to_save, $iPos + 1);
             $cnt   = count($raList);
-            // If the first entry, it's the root... Don't clone it!
+        // If the first entry, it's the root... Don't clone it!
             $raList[$cnt] = ( $depth == 0 ) ? $to_save[$iPos] : clone $to_save[$iPos];
             $raList[$cnt]->No = $cnt;
             $raList[$cnt]->PrevPps = self::_savePpsSetPnt($raList, $aPrev, $depth++);
             $raList[$cnt]->NextPps = self::_savePpsSetPnt($raList, $aNext, $depth++);
             $raList[$cnt]->DirPps  = self::_savePpsSetPnt($raList, @$raList[$cnt]->children, $depth++);
-
         }
         return $cnt;
     }

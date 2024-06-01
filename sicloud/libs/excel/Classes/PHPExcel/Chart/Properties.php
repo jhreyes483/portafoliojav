@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: nhw2h8s
@@ -12,23 +13,19 @@ abstract class PHPExcel_Chart_Properties
         EXCEL_COLOR_TYPE_STANDARD = 'prstClr',
         EXCEL_COLOR_TYPE_SCHEME = 'schemeClr',
         EXCEL_COLOR_TYPE_ARGB = 'srgbClr';
-
     const
         AXIS_LABELS_LOW = 'low',
         AXIS_LABELS_HIGH = 'high',
         AXIS_LABELS_NEXT_TO = 'nextTo',
         AXIS_LABELS_NONE = 'none';
-
     const
         TICK_MARK_NONE = 'none',
         TICK_MARK_INSIDE = 'in',
         TICK_MARK_OUTSIDE = 'out',
         TICK_MARK_CROSS = 'cross';
-
     const
         HORIZONTAL_CROSSES_AUTOZERO = 'autoZero',
         HORIZONTAL_CROSSES_MAXIMUM = 'max';
-
     const
         FORMAT_CODE_GENERAL = 'General',
         FORMAT_CODE_NUMBER = '#,##0.00',
@@ -41,11 +38,9 @@ abstract class PHPExcel_Chart_Properties
         FORMAT_CODE_SCIENTIFIC = '0.00E+00',
         FORMAT_CODE_TEXT = '@',
         FORMAT_CODE_SPECIAL = '00000';
-
     const
         ORIENTATION_NORMAL = 'minMax',
         ORIENTATION_REVERSED = 'maxMin';
-
     const
         LINE_STYLE_COMPOUND_SIMPLE = 'sng',
         LINE_STYLE_COMPOUND_DOUBLE = 'dbl',
@@ -86,7 +81,6 @@ abstract class PHPExcel_Chart_Properties
         LINE_STYLE_ARROW_SIZE_7 = 7,
         LINE_STYLE_ARROW_SIZE_8 = 8,
         LINE_STYLE_ARROW_SIZE_9 = 9;
-
     const
         SHADOW_PRESETS_NOSHADOW = null,
         SHADOW_PRESETS_OUTER_BOTTTOM_RIGHT = 1,
@@ -112,7 +106,6 @@ abstract class PHPExcel_Chart_Properties
         SHADOW_PRESETS_PERSPECTIVE_UPPER_LEFT = 21,
         SHADOW_PRESETS_PERSPECTIVE_LOWER_RIGHT = 22,
         SHADOW_PRESETS_PERSPECTIVE_LOWER_LEFT = 23;
-
     protected function getExcelPointsWidth($width)
     {
         return $width * 12700;
@@ -150,7 +143,6 @@ abstract class PHPExcel_Chart_Properties
             8 => array('w' => 'lg', 'len' => 'med'),
             9 => array('w' => 'lg', 'len' => 'lg')
         );
-
         return $sizes[$array_selector][$array_kay_selector];
     }
 
@@ -343,7 +335,6 @@ abstract class PHPExcel_Chart_Properties
                 'rotWithShape' => '0',
             ),
         );
-
         return $presets_options[$shadow_presets_option];
     }
 

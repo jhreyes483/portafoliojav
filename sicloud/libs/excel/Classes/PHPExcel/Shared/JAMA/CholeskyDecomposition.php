@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    @package JAMA
  *
@@ -23,22 +24,19 @@ class CholeskyDecomposition
      *    @access private
      */
     private $L = array();
-
-    /**
+/**
      *    Matrix row and column dimension
      *    @var int
      *    @access private
      */
     private $m;
-
-    /**
+/**
      *    Symmetric positive definite flag
      *    @var boolean
      *    @access private
      */
     private $isspd = true;
-
-    /**
+/**
      *    CholeskyDecomposition
      *
      *    Class constructor - decomposes symmetric positive definite matrix
@@ -63,12 +61,12 @@ class CholeskyDecomposition
                         }
                     } else {
                         if ($this->L[$i][$i] != 0) {
-                            $this->L[$j][$i] = $sum / $this->L[$i][$i];
+                                $this->L[$j][$i] = $sum / $this->L[$i][$i];
                         }
                     }
                 }
 
-                for ($k = $i+1; $k < $this->m; ++$k) {
+                for ($k = $i + 1; $k < $this->m; ++$k) {
                     $this->L[$i][$k] = 0.0;
                 }
             }

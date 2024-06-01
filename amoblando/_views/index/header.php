@@ -8,17 +8,17 @@
      <title><?= $this->titulo?></title>
 <?php
 
-if(isset($_layoutParams['css']) && count($_layoutParams['css'])){
-   foreach($_layoutParams['css'] as $css){
-      echo "\t".'<link href="'. $_layoutParams['ruta_css'].$css. '" rel="stylesheet" type="text/css" />'.PHP_EOL;
-   }
+if (isset($_layoutParams['css']) && count($_layoutParams['css'])) {
+    foreach ($_layoutParams['css'] as $css) {
+        echo "\t" . '<link href="' . $_layoutParams['ruta_css'] . $css . '" rel="stylesheet" type="text/css" />' . PHP_EOL;
+    }
 }
 
 
-if(isset($_layoutParams['js']) && count($_layoutParams['js'])){
-   foreach($_layoutParams['js'] as $js){
-      echo "\t".'<script src="'. $_layoutParams['ruta_js'].$js. '"></script>'.PHP_EOL;
-   }
+if (isset($_layoutParams['js']) && count($_layoutParams['js'])) {
+    foreach ($_layoutParams['js'] as $js) {
+        echo "\t" . '<script src="' . $_layoutParams['ruta_js'] . $js . '"></script>' . PHP_EOL;
+    }
 }
 
 

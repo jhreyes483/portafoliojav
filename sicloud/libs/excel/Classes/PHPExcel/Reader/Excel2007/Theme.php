@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHPExcel
  *
@@ -41,31 +42,25 @@ class PHPExcel_Reader_Excel2007_Theme
      * @var string
      */
     private $themeName;
-
-    /**
+/**
      * Colour Scheme Name
      *
      * @var string
      */
     private $colourSchemeName;
-
-    /**
+/**
      * Colour Map indexed by position
      *
      * @var array of string
      */
     private $colourMapValues;
-
-
-    /**
+/**
      * Colour Map
      *
      * @var array of string
      */
     private $colourMap;
-
-
-    /**
+/**
      * Create a new PHPExcel_Theme
      *
      */

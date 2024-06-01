@@ -133,7 +133,6 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
             case 'startColor':
                 $key = 'startcolor';
                 break;
-
         }
         return $this->parent->getStyleArray(array($key => $array));
     }

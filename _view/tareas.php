@@ -6,14 +6,14 @@ require_once '../autoload.php';
 
 use _controller\prodbController;
 
-$obj = new prodbController;
+$obj = new prodbController();
 $c   = $obj->peticion();
 @session_start();
 
 if (isset($_SESSION['usuario'])) {
-   $edit = (($_SESSION['usuario']['rol'] == 'SM') ? ' ' : ' disabled ');
+    $edit = (($_SESSION['usuario']['rol'] == 'SM') ? ' ' : ' disabled ');
 } else {
-   echo '<script>alert("Incie sesion para continuar");</script>';
+    echo '<script>alert("Incie sesion para continuar");</script>';
 }
 include_once '../public/body/header.php';
 ?>
@@ -54,10 +54,10 @@ include_once '../public/body/header.php';
                      <tbody>
                         <?php
                         if ($c['tareas']['response_status'] == 'ok') {
-                           foreach ($c['tareas']['response_msg'] as $d) {
-                              $timeC =  explode(' ', $d[8]);
-                              $timeA =  explode(' ', $d[9]);
-                        ?>
+                            foreach ($c['tareas']['response_msg'] as $d) {
+                                $timeC =  explode(' ', $d[8]);
+                                $timeA =  explode(' ', $d[9]);
+                                ?>
                               <tr>
                                  <form method="post">
                                     <input type="hidden" name="a" value="update">
@@ -68,29 +68,29 @@ include_once '../public/body/header.php';
                                     <td>
                                        <select name="user_asg">
                                           <?php
-                                          foreach ($c['users'] as $k => $v) {
-                                             echo '<option  ' . (($k == $d[3]) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
-                                          }
-                                          ?>
+                                            foreach ($c['users'] as $k => $v) {
+                                                echo '<option  ' . (($k == $d[3]) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
+                                            }
+                                            ?>
                                        </select>
                                     </td>
                                     <td><input type="number" name="esPoint" <?= $edit ?> value="<?= $d[4] ?>"></td>
                                     <td> <input type="text" name="esPlanificado" <?= $edit ?> value="<?= $d[5] ?>"></td>
                                     <td>
                                        <select name="proyecto_asg">
-                                          <?php
-                                          foreach ($c['proyect'] as $k => $v) {
-                                             echo '<option  ' . (($k == $d[6]) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
-                                          }
-                                          ?>
+                                           <?php
+                                            foreach ($c['proyect'] as $k => $v) {
+                                                echo '<option  ' . (($k == $d[6]) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
+                                            }
+                                            ?>
                                        </select>
                                     <td>
                                        <select name="status">
-                                          <?php
-                                          foreach ($c['status'] as $k => $v) {
-                                             echo '<option  ' . (($k == $d[7]) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
-                                          }
-                                          ?>
+                                           <?php
+                                            foreach ($c['status'] as $k => $v) {
+                                                echo '<option  ' . (($k == $d[7]) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
+                                            }
+                                            ?>
                                        </select>
                                     </td>
 
@@ -103,21 +103,21 @@ include_once '../public/body/header.php';
                                     <b>Creación</b>
                                  </td>
                                  <td>
-                                    <?= ($timeC[0] ?? '') ?><br>
-                                    <?= ($timeC[1] ?? '') ?>
+                                     <?= ($timeC[0] ?? '') ?><br>
+                                     <?= ($timeC[1] ?? '') ?>
 
                                  <td>
                                     <b>Actualizacion</b>
                                  </td>
                                  <td>
-                                    <?= ($timeA[0] ?? '') ?><br>
-                                    <?= ($timeA[1] ?? '') ?><br>
+                                     <?= ($timeA[0] ?? '') ?><br>
+                                     <?= ($timeA[1] ?? '') ?><br>
                                  </td>
                                  <td>
                                     <b>Usuario actualizo</b><br>
                                  </td>
                                  <td>
-                                    <?= $c['users'][$d[10]] ?>
+                                     <?= $c['users'][$d[10]] ?>
                                  </td>
 
 
@@ -126,8 +126,8 @@ include_once '../public/body/header.php';
                               </form>
                               </tr>
 
-                        <?php
-                           }
+                                <?php
+                            }
                         }
                         ?>
                         <tr>
@@ -141,7 +141,7 @@ include_once '../public/body/header.php';
                                  <select name="user_asg">
                                     <?php
                                     foreach ($c['users'] as $k => $v) {
-                                       echo '<option  ' . (($k == $d[7]) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
+                                        echo '<option  ' . (($k == $d[7]) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
                                     }
                                     ?>
                                  </select>
@@ -152,7 +152,7 @@ include_once '../public/body/header.php';
                                  <select name="proyecto_asg">
                                     <?php
                                     foreach ($c['proyect'] as $k => $v) {
-                                       echo '<option  ' . (($k == $d[6]) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
+                                        echo '<option  ' . (($k == $d[6]) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
                                     }
                                     ?>
                                  </select>
@@ -160,7 +160,7 @@ include_once '../public/body/header.php';
                                  <select name="status">
                                     <?php
                                     foreach ($c['status'] as $k => $v) {
-                                       echo '<option  ' . (($k == $d[7]) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
+                                        echo '<option  ' . (($k == $d[7]) ? ' selected ' : '') . ' value="' . $k . '">' . $v . '</option>';
                                     }
                                     ?>
 
@@ -180,7 +180,7 @@ include_once '../public/body/header.php';
                   <?php
 
                   // pendiente else
-                  ?>
+                    ?>
                </div>
 
             </div>

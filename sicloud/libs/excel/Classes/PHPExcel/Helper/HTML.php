@@ -588,7 +588,7 @@ class PHPExcel_Helper_HTML
         $this->initialise();
 
         //  Create a new DOM object
-        $dom = new \DOMDocument;
+        $dom = new \DOMDocument();
         //  Load the HTML file into the DOM object
         //  Note the use of error suppression, because typically this will be an html fragment, so not fully valid markup
         $loaded = @$dom->loadHTML($html);
@@ -596,7 +596,8 @@ class PHPExcel_Helper_HTML
         //  Discard excess white space
         $dom->preserveWhiteSpace = false;
 
-        $this->richTextObject = new PHPExcel_RichText();;
+        $this->richTextObject = new PHPExcel_RichText();
+        ;
         $this->parseElements($dom);
 
         // Clean any further spurious whitespace

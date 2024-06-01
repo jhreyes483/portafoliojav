@@ -149,7 +149,6 @@ class PHPExcel_Writer_Excel5_Xf
         $this->rightBorderColor    = 0x40;
         $this->_diag_color     = 0x40;
         $this->_style = $style;
-
     }
 
 
@@ -169,16 +168,16 @@ class PHPExcel_Writer_Excel5_Xf
         }
 
         // Flags to indicate if attributes have been set.
-        $atr_num     = ($this->numberFormatIndex != 0)?1:0;
-        $atr_fnt     = ($this->fontIndex != 0)?1:0;
+        $atr_num     = ($this->numberFormatIndex != 0) ? 1 : 0;
+        $atr_fnt     = ($this->fontIndex != 0) ? 1 : 0;
         $atr_alc     = ((int) $this->_style->getAlignment()->getWrapText()) ? 1 : 0;
         $atr_bdr     = (self::mapBorderStyle($this->_style->getBorders()->getBottom()->getBorderStyle())   ||
                         self::mapBorderStyle($this->_style->getBorders()->getTop()->getBorderStyle())      ||
                         self::mapBorderStyle($this->_style->getBorders()->getLeft()->getBorderStyle())     ||
-                        self::mapBorderStyle($this->_style->getBorders()->getRight()->getBorderStyle()))?1:0;
+                        self::mapBorderStyle($this->_style->getBorders()->getRight()->getBorderStyle())) ? 1 : 0;
         $atr_pat     = (($this->foregroundColor != 0x40) ||
                         ($this->backgroundColor != 0x41) ||
-                        self::mapFillType($this->_style->getFill()->getFillType()))?1:0;
+                        self::mapFillType($this->_style->getFill()->getFillType())) ? 1 : 0;
         $atr_prot    = self::mapLocked($this->_style->getProtection()->getLocked())
                         | self::mapHidden($this->_style->getProtection()->getHidden());
 

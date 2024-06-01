@@ -1,9 +1,11 @@
 <?php
 
-//Funcion que me permite exportar codigo HTML si repetir 
+//Funcion que me permite exportar codigo HTML si repetir
 
 
-function cardAviso(){echo'
+function cardAviso()
+{
+    echo'
     <div class="row">
         <div class="card mb-5 p-4 col-sm-12 col-lg-6 mx-auto border-abajo ">
             <div class="col-md-10 col-12 mx-auto mt-6 ">
@@ -29,24 +31,29 @@ function cardAviso(){echo'
     </div>';
 }
 
-function cardtitulo($titulo){
+function cardtitulo($titulo)
+{
     echo '
    <div class="container-pt-4 my-4">
        <div class="card card-body col-md-4 text-center mx-auto bk-rgb shadow p-3 mb-5 bg-white ">
-           <h4 class="ee">'.$titulo.' </h4>
+           <h4 class="ee">' . $titulo . ' </h4>
        </div>
    </div><br><br>';
 }
 
-function cardtituloS($titulo){echo '
+function cardtituloS($titulo)
+{
+    echo '
    <div class="my-4">
        <div class="col-md-8 mx-auto card card-body text-center bk-rgb">
-           <h5>'. $titulo .'.</h5>
+           <h5>' . $titulo . '.</h5>
        </div>
    </div><br><br> ';
-} 
+}
 
-function form1(){ echo'
+function form1()
+{
+    echo'
     <!-- Plantilla formulario -->
     <form action="par_inpar.php" method="POST">
         <div class="form-group"><input class="form-control" name="num1" placeholder="Primer numero" type="number" step="0.01"></div>
@@ -54,39 +61,37 @@ function form1(){ echo'
     </form>';
 }
 
-function human_time($input_seconds, $rs = 1, $normal = 0, $mostrarD = 0){
+function human_time($input_seconds, $rs = 1, $normal = 0, $mostrarD = 0)
+{
    //$rs = muestra segundos // normal=1 deja h m s  como abreviaturas // mostrarD=1 muestra d�as
-   $days         = floor($input_seconds / 86400);
-   $remainder   = floor($input_seconds % 86400);
-   $hours      = floor($remainder / 3600);
-   $remainder   = floor($remainder % 3600);
-   $minutes      = floor($remainder / 60);
-   $seconds      = floor($remainder % 60);
+    $days         = floor($input_seconds / 86400);
+    $remainder   = floor($input_seconds % 86400);
+    $hours      = floor($remainder / 3600);
+    $remainder   = floor($remainder % 3600);
+    $minutes      = floor($remainder / 60);
+    $seconds      = floor($remainder % 60);
 
-   if ($mostrarD > 0) {
-      $hours   += $days * 24;
-      $days   = '';
-   } else {
-      $days   = ($days > 0) ?          $days . ($normal == 0 ? ' d�as' : 'd') : '';
-   }
-   $hours   = ($hours > 0) ?          $hours . ($normal == 0 ? ' horas' : 'h') : '';
-   $minutes   = ($minutes > 0) ?         $minutes . ($normal == 0 ? ' min' : 'm') : '';
-   $seconds   = ($seconds > 0 && $rs == 1) ? $seconds . ($normal == 0 ? ' seg' : 's') : '';
-   return "$days $hours $minutes $seconds";
+    if ($mostrarD > 0) {
+        $hours   += $days * 24;
+        $days   = '';
+    } else {
+        $days   = ($days > 0) ?          $days . ($normal == 0 ? ' d�as' : 'd') : '';
+    }
+    $hours   = ($hours > 0) ?          $hours . ($normal == 0 ? ' horas' : 'h') : '';
+    $minutes   = ($minutes > 0) ?         $minutes . ($normal == 0 ? ' min' : 'm') : '';
+    $seconds   = ($seconds > 0 && $rs == 1) ? $seconds . ($normal == 0 ? ' seg' : 's') : '';
+    return "$days $hours $minutes $seconds";
 }
 
-function setMessage(){
+function setMessage()
+{
     $_SESSION['message'] = null;
     $_SESSION['color'] = null;
 }
 
-function truncateFloat($number, $digitos){
+function truncateFloat($number, $digitos)
+{
     $multiplicador = 100000;
     $resultado = ((int)($number * $multiplicador)) / $multiplicador;
     return number_format($resultado, $digitos);
 }
-
-
-
-?>
-

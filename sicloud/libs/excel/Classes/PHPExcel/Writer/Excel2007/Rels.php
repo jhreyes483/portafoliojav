@@ -60,7 +60,6 @@ class PHPExcel_Writer_Excel2007_Rels extends PHPExcel_Writer_Excel2007_WriterPar
                 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/custom-properties',
                 'docProps/custom.xml'
             );
-
         }
 
         // Relationship docProps/app.xml
@@ -213,8 +212,10 @@ class PHPExcel_Writer_Excel2007_Rels extends PHPExcel_Writer_Excel2007_WriterPar
         } else {
             $charts = array();
         }
-        if (($pWorksheet->getDrawingCollection()->count() > 0) ||
-            (count($charts) > 0)) {
+        if (
+            ($pWorksheet->getDrawingCollection()->count() > 0) ||
+            (count($charts) > 0)
+        ) {
             $this->writeRelationship(
                 $objWriter,
                 ++$d,
@@ -318,8 +319,10 @@ class PHPExcel_Writer_Excel2007_Rels extends PHPExcel_Writer_Excel2007_WriterPar
         $i = 1;
         $iterator = $pWorksheet->getDrawingCollection()->getIterator();
         while ($iterator->valid()) {
-            if ($iterator->current() instanceof PHPExcel_Worksheet_Drawing
-                || $iterator->current() instanceof PHPExcel_Worksheet_MemoryDrawing) {
+            if (
+                $iterator->current() instanceof PHPExcel_Worksheet_Drawing
+                || $iterator->current() instanceof PHPExcel_Worksheet_MemoryDrawing
+            ) {
                 // Write relationship for image drawing
                 $this->writeRelationship(
                     $objWriter,

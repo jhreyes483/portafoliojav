@@ -1,6 +1,7 @@
 <?php
 
 /** PHPExcel root directory */
+
 if (!defined('PHPEXCEL_ROOT')) {
     define('PHPEXCEL_ROOT', dirname(__FILE__) . '/');
     require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
@@ -165,7 +166,7 @@ class PHPExcel
     */
     public function setMacrosCode($MacrosCode = null)
     {
-        $this->macrosCode=$MacrosCode;
+        $this->macrosCode = $MacrosCode;
         $this->setHasMacros(!is_null($MacrosCode));
     }
 
@@ -186,7 +187,7 @@ class PHPExcel
     */
     public function setMacrosCertificate($Certificate = null)
     {
-        $this->macrosCertificate=$Certificate;
+        $this->macrosCertificate = $Certificate;
     }
 
     /**
@@ -215,9 +216,9 @@ class PHPExcel
     */
     public function discardMacros()
     {
-        $this->hasMacros=false;
-        $this->macrosCode=null;
-        $this->macrosCertificate=null;
+        $this->hasMacros = false;
+        $this->macrosCode = null;
+        $this->macrosCertificate = null;
     }
 
     /**
@@ -242,7 +243,7 @@ class PHPExcel
     {
         $ReturnData = null;
         $What = strtolower($What);
-        switch ($What){
+        switch ($What) {
             case 'all':
                 $ReturnData = $this->ribbonXMLData;
                 break;
@@ -286,23 +287,25 @@ class PHPExcel
     {
         $ReturnData = null;
         $What = strtolower($What);
-        switch($What) {
+        switch ($What) {
             case 'all':
                 return $this->ribbonBinObjects;
                 break;
             case 'names':
             case 'data':
                 if (is_array($this->ribbonBinObjects) && array_key_exists($What, $this->ribbonBinObjects)) {
-                    $ReturnData=$this->ribbonBinObjects[$What];
+                    $ReturnData = $this->ribbonBinObjects[$What];
                 }
                 break;
             case 'types':
-                if (is_array($this->ribbonBinObjects) &&
-                    array_key_exists('data', $this->ribbonBinObjects) && is_array($this->ribbonBinObjects['data'])) {
-                    $tmpTypes=array_keys($this->ribbonBinObjects['data']);
+                if (
+                    is_array($this->ribbonBinObjects) &&
+                    array_key_exists('data', $this->ribbonBinObjects) && is_array($this->ribbonBinObjects['data'])
+                ) {
+                    $tmpTypes = array_keys($this->ribbonBinObjects['data']);
                     $ReturnData = array_unique(array_map(array($this, 'getExtensionOnly'), $tmpTypes));
                 } else {
-                    $ReturnData=array(); // the caller want an array... not null if empty
+                    $ReturnData = array(); // the caller want an array... not null if empty
                 }
                 break;
         }
@@ -385,8 +388,8 @@ class PHPExcel
         $this->cellXfSupervisor->bindParent($this);
 
         // Create the default style
-        $this->addCellXf(new PHPExcel_Style);
-        $this->addCellStyleXf(new PHPExcel_Style);
+        $this->addCellXf(new PHPExcel_Style());
+        $this->addCellStyleXf(new PHPExcel_Style());
     }
 
     /**
@@ -563,11 +566,12 @@ class PHPExcel
             array_splice($this->workSheetCollection, $pIndex, 1);
         }
         // Adjust active sheet index if necessary
-        if (($this->activeSheetIndex >= $pIndex) &&
-            ($pIndex > count($this->workSheetCollection) - 1)) {
+        if (
+            ($this->activeSheetIndex >= $pIndex) &&
+            ($pIndex > count($this->workSheetCollection) - 1)
+        ) {
             --$this->activeSheetIndex;
         }
-
     }
 
     /**
@@ -791,7 +795,7 @@ class PHPExcel
             $this->namedRanges[$namedRange->getName()] = $namedRange;
         } else {
             // local scope
-            $this->namedRanges[$namedRange->getScope()->getTitle().'!'.$namedRange->getName()] = $namedRange;
+            $this->namedRanges[$namedRange->getScope()->getTitle() . '!' . $namedRange->getName()] = $namedRange;
         }
         return true;
     }

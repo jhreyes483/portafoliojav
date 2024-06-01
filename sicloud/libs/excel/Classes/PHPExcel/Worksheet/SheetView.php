@@ -27,7 +27,6 @@
  */
 class PHPExcel_Worksheet_SheetView
 {
-
     /* Sheet View types */
     const SHEETVIEW_NORMAL             = 'normal';
     const SHEETVIEW_PAGE_LAYOUT        = 'pageLayout';

@@ -70,7 +70,7 @@ class PHPExcel_Logarithmic_Best_Fit extends PHPExcel_Best_Fit
         $slope = $this->getSlope($dp);
         $intersect = $this->getIntersect($dp);
 
-        return 'Y = '.$intersect.' + '.$slope.' * log(X)';
+        return 'Y = ' . $intersect . ' + ' . $slope . ' * log(X)';
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
+
 namespace _view;
+
 require_once '../autoload.php';
 use _controller\calendarioController;
 
@@ -10,16 +12,13 @@ use _controller\calendarioController;
 
 <?php
 //require_once '_controller/calendarioController.php';
-$obj = new calendarioController;
+$obj = new calendarioController();
 @session_start();
-if(isset($_SESSION)){
-   $c   = $obj->accesEventos();
-}else{
-   die('<center>Por favor inicie sesi�n/center>');
+if (isset($_SESSION)) {
+    $c   = $obj->accesEventos();
+} else {
+    die('<center>Por favor inicie sesi�n/center>');
 }
-
-
-
 ?>
 <head>
    <meta charset="UTF-8">
@@ -91,7 +90,7 @@ if(isset($_SESSION)){
                         <?php
                         echo '<option value="">seleccione uno</option>';
                         foreach ($c['tipo'] as $i => $d) {
-                           echo '<option  value="' . $i . '">' . $d . '</option>';
+                            echo '<option  value="' . $i . '">' . $d . '</option>';
                         }
                         ?>
 
@@ -101,7 +100,7 @@ if(isset($_SESSION)){
                         <?php
                         echo '<option value="">Sin equipo</option>';
                         foreach ($c['equipos'] as $i => $d) {
-                           echo '<option   value="' . $i . '">' . $d . '</option>';
+                            echo '<option   value="' . $i . '">' . $d . '</option>';
                         }
                         ?>
                      </select>
@@ -109,7 +108,7 @@ if(isset($_SESSION)){
                      <select id="equipo" name="user" required>
                         <?php
                         foreach ($c['users'] as $i => $d) {
-                           echo '<option ' . (($i == $_SESSION['user']['id']) ? ' selected ' : '') . '  value="' . $i . '">' . $d . '</option>';
+                            echo '<option ' . (($i == $_SESSION['user']['id']) ? ' selected ' : '') . '  value="' . $i . '">' . $d . '</option>';
                         }
                         ?>
                      </select>
@@ -140,10 +139,10 @@ if(isset($_SESSION)){
          <label for="">Seleccionar agendad de usuario</label>
             <select name="busqUserCal" onchange="submit(this)" id="">
                <?php
-               foreach ($c['users'] as $i => $d) {
-                  echo '<option ' . (( isset($_POST['busqUserCal']) && $i ==  $_POST['busqUserCal']  ) ? ' selected ' : '') . '  value="' . $i . '">' . $d . '</option>';
-               }
-               ?>
+                foreach ($c['users'] as $i => $d) {
+                    echo '<option ' . (( isset($_POST['busqUserCal']) && $i ==  $_POST['busqUserCal']  ) ? ' selected ' : '') . '  value="' . $i . '">' . $d . '</option>';
+                }
+                ?>
             </select>
          </form>
       </div>
@@ -211,9 +210,9 @@ if(isset($_SESSION)){
                // eventos
                events: [
                   <?php
-                  foreach ($c['eventos'] as $i => $d) {
-                     $end = ((isset($d[6])) ? "end: '" . $d[6] . ",'" : '');
-                  ?> {
+                    foreach ($c['eventos'] as $i => $d) {
+                        $end = ((isset($d[6])) ? "end: '" . $d[6] . ",'" : '');
+                        ?> {
                         title: '<?= $d[1] ?>',
                         descripcion: "<?= $d[2] ?>",
                         start: '<?= $d[6] ?>',
@@ -224,9 +223,9 @@ if(isset($_SESSION)){
                         <?= $end ?>
                      },
 
-                  <?php
-                  }
-                  ?>
+                        <?php
+                    }
+                    ?>
                   // 
                   // {
                   //    title: 'Evento 1, promacion 1 a 8,000',

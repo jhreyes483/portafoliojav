@@ -3,7 +3,7 @@ require_once '../autoload.php';
 
 use _controller\indexController;
 
-$obj = new indexController;
+$obj = new indexController();
 $r =   $obj->data();
 
 
@@ -38,10 +38,10 @@ $r =   $obj->data();
             <div class="bg-white py-2 collapse-inner rounded">
 
                <?php
-               foreach ($r['proyectos'] as $d) {
-                  echo '<a class="collapse-item" href="' . $d[4] . '">' . $d[8] . '</a> ';
-               }
-               ?>
+                foreach ($r['proyectos'] as $d) {
+                    echo '<a class="collapse-item" href="' . $d[4] . '">' . $d[8] . '</a> ';
+                }
+                ?>
             </div>
          </div>
       </li>
@@ -123,9 +123,9 @@ $r =   $obj->data();
             <div class="bg-white py-2 collapse-inner rounded">
                <h6 class="collapse-header"></h6>
                <?php
-               foreach ($r['proyectos'] as $d) {
-                  if ($d[9]) {
-               ?>
+                foreach ($r['proyectos'] as $d) {
+                    if ($d[9]) {
+                        ?>
                      <p>
                         <span class="collapse-item"><?= $d[8] ?></span>
                         <a href="./requer.php?id_proyecto=<?= $d[0] ?>&a=requer" class="collapse-item">
@@ -136,10 +136,10 @@ $r =   $obj->data();
                         <input type="hidden" name="a" value="requer">
                      </p>
 
-               <?php
-                  }
-               }
-               ?>
+                        <?php
+                    }
+                }
+                ?>
             </div>
          </div>
       </li>

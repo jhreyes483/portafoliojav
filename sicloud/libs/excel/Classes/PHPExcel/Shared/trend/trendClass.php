@@ -93,7 +93,7 @@ class trendClass
             trigger_error("trend(): Number of elements in coordinate arrays do not match.", E_USER_ERROR);
         }
 
-        $key = md5($trendType.$const.serialize($yValues).serialize($xValues));
+        $key = md5($trendType . $const . serialize($yValues) . serialize($xValues));
         //    Determine which trend method has been requested
         switch ($trendType) {
             //    Instantiate and return the class for the requested trend method
@@ -102,7 +102,7 @@ class trendClass
             case self::TREND_EXPONENTIAL:
             case self::TREND_POWER:
                 if (!isset(self::$trendCache[$key])) {
-                    $className = 'PHPExcel_'.$trendType.'_Best_Fit';
+                    $className = 'PHPExcel_' . $trendType . '_Best_Fit';
                     self::$trendCache[$key] = new $className($yValues, $xValues, $const);
                 }
                 return self::$trendCache[$key];
@@ -121,7 +121,7 @@ class trendClass
                 //    If the request is to determine the best fit regression, then we test each trend line in turn
                 //    Start by generating an instance of each available trend method
                 foreach (self::$trendTypes as $trendMethod) {
-                    $className = 'PHPExcel_'.$trendMethod.'BestFit';
+                    $className = 'PHPExcel_' . $trendMethod . 'BestFit';
                     $bestFit[$trendMethod] = new $className($yValues, $xValues, $const);
                     $bestFitValue[$trendMethod] = $bestFit[$trendMethod]->getGoodnessOfFit();
                 }

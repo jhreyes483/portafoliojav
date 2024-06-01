@@ -170,7 +170,7 @@ class PHPExcel_Polynomial_Best_Fit extends PHPExcel_Best_Fit
                 $A[$i][$j] = pow($xValues[$i], $j);
             }
         }
-        for ($i=0; $i < $this->valueCount; ++$i) {
+        for ($i = 0; $i < $this->valueCount; ++$i) {
             $B[$i] = array($yValues[$i]);
         }
         $matrixA = new Matrix($A);
@@ -208,7 +208,7 @@ class PHPExcel_Polynomial_Best_Fit extends PHPExcel_Best_Fit
     {
         if (parent::__construct($yValues, $xValues) !== false) {
             if ($order < $this->valueCount) {
-                $this->bestFitType .= '_'.$order;
+                $this->bestFitType .= '_' . $order;
                 $this->order = $order;
                 $this->polynomialRegression($order, $yValues, $xValues, $const);
                 if (($this->getGoodnessOfFit() < 0.0) || ($this->getGoodnessOfFit() > 1.0)) {

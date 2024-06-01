@@ -1,6 +1,5 @@
 <?php
 
-
 $html = "
 <h1>mPDF</h1>
 <h2>RTL Languages</h2>
@@ -199,118 +198,115 @@ text direction (RTL arabic characters) remains fully automatic and unconfigurabl
 ";
 
 //==============================================================
-	// Set Header and Footer
-	$h = array (
-  'odd' => 
+    // Set Header and Footer
+    $h = array (
+  'odd' =>
   array (
-    'R' => 
+    'R' =>
     array (
       'content' => '{PAGENO}',
       'font-size' => 8,
       'font-style' => 'B',
     ),
-    'L' => 
+    'L' =>
     array (
       'content' => "\xd9\x82\xd8\xa7\xd9\x84 \xd8\xa7\xd9\x84\xd8\xb1\xd8\xa6\xd9\x8a\xd8\xb3",
       'font-size' => 8,
       'font-style' => 'B',
     ),
     'line' => 1,
-  ),
-  'even' => 
-  array (
-    'L' => 
+    ),
+    'even' =>
+    array (
+    'L' =>
     array (
       'content' => '{PAGENO}',
       'font-size' => 8,
       'font-style' => 'B',
     ),
-    'R' => 
+    'R' =>
     array (
       'content' => "\xd9\x82\xd8\xa7\xd9\x84 \xd8\xa7\xd9\x84\xd8\xb1\xd8\xa6\xd9\x8a\xd8\xb3",
       'font-size' => 8,
       'font-style' => 'B',
     ),
     'line' => 1,
-  ),
-);
+    ),
+    );
 
-	$f = array (
-  'odd' => 
-  array (
-    'L' => 
+    $f = array (
+    'odd' =>
+    array (
+    'L' =>
     array (
       'content' => '{DATE Y-m-d}',
       'font-size' => 8,
       'font-style' => 'BI',
     ),
-    'C' => 
+    'C' =>
     array (
       'content' => '- {PAGENO} -',
       'font-size' => 8,
     ),
-    'R' => 
+    'R' =>
     array (
       'content' => "\xd8\xa7\xd9\x84\xd8\xb1\xd8\xa6\xd9\x8a\xd8\xb3",
       'font-size' => 8,
     ),
     'line' => 1,
-  ),
-  'even' => 
-  array (
-    'L' => 
+    ),
+    'even' =>
+    array (
+    'L' =>
     array (
       'content' => "\xd8\xa7\xd9\x84\xd8\xb1\xd8\xa6\xd9\x8a\xd8\xb3",
       'font-size' => 8,
       'font-style' => 'B',
     ),
-    'C' => 
+    'C' =>
     array (
       'content' => '- {PAGENO} -',
       'font-size' => 8,
     ),
-    'R' => 
+    'R' =>
     array (
       'content' => '{DATE Y-m-d}',
       'font-size' => 8,
       'font-style' => 'BI',
     ),
     'line' => 1,
-  ),
-);
+    ),
+    );
 
 //==============================================================
 //==============================================================
 //==============================================================
-include("../mpdf.php");
+    include("../mpdf.php");
 
 
-$mpdf=new mPDF('ar','A4','','',32,25,27,25,16,13); 
+    $mpdf = new mPDF('ar', 'A4', '', '', 32, 25, 27, 25, 16, 13);
 
 // From mPDF 5.1 onwards you must set:
-$mpdf->SetDirectionality('rtl');
-$mpdf->mirrorMargins = true;
-$mpdf->SetDisplayMode('fullpage','two');
+    $mpdf->SetDirectionality('rtl');
+    $mpdf->mirrorMargins = true;
+    $mpdf->SetDisplayMode('fullpage', 'two');
 
 
-$mpdf->setHeader($h);
-$mpdf->setFooter($f);
+    $mpdf->setHeader($h);
+    $mpdf->setFooter($f);
 
 
-$stylesheet = file_get_contents('mpdfstyletables.css');
-$mpdf->WriteHTML($stylesheet,1);	// The parameter 1 tells that this is css/style only and no body/html/text
+    $stylesheet = file_get_contents('mpdfstyletables.css');
+    $mpdf->WriteHTML($stylesheet, 1);    // The parameter 1 tells that this is css/style only and no body/html/text
 
-$mpdf->WriteHTML($html);
-$mpdf->AddPage();
+    $mpdf->WriteHTML($html);
+    $mpdf->AddPage();
 
-$mpdf->SetColumns(2,'J');
-$mpdf->WriteHTML($html);
+    $mpdf->SetColumns(2, 'J');
+    $mpdf->WriteHTML($html);
 
-$mpdf->Output();
-exit;
+    $mpdf->Output();
+    exit;
 //==============================================================
 //==============================================================
 //==============================================================
-
-
-?>

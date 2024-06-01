@@ -27,7 +27,6 @@
  */
 class PHPExcel_Chart_DataSeriesValues
 {
-
     const DATASERIES_TYPE_STRING    = 'String';
     const DATASERIES_TYPE_NUMBER    = 'Number';
 
@@ -290,7 +289,7 @@ class PHPExcel_Chart_DataSeriesValues
             $calcEngine = PHPExcel_Calculation::getInstance($worksheet->getParent());
             $newDataValues = PHPExcel_Calculation::unwrapResult(
                 $calcEngine->_calculateFormulaValue(
-                    '='.$this->dataSource,
+                    '=' . $this->dataSource,
                     null,
                     $worksheet->getCell('A1')
                 )

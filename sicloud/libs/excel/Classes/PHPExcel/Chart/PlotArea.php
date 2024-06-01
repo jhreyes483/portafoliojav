@@ -113,7 +113,7 @@ class PHPExcel_Chart_PlotArea
     public function setPlotSeries($plotSeries = array())
     {
         $this->plotSeries = $plotSeries;
-        
+
         return $this;
     }
 

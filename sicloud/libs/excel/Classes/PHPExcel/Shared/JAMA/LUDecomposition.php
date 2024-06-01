@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    @package JAMA
  *
@@ -22,38 +23,32 @@ class PHPExcel_Shared_JAMA_LUDecomposition
 {
     const MATRIX_SINGULAR_EXCEPTION    = "Can only perform operation on singular matrix.";
     const MATRIX_SQUARE_EXCEPTION      = "Mismatched Row dimension";
-
-    /**
+/**
      *    Decomposition storage
      *    @var array
      */
     private $LU = array();
-
-    /**
+/**
      *    Row dimension.
      *    @var int
      */
     private $m;
-
-    /**
+/**
      *    Column dimension.
      *    @var int
      */
     private $n;
-
-    /**
+/**
      *    Pivot sign.
      *    @var int
      */
     private $pivsign;
-
-    /**
+/**
      *    Internal storage of pivot vector.
      *    @var array
      */
     private $piv = array();
-
-    /**
+/**
      *    LU Decomposition constructor.
      *
      *    @param $A Rectangular matrix
@@ -62,7 +57,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition
     public function __construct($A)
     {
         if ($A instanceof PHPExcel_Shared_JAMA_Matrix) {
-            // Use a "left-looking", dot-product, Crout/Doolittle algorithm.
+// Use a "left-looking", dot-product, Crout/Doolittle algorithm.
             $this->LU = $A->getArray();
             $this->m  = $A->getRowDimension();
             $this->n  = $A->getColumnDimension();
@@ -74,14 +69,14 @@ class PHPExcel_Shared_JAMA_LUDecomposition
 
             // Outer loop.
             for ($j = 0; $j < $this->n; ++$j) {
-                // Make a copy of the j-th column to localize references.
+// Make a copy of the j-th column to localize references.
                 for ($i = 0; $i < $this->m; ++$i) {
                     $LUcolj[$i] = &$this->LU[$i][$j];
                 }
                 // Apply previous transformations.
                 for ($i = 0; $i < $this->m; ++$i) {
                     $LUrowi = $this->LU[$i];
-                    // Most of the time is spent in the following dot product.
+// Most of the time is spent in the following dot product.
                     $kmax = min($i, $j);
                     $s = 0.0;
                     for ($k = 0; $k < $kmax; ++$k) {
@@ -91,7 +86,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition
                 }
                 // Find pivot and exchange if necessary.
                 $p = $j;
-                for ($i = $j+1; $i < $this->m; ++$i) {
+                for ($i = $j + 1; $i < $this->m; ++$i) {
                     if (abs($LUcolj[$i]) > abs($LUcolj[$p])) {
                         $p = $i;
                     }
@@ -109,7 +104,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition
                 }
                 // Compute multipliers.
                 if (($j < $this->m) && ($this->LU[$j][$j] != 0.0)) {
-                    for ($i = $j+1; $i < $this->m; ++$i) {
+                    for ($i = $j + 1; $i < $this->m; ++$i) {
                         $this->LU[$i][$j] /= $this->LU[$j][$j];
                     }
                 }
@@ -224,19 +219,19 @@ class PHPExcel_Shared_JAMA_LUDecomposition
     {
         if ($B->getRowDimension() == $this->m) {
             if ($this->isNonsingular()) {
-                // Copy right hand side with pivoting
+            // Copy right hand side with pivoting
                 $nx = $B->getColumnDimension();
-                $X  = $B->getMatrix($this->piv, 0, $nx-1);
+                $X  = $B->getMatrix($this->piv, 0, $nx - 1);
                 // Solve L*Y = B(piv,:)
                 for ($k = 0; $k < $this->n; ++$k) {
-                    for ($i = $k+1; $i < $this->n; ++$i) {
+                    for ($i = $k + 1; $i < $this->n; ++$i) {
                         for ($j = 0; $j < $nx; ++$j) {
                             $X->A[$i][$j] -= $X->A[$k][$j] * $this->LU[$i][$k];
                         }
                     }
                 }
                 // Solve U*X = Y;
-                for ($k = $this->n-1; $k >= 0; --$k) {
+                for ($k = $this->n - 1; $k >= 0; --$k) {
                     for ($j = 0; $j < $nx; ++$j) {
                         $X->A[$k][$j] /= $this->LU[$k][$k];
                     }

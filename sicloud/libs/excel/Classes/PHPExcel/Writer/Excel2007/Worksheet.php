@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHPExcel
  *
@@ -47,7 +48,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     public function writeWorksheet($pSheet = null, $pStringTable = null, $includeCharts = false)
     {
         if (!is_null($pSheet)) {
-            // Create XML writer
+// Create XML writer
             $objWriter = null;
             if ($this->getParentWriter()->getUseDiskCaching()) {
                 $objWriter = new PHPExcel_Shared_XMLWriter(PHPExcel_Shared_XMLWriter::STORAGE_DISK, $this->getParentWriter()->getDiskCachingDirectory());
@@ -57,79 +58,55 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
 
             // XML header
             $objWriter->startDocument('1.0', 'UTF-8', 'yes');
-
-            // Worksheet
+// Worksheet
             $objWriter->startElement('worksheet');
             $objWriter->writeAttribute('xml:space', 'preserve');
             $objWriter->writeAttribute('xmlns', 'http://schemas.openxmlformats.org/spreadsheetml/2006/main');
             $objWriter->writeAttribute('xmlns:r', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships');
-
-                // sheetPr
+// sheetPr
                 $this->writeSheetPr($objWriter, $pSheet);
-
-                // Dimension
+// Dimension
                 $this->writeDimension($objWriter, $pSheet);
-
-                // sheetViews
+// sheetViews
                 $this->writeSheetViews($objWriter, $pSheet);
-
-                // sheetFormatPr
+// sheetFormatPr
                 $this->writeSheetFormatPr($objWriter, $pSheet);
-
-                // cols
+// cols
                 $this->writeCols($objWriter, $pSheet);
-
-                // sheetData
+// sheetData
                 $this->writeSheetData($objWriter, $pSheet, $pStringTable);
-
-                // sheetProtection
+// sheetProtection
                 $this->writeSheetProtection($objWriter, $pSheet);
-
-                // protectedRanges
+// protectedRanges
                 $this->writeProtectedRanges($objWriter, $pSheet);
-
-                // autoFilter
+// autoFilter
                 $this->writeAutoFilter($objWriter, $pSheet);
-
-                // mergeCells
+// mergeCells
                 $this->writeMergeCells($objWriter, $pSheet);
-
-                // conditionalFormatting
+// conditionalFormatting
                 $this->writeConditionalFormatting($objWriter, $pSheet);
-
-                // dataValidations
+// dataValidations
                 $this->writeDataValidations($objWriter, $pSheet);
-
-                // hyperlinks
+// hyperlinks
                 $this->writeHyperlinks($objWriter, $pSheet);
-
-                // Print options
+// Print options
                 $this->writePrintOptions($objWriter, $pSheet);
-
-                // Page margins
+// Page margins
                 $this->writePageMargins($objWriter, $pSheet);
-
-                // Page setup
+// Page setup
                 $this->writePageSetup($objWriter, $pSheet);
-
-                // Header / footer
+// Header / footer
                 $this->writeHeaderFooter($objWriter, $pSheet);
-
-                // Breaks
+// Breaks
                 $this->writeBreaks($objWriter, $pSheet);
-
-                // Drawings and/or Charts
+// Drawings and/or Charts
                 $this->writeDrawings($objWriter, $pSheet, $includeCharts);
-
-                // LegacyDrawing
+// LegacyDrawing
                 $this->writeLegacyDrawing($objWriter, $pSheet);
-
-                // LegacyDrawingHF
+// LegacyDrawingHF
                 $this->writeLegacyDrawingHF($objWriter, $pSheet);
-
             $objWriter->endElement();
-
-            // Return
+// Return
             return $objWriter->getData();
         } else {
             throw new PHPExcel_Writer_Exception("Invalid PHPExcel_Worksheet object passed.");
@@ -147,9 +124,10 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     {
         // sheetPr
         $objWriter->startElement('sheetPr');
-        //$objWriter->writeAttribute('codeName',        $pSheet->getTitle());
-        if ($pSheet->getParent()->hasMacros()) {//if the workbook have macros, we need to have codeName for the sheet
-            if ($pSheet->hasCodeName()==false) {
+//$objWriter->writeAttribute('codeName',        $pSheet->getTitle());
+        if ($pSheet->getParent()->hasMacros()) {
+//if the workbook have macros, we need to have codeName for the sheet
+            if ($pSheet->hasCodeName() == false) {
                 $pSheet->setCodeName($pSheet->getTitle());
             }
             $objWriter->writeAttribute('codeName', $pSheet->getCodeName());
@@ -172,8 +150,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
         $objWriter->writeAttribute('summaryBelow', ($pSheet->getShowSummaryBelow() ? '1' : '0'));
         $objWriter->writeAttribute('summaryRight', ($pSheet->getShowSummaryRight() ? '1' : '0'));
         $objWriter->endElement();
-
-        // pageSetUpPr
+// pageSetUpPr
         if ($pSheet->getPageSetup()->getFitToPage()) {
             $objWriter->startElement('pageSetUpPr');
             $objWriter->writeAttribute('fitToPage', '1');
@@ -209,8 +186,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     {
         // sheetViews
         $objWriter->startElement('sheetViews');
-
-        // Sheet selected?
+// Sheet selected?
         $sheetSelected = false;
         if ($this->getParentWriter()->getPHPExcel()->getIndex($pSheet) == $this->getParentWriter()->getPHPExcel()->getActiveSheetIndex()) {
             $sheetSelected = true;
@@ -220,8 +196,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
         $objWriter->startElement('sheetView');
         $objWriter->writeAttribute('tabSelected', $sheetSelected ? '1' : '0');
         $objWriter->writeAttribute('workbookViewId', '0');
-
-        // Zoom scales
+// Zoom scales
         if ($pSheet->getSheetView()->getZoomScale() != 100) {
             $objWriter->writeAttribute('zoomScale', $pSheet->getSheetView()->getZoomScale());
         }
@@ -254,19 +229,16 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
         }
 
         $activeCell = $pSheet->getActiveCell();
-
-        // Pane
+// Pane
         $pane = '';
         $topLeftCell = $pSheet->getFreezePane();
         if (($topLeftCell != '') && ($topLeftCell != 'A1')) {
             $activeCell = empty($activeCell) ? $topLeftCell : $activeCell;
-            // Calculate freeze coordinates
+        // Calculate freeze coordinates
             $xSplit = $ySplit = 0;
-
             list($xSplit, $ySplit) = PHPExcel_Cell::coordinateFromString($topLeftCell);
             $xSplit = PHPExcel_Cell::columnIndexFromString($xSplit);
-
-            // pane
+        // pane
             $pane = 'topRight';
             $objWriter->startElement('pane');
             if ($xSplit > 1) {
@@ -280,9 +252,8 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
             $objWriter->writeAttribute('activePane', $pane);
             $objWriter->writeAttribute('state', 'frozen');
             $objWriter->endElement();
-
             if (($xSplit > 1) && ($ySplit > 1)) {
-                //    Write additional selections if more than two panes (ie both an X and a Y split)
+    //    Write additional selections if more than two panes (ie both an X and a Y split)
                 $objWriter->startElement('selection');
                 $objWriter->writeAttribute('pane', 'topRight');
                 $objWriter->endElement();
@@ -306,7 +277,6 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
 //      }
 
         $objWriter->endElement();
-
         $objWriter->endElement();
     }
 
@@ -321,8 +291,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     {
         // sheetFormatPr
         $objWriter->startElement('sheetFormatPr');
-
-        // Default row height
+// Default row height
         if ($pSheet->getDefaultRowDimension()->getRowHeight() >= 0) {
             $objWriter->writeAttribute('customHeight', 'true');
             $objWriter->writeAttribute('defaultRowHeight', PHPExcel_Shared_String::FormatNumber($pSheet->getDefaultRowDimension()->getRowHeight()));
@@ -331,8 +300,10 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
         }
 
         // Set Zero Height row
-        if ((string)$pSheet->getDefaultRowDimension()->getZeroHeight()  == '1' ||
-            strtolower((string)$pSheet->getDefaultRowDimension()->getZeroHeight()) == 'true') {
+        if (
+            (string)$pSheet->getDefaultRowDimension()->getZeroHeight()  == '1' ||
+            strtolower((string)$pSheet->getDefaultRowDimension()->getZeroHeight()) == 'true'
+        ) {
             $objWriter->writeAttribute('zeroHeight', '1');
         }
 
@@ -349,8 +320,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
             }
         }
         $objWriter->writeAttribute('outlineLevelRow', (int)$outlineLevelRow);
-
-        // Outline level - column
+// Outline level - column
         $outlineLevelCol = 0;
         foreach ($pSheet->getColumnDimensions() as $dimension) {
             if ($dimension->getOutlineLevel() > $outlineLevelCol) {
@@ -358,7 +328,6 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
             }
         }
         $objWriter->writeAttribute('outlineLevelCol', (int)$outlineLevelCol);
-
         $objWriter->endElement();
     }
 
@@ -374,21 +343,18 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
         // cols
         if (count($pSheet->getColumnDimensions()) > 0) {
             $objWriter->startElement('cols');
-
             $pSheet->calculateColumnWidths();
-
-            // Loop through column dimensions
+// Loop through column dimensions
             foreach ($pSheet->getColumnDimensions() as $colDimension) {
-                // col
+// col
                 $objWriter->startElement('col');
                 $objWriter->writeAttribute('min', PHPExcel_Cell::columnIndexFromString($colDimension->getColumnIndex()));
                 $objWriter->writeAttribute('max', PHPExcel_Cell::columnIndexFromString($colDimension->getColumnIndex()));
-
                 if ($colDimension->getWidth() < 0) {
-                    // No width set, apply default of 10
+                // No width set, apply default of 10
                     $objWriter->writeAttribute('width', '9.10');
                 } else {
-                    // Width set
+                // Width set
                     $objWriter->writeAttribute('width', PHPExcel_Shared_String::FormatNumber($colDimension->getWidth()));
                 }
 
@@ -419,7 +385,6 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
 
                 // Style
                 $objWriter->writeAttribute('style', $colDimension->getXfIndex());
-
                 $objWriter->endElement();
             }
 
@@ -438,7 +403,6 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     {
         // sheetProtection
         $objWriter->startElement('sheetProtection');
-
         if ($pSheet->getProtection()->getPassword() != '') {
             $objWriter->writeAttribute('password', $pSheet->getProtection()->getPassword());
         }
@@ -473,62 +437,73 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     {
         // Conditional id
         $id = 1;
-
-        // Loop through styles in the current worksheet
+// Loop through styles in the current worksheet
         foreach ($pSheet->getConditionalStylesCollection() as $cellCoordinate => $conditionalStyles) {
             foreach ($conditionalStyles as $conditional) {
-                // WHY was this again?
+            // WHY was this again?
                 // if ($this->getParentWriter()->getStylesConditionalHashTable()->getIndexForHashCode($conditional->getHashCode()) == '') {
                 //    continue;
                 // }
                 if ($conditional->getConditionType() != PHPExcel_Style_Conditional::CONDITION_NONE) {
-                    // conditionalFormatting
+// conditionalFormatting
                     $objWriter->startElement('conditionalFormatting');
                     $objWriter->writeAttribute('sqref', $cellCoordinate);
-
-                    // cfRule
+// cfRule
                     $objWriter->startElement('cfRule');
                     $objWriter->writeAttribute('type', $conditional->getConditionType());
                     $objWriter->writeAttribute('dxfId', $this->getParentWriter()->getStylesConditionalHashTable()->getIndexForHashCode($conditional->getHashCode()));
                     $objWriter->writeAttribute('priority', $id++);
 
-                    if (($conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CELLIS || $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CONTAINSTEXT)
-                        && $conditional->getOperatorType() != PHPExcel_Style_Conditional::OPERATOR_NONE) {
+                    if (
+                        ($conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CELLIS || $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CONTAINSTEXT)
+                        && $conditional->getOperatorType() != PHPExcel_Style_Conditional::OPERATOR_NONE
+                    ) {
                         $objWriter->writeAttribute('operator', $conditional->getOperatorType());
                     }
 
-                    if ($conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CONTAINSTEXT
-                        && !is_null($conditional->getText())) {
+                    if (
+                        $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CONTAINSTEXT
+                        && !is_null($conditional->getText())
+                    ) {
                         $objWriter->writeAttribute('text', $conditional->getText());
                     }
 
-                    if ($conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CONTAINSTEXT
+                    if (
+                        $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CONTAINSTEXT
                         && $conditional->getOperatorType() == PHPExcel_Style_Conditional::OPERATOR_CONTAINSTEXT
-                        && !is_null($conditional->getText())) {
+                        && !is_null($conditional->getText())
+                    ) {
                         $objWriter->writeElement('formula', 'NOT(ISERROR(SEARCH("' . $conditional->getText() . '",' . $cellCoordinate . ')))');
-                    } elseif ($conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CONTAINSTEXT
+                    } elseif (
+                        $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CONTAINSTEXT
                         && $conditional->getOperatorType() == PHPExcel_Style_Conditional::OPERATOR_BEGINSWITH
-                        && !is_null($conditional->getText())) {
+                        && !is_null($conditional->getText())
+                    ) {
                         $objWriter->writeElement('formula', 'LEFT(' . $cellCoordinate . ',' . strlen($conditional->getText()) . ')="' . $conditional->getText() . '"');
-                    } elseif ($conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CONTAINSTEXT
+                    } elseif (
+                        $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CONTAINSTEXT
                         && $conditional->getOperatorType() == PHPExcel_Style_Conditional::OPERATOR_ENDSWITH
-                        && !is_null($conditional->getText())) {
+                        && !is_null($conditional->getText())
+                    ) {
                         $objWriter->writeElement('formula', 'RIGHT(' . $cellCoordinate . ',' . strlen($conditional->getText()) . ')="' . $conditional->getText() . '"');
-                    } elseif ($conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CONTAINSTEXT
+                    } elseif (
+                        $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CONTAINSTEXT
                         && $conditional->getOperatorType() == PHPExcel_Style_Conditional::OPERATOR_NOTCONTAINS
-                        && !is_null($conditional->getText())) {
+                        && !is_null($conditional->getText())
+                    ) {
                         $objWriter->writeElement('formula', 'ISERROR(SEARCH("' . $conditional->getText() . '",' . $cellCoordinate . '))');
-                    } elseif ($conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CELLIS
+                    } elseif (
+                        $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CELLIS
                         || $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CONTAINSTEXT
-                        || $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_EXPRESSION) {
+                        || $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_EXPRESSION
+                    ) {
                         foreach ($conditional->getConditions() as $formula) {
-                            // Formula
+        // Formula
                             $objWriter->writeElement('formula', $formula);
                         }
                     }
 
                     $objWriter->endElement();
-
                     $objWriter->endElement();
                 }
             }
@@ -546,15 +521,12 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     {
         // Datavalidation collection
         $dataValidationCollection = $pSheet->getDataValidationCollection();
-
-        // Write data validations?
+// Write data validations?
         if (!empty($dataValidationCollection)) {
             $objWriter->startElement('dataValidations');
             $objWriter->writeAttribute('count', count($dataValidationCollection));
-
             foreach ($dataValidationCollection as $coordinate => $dv) {
                 $objWriter->startElement('dataValidation');
-
                 if ($dv->getType() != '') {
                     $objWriter->writeAttribute('type', $dv->getType());
                 }
@@ -571,7 +543,6 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
                 $objWriter->writeAttribute('showDropDown', (!$dv->getShowDropDown() ? '1'  : '0'));
                 $objWriter->writeAttribute('showInputMessage', ($dv->getShowInputMessage() ? '1'  : '0'));
                 $objWriter->writeAttribute('showErrorMessage', ($dv->getShowErrorMessage() ? '1'  : '0'));
-
                 if ($dv->getErrorTitle() !== '') {
                     $objWriter->writeAttribute('errorTitle', $dv->getErrorTitle());
                 }
@@ -586,7 +557,6 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
                 }
 
                 $objWriter->writeAttribute('sqref', $coordinate);
-
                 if ($dv->getFormula1() !== '') {
                     $objWriter->writeElement('formula1', $dv->getFormula1());
                 }
@@ -612,17 +582,13 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     {
         // Hyperlink collection
         $hyperlinkCollection = $pSheet->getHyperlinkCollection();
-
-        // Relation ID
+// Relation ID
         $relationId = 1;
-
-        // Write hyperlinks?
+// Write hyperlinks?
         if (!empty($hyperlinkCollection)) {
             $objWriter->startElement('hyperlinks');
-
             foreach ($hyperlinkCollection as $coordinate => $hyperlink) {
                 $objWriter->startElement('hyperlink');
-
                 $objWriter->writeAttribute('ref', $coordinate);
                 if (!$hyperlink->isInternal()) {
                     $objWriter->writeAttribute('r:id', 'rId_hyperlink_' . $relationId);
@@ -652,12 +618,11 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     private function writeProtectedRanges(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
     {
         if (count($pSheet->getProtectedCells()) > 0) {
-            // protectedRanges
+// protectedRanges
             $objWriter->startElement('protectedRanges');
-
-            // Loop protectedRanges
+// Loop protectedRanges
             foreach ($pSheet->getProtectedCells() as $protectedCell => $passwordHash) {
-                // protectedRange
+// protectedRange
                 $objWriter->startElement('protectedRange');
                 $objWriter->writeAttribute('name', 'p' . md5($protectedCell));
                 $objWriter->writeAttribute('sqref', $protectedCell);
@@ -681,12 +646,11 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     private function writeMergeCells(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
     {
         if (count($pSheet->getMergeCells()) > 0) {
-            // mergeCells
+// mergeCells
             $objWriter->startElement('mergeCells');
-
-            // Loop mergeCells
+// Loop mergeCells
             foreach ($pSheet->getMergeCells() as $mergeCell) {
-                // mergeCell
+// mergeCell
                 $objWriter->startElement('mergeCell');
                 $objWriter->writeAttribute('ref', $mergeCell);
                 $objWriter->endElement();
@@ -707,10 +671,8 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     {
         // printOptions
         $objWriter->startElement('printOptions');
-
-        $objWriter->writeAttribute('gridLines', ($pSheet->getPrintGridlines() ? 'true': 'false'));
+        $objWriter->writeAttribute('gridLines', ($pSheet->getPrintGridlines() ? 'true' : 'false'));
         $objWriter->writeAttribute('gridLinesSet', 'true');
-
         if ($pSheet->getPageSetup()->getHorizontalCentered()) {
             $objWriter->writeAttribute('horizontalCentered', 'true');
         }
@@ -753,20 +715,17 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     {
         $autoFilterRange = $pSheet->getAutoFilter()->getRange();
         if (!empty($autoFilterRange)) {
-            // autoFilter
+        // autoFilter
             $objWriter->startElement('autoFilter');
-
-            // Strip any worksheet reference from the filter coordinates
+        // Strip any worksheet reference from the filter coordinates
             $range = PHPExcel_Cell::splitRange($autoFilterRange);
             $range = $range[0];
-            //    Strip any worksheet ref
+        //    Strip any worksheet ref
             if (strpos($range[0], '!') !== false) {
                 list($ws, $range[0]) = explode('!', $range[0]);
             }
             $range = implode(':', $range);
-
             $objWriter->writeAttribute('ref', str_replace('$', '', $range));
-
             $columns = $pSheet->getAutoFilter()->getColumns();
             if (count($columns > 0)) {
                 foreach ($columns as $columnID => $column) {
@@ -774,20 +733,21 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
                     if (count($rules) > 0) {
                         $objWriter->startElement('filterColumn');
                         $objWriter->writeAttribute('colId', $pSheet->getAutoFilter()->getColumnOffset($columnID));
-
                         $objWriter->startElement($column->getFilterType());
                         if ($column->getJoin() == PHPExcel_Worksheet_AutoFilter_Column::AUTOFILTER_COLUMN_JOIN_AND) {
-                            $objWriter->writeAttribute('and', 1);
+                                $objWriter->writeAttribute('and', 1);
                         }
 
                         foreach ($rules as $rule) {
-                            if (($column->getFilterType() === PHPExcel_Worksheet_AutoFilter_Column::AUTOFILTER_FILTERTYPE_FILTER) &&
+                            if (
+                                ($column->getFilterType() === PHPExcel_Worksheet_AutoFilter_Column::AUTOFILTER_FILTERTYPE_FILTER) &&
                                 ($rule->getOperator() === PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_COLUMN_RULE_EQUAL) &&
-                                ($rule->getValue() === '')) {
-                                //    Filter rule for Blanks
+                                ($rule->getValue() === '')
+                            ) {
+                            //    Filter rule for Blanks
                                 $objWriter->writeAttribute('blank', 1);
                             } elseif ($rule->getRuleType() === PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_RULETYPE_DYNAMICFILTER) {
-                                //    Dynamic Filter Rule
+                            //    Dynamic Filter Rule
                                 $objWriter->writeAttribute('type', $rule->getGrouping());
                                 $val = $column->getAttribute('val');
                                 if ($val !== null) {
@@ -798,14 +758,13 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
                                     $objWriter->writeAttribute('maxVal', $maxVal);
                                 }
                             } elseif ($rule->getRuleType() === PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_RULETYPE_TOPTENFILTER) {
-                                //    Top 10 Filter Rule
+                                    //    Top 10 Filter Rule
                                 $objWriter->writeAttribute('val', $rule->getValue());
-                                $objWriter->writeAttribute('percent', (($rule->getOperator() === PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_COLUMN_RULE_TOPTEN_PERCENT) ? '1' : '0'));
-                                $objWriter->writeAttribute('top', (($rule->getGrouping() === PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_COLUMN_RULE_TOPTEN_TOP) ? '1': '0'));
+                                    $objWriter->writeAttribute('percent', (($rule->getOperator() === PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_COLUMN_RULE_TOPTEN_PERCENT) ? '1' : '0'));
+                                    $objWriter->writeAttribute('top', (($rule->getGrouping() === PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_COLUMN_RULE_TOPTEN_TOP) ? '1' : '0'));
                             } else {
-                                //    Filter, DateGroupItem or CustomFilter
+                            //    Filter, DateGroupItem or CustomFilter
                                 $objWriter->startElement($rule->getRuleType());
-
                                 if ($rule->getOperator() !== PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_COLUMN_RULE_EQUAL) {
                                     $objWriter->writeAttribute('operator', $rule->getOperator());
                                 }
@@ -826,7 +785,6 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
                         }
 
                         $objWriter->endElement();
-
                         $objWriter->endElement();
                     }
                 }
@@ -848,7 +806,6 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
         $objWriter->startElement('pageSetup');
         $objWriter->writeAttribute('paperSize', $pSheet->getPageSetup()->getPaperSize());
         $objWriter->writeAttribute('orientation', $pSheet->getPageSetup()->getOrientation());
-
         if (!is_null($pSheet->getPageSetup()->getScale())) {
             $objWriter->writeAttribute('scale', $pSheet->getPageSetup()->getScale());
         }
@@ -885,7 +842,6 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
         $objWriter->writeAttribute('differentFirst', ($pSheet->getHeaderFooter()->getDifferentFirst() ? 'true' : 'false'));
         $objWriter->writeAttribute('scaleWithDoc', ($pSheet->getHeaderFooter()->getScaleWithDocument() ? 'true' : 'false'));
         $objWriter->writeAttribute('alignWithMargins', ($pSheet->getHeaderFooter()->getAlignWithMargins() ? 'true' : 'false'));
-
         $objWriter->writeElement('oddHeader', $pSheet->getHeaderFooter()->getOddHeader());
         $objWriter->writeElement('oddFooter', $pSheet->getHeaderFooter()->getOddFooter());
         $objWriter->writeElement('evenHeader', $pSheet->getHeaderFooter()->getEvenHeader());
@@ -920,10 +876,8 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
             $objWriter->startElement('rowBreaks');
             $objWriter->writeAttribute('count', count($aRowBreaks));
             $objWriter->writeAttribute('manualBreakCount', count($aRowBreaks));
-
             foreach ($aRowBreaks as $cell) {
                 $coords = PHPExcel_Cell::coordinateFromString($cell);
-
                 $objWriter->startElement('brk');
                 $objWriter->writeAttribute('id', $coords[1]);
                 $objWriter->writeAttribute('man', '1');
@@ -938,10 +892,8 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
             $objWriter->startElement('colBreaks');
             $objWriter->writeAttribute('count', count($aColumnBreaks));
             $objWriter->writeAttribute('manualBreakCount', count($aColumnBreaks));
-
             foreach ($aColumnBreaks as $cell) {
                 $coords = PHPExcel_Cell::coordinateFromString($cell);
-
                 $objWriter->startElement('brk');
                 $objWriter->writeAttribute('id', PHPExcel_Cell::columnIndexFromString($coords[0]) - 1);
                 $objWriter->writeAttribute('man', '1');
@@ -963,19 +915,15 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     private function writeSheetData(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null, $pStringTable = null)
     {
         if (is_array($pStringTable)) {
-            // Flipped stringtable, for faster index searching
+// Flipped stringtable, for faster index searching
             $aFlippedStringTable = $this->getParentWriter()->getWriterPart('stringtable')->flipStringTable($pStringTable);
-
-            // sheetData
+// sheetData
             $objWriter->startElement('sheetData');
-
-            // Get column count
+// Get column count
             $colCount = PHPExcel_Cell::columnIndexFromString($pSheet->getHighestColumn());
-
-            // Highest row number
+// Highest row number
             $highestRow = $pSheet->getHighestRow();
-
-            // Loop through cells
+// Loop through cells
             $cellsByRow = array();
             foreach ($pSheet->getCellCollection() as $cellID) {
                 $cellAddress = PHPExcel_Cell::coordinateFromString($cellID);
@@ -984,19 +932,16 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
 
             $currentRow = 0;
             while ($currentRow++ < $highestRow) {
-                // Get row dimension
+            // Get row dimension
                 $rowDimension = $pSheet->getRowDimension($currentRow);
-
-                // Write current row?
+            // Write current row?
                 $writeCurrentRow = isset($cellsByRow[$currentRow]) || $rowDimension->getRowHeight() >= 0 || $rowDimension->getVisible() == false || $rowDimension->getCollapsed() == true || $rowDimension->getOutlineLevel() > 0 || $rowDimension->getXfIndex() !== null;
-
                 if ($writeCurrentRow) {
-                    // Start a new row
+        // Start a new row
                     $objWriter->startElement('row');
                     $objWriter->writeAttribute('r', $currentRow);
                     $objWriter->writeAttribute('spans', '1:' . $colCount);
-
-                    // Row dimensions
+        // Row dimensions
                     if ($rowDimension->getRowHeight() >= 0) {
                         $objWriter->writeAttribute('customHeight', '1');
                         $objWriter->writeAttribute('ht', PHPExcel_Shared_String::FormatNumber($rowDimension->getRowHeight()));
@@ -1026,7 +971,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
                     // Write cells
                     if (isset($cellsByRow[$currentRow])) {
                         foreach ($cellsByRow[$currentRow] as $cellAddress) {
-                            // Write cell
+                        // Write cell
                             $this->writeCell($objWriter, $pSheet, $cellAddress, $pStringTable, $aFlippedStringTable);
                         }
                     }
@@ -1055,12 +1000,11 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     private function writeCell(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null, $pCellAddress = null, $pStringTable = null, $pFlippedStringTable = null)
     {
         if (is_array($pStringTable) && is_array($pFlippedStringTable)) {
-            // Cell
+// Cell
             $pCell = $pSheet->getCell($pCellAddress);
             $objWriter->startElement('c');
             $objWriter->writeAttribute('r', $pCellAddress);
-
-            // Sheet styles
+// Sheet styles
             if ($pCell->getXfIndex() != '') {
                 $objWriter->writeAttribute('s', $pCell->getXfIndex());
             }
@@ -1068,26 +1012,27 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
             // If cell value is supplied, write cell value
             $cellValue = $pCell->getValue();
             if (is_object($cellValue) || $cellValue !== '') {
-                // Map type
+            // Map type
                 $mappedType = $pCell->getDataType();
-
-                // Write data type depending on its type
+            // Write data type depending on its type
                 switch (strtolower($mappedType)) {
                     case 'inlinestr':    // Inline string
                     case 's':            // String
                     case 'b':            // Boolean
                         $objWriter->writeAttribute('t', $mappedType);
+
                         break;
                     case 'f':            // Formula
-                        $calculatedValue = ($this->getParentWriter()->getPreCalculateFormulas()) ?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       $calculatedValue = ($this->getParentWriter()->getPreCalculateFormulas()) ?
                             $pCell->getCalculatedValue() :
                             $cellValue;
                         if (is_string($calculatedValue)) {
                             $objWriter->writeAttribute('t', 'str');
                         }
+
                         break;
                     case 'e':            // Error
-                        $objWriter->writeAttribute('t', $mappedType);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       $objWriter->writeAttribute('t', $mappedType);
                 }
 
                 // Write data depending on its type
@@ -1101,6 +1046,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
                             $objWriter->endElement();
                         }
 
+
                         break;
                     case 's':            // String
                         if (! $cellValue instanceof PHPExcel_RichText) {
@@ -1111,9 +1057,10 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
                             $objWriter->writeElement('v', $pFlippedStringTable[$cellValue->getHashCode()]);
                         }
 
+
                         break;
                     case 'f':            // Formula
-                        $attributes = $pCell->getFormulaAttributes();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 $attributes = $pCell->getFormulaAttributes();
                         if ($attributes['t'] == 'array') {
                             $objWriter->startElement('f');
                             $objWriter->writeAttribute('t', 'array');
@@ -1127,23 +1074,27 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
                         }
                         if ($this->getParentWriter()->getOffice2003Compatibility() === false) {
                             if ($this->getParentWriter()->getPreCalculateFormulas()) {
-//                                $calculatedValue = $pCell->getCalculatedValue();
+        //                                $calculatedValue = $pCell->getCalculatedValue();
                                 if (!is_array($calculatedValue) && substr($calculatedValue, 0, 1) != '#') {
-                                    $objWriter->writeElement('v', PHPExcel_Shared_String::FormatNumber($calculatedValue));
+                                                    $objWriter->writeElement('v', PHPExcel_Shared_String::FormatNumber($calculatedValue));
                                 } else {
-                                    $objWriter->writeElement('v', '0');
+                                            $objWriter->writeElement('v', '0');
                                 }
                             } else {
-                                $objWriter->writeElement('v', '0');
+                                                $objWriter->writeElement('v', '0');
                             }
                         }
+
                         break;
                     case 'n':            // Numeric
                         // force point as decimal separator in case current locale uses comma
-                        $objWriter->writeElement('v', str_replace(',', '.', $cellValue));
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 $objWriter->writeElement('v', str_replace(',', '.', $cellValue));
+
                         break;
                     case 'b':            // Boolean
-                        $objWriter->writeElement('v', ($cellValue ? '1' : '0'));
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 $objWriter->writeElement('v', ($cellValue ? '1' : '0'));
+
                         break;
                     case 'e':            // Error
                         if (substr($cellValue, 0, 1) == '=') {
@@ -1152,6 +1103,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
                         } else {
                             $objWriter->writeElement('v', $cellValue);
                         }
+
 
                         break;
                 }
@@ -1175,8 +1127,10 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
     {
         $chartCount = ($includeCharts) ? $pSheet->getChartCollection()->count() : 0;
         // If sheet contains drawings, add the relationships
-        if (($pSheet->getDrawingCollection()->count() > 0) ||
-            ($chartCount > 0)) {
+        if (
+            ($pSheet->getDrawingCollection()->count() > 0) ||
+            ($chartCount > 0)
+        ) {
             $objWriter->startElement('drawing');
             $objWriter->writeAttribute('r:id', 'rId1');
             $objWriter->endElement();

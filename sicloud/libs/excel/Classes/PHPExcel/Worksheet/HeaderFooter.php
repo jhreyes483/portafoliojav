@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHPExcel_Worksheet_HeaderFooter
  *
@@ -94,85 +95,73 @@ class PHPExcel_Worksheet_HeaderFooter
     const IMAGE_FOOTER_LEFT   = 'LF';
     const IMAGE_FOOTER_CENTER = 'CF';
     const IMAGE_FOOTER_RIGHT  = 'RF';
-
-    /**
+/**
      * OddHeader
      *
      * @var string
      */
     private $oddHeader = '';
-
-    /**
+/**
      * OddFooter
      *
      * @var string
      */
     private $oddFooter = '';
-
-    /**
+/**
      * EvenHeader
      *
      * @var string
      */
     private $evenHeader = '';
-
-    /**
+/**
      * EvenFooter
      *
      * @var string
      */
     private $evenFooter = '';
-
-    /**
+/**
      * FirstHeader
      *
      * @var string
      */
     private $firstHeader = '';
-
-    /**
+/**
      * FirstFooter
      *
      * @var string
      */
     private $firstFooter = '';
-
-    /**
+/**
      * Different header for Odd/Even, defaults to false
      *
      * @var boolean
      */
     private $differentOddEven = false;
-
-    /**
+/**
      * Different header for first page, defaults to false
      *
      * @var boolean
      */
     private $differentFirst = false;
-
-    /**
+/**
      * Scale with document, defaults to true
      *
      * @var boolean
      */
     private $scaleWithDocument = true;
-
-    /**
+/**
      * Align with margins, defaults to true
      *
      * @var boolean
      */
     private $alignWithMargins = true;
-
-    /**
+/**
      * Header/footer images
      *
      * @var PHPExcel_Worksheet_HeaderFooterDrawing[]
      */
     private $headerFooterImages = array();
-
-    /**
+/**
      * Create a new PHPExcel_Worksheet_HeaderFooter
      */
     public function __construct()
@@ -473,7 +462,6 @@ class PHPExcel_Worksheet_HeaderFooter
             $images[self::IMAGE_FOOTER_RIGHT] =     $this->headerFooterImages[self::IMAGE_FOOTER_RIGHT];
         }
         $this->headerFooterImages = $images;
-
         return $this->headerFooterImages;
     }
 

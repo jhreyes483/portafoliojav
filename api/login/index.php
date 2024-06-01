@@ -12,7 +12,5 @@ header("Access-Control-Allow-Methods: GET,POST");
 header("Content-Type: application/json; carset=UTF-8");
 
 
-echo json_encode(['status'=> true, 'login'=> true, 'authorisation'=> ['token'=> '29|2i0AeJMIFBNWKBpgScbdxPLTKi8aE5dldLgyp1dF'], 'user'=>[]]);
+echo json_encode(['status' => true, 'login' => true, 'authorisation' => ['token' => '29|2i0AeJMIFBNWKBpgScbdxPLTKi8aE5dldLgyp1dF'], 'user' => []]);
 die();
-
-?>

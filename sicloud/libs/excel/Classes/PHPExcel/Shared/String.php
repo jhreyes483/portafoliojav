@@ -533,12 +533,12 @@ class PHPExcel_Shared_String
         }
         $len = strlen($str);
         $newstr = '';
-        for ($i=0; $i<$len; $i+=2) {
+        for ($i = 0; $i < $len; $i += 2) {
             if ($bom_be) {
                 $val = ord($str{$i})   << 4;
-                $val += ord($str{$i+1});
+                $val += ord($str{$i + 1});
             } else {
-                $val = ord($str{$i+1}) << 4;
+                $val = ord($str{$i + 1}) << 4;
                 $val += ord($str{$i});
             }
             $newstr .= ($val == 0x228) ? "\n" : chr($val);
@@ -676,9 +676,9 @@ class PHPExcel_Shared_String
      */
     public static function convertToNumberIfFraction(&$operand)
     {
-        if (preg_match('/^'.self::STRING_REGEXP_FRACTION.'$/i', $operand, $match)) {
+        if (preg_match('/^' . self::STRING_REGEXP_FRACTION . '$/i', $operand, $match)) {
             $sign = ($match[1] == '-') ? '-' : '+';
-            $fractionFormula = '='.$sign.$match[2].$sign.$match[3];
+            $fractionFormula = '=' . $sign . $match[2] . $sign . $match[3];
             $operand = PHPExcel_Calculation::getInstance()->_calculateFormulaValue($fractionFormula);
             return true;
         }

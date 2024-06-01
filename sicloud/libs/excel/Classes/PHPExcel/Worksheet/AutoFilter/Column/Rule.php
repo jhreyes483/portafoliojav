@@ -361,8 +361,10 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
         if (empty($pOperator)) {
             $pOperator = self::AUTOFILTER_COLUMN_RULE_EQUAL;
         }
-        if ((!in_array($pOperator, self::$operators)) &&
-            (!in_array($pOperator, self::$topTenValue))) {
+        if (
+            (!in_array($pOperator, self::$operators)) &&
+            (!in_array($pOperator, self::$topTenValue))
+        ) {
             throw new PHPExcel_Exception('Invalid operator for column AutoFilter Rule.');
         }
         $this->operator = $pOperator;
@@ -389,10 +391,12 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      */
     public function setGrouping($pGrouping = null)
     {
-        if (($pGrouping !== null) &&
+        if (
+            ($pGrouping !== null) &&
             (!in_array($pGrouping, self::$dateTimeGroups)) &&
             (!in_array($pGrouping, self::$dynamicTypes)) &&
-            (!in_array($pGrouping, self::$topTenType))) {
+            (!in_array($pGrouping, self::$topTenType))
+        ) {
             throw new PHPExcel_Exception('Invalid rule type for column AutoFilter Rule.');
         }
         $this->grouping = $pGrouping;

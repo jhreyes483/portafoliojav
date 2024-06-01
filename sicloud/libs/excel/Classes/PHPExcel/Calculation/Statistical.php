@@ -1,6 +1,7 @@
 <?php
 
 /** PHPExcel root directory */
+
 if (!defined('PHPEXCEL_ROOT')) {
     /**
      * @ignore
@@ -178,7 +179,7 @@ class PHPExcel_Calculation_Statistical
         $frac = $h;
         $m     = 1;
         $delta = 0.0;
-        while ($m <= MAX_ITERATIONS && abs($delta-1.0) > PRECISION) {
+        while ($m <= MAX_ITERATIONS && abs($delta - 1.0) > PRECISION) {
             $m2 = 2 * $m;
             // even index for d
             $d = $m * ($q - $m) * $x / ( ($p_minus + $m2) * ($p + $m2));
@@ -439,14 +440,14 @@ class PHPExcel_Calculation_Statistical
     {
         static $max = 32;
         $summer = 0;
-        for ($n=0; $n<=$max; ++$n) {
+        for ($n = 0; $n <= $max; ++$n) {
             $divisor = $a;
-            for ($i=1; $i<=$n; ++$i) {
+            for ($i = 1; $i <= $n; ++$i) {
                 $divisor *= ($a + $i);
             }
             $summer += (pow($x, $n) / $divisor);
         }
-        return pow($x, $a) * exp(0-$x) * $summer;
+        return pow($x, $a) * exp(0 - $x) * $summer;
     }
 
 
@@ -474,7 +475,7 @@ class PHPExcel_Calculation_Statistical
         $tmp -= ($x + 0.5) * log($tmp);
 
         $summer = $p0;
-        for ($j=1; $j<=6; ++$j) {
+        for ($j = 1; $j <= 6; ++$j) {
             $summer += ($p[$j] / ++$y);
         }
         return exp(0 - $tmp + log(SQRT2PI * $summer / $x));
@@ -733,9 +734,11 @@ class PHPExcel_Calculation_Statistical
         if ($aMean != PHPExcel_Calculation_Functions::DIV0()) {
             $aCount = 0;
             foreach ($aArgs as $k => $arg) {
-                if ((is_bool($arg)) &&
-                    ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))) {
-                    $arg = (integer) $arg;
+                if (
+                    (is_bool($arg)) &&
+                    ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))
+                ) {
+                    $arg = (int) $arg;
                 }
                 // Is it a numeric value?
                 if ((is_numeric($arg)) && (!is_string($arg))) {
@@ -777,9 +780,11 @@ class PHPExcel_Calculation_Statistical
 
         // Loop through arguments
         foreach (PHPExcel_Calculation_Functions::flattenArrayIndexed(func_get_args()) as $k => $arg) {
-            if ((is_bool($arg)) &&
-                ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))) {
-                $arg = (integer) $arg;
+            if (
+                (is_bool($arg)) &&
+                ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))
+            ) {
+                $arg = (int) $arg;
             }
             // Is it a numeric value?
             if ((is_numeric($arg)) && (!is_string($arg))) {
@@ -821,12 +826,14 @@ class PHPExcel_Calculation_Statistical
         $aCount = 0;
         // Loop through arguments
         foreach (PHPExcel_Calculation_Functions::flattenArrayIndexed(func_get_args()) as $k => $arg) {
-            if ((is_bool($arg)) &&
-                (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+            if (
+                (is_bool($arg)) &&
+                (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+            ) {
             } else {
                 if ((is_numeric($arg)) || (is_bool($arg)) || ((is_string($arg) && ($arg != '')))) {
                     if (is_bool($arg)) {
-                        $arg = (integer) $arg;
+                        $arg = (int) $arg;
                     } elseif (is_string($arg)) {
                         $arg = 0;
                     }
@@ -879,7 +886,7 @@ class PHPExcel_Calculation_Statistical
             if (!is_numeric($arg)) {
                 $arg = PHPExcel_Calculation::wrapResult(strtoupper($arg));
             }
-            $testCondition = '='.$arg.$condition;
+            $testCondition = '=' . $arg . $condition;
             if (PHPExcel_Calculation::getInstance()->_calculateFormulaValue($testCondition)) {
                 if ((is_null($returnValue)) || ($arg > $returnValue)) {
                     $returnValue += $arg;
@@ -1058,7 +1065,7 @@ class PHPExcel_Calculation_Statistical
                 }
                 return PHPExcel_Calculation_Functions::NaN();
             }
-            return 1 - (self::incompleteGamma($degrees/2, $value/2) / self::gamma($degrees/2));
+            return 1 - (self::incompleteGamma($degrees / 2, $value / 2) / self::gamma($degrees / 2));
         }
         return PHPExcel_Calculation_Functions::VALUE();
     }
@@ -1201,9 +1208,11 @@ class PHPExcel_Calculation_Statistical
         // Loop through arguments
         $aArgs = PHPExcel_Calculation_Functions::flattenArrayIndexed(func_get_args());
         foreach ($aArgs as $k => $arg) {
-            if ((is_bool($arg)) &&
-                ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))) {
-                $arg = (integer) $arg;
+            if (
+                (is_bool($arg)) &&
+                ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))
+            ) {
+                $arg = (int) $arg;
             }
             // Is it a numeric value?
             if ((is_numeric($arg)) && (!is_string($arg))) {
@@ -1300,7 +1309,7 @@ class PHPExcel_Calculation_Statistical
             if (!is_numeric($arg)) {
                 $arg = PHPExcel_Calculation::wrapResult(strtoupper($arg));
             }
-            $testCondition = '='.$arg.$condition;
+            $testCondition = '=' . $arg . $condition;
             if (PHPExcel_Calculation::getInstance()->_calculateFormulaValue($testCondition)) {
                 // Is it a value within our criteria
                 ++$returnValue;
@@ -1488,10 +1497,12 @@ class PHPExcel_Calculation_Statistical
             $aCount = -1;
             foreach ($aArgs as $k => $arg) {
                 // Is it a numeric value?
-                if ((is_bool($arg)) &&
+                if (
+                    (is_bool($arg)) &&
                     ((!PHPExcel_Calculation_Functions::isCellValue($k)) ||
-                    (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))) {
-                    $arg = (integer) $arg;
+                    (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))
+                ) {
+                    $arg = (int) $arg;
                 }
                 if ((is_numeric($arg)) && (!is_string($arg))) {
                     if (is_null($returnValue)) {
@@ -1538,9 +1549,9 @@ class PHPExcel_Calculation_Statistical
             }
             if ((is_numeric($cumulative)) || (is_bool($cumulative))) {
                 if ($cumulative) {
-                    return 1 - exp(0-$value*$lambda);
+                    return 1 - exp(0 - $value * $lambda);
                 } else {
-                    return $lambda * exp(0-$value*$lambda);
+                    return $lambda * exp(0 - $value * $lambda);
                 }
             }
         }
@@ -1566,7 +1577,7 @@ class PHPExcel_Calculation_Statistical
             if (($value <= -1) || ($value >= 1)) {
                 return PHPExcel_Calculation_Functions::NaN();
             }
-            return 0.5 * log((1+$value)/(1-$value));
+            return 0.5 * log((1 + $value) / (1 - $value));
         }
         return PHPExcel_Calculation_Functions::VALUE();
     }
@@ -1651,7 +1662,7 @@ class PHPExcel_Calculation_Statistical
                 if ($cumulative) {
                     return self::incompleteGamma($a, $value / $b) / self::gamma($a);
                 } else {
-                    return (1 / (pow($b, $a) * self::gamma($a))) * pow($value, $a-1) * exp(0-($value / $b));
+                    return (1 / (pow($b, $a) * self::gamma($a))) * pow($value, $a - 1) * exp(0 - ($value / $b));
                 }
             }
         }
@@ -1789,7 +1800,7 @@ class PHPExcel_Calculation_Statistical
         $yValues = PHPExcel_Calculation_Functions::flattenArray($yValues);
         $xValues = PHPExcel_Calculation_Functions::flattenArray($xValues);
         $newValues = PHPExcel_Calculation_Functions::flattenArray($newValues);
-        $const = (is_null($const)) ? true : (boolean) PHPExcel_Calculation_Functions::flattenSingleValue($const);
+        $const = (is_null($const)) ? true : (bool) PHPExcel_Calculation_Functions::flattenSingleValue($const);
 
         $bestFitExponential = trendClass::calculate(trendClass::TREND_EXPONENTIAL, $yValues, $xValues, $const);
         if (empty($newValues)) {
@@ -1941,8 +1952,10 @@ class PHPExcel_Calculation_Statistical
             $count = $summer = 0;
             // Loop through arguments
             foreach ($aArgs as $k => $arg) {
-                if ((is_bool($arg)) &&
-                    (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+                if (
+                    (is_bool($arg)) &&
+                    (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+                ) {
                 } else {
                     // Is it a numeric value?
                     if ((is_numeric($arg)) && (!is_string($arg))) {
@@ -1954,7 +1967,7 @@ class PHPExcel_Calculation_Statistical
 
             // Return
             if ($count > 3) {
-                return $summer * ($count * ($count+1) / (($count-1) * ($count-2) * ($count-3))) - (3 * pow($count-1, 2) / (($count-2) * ($count-3)));
+                return $summer * ($count * ($count + 1) / (($count - 1) * ($count - 2) * ($count - 3))) - (3 * pow($count - 1, 2) / (($count - 2) * ($count - 3)));
             }
         }
         return PHPExcel_Calculation_Functions::DIV0();
@@ -2018,8 +2031,8 @@ class PHPExcel_Calculation_Statistical
      */
     public static function LINEST($yValues, $xValues = null, $const = true, $stats = false)
     {
-        $const = (is_null($const)) ? true : (boolean) PHPExcel_Calculation_Functions::flattenSingleValue($const);
-        $stats = (is_null($stats)) ? false : (boolean) PHPExcel_Calculation_Functions::flattenSingleValue($stats);
+        $const = (is_null($const)) ? true : (bool) PHPExcel_Calculation_Functions::flattenSingleValue($const);
+        $stats = (is_null($stats)) ? false : (bool) PHPExcel_Calculation_Functions::flattenSingleValue($stats);
         if (is_null($xValues)) {
             $xValues = range(1, count(PHPExcel_Calculation_Functions::flattenArray($yValues)));
         }
@@ -2078,8 +2091,8 @@ class PHPExcel_Calculation_Statistical
      */
     public static function LOGEST($yValues, $xValues = null, $const = true, $stats = false)
     {
-        $const = (is_null($const)) ? true : (boolean) PHPExcel_Calculation_Functions::flattenSingleValue($const);
-        $stats = (is_null($stats)) ? false : (boolean) PHPExcel_Calculation_Functions::flattenSingleValue($stats);
+        $const = (is_null($const)) ? true : (bool) PHPExcel_Calculation_Functions::flattenSingleValue($const);
+        $stats = (is_null($stats)) ? false : (bool) PHPExcel_Calculation_Functions::flattenSingleValue($stats);
         if (is_null($xValues)) {
             $xValues = range(1, count(PHPExcel_Calculation_Functions::flattenArray($yValues)));
         }
@@ -2246,7 +2259,7 @@ class PHPExcel_Calculation_Statistical
             // Is it a numeric value?
             if ((is_numeric($arg)) || (is_bool($arg)) || ((is_string($arg) && ($arg != '')))) {
                 if (is_bool($arg)) {
-                    $arg = (integer) $arg;
+                    $arg = (int) $arg;
                 } elseif (is_string($arg)) {
                     $arg = 0;
                 }
@@ -2292,7 +2305,7 @@ class PHPExcel_Calculation_Statistical
             if (!is_numeric($arg)) {
                 $arg = PHPExcel_Calculation::wrapResult(strtoupper($arg));
             }
-            $testCondition = '='.$arg.$condition;
+            $testCondition = '=' . $arg . $condition;
             if (PHPExcel_Calculation::getInstance()->_calculateFormulaValue($testCondition)) {
                 if ((is_null($returnValue)) || ($arg > $returnValue)) {
                     $returnValue = $arg;
@@ -2405,7 +2418,7 @@ class PHPExcel_Calculation_Statistical
             // Is it a numeric value?
             if ((is_numeric($arg)) || (is_bool($arg)) || ((is_string($arg) && ($arg != '')))) {
                 if (is_bool($arg)) {
-                    $arg = (integer) $arg;
+                    $arg = (int) $arg;
                 } elseif (is_string($arg)) {
                     $arg = 0;
                 }
@@ -2451,7 +2464,7 @@ class PHPExcel_Calculation_Statistical
             if (!is_numeric($arg)) {
                 $arg = PHPExcel_Calculation::wrapResult(strtoupper($arg));
             }
-            $testCondition = '='.$arg.$condition;
+            $testCondition = '=' . $arg . $condition;
             if (PHPExcel_Calculation::getInstance()->_calculateFormulaValue($testCondition)) {
                 if ((is_null($returnValue)) || ($arg < $returnValue)) {
                     $returnValue = $arg;
@@ -2708,7 +2721,7 @@ class PHPExcel_Calculation_Statistical
             if ($mValueCount > 0) {
                 sort($mArgs);
                 $count = self::COUNT($mArgs);
-                $index = $entry * ($count-1);
+                $index = $entry * ($count - 1);
                 $iBase = floor($index);
                 if ($index == $iBase) {
                     return $mArgs[$index];
@@ -2737,7 +2750,7 @@ class PHPExcel_Calculation_Statistical
     {
         $valueSet     = PHPExcel_Calculation_Functions::flattenArray($valueSet);
         $value        = PHPExcel_Calculation_Functions::flattenSingleValue($value);
-        $significance = (is_null($significance)) ? 3 : (integer) PHPExcel_Calculation_Functions::flattenSingleValue($significance);
+        $significance = (is_null($significance)) ? 3 : (int) PHPExcel_Calculation_Functions::flattenSingleValue($significance);
 
         foreach ($valueSet as $key => $valueEntry) {
             if (!is_numeric($valueEntry)) {
@@ -2827,9 +2840,9 @@ class PHPExcel_Calculation_Statistical
                     for ($i = 0; $i <= floor($value); ++$i) {
                         $summer += pow($mean, $i) / PHPExcel_Calculation_MathTrig::FACT($i);
                     }
-                    return exp(0-$mean) * $summer;
+                    return exp(0 - $mean) * $summer;
                 } else {
-                    return (exp(0-$mean) * pow($mean, $value)) / PHPExcel_Calculation_MathTrig::FACT($value);
+                    return (exp(0 - $mean) * pow($mean, $value)) / PHPExcel_Calculation_MathTrig::FACT($value);
                 }
             }
         }
@@ -2883,7 +2896,7 @@ class PHPExcel_Calculation_Statistical
     {
         $value = PHPExcel_Calculation_Functions::flattenSingleValue($value);
         $valueSet = PHPExcel_Calculation_Functions::flattenArray($valueSet);
-        $order = (is_null($order)) ? 0 : (integer) PHPExcel_Calculation_Functions::flattenSingleValue($order);
+        $order = (is_null($order)) ? 0 : (int) PHPExcel_Calculation_Functions::flattenSingleValue($order);
 
         foreach ($valueSet as $key => $valueEntry) {
             if (!is_numeric($valueEntry)) {
@@ -2953,8 +2966,10 @@ class PHPExcel_Calculation_Statistical
         $count = $summer = 0;
         // Loop through arguments
         foreach ($aArgs as $k => $arg) {
-            if ((is_bool($arg)) &&
-                (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+            if (
+                (is_bool($arg)) &&
+                (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+            ) {
             } else {
                 // Is it a numeric value?
                 if ((is_numeric($arg)) && (!is_string($arg))) {
@@ -2965,7 +2980,7 @@ class PHPExcel_Calculation_Statistical
         }
 
         if ($count > 2) {
-            return $summer * ($count / (($count-1) * ($count-2)));
+            return $summer * ($count / (($count - 1) * ($count - 2)));
         }
         return PHPExcel_Calculation_Functions::DIV0();
     }
@@ -3092,9 +3107,11 @@ class PHPExcel_Calculation_Statistical
         if (!is_null($aMean)) {
             $aCount = -1;
             foreach ($aArgs as $k => $arg) {
-                if ((is_bool($arg)) &&
-                    ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))) {
-                    $arg = (integer) $arg;
+                if (
+                    (is_bool($arg)) &&
+                    ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))
+                ) {
+                    $arg = (int) $arg;
                 }
                 // Is it a numeric value?
                 if ((is_numeric($arg)) && (!is_string($arg))) {
@@ -3139,13 +3156,15 @@ class PHPExcel_Calculation_Statistical
         if (!is_null($aMean)) {
             $aCount = -1;
             foreach ($aArgs as $k => $arg) {
-                if ((is_bool($arg)) &&
-                    (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+                if (
+                    (is_bool($arg)) &&
+                    (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+                ) {
                 } else {
                     // Is it a numeric value?
                     if ((is_numeric($arg)) || (is_bool($arg)) || ((is_string($arg) & ($arg != '')))) {
                         if (is_bool($arg)) {
-                            $arg = (integer) $arg;
+                            $arg = (int) $arg;
                         } elseif (is_string($arg)) {
                             $arg = 0;
                         }
@@ -3190,9 +3209,11 @@ class PHPExcel_Calculation_Statistical
         if (!is_null($aMean)) {
             $aCount = 0;
             foreach ($aArgs as $k => $arg) {
-                if ((is_bool($arg)) &&
-                    ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))) {
-                    $arg = (integer) $arg;
+                if (
+                    (is_bool($arg)) &&
+                    ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))
+                ) {
+                    $arg = (int) $arg;
                 }
                 // Is it a numeric value?
                 if ((is_numeric($arg)) && (!is_string($arg))) {
@@ -3236,13 +3257,15 @@ class PHPExcel_Calculation_Statistical
         if (!is_null($aMean)) {
             $aCount = 0;
             foreach ($aArgs as $k => $arg) {
-                if ((is_bool($arg)) &&
-                    (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+                if (
+                    (is_bool($arg)) &&
+                    (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+                ) {
                 } else {
                     // Is it a numeric value?
                     if ((is_numeric($arg)) || (is_bool($arg)) || ((is_string($arg) & ($arg != '')))) {
                         if (is_bool($arg)) {
-                            $arg = (integer) $arg;
+                            $arg = (int) $arg;
                         } elseif (is_string($arg)) {
                             $arg = 0;
                         }
@@ -3428,7 +3451,7 @@ class PHPExcel_Calculation_Statistical
         $yValues = PHPExcel_Calculation_Functions::flattenArray($yValues);
         $xValues = PHPExcel_Calculation_Functions::flattenArray($xValues);
         $newValues = PHPExcel_Calculation_Functions::flattenArray($newValues);
-        $const = (is_null($const)) ? true : (boolean) PHPExcel_Calculation_Functions::flattenSingleValue($const);
+        $const = (is_null($const)) ? true : (bool) PHPExcel_Calculation_Functions::flattenSingleValue($const);
 
         $bestFitLinear = trendClass::calculate(trendClass::TREND_LINEAR, $yValues, $xValues, $const);
         if (empty($newValues)) {
@@ -3480,7 +3503,7 @@ class PHPExcel_Calculation_Statistical
             }
             $discard = floor(self::COUNT($mArgs) * $percent / 2);
             sort($mArgs);
-            for ($i=0; $i < $discard; ++$i) {
+            for ($i = 0; $i < $discard; ++$i) {
                 array_pop($mArgs);
                 array_shift($mArgs);
             }
@@ -3514,7 +3537,7 @@ class PHPExcel_Calculation_Statistical
         $aCount = 0;
         foreach ($aArgs as $arg) {
             if (is_bool($arg)) {
-                $arg = (integer) $arg;
+                $arg = (int) $arg;
             }
             // Is it a numeric value?
             if ((is_numeric($arg)) && (!is_string($arg))) {
@@ -3556,16 +3579,20 @@ class PHPExcel_Calculation_Statistical
         $aArgs = PHPExcel_Calculation_Functions::flattenArrayIndexed(func_get_args());
         $aCount = 0;
         foreach ($aArgs as $k => $arg) {
-            if ((is_string($arg)) &&
-                (PHPExcel_Calculation_Functions::isValue($k))) {
+            if (
+                (is_string($arg)) &&
+                (PHPExcel_Calculation_Functions::isValue($k))
+            ) {
                 return PHPExcel_Calculation_Functions::VALUE();
-            } elseif ((is_string($arg)) &&
-                (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+            } elseif (
+                (is_string($arg)) &&
+                (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+            ) {
             } else {
                 // Is it a numeric value?
                 if ((is_numeric($arg)) || (is_bool($arg)) || ((is_string($arg) & ($arg != '')))) {
                     if (is_bool($arg)) {
-                        $arg = (integer) $arg;
+                        $arg = (int) $arg;
                     } elseif (is_string($arg)) {
                         $arg = 0;
                     }
@@ -3610,7 +3637,7 @@ class PHPExcel_Calculation_Statistical
         $aCount = 0;
         foreach ($aArgs as $arg) {
             if (is_bool($arg)) {
-                $arg = (integer) $arg;
+                $arg = (int) $arg;
             }
             // Is it a numeric value?
             if ((is_numeric($arg)) && (!is_string($arg))) {
@@ -3652,16 +3679,20 @@ class PHPExcel_Calculation_Statistical
         $aArgs = PHPExcel_Calculation_Functions::flattenArrayIndexed(func_get_args());
         $aCount = 0;
         foreach ($aArgs as $k => $arg) {
-            if ((is_string($arg)) &&
-                (PHPExcel_Calculation_Functions::isValue($k))) {
+            if (
+                (is_string($arg)) &&
+                (PHPExcel_Calculation_Functions::isValue($k))
+            ) {
                 return PHPExcel_Calculation_Functions::VALUE();
-            } elseif ((is_string($arg)) &&
-                (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+            } elseif (
+                (is_string($arg)) &&
+                (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+            ) {
             } else {
                 // Is it a numeric value?
                 if ((is_numeric($arg)) || (is_bool($arg)) || ((is_string($arg) & ($arg != '')))) {
                     if (is_bool($arg)) {
-                        $arg = (integer) $arg;
+                        $arg = (int) $arg;
                     } elseif (is_string($arg)) {
                         $arg = 0;
                     }

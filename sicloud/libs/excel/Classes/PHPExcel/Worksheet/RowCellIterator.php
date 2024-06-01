@@ -161,9 +161,11 @@ class PHPExcel_Worksheet_RowCellIterator extends PHPExcel_Worksheet_CellIterator
     {
         do {
             ++$this->position;
-        } while (($this->onlyExistingCells) &&
+        } while (
+            ($this->onlyExistingCells) &&
             (!$this->subject->cellExistsByColumnAndRow($this->position, $this->rowIndex)) &&
-            ($this->position <= $this->endColumn));
+            ($this->position <= $this->endColumn)
+        );
     }
 
     /**
@@ -183,9 +185,11 @@ class PHPExcel_Worksheet_RowCellIterator extends PHPExcel_Worksheet_CellIterator
 
         do {
             --$this->position;
-        } while (($this->onlyExistingCells) &&
+        } while (
+            ($this->onlyExistingCells) &&
             (!$this->subject->cellExistsByColumnAndRow($this->position, $this->rowIndex)) &&
-            ($this->position >= $this->startColumn));
+            ($this->position >= $this->startColumn)
+        );
     }
 
     /**
@@ -206,15 +210,19 @@ class PHPExcel_Worksheet_RowCellIterator extends PHPExcel_Worksheet_CellIterator
     protected function adjustForExistingOnlyRange()
     {
         if ($this->onlyExistingCells) {
-            while ((!$this->subject->cellExistsByColumnAndRow($this->startColumn, $this->rowIndex)) &&
-                ($this->startColumn <= $this->endColumn)) {
+            while (
+                (!$this->subject->cellExistsByColumnAndRow($this->startColumn, $this->rowIndex)) &&
+                ($this->startColumn <= $this->endColumn)
+            ) {
                 ++$this->startColumn;
             }
             if ($this->startColumn > $this->endColumn) {
                 throw new PHPExcel_Exception('No cells exist within the specified range');
             }
-            while ((!$this->subject->cellExistsByColumnAndRow($this->endColumn, $this->rowIndex)) &&
-                ($this->endColumn >= $this->startColumn)) {
+            while (
+                (!$this->subject->cellExistsByColumnAndRow($this->endColumn, $this->rowIndex)) &&
+                ($this->endColumn >= $this->startColumn)
+            ) {
                 --$this->endColumn;
             }
             if ($this->endColumn < $this->startColumn) {

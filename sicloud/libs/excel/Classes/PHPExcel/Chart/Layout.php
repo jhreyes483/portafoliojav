@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHPExcel
  *
@@ -41,106 +42,91 @@ class PHPExcel_Chart_Layout
      * @var string
      */
     private $layoutTarget;
-
-    /**
+/**
      * X Mode
      *
      * @var string
      */
     private $xMode;
-
-    /**
+/**
      * Y Mode
      *
      * @var string
      */
     private $yMode;
-
-    /**
+/**
      * X-Position
      *
      * @var float
      */
     private $xPos;
-
-    /**
+/**
      * Y-Position
      *
      * @var float
      */
     private $yPos;
-
-    /**
+/**
      * width
      *
      * @var float
      */
     private $width;
-
-    /**
+/**
      * height
      *
      * @var float
      */
     private $height;
-
-    /**
+/**
      * show legend key
      * Specifies that legend keys should be shown in data labels
      *
      * @var boolean
      */
     private $showLegendKey;
-
-    /**
+/**
      * show value
      * Specifies that the value should be shown in a data label.
      *
      * @var boolean
      */
     private $showVal;
-
-    /**
+/**
      * show category name
      * Specifies that the category name should be shown in the data label.
      *
      * @var boolean
      */
     private $showCatName;
-
-    /**
+/**
      * show data series name
      * Specifies that the series name should be shown in the data label.
      *
      * @var boolean
      */
     private $showSerName;
-
-    /**
+/**
      * show percentage
      * Specifies that the percentage should be shown in the data label.
      *
      * @var boolean
      */
     private $showPercent;
-
-    /**
+/**
      * show bubble size
      *
      * @var boolean
      */
     private $showBubbleSize;
-
-    /**
+/**
      * show leader lines
      * Specifies that leader lines should be shown for the data label.
      *
      * @var boolean
      */
     private $showLeaderLines;
-
-
-    /**
+/**
      * Create a new PHPExcel_Chart_Layout
      */
     public function __construct($layout = array())

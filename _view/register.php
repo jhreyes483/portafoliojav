@@ -1,19 +1,15 @@
 <?php
+
 namespace _view;
 
 require_once '../public/body/header.php';
 require_once('../autoload.php');
 use _controller\indexController;
+$obj = new indexController();
 
-
-$obj = new indexController; 
-session_destroy();
-
-if( isset ($_POST['a'])){
+if (isset($_POST['a'])) {
     $obj->acces();
 }
-
-
 ?>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <script src="../public/js/datapiker.min.js" type="text/javascript"></script>
@@ -73,8 +69,8 @@ if( isset ($_POST['a'])){
                                 <div class="form-group">
                                    <select name="rol" class="form-control" >
 <?php
-foreach (['C'=>'Cliente', 'I'=>'Instructor']   as $i => $d) {
-echo '  <option '.(($_POST['rol'] == $i) ? ' selected ': '' ).'value="'.$i.'">'.$d.'</option>';
+foreach (['C' => 'Cliente', 'I' => 'Instructor'] as $i => $d) {
+    echo '  <option ' . (($_POST['rol'] == $i) ? ' selected ' : '' ) . 'value="' . $i . '">' . $d . '</option>';
 }
 ?>
             
@@ -132,6 +128,3 @@ echo '  <option '.(($_POST['rol'] == $i) ? ' selected ': '' ).'value="'.$i.'">'.
 </body>
 
 </html>
-
-
-

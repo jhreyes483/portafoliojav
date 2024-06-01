@@ -1,6 +1,7 @@
 <?php
 
 /** PHPExcel root directory */
+
 if (!defined('PHPEXCEL_ROOT')) {
     /**
      * @ignore
@@ -50,7 +51,6 @@ define('PRECISION', 8.88E-016);
  */
 class PHPExcel_Calculation_Functions
 {
-
     /** constants */
     const COMPATIBILITY_EXCEL      = 'Excel';
     const COMPATIBILITY_GNUMERIC   = 'Gnumeric';
@@ -109,9 +109,11 @@ class PHPExcel_Calculation_Functions
      */
     public static function setCompatibilityMode($compatibilityMode)
     {
-        if (($compatibilityMode == self::COMPATIBILITY_EXCEL) ||
+        if (
+            ($compatibilityMode == self::COMPATIBILITY_EXCEL) ||
             ($compatibilityMode == self::COMPATIBILITY_GNUMERIC) ||
-            ($compatibilityMode == self::COMPATIBILITY_OPENOFFICE)) {
+            ($compatibilityMode == self::COMPATIBILITY_OPENOFFICE)
+        ) {
             self::$compatibilityMode = $compatibilityMode;
             return true;
         }
@@ -150,9 +152,11 @@ class PHPExcel_Calculation_Functions
      */
     public static function setReturnDateType($returnDateType)
     {
-        if (($returnDateType == self::RETURNDATE_PHP_NUMERIC) ||
+        if (
+            ($returnDateType == self::RETURNDATE_PHP_NUMERIC) ||
             ($returnDateType == self::RETURNDATE_PHP_OBJECT) ||
-            ($returnDateType == self::RETURNDATE_EXCEL)) {
+            ($returnDateType == self::RETURNDATE_EXCEL)
+        ) {
             self::$returnDateType = $returnDateType;
             return true;
         }
@@ -335,7 +339,7 @@ class PHPExcel_Calculation_Functions
                 $operand = PHPExcel_Calculation::wrapResult(strtoupper($operand));
             }
 
-            return $operator.$operand;
+            return $operator . $operand;
         }
     }
 
@@ -556,7 +560,7 @@ class PHPExcel_Calculation_Functions
             case 'integer':
                 return $value;
             case 'boolean':
-                return (integer) $value;
+                return (int) $value;
             case 'string':
                 //    Errors
                 if ((strlen($value) > 0) && ($value{0} == '#')) {
@@ -669,10 +673,10 @@ class PHPExcel_Calculation_Functions
                 foreach ($value as $k2 => $val) {
                     if (is_array($val)) {
                         foreach ($val as $k3 => $v) {
-                            $arrayValues[$k1.'.'.$k2.'.'.$k3] = $v;
+                            $arrayValues[$k1 . '.' . $k2 . '.' . $k3] = $v;
                         }
                     } else {
-                        $arrayValues[$k1.'.'.$k2] = $val;
+                        $arrayValues[$k1 . '.' . $k2] = $val;
                     }
                 }
             } else {
@@ -732,8 +736,10 @@ if (!function_exists('atanh')) {
 //    Strangely, PHP doesn't have a mb_str_replace multibyte function
 //    As we'll only ever use this function with UTF-8 characters, we can simply "hard-code" the character set
 //
-if ((!function_exists('mb_str_replace')) &&
-    (function_exists('mb_substr')) && (function_exists('mb_strlen')) && (function_exists('mb_strpos'))) {
+if (
+    (!function_exists('mb_str_replace')) &&
+    (function_exists('mb_substr')) && (function_exists('mb_strlen')) && (function_exists('mb_strpos'))
+) {
     function mb_str_replace($search, $replace, $subject)
     {
         if (is_array($subject)) {

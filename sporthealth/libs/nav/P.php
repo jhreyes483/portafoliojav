@@ -1,9 +1,9 @@
 <!doctype html>
 <!--
-	Fox by FreeHTML5.co
-	Twitter: https://twitter.com/fh5co
-	Facebook: https://fb.com/fh5co
-	URL: https://freehtml5.co
+    Fox by FreeHTML5.co
+    Twitter: https://twitter.com/fh5co
+    Facebook: https://fb.com/fh5co
+    URL: https://freehtml5.co
 -->
 <html lang="en">
 
@@ -50,7 +50,7 @@ background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(61,59,55,1) 35%);">
             <!-- Navbar links -->
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-itm"> <a class="nav-link" href="<?= BASE_URL.'index'?>">INICIO</a> </li>
+                    <li class="nav-itm"> <a class="nav-link" href="<?= BASE_URL . 'index'?>">INICIO</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="#about-us">METODOLOGIA</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="#">RUTINAS</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="#contact">CONSULTAS</a> </li>

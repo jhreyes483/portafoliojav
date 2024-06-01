@@ -1,44 +1,48 @@
 <?php
 
-class errorController extends Controller {
+class errorController extends Controller
+{
       //
-	   public function __construct(){
-         parent::__construct(1);
-         if(isset($_POST['login'])){
+    public function __construct()
+    {
+        parent::__construct(1);
+        if (isset($_POST['login'])) {
             $this->redireccionar('index');
-         }
-         $this->db            = $this->loadModel('consultas.sql', 'sql');
-         $this->objSession    = new Session();
-         $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
+        }
+           $this->db            = $this->loadModel('consultas.sql', 'sql');
+           $this->objSession    = new Session();
+           $this->_view->setCss(['jav','bootstrap.min', 'fontawesome-all.css']);
         // $this->_view->setJs( ['jquery-1.9.0', 'bootstrap.min', 'popper.min', 'fontawasome-ico', 'cUsuariosJquery', 'tablesorter-master/jquery.tablesorter'] );
-      }
+    }
       //
-	   public function index(){
-         if(isset($_SESSION['usuario'])){
-            session_destroy();
+    public function index()
+    {
+        if (isset($_SESSION['usuario'])) {
             $this->redireccionar('index');
-         }
-      }	   
+        }
+    }
       //
-      public function inicieSesion(){
-         $this->_view->setJs( ['login']  );
-         $this->_view->renderizar('inicieSesion', 1); 
-      } //sesioninactiva
+    public function inicieSesion()
+    {
+        $this->_view->setJs(['login']);
+        $this->_view->renderizar('inicieSesion', 1);
+    } //sesioninactiva
       //
-      public function cuenta(){
-         $this->_view->setJs( ['login']  );
-         $this->_view->renderizar('sesioninactiva', 1); 
-      } //sesioninactiva
+    public function cuenta()
+    {
+        $this->_view->setJs(['login']);
+        $this->_view->renderizar('sesioninactiva', 1);
+    } //sesioninactiva
       //
-      public function permiso(){
-         $this->_view->setJs( ['login']  );
-         $this->_view->renderizar('permiso', 1); 
-      }
+    public function permiso()
+    {
+        $this->_view->setJs(['login']);
+        $this->_view->renderizar('permiso', 1);
+    }
       //
-      public function pagina(){
-         $this->_view->setJs( ['login']  );
-         $this->_view->renderizar('404', 1); 
-      }// 
-   }
-   
-?>
+    public function pagina()
+    {
+        $this->_view->setJs(['login']);
+        $this->_view->renderizar('404', 1);
+    }//
+}

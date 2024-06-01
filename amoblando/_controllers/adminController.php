@@ -2,11 +2,13 @@
 
 // use Mpdf\Tag\Section;
 
-class adminController extends Controller{
+class adminController extends Controller
+{
     private $db;
     private $param;
     //
-    public function __construct(){
+    public function __construct()
+    {
         $this->db = $this->loadModel('consultas.sql', 'sql');
         parent::__construct();
         $this->_view->setCss(array('font-Montserrat', 'google', 'bootstrap.min', 'jav', 'animate', 'fontawesome-all'));
@@ -15,9 +17,8 @@ class adminController extends Controller{
         $this->param = $this->getParam();
     }
     //
-    public function index(){
+    public function index()
+    {
         die('Implementar este perfil no está en los requerimientos, <br>Se encuentra deshabilitado, ingrese con 2 0 3 atte. Javier Reyes N');
     }
-
-   
 }

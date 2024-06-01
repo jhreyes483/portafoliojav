@@ -3,7 +3,7 @@ require_once '../autoload.php';
 
 use _controller\calendarioController;
 
-$obj = new calendarioController;
+$obj = new calendarioController();
 $c   = $obj->tipoReunion();
 @session_start();
 include_once '../public/body/header.php';
@@ -39,7 +39,7 @@ include_once '../public/body/header.php';
 
                 <?php
                 foreach ($c as $d) {
-                ?>
+                    ?>
 
                     <div class="container  row">
                         <div class="col-md-2 my-4 ">
@@ -54,7 +54,7 @@ include_once '../public/body/header.php';
                         </div>
                     </div>
 
-                <?php
+                    <?php
                 }
                 ?>
             </div>
