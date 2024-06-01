@@ -1,0 +1,42 @@
+<br><br><br>
+
+<?php
+// Cargar datos desde una base de datos o archivo
+$data = array(
+  array(1, 2),
+  array(2, 3),
+  array(3, 4),
+  array(4, 5),
+  array(5, 6),
+  array(10, 12),
+  array(11, 13),
+  array(12, 14),
+  array(13, 15),
+  array(14, 16)
+);
+
+// Aplicar algoritmo K-means
+$k = 2; // Número de clústeres
+$clustering = kmeans($data, $k);
+
+// Generar visualización de los datos agrupados
+echo '<div class="row">';
+foreach ($clustering as $cluster) {
+  echo '<div class="col-sm-6">';
+  foreach ($cluster as $dato) {
+    echo '<div class="card mb-3">';
+    echo '<div class="card-body">';
+    echo 'Dato: (' . implode(',', $dato) . ')';
+    echo '</div>';
+    echo '</div>';
+  }
+  echo '</div>';
+}
+echo '</div>';
+?>
+
+<!-- Importar librerías de Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

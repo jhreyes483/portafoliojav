@@ -1,0 +1,67 @@
+
+    <div class="container relative my-4">
+        <div class="container relative">
+            <div class="section-text mb-60 mb-sm-40">
+                <div class="row mb-60 my-2">
+                    <div class="col-sm-6 mb-sm-50 mb-xs-30 wow animate__animated animate__slideInLeft" style="visibility: visible; animation-name: fadeInLeft;">
+                        <p>
+                            <b>Misión</b> Proporcionar soluciones integrales de construcción, jardinería y limpieza de alta calidad a nuestros clientes, superando sus expectativas a través de la innovación, el compromiso y el profesionalismo.
+                        </p>
+                    </div>
+                    <div class="col-sm-6 mb-sm-50 mb-xs-30 wow animate__animated animate__fadeInRight" style="visibility: visible; animation-name: fadeInRight;">
+                        <img 
+                        class=" img-entity img-fluid" 
+                        src="<?= RUTAS_APP['ruta_img'] . 'entity/mision.png' ?>" 
+                        width="500" height="338"
+                        alt="Misión"
+                        title="Misión"
+                        >
+                    </div>
+                </div>
+
+                <div class="row my-4">
+                    <div class="col-sm-6 mb-sm-50 mb-xs-30 wow animate__animated animate__slideInRight">
+                        <img 
+                        class=" img-entity img-fluid" 
+                        src="<?= RUTAS_APP['ruta_img'] . 'entity/visioin.png' ?>"
+                        width="500" height="338"
+                        alt="Visión"
+                        title="Visión"
+                        >
+
+                    </div>
+                    <div class="col-sm-6 my-2 mb-sm-50 mb-xs-30 wow animate__animated animate__slideInRight">
+                        <p><b>Visión:</b> Ser reconocidos como líderes en la industria de la construcción la jardinería y limpieza ofreciendo soluciones innovadoras y sostenibles que contribuyan al desarrollo comunitario y al bienestar de nuestros clientes. Nos esforzamos por ser una empresa altamente valorada por su creatividad, su dedicación y su compromiso con la excelencia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<style>
+    body {
+        font-family: "Roboto", arial, sans-serif;
+    }
+    .img-entity{
+        border-radius: 3rem;
+        border: 3.5px solid var(--naranja-sicloud);
+        z-index: 1;
+    }
+    
+    @media screen and (max-width:740px){
+    p{
+        font-size: 14px;
+    }
+    .img-entity{
+        width: 80%;
+        justify-content: center;
+        align-items: center;
+    }
+    .relative{
+        overflow: hidden;
+    }
+    
+}
+</style>    

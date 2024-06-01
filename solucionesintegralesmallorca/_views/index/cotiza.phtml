@@ -1,0 +1,125 @@
+<br><main><section id="slider" class="container-fluid justify-content-center"><div class="card-slider"><div class=""><div method="post" class="row d-flex justify-content-center mx-auto" style="width:100%;height:10%"><div class=""><div class="my-6 mx-auto"><div style="font-size:5.69507px"><div class="img-container"><div class="img-content"><div class="img-slider-1" style="width:75%;float:right"><img style="border-radius:3rem" class="img-slider img-radius-1" src="<?= $this->sliderImg ?>" alt="Categoria servio" title="Categoria servio"></div></div><div class="text-center"><div class="img-line"><div class="my-texe"><span> <?= $this->products[0][5] ?></span></div></div></div></div><form method="post" id="form_slider" class="row justify-content-center text-center mx-auto fondo-button"><div class="col-4"></div><div class="col-4"><input type="hidden" id="slider_img" value="0" name="js_slider"> <input style="border:1px solid #fff;color:var(--naranja-sicloud);border-radius:1rem;width:.1%;height:10%" class="btn-sm btn-pers <?=   (  $this->sliderCode == 1 ) ? '' : 'btn-pers-selected' ?> " name="slider" value="1" type="submit"> <input style="border:1px solid #fff;color:var(--naranja-sicloud);border-radius:1rem;width:.1%;height:10%" class="btn-sm btn-pers <?= (   $this->sliderCode == 2) ? '' : 'btn-pers-selected' ?>" name="slider" value="2" type="submit"> <input style="border:1px solid #fff;color:var(--naranja-sicloud);border-radius:1rem;width:.1%;height:10%" class="btn-sm btn-pers <?= (    $this->sliderCode == 3) ? '' : 'btn-pers-selected' ?>" name="slider" value="3" type="submit"></div><div class="col-4"></div></form></div></div></div></div></div></div></section><section id="nuestros_productos" class="mt-2"> <?php
+        foreach ($this->products as $key => $row) {
+        ?> <div class="modal fade" id="oupen-modal-<?= $key ?>" tabindex="-1" role="dialog" aria-labelledby=" <?= ($row[14] ?  'oupen-modal-' . $key . '-label' : '') ?> " aria-hidden="true"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><b> <?= $row[0] ?></b><button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"> <?= $row[2] /* description category */ ?> </div><a onclick="chat()" href="javascript:;" title="cotización"><img class="btn-chat-w wow animate__animated animate__tada" src="<?= RUTAS_APP['ruta_img'] . 'entity/W-05.png' ?>" alt="icono cotizacion" title="cotización"></a><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button></div></div></div></div> <?php
+        }
+        ?> </section><br><div class="scroll-wrapper col-11 mx-auto box-card-all animate__animated animate__slideInLeft"> <?php
+        foreach ($this->products  as $key =>   $row) {
+            $class = ($key >= 2 ? 'anex-row' : '');
+        ?> <div class="scroll-item pointer-card card-box"><div class="card h-100 card-media-scroll"><img title="<?= $row[0] ?>" src="<?= RUTAS_APP['ruta_img'] . 'prod/' . (($row[7] != '') ?  $row[7] : ''); ?>" class="card-img-top w-100 h-80" alt="<?= $row[0] ?>" <?= ($row[14] ? 'data-toggle="modal" data-target="#oupen-modal-' . $key . '"' : '')  ?>><div class="card-body card-text-indent"><h5 class="" data-toggle="modal" data-target=" <?= $row[14] ? '#oupen-modal-' . $key : '' ?>"><b class="text-sub-scroll text-center"><?= $row[0] /* product_name*/;  ?></b></h5><p class="card-text"></p></div></div></div> <?php
+        }
+        ?> </div><div class=""><a onclick="chat()" href="javascript:;" title="cotización"><img class="btn-chat-w wow animate__animated animate__tada" src="<?= RUTAS_APP['ruta_img'] . 'entity/W-05.png'   ?>" alt="icono cotizacion" title="cotización"></a></div><div class="container my-4 mt-4 col-11 mx-auto"><section id="Nuestros servicios" class="services-mallorca our-services"><div class="text-center"><h1 class="section-heading text-title-ns text-title-1 mt-4">Nuestras Soluciones</h1></div><br><br><div class="row text-center mb-4"> <?php
+                foreach ($this->categories as $categoryId => $name) {
+                ?> <div class="col-md-4 mt-4 col-sm-12 <?= $categoryId < 3 ? 'border-right' : '' ?> "><h2 class="text-sub-title text-sub-title-<?= $categoryId ?>"> <?= $name ?> </h2> <?php
+                        foreach ($this->allServices[$categoryId]  as $position =>  $service) {
+                            if ($position == 0) {
+                                echo '<br>';
+                                $textService = $service[0];
+                            } else {
+                                $textService = (isset($this->allServices[$categoryId][$position + 1][0]) && $this->allServices[$categoryId][$position + 1][0] !=  $service[0]  ?  $service[0] : '');
+                            }
+                            if (!isset($this->allServices[$categoryId][$position + 1][0])) $textService = $service[0];
+
+                        ?> <div class="text-service-1 mb-2"> <?= $textService ?> </div> <?php
+                        }
+                        ?> </div> <?php
+                }
+                ?> </div></section><br><section class="mx-auto form-user-contact"><form method="post" class="card card-body col-md-6 col-12 mt-4 mx-auto container-form col-md-h-12"><div class="col-12 text-center text-sub-title text-sub-title-2"><lavel>Hablanos de tu reforma</lavel></div><div class="row"><div class="col-12 col-md-4 col-4-h"><label class="text-service-select text-service-1">Categoria</label><select class="text-service-1 form-control" name="category_id" required> <?php
+                            foreach ($this->categories as $id => $d) {
+                            ?> <option value="<?= $id ?>"><?= $d ?></option> <?php
+                            }
+                            ?> </select></div><div class="col-12 col-md-4 col-4-h"><label class="text-service-1">Nombre</label><input type="text" name="name" class="form-control" required></div><div class="col-12 col-md-4 col-4-h"><label class="text-service-1">Telefono</label><input type="text" name="cel" class="form-control" required></div><label class="text-service-1">Descripción del proyecto</label><div class="col-12"><textarea class="form-control" name="msg_user" cols="5" rows="5" required></textarea></div></div><div class="text-center my-2"><input type="submit" class="col-8 col-md-h col-md-4 btn btn-sn btn-pers-1 btn-success text-service-1" value="Solicitar información"></div><input type="hidden" name="action" value="send_msg"></form></section><br><section class="row my-4 users-recommendation recomencion-usuarios"> <?php
+            foreach ($this->usersComent as $i => $user) {
+            ?> <div class="col-lg-3 col-md-6 col-sm-12"><div class="card-body <?= ($i != 3 ? 'border-right' : '') ?>"><img src="<?= RUTAS_APP['ruta_img'] . 'user/' . $user[2] ?>" class="card-img-top mx-auto my-4 rounded-circle rounded-circle-sm img-sm" title="soluciones integrales mallorca es calidad afirman nuestros clientes" alt="soluciones integrales mallorca es calidad afirman nuestros clientes"><div class="card-body"><p class="card-title"><?= $user[0] ?></p><div class="rating"> <?php
+                                foreach (array_fill(0, $user[3], 0) as $key => $value) {
+                                ?> <input type="radio" name="rating" value="<?= $key ?>"><label for="star5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2.397l2.242 7.248h7.255l-5.872 4.527 2.242 7.248-5.872-4.527-5.872 4.527 2.242-7.248-5.872-4.527h7.255z"/></svg></label> <?php
+                                }
+                                ?> </div><p class="card-text"><?= $user[1] ?></p></div></div></div> <?php
+            }
+            ?> </section></div></main><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><script>window.addEventListener('load', function() {
+        setInterval(autoLoad, 14000);
+    });
+
+    function isShowModal(){
+        bool = false;
+        if($("#oupen-modal-login").is(":visible")) bool = true;
+        if($("#oupen-modal-0").is(":visible")) bool = true;
+        if($("#oupen-modal-1").is(":visible")) bool = true;
+        if($("#oupen-modal-2").is(":visible")) bool = true;
+        if($("#oupen-modal-3").is(":visible")) bool = true;
+        if($("#oupen-modal-4").is(":visible")) bool = true;
+        if($("#oupen-modal-5").is(":visible")) bool = true;
+        if($("#oupen-modal-6").is(":visible")) bool = true;
+        if($("#oupen-modal-7").is(":visible")) bool = true;
+        if($("#oupen-modal-8").is(":visible")) bool = true;
+        if($("#oupen-modal-9").is(":visible")) bool = true;
+        if($("#oupen-modal-10").is(":visible")) bool = true;
+        return bool;
+    }
+
+ 
+    function obtenerPosicionScroll() {
+        var scrollTop      = window.pageYOffset || document.documentElement.scrollTop; // desplazamiento vertical
+        var scrollHeight   = document.documentElement.scrollHeight; // altura total del contenido desplazable
+        var windowHeight   = window.innerHeight || document.documentElement.clientHeight; // altura visible en el navegador
+        var posicionScroll = (scrollTop / (scrollHeight - windowHeight)) * 100; // osición del scroll en una escala del 0 al 10
+        return posicionScroll;
+    }
+
+    function autoLoad() {
+        posicion = obtenerPosicionScroll();
+        if (posicion.toFixed(0) < 10 && !isShowModal()) {
+            var form       = document.getElementById('form_slider');
+            inputValue     = document.getElementById("slider_img");
+            var codeSlider = <?= $this->sliderCode ?>;
+
+            if (codeSlider + 1 <= 3) {
+                codeSlider = codeSlider + 1;
+            } else {
+                codeSlider = 1
+            }
+            inputValue = document.getElementById("slider_img").value = codeSlider;
+            form.method = "post";
+            form.submit();
+        }
+    }
+    
+     function chat() {
+        const countClicks = async () => {
+            const response = await axios.get(
+                "<?= BASE_URL ?>index/countClicks"
+            );
+            try {
+                if (response.data.type && response.data.type == "success") {
+                    PopupCenter('https://api.whatsapp.com/send?phone=<?= $this->telephone ?>', 'politicas', '1000', '1000');
+                } else {
+                    alert(response.data.msg);
+                }
+            } catch (error) {
+                console.log(response);
+            }
+        };
+        countClicks();
+
+
+        const getCategory = async () => {
+            axios.post("<?= BASE_URL ?>index/getCategory", {
+                    'slider': 1
+                }).then(resp => {
+                    console.log(resp, 'response 2')
+                })
+                .catch(error => {
+                    console.log(resp, 'response 2 error')
+                })
+        };
+    } <?php foreach ($this->products as $key =>   $row) { ?> var button<?= $key ?> = document.querySelector('#dropdown-<?= $key ?>');
+        var lista<?= $key ?> = document.querySelector('#lista-desplegable-<?= $key ?>');
+        if (button<?= $key ?>) {
+            button<?= $key ?>.addEventListener('click', function() {
+                lista<?= $key ?>.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        } <?php
+    }
+    ?> </script><style></style>

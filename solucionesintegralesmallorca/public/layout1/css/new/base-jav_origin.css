@@ -1,0 +1,152 @@
+:root {
+  --azul-Invt: #304ffe;
+  --verde-Rh: #70F570;
+  --construccion: #70c132;
+  --jardineria: #ff8e22;
+  --limpieza: #0092ff;
+}
+
+body {
+  font-family: "Roboto", arial, sans-serif;
+}
+
+.box-card {
+  background-color: #fff;
+  border-top: 3px solid var(--naranja-sicloud);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 35px 0 rgba(154, 161, 171, .15);
+  width: 100%;
+}
+
+
+.box-card-green {
+  background-color: #fff;
+  border-top: 3px solid var(--verde-Rh);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 35px 0 rgba(154, 161, 171, .15);
+  width: 100%;
+}
+
+.box-card-blue {
+  background-color: #fff;
+  border-top: 3px solid var(--azul-Invt);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 35px 0 rgba(154, 161, 171, .15);
+  width: 100%;
+}
+
+.box.box-azul {
+  border-top-color: #0898f1;
+}
+
+.btn-chat-w {
+  position: fixed;
+  bottom: 8%;
+  right: 1%;
+  width: 5%;
+  height: 10%;
+  z-index: 2;
+}
+
+/** botones de cambio slider **/
+.btn-pers {
+  background-color: var(--naranja-sicloud);
+  border: 1px solid white;
+  color: var(--naranja-sicloud);
+  border-radius: 1rem;
+  width: 0.1%;
+  height: 10%;
+}
+
+.btn-pers-1 {
+  border-radius: 0.6em;
+}
+
+.btn-pers:hover {
+  background-color: #E3E3E3;
+  color: #E3E3E3;
+  opacity: 0.9;
+  border-radius: 3rem;
+}
+
+.btn-pers-selected {
+  background-color: white;
+  color: white;
+  opacity: 0.9;
+  border-radius: 3rem;
+}
+
+.container-form {
+  border-radius: 3rem;
+}
+
+/** botones de cambio slider **/
+
+
+
+
+.box-card-all {
+  border: 3px solid var(--naranja-sicloud);
+  border-radius: 2rem;
+}
+
+.modal .modal-content {
+  border-radius: 20px !important;
+}
+
+
+
+
+
+@media screen and (max-width: 740px) {
+
+  .btn-chat-w {
+    position: fixed;
+    bottom: 65px;
+    right: 20px;
+    width: 90px;
+    height: 10%;
+  }
+
+  .scroll-item {
+    width: 50% !important;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  .text-sub-scroll {
+    font-size: 8px !important;
+  }
+
+
+
+
+
+  .modal .modal-content {
+    font-size: 0.90em !important;
+    width: 97% !important;
+    text-align: center;
+  }
+
+  .modal .modal-content h4 {
+    font-size: 0.938em !important;
+  }
+
+
+}
+
+
+
+
+@media (orientation: landscape) {
+  @media screen and (max-width: 914px) {
+    .btn-chat-w {
+      height: 3.75em !important;
+      width: 3.75em !important;
+      right: 2%;
+    }
+  }
+}

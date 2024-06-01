@@ -83,6 +83,7 @@ class indexController extends Controller
         $dato[1] = ' AND password = "' . $this->getSql('password') . '"';
         $sql     = $this->model->m_consulta(4, $dato);
         $u       = $this->db->m_trae_array($sql);
+
         if ($u->num_rows == 1) {
             @session_start();
             $_SESSION['usuario']['id']        = $u->row[0];
@@ -91,7 +92,10 @@ class indexController extends Controller
             $_SESSION['usuario']['apellidos'] = $u->row[4] . ' ' . $u->row[5];
             $_SESSION['usuario']['correo']    = $u->row[11];
             $_SESSION['usuario']['rol']       = $u->row[14];
-            header('Location: ./home.php');
+            //header('Location: ./home.php');
+            echo BASE_URL;
+            echo "<script>window.location.href='" .BASE_URL. './home.php'. "'</script>";
+            Controller::ver('home');
             return $_SESSION['usuario'];
         } else {
             echo '<script>alert("error de credenciales");</script>';

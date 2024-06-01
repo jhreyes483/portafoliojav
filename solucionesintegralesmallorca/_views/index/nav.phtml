@@ -1,0 +1,165 @@
+<style>
+  .nav-link,
+  .dropdown-item {
+    color: #2f58a9 !important;
+
+  }
+
+  .nav-link:hover,
+  .dropdown-item:hover {
+    color: #49A0CF !important;
+
+  }
+
+  .logo-nav {
+    width: 88%;
+    height: 88%;
+  }
+
+
+.btn-jav[title]::after {
+  content: attr(title) !important; /* Mostrar el atributo 'title' como contenido del tooltip */
+  background-color: black !important; /* Fondo negro */
+  color: white; /* Texto blanco */
+  padding: 5px; /* Espaciado interno */
+  font-size: 14px; /* Tamaño de fuente */
+  border-radius: 5px; /* Bordes redondeados */
+  position: absolute; /* Posición absoluta */
+  bottom: 100%; /* Colocar el tooltip encima del elemento */
+  left: 50%; /* Centrar horizontalmente */
+  transform: translateX(-50%); /* Alinear al centro horizontalmente */
+  opacity: 0; /* Ocultar inicialmente */
+  transition: opacity 0.3s; /* Transición de opacidad */
+}
+
+/* Mostrar el tooltip al pasar el mouse sobre la imagen */
+.btn-jav[title]:hover::after {
+  opacity: 1; /* Mostrar el tooltip */
+}
+
+
+  @media (orientation: landscape) {
+    @media screen and (max-width: 914px) {
+      .logo-nav {
+        width: 400px;
+        height: 70px;
+      }
+
+    }
+
+  }
+
+  @media screen and (max-width: 740px) {
+    .logo-nav {
+      width: 93%;
+      height: 93%;
+    }
+
+  }
+  
+  .btn-jav{
+  cursor: pointer; /* Cambia el cursor a un puntero al pasar el mouse sobre la imagen */
+  opacity: 1; /* Opacidad inicial de la imagen */
+  transition: opacity 0.3s; /* Transición de opacidad */
+}
+
+.btn-jav:hover {
+  opacity: 0.9; /* Opacidad al pasar el mouse sobre la imagen */
+}
+
+.btn-chat-w:hover {
+  opacity: 0.9; /* Opacidad al pasar el mouse sobre la imagen */
+}
+
+
+</style>
+
+
+
+
+
+<nav>
+  <ul class="nav justify-content-end  my-4 m-2">
+    <li class="justify-content-start mr-auto img-fluid">
+      <img src="<?= LOGO ?>" alt="Logo mallorca" title="Logo mallorca" class="logo-nav  justify-content-start mr-auto img-fluid">
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link" href="javascript:;" data-toggle="modal" title="Login" data-target="#oupen-modal-login">Login</a>
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link" href="<?= BASE_URL ?>index" title="Home">Home</a>
+    </li>
+    <li class="nav-item dropdown">
+      <ol title="Quienes Somos" class="nav-link dropdown-toggle" tilte="Quienes Somos" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span>Quienes Somos</span>
+      </ol>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="<?= BASE_URL ?>index/entidad" title="Nuestra empresa">Nuestra empresa</a>
+        <a class="dropdown-item" href="<?= BASE_URL ?>index/contactato_consulta" title="Contactanos">Contactanos</a>
+        <?php
+        if (isset($_SESSION['user']['rol_id']) && $_SESSION['user']['rol_id'] == 1) {
+        ?>
+          <a class="dropdown-item" href="https://mail.hostinger.com/?clearSession=true&_user=info@solucionesintegralesmallorca.com" target="_blank" title="Correo corporativo">Correo corporativo</a>
+          <a class="dropdown-item" href="https://hpanel.hostinger.com/" target="_blank" title="Hosting">Develop</a>
+          <a class="dropdown-item" href="https://search.google.com/search-console" target="_blank" title="Hosting">Indexado</a>
+          <a class="dropdown-item" href="https://analytics.google.com/analytics/web/" target="_blank" title="Hosting">google analytics</a>
+        <?php
+        }
+        if (isset($_SESSION['user']['id'])) {
+        ?>
+          <a class="dropdown-item" href="<?= BASE_URL ?>index/cerrar" target="_blank" title="Cerrar sesión">Cerrar sesión</a>
+        <?php
+        }
+
+        ?>
+      </div>
+
+
+  </ul>
+
+</nav>
+
+<div class="row d-flex">
+  <div>
+    <div class="modal mx-auto modal-sm modal-dialog" tabindex="-1" role="dialog" id="oupen-modal-login">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title">Login</h1>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-footer">
+            <form method="post" class="form-group mx-auto">
+              <label>Correo</label>
+              <input class="form-control" type="text" name="email" id="email">
+              <label>Contraseña</label>
+              <input class="form-control" type="text" name="password" id="password">
+              <input type="hidden" name="action" value="login">
+              <input type="submit" class=" my-2 btn btn-primary" value="Iniciar sesión">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <?php
+    if (isset($_SESSION['response']['status'], $_SESSION['response']['msg']) && $_SESSION['response']['status'] == 0) {
+    ?>
+      <div class="alert alert-danger col-4 mx-auto" role="alert">
+        <?= $_SESSION['response']['msg']  ?>
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <?php
+      unset($_SESSION['response']);
+    }
+    ?>
+  </div>

@@ -1,0 +1,83 @@
+<div class="container">
+    <div class="">
+        <div class=" card card-body ">
+            <form action="" method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="text-dark">Categoria</label>
+                        <select name="category_id" id="" class="form-control">
+                            <?php
+                            echo '  <option value="0">Seleccione</option>';
+                            if(isset($this->categories)) foreach ($this->categories as $k => $d) {
+
+                                echo '  <option ' . (isset($_POST['category_id']) && ($k == $_POST['category_id']) ? ' selected ' : '') . ' value="' . $k . '">' . $d . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label  class="text-dark">Usuario</label>
+                        <input type="text" class="form-control" name="search">
+                    </div>
+                    <div class="col-md-4">
+                        <br>
+                        <input type="submit" class="btn mt-3 btn-primary btn-sm" value="buscar" name="">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <?php
+        if (count($this->solicitudes['data']) > 0) {
+
+        ?>
+            <div class="table-responsive">
+                <table id="example" class="table table-striped">
+                    <thead class="">
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Rol user</th>
+                            <th>id usuario</th>
+                            <th>Nombre</th>
+                            <th>Solicitud</th>
+                            <th>Ip piblica</th>
+                            <th>País</th>
+                            <th>Ciudad</th>
+                            <th>Celular</th>
+                            <th>Fecha mensaje</th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-light">
+                        <?php
+                        foreach ($this->solicitudes['data'] as $key => $value) {
+                
+                        ?>
+
+                            <tr>
+                                <td><?= $value[5] ?></td>
+                                <td><?= $value[4] ?></td>
+                                <td><?= $value[2] ?></td>
+                                <td><?= $value[1] ?></td>
+                                <td><?= $value[0] ?></td>
+                                <td><?= $value[7] ?></td>
+                                <td><?= $value[9] ?></td>
+                                <td><?= $value[8] ?></td>
+                                <td><?= $value[3] ?></td>
+                                <td><?= $value[6] ?></td>
+                                <td>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
+<?php
+        }
+?>

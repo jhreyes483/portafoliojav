@@ -1,0 +1,14 @@
+h1,h2,h3,h4,h5,h6{margin-bottom:1.3em;line-height:1.4;font-weight:400}
+h1{font-size:32px}
+h2{font-size:28px}
+h6{font-weight:700}
+p{margin:0 0 2em}
+blockquote{margin:3em 0;padding:0;border:none;background:0 0;font-style:normal;line-height:1.7;color:#777}
+blockquote p{margin-bottom:1em;font-size:24px;font-weight:300;font-style:normal;line-height:1.6}
+blockquote footer{font-size:11px;font-weight:400;text-transform:uppercase;letter-spacing:2px}
+dl dt{margin-bottom:5px}
+dl dd{margin-bottom:15px}
+pre{background-color:#f9f9f9;border-color:#ddd}
+hr{background-color:rgba(255,255,255,.08)}
+hr.white{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.35)}
+hr.black{border-color:rgba(0,0,0,.85);background:rgba(0,0,0,.85)}.uppercase{text-transform:uppercase;letter-spacing:1px}.font-alt{font-family:roboto condensed,sans-serif;text-transform:uppercase;letter-spacing:.2em}.serif{font-family:times new roman,Times,serif;font-style:italic;font-weight:400}.normal{font-weight:400}.strong{font-weight:700!important}.lead{margin:1em 0 2em;font-size:140%;line-height:1.6}.text{font-size:16px;font-weight:300;color:#5f5f5f;line-height:1.8}.text h1,.text h2,.text h3,.text h4,.text h5,.text h6{color:#111}.dropcap{float:left;font-size:3em;line-height:1;padding:2px 8px 2px 0}.font-alt{font-family:roboto condensed,sans-serif;text-transform:uppercase;letter-spacing:.2em}.serif{font-family:times new roman,Times,serif;font-style:italic;font-weight:400}.normal{font-weight:400}.strong{font-weight:700!important}.lead{margin:1em 0 2em;font-size:140%;line-height:1.6}.text{font-size:16px;font-weight:300;color:#5f5f5f;line-height:1.8}.text h1,.text h2,.text h3,.text h4,.text h5,.text h6{color:#111}
