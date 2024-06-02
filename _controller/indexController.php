@@ -93,9 +93,7 @@ class indexController extends Controller
             $_SESSION['usuario']['correo']    = $u->row[11];
             $_SESSION['usuario']['rol']       = $u->row[14];
             //header('Location: ./home.php');
-            echo BASE_URL;
-            echo "<script>window.location.href='" .BASE_URL. './home.php'. "'</script>";
-            Controller::ver('home');
+           echo "<script>window.location.href='home.php'</script>";
             return $_SESSION['usuario'];
         } else {
             echo '<script>alert("error de credenciales");</script>';

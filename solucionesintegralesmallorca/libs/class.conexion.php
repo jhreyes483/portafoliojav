@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '../../../vendor/autoload.php';
- @session_start();
+@session_start();
 
 class c_MySQLi extends mysqli
 {
@@ -12,15 +12,15 @@ class c_MySQLi extends mysqli
         $this->DB_PASS = 'devM4ll0rc4*';
         $this->DB_NAME = 'u227058085_db_mallorca';
         */
-        parent:: __construct();
+        parent::__construct();
         $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ . '../../../');
         $dotenv->load();
         $this->conexion = mysqli_connect(
-            $_ENV['MALLORCA_DB_HOST'], 
-            $_ENV['MALLORCA_DB_USERNAME'], 
-            $_ENV['MALLORCA_DB_PASSWORD'], 
-            $_ENV['MALLORCA_DB_DATABASE'], 
-            ) or die('Se genero un error de acceso ' . __LINE__);
+            $_ENV['MALLORCA_DB_HOST'],
+            $_ENV['MALLORCA_DB_USERNAME'],
+            $_ENV['MALLORCA_DB_PASSWORD'],
+            $_ENV['MALLORCA_DB_DATABASE'],
+        ) or die('Se genero un error de acceso ' . __LINE__);
     }
 
 
@@ -36,7 +36,7 @@ class c_MySQLi extends mysqli
             return $resultado;
         } else {
             $errorString = mysqli_error($this->conexion);
-        //defino antes de anular la transaccion
+            //defino antes de anular la transaccion
             $errorNumber = mysqli_errno($this->conexion);
             $this->m_anulaTRANS();
             die("<br>$sql $errorString");
@@ -54,7 +54,7 @@ class c_MySQLi extends mysqli
         if ($rs) {
             $i = 0;
             $data = array();
-        ##Retorna un Objeto
+            ##Retorna un Objeto
             if ($tipo < 2) {
                 if ($tipo == 0) {
                     while ($result = mysqli_fetch_row($rs)) {
@@ -62,7 +62,7 @@ class c_MySQLi extends mysqli
                         $i++;
                     }
                 } else {
-                //el indice del arreglo es el nombre del campo
+                    //el indice del arreglo es el nombre del campo
 
                     while ($result = mysqli_fetch_assoc($rs)) {
                         $data[$i] = $result;
@@ -79,7 +79,7 @@ class c_MySQLi extends mysqli
 
                 unset($data);
             } else {
-        //Retorna un array donde el indice es el primer campo
+                //Retorna un array donde el indice es el primer campo
                 while ($result = mysqli_fetch_row($rs)) {
                     $query[$result[0]] = $result[1];
                 }
@@ -96,7 +96,7 @@ class c_MySQLi extends mysqli
         if ($rs) {
             $i = 0;
             $data['data'] = array();
-        ##Retorna un Objeto
+            ##Retorna un Objeto
             switch ($tipo) {
                 case 0:
                     while ($result = mysqli_fetch_row($rs)) {
@@ -113,7 +113,7 @@ class c_MySQLi extends mysqli
                     }
 
                     return $data;
-                break;
+                    break;
                 case 1: # array
                     while ($result = mysqli_fetch_assoc($rs)) {
                         $data['data'][$i] = (object) $result;
@@ -152,7 +152,7 @@ class c_MySQLi extends mysqli
             $query->num_rows = $i;
             return $query;
 
-        /*
+            /*
                    if($tipo<2){
                if($tipo==0){
                   while ($result = mysqli_fetch_row($rs)) {
@@ -168,22 +168,22 @@ class c_MySQLi extends mysqli
               }
                 */
 
-                mysqli_free_result($rs);
+            mysqli_free_result($rs);
 
-                $query = new stdClass();
+            $query = new stdClass();
             $query->row = isset($data[0]) ? $data[0] : array();
             $query->rows = $data;
             $query->num_rows = $i;
             return $query;
 
-                unset($data);
+            unset($data);
         } else {
-        //Retorna un array donde el indice es el primer campo
+            //Retorna un array donde el indice es el primer campo
             while ($result = mysqli_fetch_row($rs)) {
                 $query[$result[0]] = $result[1];
             }
         }
-            return $query;
+        return $query;
     }
 
 
@@ -191,13 +191,13 @@ class c_MySQLi extends mysqli
     {
 
         $params = [
-            'p_error' => $error ,
-            'p_file'  => $file ,
-            'p_type_error' => $type ,
+            'p_error' => $error,
+            'p_file'  => $file,
+            'p_type_error' => $type,
             'p_now' => date('Y-m-d H:i:s')
 
         ];
-//       $insert = $this->db->execSP2('lsp_create_log_events_lv1( "1","'.date('y-m-d H:i:s').'","'.$this->userController->getIp().'" )');
+        //       $insert = $this->db->execSP2('lsp_create_log_events_lv1( "1","'.date('y-m-d H:i:s').'","'.$this->userController->getIp().'" )');
         $r = $this->execSP2("lsp_create_error__system_lv1( '" . json_encode($error) . "','" . json_encode($file) . "','" . json_encode($type) . "','" . date('Y-m-d H:i:s') . "' )");
         return $r;
     }
@@ -207,7 +207,7 @@ class c_MySQLi extends mysqli
 
         $this->cleanTraceSp();
         $command = 'call ' . $sp;
-/*
+        /*
         $command = "CALL " . $spName ."(";
 
         $counter = 0;
@@ -234,20 +234,23 @@ class c_MySQLi extends mysqli
         $c = "'";
         foreach ($params as $key => $value) {
             $value =  str_replace(['"', "'"], '', $value);
-            $command .=  $c . $value . $c . (  $counter != (count($params) - 1) ? ',' : '' );
+            $command .=  $c . $value . $c . ($counter != (count($params) - 1) ? ',' : '');
             $counter++;
         }
         $command .= ")";
-//echo $command;
+        //echo $command;
         return $this->m_trae_array_vsp($command, $tipo);
     }
 
     private function cleanTraceSp()
     {
-        while (mysqli_next_result($this->conexion)) {
-            if ($result2 = mysqli_store_result($this->conexion)) {
-                mysqli_free_result($result2);
-            }
+        if (isset($this->conexion) && $this->conexion) {
+            do {
+                mysqli_next_result($this->conexion); // Avanzar al siguiente resultado
+                if ($result2 = mysqli_store_result($this->conexion)) {
+                    @mysqli_free_result($result2);
+                }
+            } while (mysqli_more_results($this->conexion));
         }
     }
 
@@ -310,19 +313,19 @@ class c_MySQLi extends mysqli
     public function m_clean($input)
     {
         if ($input === true || $input === false || $input === null) {
-# is true, false, or null
+            # is true, false, or null
             return $input;
         }
 
         if (is_array($input)) {
-# is array
+            # is array
             foreach ($input as $key => $val) {
-# sanitize both the keys and the values for good measure
+                # sanitize both the keys and the values for good measure
                 $clean_key          = self::clean($key);
                 $input[$clean_key]  = self::clean($val);
             }
         } else {
-        # is scalar
+            # is scalar
             $input = mysqli_real_escape_string($this->conexion, htmlspecialchars(trim($input), ENT_QUOTES, 'ISO-8859-1', false));
         }
         return $input;
@@ -333,15 +336,15 @@ class c_MySQLi extends mysqli
     {
         switch ($bg) {
             case 1:
-                  $bgColor = 'b0ffff';
+                $bgColor = 'b0ffff';
 
                 break;
             case 2:
-                  $bgColor = 'd0ffb9';
+                $bgColor = 'd0ffb9';
 
                 break;
             default:
-                  $bgColor = 'ffcfcd';
+                $bgColor = 'ffcfcd';
 
                 break;
         }

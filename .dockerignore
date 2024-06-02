@@ -2,14 +2,19 @@
 
 
 # flyctl launch added from sicloud\libs\mpdf\vendor\mpdf\mpdf\.gitignore
-sicloud\libs\mpdf\vendor\mpdf\mpdf\**\vendor\*
-sicloud\libs\mpdf\vendor\mpdf\mpdf\**\composer.lock
+!sicloud\libs\mpdf\vendor\mpdf\mpdf\**\vendor\*
+!sicloud\libs\mpdf\vendor\mpdf\mpdf\**\composer.lock
 
 # flyctl launch added from sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\.gitignore
-sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\**\*
+!sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\**\*
 !sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\**\.gitignore
 !sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\**\ttfontdata
 !sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\**\ttfontdata\.gitkeep
+!sicloud\bk_db\sicloud_bk_01-06-2024_phpmyadmin.sql
+!sporthealth\bk_db\sporthealth_bk_01-06-2024_phpmyadmin.sql
+!solucionesintegralesmallorca\bk_db\solucionesintegralesmallorca_bk_01-06-2024_phpmyadmin.sql
+!amoblando\bk_db\amoblando_bk_01-06-2024_phpmyadmin.sql
+!portafoliojav\bk_db\portafoliojav_bk_01-06-2024_phpmyadmin.sql
 
 # flyctl launch added from sporthealth\.gitignore
 
