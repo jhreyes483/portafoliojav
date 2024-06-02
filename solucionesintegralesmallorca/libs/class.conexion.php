@@ -246,7 +246,8 @@ class c_MySQLi extends mysqli
     {
         if (isset($this->conexion) && $this->conexion) {
             do {
-                mysqli_next_result($this->conexion); // Avanzar al siguiente resultado
+                if($this->conexion);
+                @mysqli_next_result($this->conexion); // Avanzar al siguiente resultado
                 if ($result2 = mysqli_store_result($this->conexion)) {
                     @mysqli_free_result($result2);
                 }
