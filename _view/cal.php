@@ -4,21 +4,24 @@ namespace _view;
 
 require_once '../autoload.php';
 use _controller\calendarioController;
+use Controller;
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <?php
-//require_once '_controller/calendarioController.php';
 $obj = new calendarioController();
 @session_start();
+/*
 if (isset($_SESSION)) {
     $c   = $obj->accesEventos();
 } else {
-    die('<center>Por favor inicie sesi�n/center>');
+    die('<center>Por favor inicie sesión</center>');
 }
+*/
+$c   = $obj->accesEventos();
 ?>
 <head>
    <meta charset="UTF-8">

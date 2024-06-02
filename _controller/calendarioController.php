@@ -37,7 +37,7 @@ class calendarioController extends Controller
         $sql     = $this->model->m_consulta(9);
 // select equipo
         $equipos = $this->db->m_trae_array($sql, 2);
-        $user    = ((isset($_POST['busqUserCal'])) ? $this->getSql('busqUserCal') : $_SESSION['usuario']['id']  );
+        $user    = ((isset($_POST['busqUserCal'])) ? $this->getSql('busqUserCal') : $_SESSION['usuario']['id']??1  );
         $p[0]    = ' WHERE fk_us = ' . $user;
         $sql     =  $this->model->m_consulta(7, $p);
 // consulta eventos
@@ -95,8 +95,7 @@ class calendarioController extends Controller
         if (isset($_POST['a'])) {
             switch ($this->getSql('a')) {
                 case 'insert':
-                                         $this->m_insert();
-
+                    $this->m_insert();
                     return $this->eventos();
                 break;
                 default:

@@ -6,6 +6,9 @@
 !sicloud\libs\mpdf\vendor\mpdf\mpdf\**\composer.lock
 
 # flyctl launch added from sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\.gitignore
+
+!sicloud\libs\fpdf
+!sicloud\libs\mpdf
 !sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\**\*
 !sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\**\.gitignore
 !sicloud\libs\mpdf\vendor\mpdf\mpdf\tmp\**\ttfontdata
